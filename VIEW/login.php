@@ -14,9 +14,7 @@
 
 class View extends CustomView{
     function __construct() {
-        global $core;
-        $core->title  = "Demo Login form";
-       
+        $this->title  = "Demo Login form";
     }
     
     function printMainPageContent() {

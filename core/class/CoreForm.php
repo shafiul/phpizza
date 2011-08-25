@@ -92,13 +92,8 @@ abstract class CoreForm extends HTML {
         return $this->v->subject;
     }
     
-    // Override
-    public function input($name,$type="text", $id="", $value="", $attrArr = null) {
-        if($this->validate){
-            $value = $this->doValidation($name);
-        }
-        return parent::input($name, $type, $id, $value, $attrArr);
-    }
+    
+    // Element related
     
     public function element($name,$displayName,$validators = ""){
         $this->elements[$name] = array($displayName, $validators);
@@ -113,7 +108,29 @@ abstract class CoreForm extends HTML {
     public function get($name){
         return (isset($this->submittedData[$name]))?($this->submittedData[$name]):(null);
     }
-
+    
+    // Override parent HTML class's functions
+    
+    public function input($name,$type="text", $id="", $value="", $attrArr = null) {
+        if($this->validate){
+            $value = $this->doValidation($name);
+        }
+        return parent::input($name, $type, $id, $value, $attrArr);
+    }
+    
+    public function textarea($name,$value = "",$attrArr=null, $id= ""){
+        if($this->validate){
+            $value = $this->doValidation($name);
+        }
+        return parent::textarea($name, $value, $attrArr, $id);
+    }
+    
+    public function select($name, $options, $selectedValue = "", $attrArr= null, $id=null) {
+        if($this->validate){
+            $selectedValue = $this->doValidation($name);
+        }
+        return parent::select($name, $options, $selectedValue, $attrArr, $id);
+    }
 }
 
 ?>

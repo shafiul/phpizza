@@ -1,15 +1,12 @@
 <?php
 class HTML{
-    public function tr($td_array, $directPrint = false) {
+    public function tr($td_array) {
         $str = "<tr>";
         foreach ($td_array as $i) {
             $str .= "<td>$i</td>";
         }
         $str .= "</tr>";
-        if ($directPrint)
-            echo $str;
-        else
-            return $str;
+        return $str;
     }
     
     public function input($name, $type="text", $id="", $value="", $attrArr = null) {
@@ -28,7 +25,7 @@ class HTML{
         return "<input id='$id' type='$type' name = '$name' value='$value' $attrText />";
     }
 
-    public function select($name, $option, $selectedValue = "", $attrArr= null, $id=null) {
+    public function select($name, $options, $selectedValue = "", $attrArr= null, $id=null) {
         $attrText = "";
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
@@ -38,8 +35,8 @@ class HTML{
         if ($id)
             $str .= " id='$id' ";
         $str.= "$attrText name = '$name'>";
-        //var_dump($option);
-        foreach ($option as $displayText => $value) {
+        //var_dump($options);
+        foreach ($options as $displayText => $value) {
             $selected = ($value == $selectedValue) ? ("selected = 'selected'") : ("");
             $str .= "<option $selected name = '$value' value = '$value'>$displayText</option>";
         }
@@ -56,6 +53,7 @@ class HTML{
         $str = "<textarea name = '$name' id = '$id' $attrText >$value</textarea>"; 
         return $str;
     }
+    
     
     
     public function msgbox($message, $mode = 1, $exit = false, $id = ""){

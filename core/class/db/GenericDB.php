@@ -8,18 +8,18 @@
 
 abstract class GenericDB{
     
-    public $table;  // Name of the table
-    public $data;   //  Key-value pair of Data
-    public $identifier; // Key-value pair of identifier: in where clause
+    public $table = "";  // Name of the table
+    public $data = null;   //  Key-value pair of Data
+    public $identifier = null; // Key-value pair of identifier: in WHERE clause
     public $encryptionFunction = "SHA";
     public $errorNo;
     public $errorMsg;
-    public $query;
-    public $rest;   //  Additional query
+    public $query = "";
+    public $rest = "";   //  Additional query
     public $joiner; // joiner (AND/OR) in where clause
     public $returnPointer;  // Return pointer/single data from selectArray
-    
-    public $connectionID;
+    public $select = null;  // Indicates "select *"
+    public $connectionID = null;
     
     public function __construct() {
         // Load Configuration
@@ -35,9 +35,13 @@ abstract class GenericDB{
     abstract public function connect();
     abstract public function insertArray($password_key="", $password_value="");
     abstract public function updateArray();
-    abstract public function selectArray($selectArr);
+    abstract public function selectArray();
     abstract public function delete();
     
+    // Status Related
+    abstract public function numReturnedRows();
+    abstract public function numAffectedRows();
+    // Knowing about Error
     abstract public function setError();
     
     // Implemented utility functions

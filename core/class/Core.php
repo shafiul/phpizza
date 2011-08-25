@@ -14,11 +14,14 @@
 require_once dirname(__FILE__) . "/HTML.php";
 require_once dirname(__FILE__) . "/Funcs.php";
 require_once dirname(__FILE__) . "/CoreForm.php";
-require_once dirname(__FILE__) . "/Validator.php";
+require_once dirname(__FILE__) . "/CoreValidator.php";
 require_once dirname(__FILE__) . "/CoreView.php";
 // Helper Functions
 require_once dirname(__FILE__) . "/../funcs/general.php";
 
+// Required Custom Classes
+require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomView.php";
+require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Validator.php";
 
 class Core{
     public $funcs;
@@ -46,8 +49,6 @@ class Core{
         $this->validate = new Validator($this);
         // Theme
         $this->theme = SITE_THEME;  //  Can lode from DB too.
-        // Load Necessary custom classes
-        $this->loadCustomClass("CustomView");
     }
     
     /* Loaders */
