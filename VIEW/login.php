@@ -22,7 +22,7 @@ class View extends CustomView{
         // Check if errors exist
         $errors = $core->getData("formError");
         if(!empty($errors)){
-            echo "$errors <br /><br />";
+            echo "<font color='red'>$errors</font> <br /><br />";
         }
         echo $core->getData("loginForm");
     }

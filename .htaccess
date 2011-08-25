@@ -1,8 +1,8 @@
 Options -Indexes
 ErrorDocument 404 "<h1 style = 'color:red;'>Error 404:Page Not Found!</h1> <br /> <a href = 'http://onlyfone.com/contact.html#feedback'>Click here to report</a>"
 RewriteEngine on
-RewriteCond $1 !^(index\.php|images|3rdparty|robots\.txt|Sitemap\.xml|feed\.rss)
-RewriteRule ^([a-zA-Z0-9-_/]+)[/]?$ index.php?page=$1 [QSA,L]
+RewriteCond $1 !^(index\.php|images|3rdparty|templates|robots\.txt|Sitemap\.xml|feed\.rss)
+RewriteRule ^([a-zA-Z0-9-_/]+)$ index.php?page=$1 [QSA,L]
 RewriteRule ^([a-zA-Z0-9-_/]+)\.html$ index.php?page=$1 [QSA,L]
 RewriteRule ^feed/?$ CONTROL/feed_gen.php [QSA,L]
 RewriteRule ^Sitemap\.xml$ CONTROL/sm_gen.php [QSA,L]

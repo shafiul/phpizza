@@ -111,7 +111,7 @@ class Core{
     
     /* Useful functions for index page */
     
-    public function requireAllPages($page){
+    public function loadMVC($page){
         $this->findPage($page);
         // Load Defaults
         $this->loadModel($this->page);
