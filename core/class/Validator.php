@@ -13,15 +13,16 @@
 
 class Validator{
     
-    
+    public $subject;    //   Subject to validate
     public $errorArray;
     
     // Vars for internal use
-    private $core;  // A reference to core object
+    private $core = null;  // A reference to core object
     private $redirectURL = "";
+   
+    // Constructors
     
-    // Constructor
-    public function __construct($core) {
+    public function __construct($core=null) {
         $this->core = $core;
         $this->errorArray = array();
     }
@@ -49,10 +50,11 @@ class Validator{
         return $return;
     }
     
-    public function exitIfInvalid($exit=true){
+    public function exitIfInvalid($exit=true, $joiner = "<br />"){
         // if exit = false, just returns the error string if there are errors. Returns FALSE if valid!
         $errorString = "";
-        $errorString = implode("",$this->errorArray);
+        $errorString = implode($joiner,$this->errorArray);
+        $this->errorArray = array();    //  Reset the error Array.
         if(!empty($errorString)){
             if($exit)
                 $this->core->funcs->messageExit("$errorString", 3, $this->redirectURL);
@@ -63,12 +65,26 @@ class Validator{
     }
 
 
-    public function emailAddress($email) {
-        return preg_match('|^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$|i', $email);
+    public function email() {
+        if( !preg_match('|^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$|i', $this->subject) )
+            $this->errorArray[] = "is not a valid email";
+                
     }
     
     public function replaceNonAlphaNumerics($stringToBeReplaced, $replaceWith = "-") {
         return preg_replace("@[^A-Za-z0-9]@", $replaceWith, $stringToBeReplaced);
+    }
+    
+    // Validator functions. These functions work on a subject - subject is the string to validate.
+    
+    public function required(){
+        if(empty($this->subject))
+            $this->errorArray[] = "can not be empty";
+    }
+    
+    public function htmlspecialchars(){
+        // No error is generated, just filters the text
+        $this->subject = htmlspecialchars($this->subject);
     }
     
 }

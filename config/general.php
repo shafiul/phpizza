@@ -14,7 +14,7 @@
 
 
     // Constants
-    define('BASE_URL', 'http://localhost/htdocs/projects/Giga_MVC');    // Without trailing slash!!!
+    define('BASE_URL', 'http://localhost/htdocs/projects/gigamvc');    // Without trailing slash!!!
 //    define('BASE_URL', 'http://localhost/projects/Giga_MVC');    // Without trailing slash!!!
 
     define('SITE_THEME','WhiteLove');
@@ -41,6 +41,7 @@
     define('CONTROL_DIR','CONTROL');
     define('MODEL_DIR','MODEL');
     define('CUSTOM_DIR','custom');
+    define('FORMS_DIR', VIEW_DIR . "/forms");   //  Directory where your HTML forms reside
 
     // Configuration - User
     define('CAPTCHA_ON',true);

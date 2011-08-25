@@ -13,7 +13,7 @@
 // Classes
 require_once dirname(__FILE__) . "/HTML.php";
 require_once dirname(__FILE__) . "/Funcs.php";
-require_once dirname(__FILE__) . "/Forms.php";
+require_once dirname(__FILE__) . "/CoreForm.php";
 require_once dirname(__FILE__) . "/Validator.php";
 require_once dirname(__FILE__) . "/CoreView.php";
 // Helper Functions
@@ -100,6 +100,11 @@ class Core{
     
     public function loadCustomFunction($funcName){
         $classPath = dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/funcs/$className.php";
+        return $this->safeRequireOnce($classPath);
+    }
+    
+    public function loadForm($formName){
+        $classPath = dirname(__FILE__) . "/../../" . FORMS_DIR . "/$formName.php";
         return $this->safeRequireOnce($classPath);
     }
     

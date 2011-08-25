@@ -1,6 +1,6 @@
 <?php
 class HTML{
-    private function tr($td_array, $directPrint = false) {
+    public function tr($td_array, $directPrint = false) {
         $str = "<tr>";
         foreach ($td_array as $i) {
             $str .= "<td>$i</td>";
@@ -47,7 +47,15 @@ class HTML{
         return $str;
     }
     
-    
+    public function textarea($name,$value = "",$attrArr=null, $id= ""){
+        $attrText = "";
+        if ($attrArr) {
+            foreach ($attrArr as $k => $v)
+                $attrText .= "$k = '$v' ";
+        }
+        $str = "<textarea name = '$name' id = '$id' $attrText >$value</textarea>"; 
+        return $str;
+    }
     
     
     public function msgbox($message, $mode = 1, $exit = false, $id = ""){
