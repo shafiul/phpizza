@@ -32,7 +32,8 @@
     ///////////////////////////////////////////////////
     // Generally, you don't need to modify followings.
     
-    define('VIEW_EXTENTION','html');
+    define('URL_EXTENTION','');    //  Provide with leading dot (.html for example) 
+    // or empty for no extention
     
     define('IMAGE_DIR','images');
     define('JS_DIR','client/js');

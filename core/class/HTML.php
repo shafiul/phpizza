@@ -1,4 +1,14 @@
 <?php
+
+// Constants
+
+// MsgBox Status related
+define('MSGBOX_INFO',0);
+define('MSGBOX_SUCCESS',1);
+define('MSGBOX_WARNING',2);
+define('MSGBOX_ERROR',3);
+
+
 class HTML{
     public function tr($td_array) {
         $str = "<tr>";
@@ -56,9 +66,9 @@ class HTML{
     
     
     
-    public function msgbox($message, $mode = 1, $exit = false, $id = ""){
+    public function msgbox($message, $mode = MSGBOX_SUCCESS, $exit = false, $id = ""){
         // modes: 0: info, 1: success, 2: warning, 3: error
-        $str = "<br>";
+        $str = "<br>"; 
         $base_style = "border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px; background-repeat: no-repeat; background-position: 10px center; ";
         $color = array("00529B", "4F8A10", "9F6000", "D8000C");
         $bgcolor = array("BDE5F8","DFF2BF","FEEFB3","FFBABA");

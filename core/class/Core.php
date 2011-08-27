@@ -31,9 +31,11 @@ class Core{
     public $controller;
     public $page;   //  Which page we are in?
     public $functionToCall; //  Which function to call inside Controller
+    public $formData;
     // Others
     public $theme;
     private $data;
+    
     // Load sttus
     public $controllerLoaded = false;
     public $viewLoaded = false;        
@@ -44,9 +46,10 @@ class Core{
     // constructor
     
     public function __construct() {
-        $this->funcs = new Funcs();
         $this->html = new HTML();
+        $this->funcs = new Funcs($this);
         $this->validate = new Validator($this);
+        $this->formData = array();
         // Theme
         $this->theme = SITE_THEME;  //  Can lode from DB too.
     }
@@ -187,22 +190,12 @@ class Core{
             return false;
     }
     
-    // GUI related
-    
-    public function getDisplayMsg() {
-        // Prints error/info/warning messages
-        if ($dM = $this->funcs->getSessData('displayMessage')) {
-            $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">';
-            $str .= $this->html->msgbox($dM[0], $dM[1]);
-            $str .= '</div> <br />';
-            $str .= '<script>$("#displayM").fadeIn("slow");</script> </div>';
-            $this->funcs->unsetSessData('displayMessage');
-        } else {
-            $str = "";
-        }
-        return $str;
+    // Form Related
+    public function getForm($formClassName){
+        $formClassName = strtolower($formClassName);
+//        print_r($this->formData);
+        return (isset ($this->formData[$formClassName]))?($this->formData[$formClassName]):("Error: $formClassName form not found!");
     }
-    
     // Utility Functions
     
     public function findPage($page){

@@ -8,9 +8,13 @@
  * ishafiul@gmail.com
  * Project Manager
  */
-/*
- * This file is currently edited by Imran Hasan
- */
+
+// Constants
+
+define("FORM_RESULT", 0);
+define("FORM_ERROR_STRING", 1);
+define("FORM_HTML",2);
+
 abstract class CoreForm extends HTML {
     
 
@@ -29,15 +33,21 @@ abstract class CoreForm extends HTML {
     public $submitButtonId = "";
     public $class = "";
     public $isShowButton = true;
-
-    private $validate = false;
-    public $submittedData = array();
-    private $str;
-    private $error = "";
-    private $v; //  validator
+    public $displaySubmissionErrors = true;
     
+    private $validate = false;
+    private $submittedData = array();
+    private $error = "";
+    private $formHtml = "";
+    private $core = null;
+    private $formName = "";
 
     // Public & private Methods
+    
+    public function __construct($ob,$core) {
+        $this->core = $core;
+        $this->formName = strtolower(get_class($ob));
+    }
     
     abstract public function createElements();  //  To be implemented
 
@@ -55,25 +65,34 @@ abstract class CoreForm extends HTML {
         }
         // Output HTML 
         $fileUploadCode = ($this->fileUpload)?("enctype='multipart/form-data'"):("");
-        $str = '<form class="html-form ' . $this->class . '" ' . $fileUploadCode . ' method = "' . $this->method . '" action = "' . $this->action . '" target = "' . $this->target . '" onsubmit = "' . $this->onSubmit . '" id = "' . $this->id . '">';
-        $str .= '<table class="html-form-table" cellspacing = "' . $this->tableCellSpacing . '" cellpadding =  "' . $this->tableCellPadding . '"  border = "' . $this->tableBorder . '"><tbody>';
+        $this->formHtml = '<form class="html-form ' . $this->class . '" ' . $fileUploadCode . ' method = "' . $this->method . '" action = "' . $this->action . '" target = "' . $this->target . '" onsubmit = "' . $this->onSubmit . '" id = "' . $this->id . '">';
+        $this->formHtml .= '<table class="html-form-table" cellspacing = "' . $this->tableCellSpacing . '" cellpadding =  "' . $this->tableCellPadding . '"  border = "' . $this->tableBorder . '"><tbody>';
         // Loop through the components and print one component per row
 //        echo count($this->elements);
         foreach($this->elements as $label=>$content){
-            $str .= $this->tr(array($content[0],$content[2])) . "\n";
+            $this->formHtml .= $this->tr(array($content[0],$content[2])) . "\n";
         }
-        $str .= '</tbody></table><br />' . $this->arbritaryHTML . '<br />';
-        $str .= '<input id="'. $this->submitButtonId .'" class=html-form-submit type = "submit" value = "' . $this->submitButtonText . '" />';
-        $str .= '</form>';
-        if($this->validate)
-            return array(false, $this->error ,$str);
-        return $str;
+        $this->formHtml .= '</tbody></table><br />' . $this->arbritaryHTML . '<br />';
+        $this->formHtml .= '<input id="'. $this->submitButtonId .'" class=html-form-submit type = "submit" value = "' . $this->submitButtonText . '" />';
+        $this->formHtml .= '</form>';
+        
+        if($this->validate){
+            $this->validate = false;
+            $this->resubmit($this->error);  //  Display errors
+            return array(false, $this->error ,  $this->formHtml);
+        }
+        
+        return $this->formHtml;
     }
     
-    public function validate($core){
+    public function sendToView(){
+//        echo "sent to view";
+        $this->core->formData[$this->formName] = $this->create();
+    }
+    
+    public function validate(){
         // When form submitted, used this to validate the form.
         $this->validate = true;
-        $this->v = $core->validate;
         return $this->create();
     }
     
@@ -81,15 +100,15 @@ abstract class CoreForm extends HTML {
         $element = $this->elements[$name];
         $funcsToCall = explode("|", $element[1]);
         // Get the post value to begin examination!
-        $this->v->subject = $_POST[$name];
+        $this->core->validate->subject = $_POST[$name];
         foreach($funcsToCall as $func){
-            call_user_func(array($this->v, $func));
+            call_user_func(array($this->core->validate, $func));
         }
         // Check for errors
-        $error = $this->v->exitIfInvalid(false, ", ");
+        $error = $this->core->validate->exitIfInvalid(false, ", ");
         $this->error .= (empty ($error))?(""):($element[0] . " $error<br />");
-        $this->submittedData[$name] = $this->v->subject;    //  subject is now validated!
-        return $this->v->subject;
+        $this->submittedData[$name] = $this->core->validate->subject;    //  subject is now validated!
+        return $this->core->validate->subject;
     }
     
     
@@ -109,6 +128,17 @@ abstract class CoreForm extends HTML {
         return (isset($this->submittedData[$name]))?($this->submittedData[$name]):(null);
     }
     
+    public function getAll(){
+        return $this->submittedData;
+    }
+    
+    public function resubmit(){
+        // Resubmit the form
+        $this->core->funcs->setDisplayMsg($this->error);
+        $this->core->formData[$this->formName] = $this->formHtml;
+    }
+
+
     // Override parent HTML class's functions
     
     public function input($name,$type="text", $id="", $value="", $attrArr = null) {

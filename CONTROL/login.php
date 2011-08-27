@@ -22,13 +22,16 @@ class Controller{
         if(!$core->loadForm('Login'))
             $core->funcs->messageExit("Cannot load form");
         // Create a form object
-        $this->form = new Login();
+        $this->form = new Login($core);
     }
     
     public function index(){
         // Generate a login form.
-        global $core;
-        $core->setData("loginForm",  $this->form->create());
+        // You can use following commented code to manually send the form to VIEW.
+//        global $core;
+//        $core->setData("loginForm",  $this->form->create());
+        // Or, use built-in function!
+        $this->form->sendToView();
     }
     
     public function submit(){
@@ -40,13 +43,16 @@ class Controller{
             // Form Validated
             echo "Form Valid! <br />";
             // Print all submitted values
-            foreach($this->form->submittedData as $key=>$value)
+            foreach($this->form->getAll() as $key=>$value)
                 echo "$key: $value <br />";
-            echo "<br /><a href='index.html'>Back</a>";
+            echo "<br />" . anchor("login", "&laquo; Back");
             exit();
         }else{
-            $core->setData("formError", $result[1]);
-            $core->setData("loginForm",  $result[2]);
+            // You can uncomment following codes to manually resubmit the form & show error message.
+//            $core->setData("formError", $result[1]);
+//            $core->setData("loginForm",  $result[2]);
+            // Or, you can do this automatically:
+            $this->form->resubmit();
         }
         
     }

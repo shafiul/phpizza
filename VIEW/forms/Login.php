@@ -14,9 +14,11 @@
 
 class Login extends CoreForm {
     
-    function __construct() {
+    function __construct($core) {
+        // MUST call parent's constructor
+        parent::__construct($this, $core);
         // Set form properties here.
-        $this->action = BASE_URL . "/login/submit.html";
+        $this->action = url("login/submit");
         $this->submitButtonText = "Log In!";
         $this->tableCellSpacing = "10px";
     }
@@ -25,7 +27,7 @@ class Login extends CoreForm {
         // This function should be present
         // Generate form elements
         
-        $this->element('email', "Email", "required|email");
+        $this->element('email', "Email", "email");
         $this->elementHTML('email', $this->input("email"));
         
         $this->element('passwd', "Password", "required|htmlspecialchars");

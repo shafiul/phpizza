@@ -4,7 +4,14 @@
 
 class Funcs {
 
+    private $displayMessage = "";
+    private $html;  // A reference to the HTML object
     
+    public function __construct($core) {
+        $this->html = $core->html;
+    }
+
+
     public function redirect($page='../index.php?', $byHeader = true) {
         if ($byHeader) {
             header("Location: $page");
@@ -64,6 +71,26 @@ class Funcs {
         echo "$posttext</pre>";
     }
     
+    // GUI related
+    
+    public function setDisplayMsg($msg,$status = MSGBOX_ERROR){
+        $this->displayMessage = array($msg, $status);
+    }
+    
+    public function getDisplayMsg() {
+        // Prints error/info/warning messages
+        if (!empty($this->displayMessage)) {
+            
+            $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">';
+            $str .= $this->html->msgbox($this->displayMessage[0], $this->displayMessage[1]);
+            $str .= '</div> <br />';
+            $str .= '<script>$("#displayM").fadeIn("slow");</script> </div>';
+            $this->displayMessage = "";
+        } else {
+            $str = "";
+        }
+        return $str;
+    }
 
 }
 

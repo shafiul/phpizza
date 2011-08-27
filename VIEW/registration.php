@@ -14,19 +14,12 @@
 
 class View extends CustomView{
     function __construct() {
-        $this->title  = "Demo Login form";
+        $this->title = "Registration";
     }
     
     function printMainPageContent() {
         global $core;
-        // Uncomment following to manually present the Form
-//        $errors = $core->getData("formError");
-//        if(!empty($errors)){
-//            echo "<font color='red'>$errors</font> <br /><br />";
-//        }
-//        echo $core->getData("loginForm");
-        // Or, use following function to do all these!
-        echo $core->getForm("Login");
+        echo $core->getForm("Registration");
     }
 }
 

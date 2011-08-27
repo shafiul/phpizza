@@ -26,9 +26,6 @@ class CoreView extends HTML {
     private $defaultCssArray = array("style");
     private $defaultJsArray = array("jquery/jquery_latest");
     
-    public function __construct() {
-    }
-    
     // Public & Private Methods
     
    

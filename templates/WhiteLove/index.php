@@ -28,6 +28,8 @@
             <div id="content">
                 <div class="left"> 
                     <?php
+                        echo $core->funcs->getDisplayMsg();
+                        echo "<br />";
                         $core->view->printMainPageContent();
                     ?>
                 </div>
