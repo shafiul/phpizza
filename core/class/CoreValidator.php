@@ -34,7 +34,7 @@ class CoreValidator{
     
     public $subject;    ///<    The string on which validation functions will operate.
     public $errorArray; ///<    Array to store error strings. One element per function
-    
+    public $form;       ///<    A reference to the form it is currently processing (if any)        
     // Vars for internal use
     private $core = null;  ///< Reference to the $core object   
     private $redirectURL = "";  ///<    Redirection url if validation fails - may be chosen
@@ -179,6 +179,58 @@ class CoreValidator{
     public function htmlspecialchars(){
         // No error is generated, just filters the text
         $this->subject = htmlspecialchars($this->subject);
+    }
+    
+    /**
+     * Checks if member variable $subject is equal to 1st parameter $compareWith 
+     * @param string $compareWith subject is compared with this parameter
+     * @param string $errorMessage the error message to display if comparison fails
+     * @return bool | false if validation fails 
+     */
+    
+    public function equalsToStr($compareWith, $errorMessage=""){
+        if($this->subject != $compareWith){
+            if(empty($errorMessage))
+                $errorMessage = "comparison failed";
+            $this->errorArray[] = $errorMessage;
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Checks if member variable $subject is equal to the user provided value for form element with $elementName name attribute  
+     * @param string $elementName name attribute of form element. With the user povided value for this element, $this->subject will be compared.
+     * @return bool | false if validation fails 
+     */
+    
+    public function equalsToElement($elementName){
+        // get the desired element's user submitted value.
+        $compareWith = $this->form->get($elementName);
+        if($this->subject != $compareWith){
+            $compareWithDisplayName = $this->form->getDisplayName($elementName);
+            $this->errorArray[] = "does not match with form element &quot;$compareWithDisplayName&quot;";
+            return false;
+        }
+        return true;
+    }
+    
+    public function limit($minimumChars = "", $maximumChars = ""){
+        $errorOccured = false;
+        if(!empty($minimumChars)){
+            if(strlen($this->subject) < $minimumChars){
+                $this->errorArray[] = "should be at least $minimumChars characters";
+                $errorOccured = true;
+            }
+        }
+        if(!empty ($maximumChars)){
+            if(strlen($this->subject) > $maximumChars){
+                $this->errorArray[] = "can be at most $maximumChars characters";
+                $errorOccured = true;
+            }
+            
+        }
+        return $errorOccured;
     }
     
     //@}

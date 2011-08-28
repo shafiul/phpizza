@@ -43,7 +43,9 @@ abstract class CoreForm extends HTML {
     public $submitButtonId = "";    ///<    for Form's submit button's attribute "id"
     public $class = ""; ///<    for Form attribute "class"
     public $displaySubmissionErrors = true; ///< Set to true if you want to display error messages when form validation fails
-    
+    public $currentElementName = "";    ///< "name" attribute of currently processing form element - available while validating form
+
+
     private $validate = false;  ///<    Automatically set to true when you're validating a submitted form
     private $submittedData = array();   ///< Used to store user-submitted data by this form
     private $error = "";    ///< Contains error-strings if form validation fails.
@@ -63,6 +65,8 @@ abstract class CoreForm extends HTML {
     public function __construct($ob,$core) {
         $this->core = $core;
         $this->formName = get_class($ob);
+        // Also, send my reference to the validator
+        $this->core->validate->form = $this;
     }
     
     /**
@@ -139,7 +143,15 @@ abstract class CoreForm extends HTML {
      * - see Registration or Login class for example. 
      * @param string $name the "name" attribute of the element
      * @param string $displayName the label displayed for the element. This value also used for identifying the element in error messages.
-     * @param type $validators a list of validation functions seperated by "|" - see documentations for details. Validation functions are located in CoreValidator (in core/class directory) & Validator (in custom/class directory) classes
+     * @param string $validators names of validation functions seperated by "|" - see documentations for details. 
+     *  - seperate each function name by a "|" character (without the quotes)
+     *  - you can pass parameters to a function. To pass parameter: type the parameters after the function name, seperated by commas ","
+     *  - if you are going to pass a paramter which itself contains comma "," character(s), escape each comma by a slash "\"
+     *      -   For example: "required|limit,3,5|email" means:
+     *      -   First, CoreValidator::required() will be called on the subject
+     *      -   Next, CoreValidator::limit() will be called with parameters "3" (1st parameter) & "5" (2nd parameter)
+     *      -   Finally, CoreValidator:: 
+     *  - Validation functions are located in CoreValidator (in core/class directory) & Validator (in custom/class directory) classes
      */
     
     public function element($name,$displayName,$validators = ""){
@@ -178,6 +190,17 @@ abstract class CoreForm extends HTML {
     }
     
     /**
+     * Returns the Human-readable name (Display Name) of an element. This display name 
+     * was set by the 2nd parameter of element() function
+     * @param string $name "name" attribute of the element
+     * @return string Display-name of the element. 
+     */
+    
+    public function getDisplayName($name){
+        return $this->elements[$name][0];
+    }
+    
+    /**
      * If you are using sendToView() call this function within your constructor to automatically
      * send error message & generated html (with user-provided values) of the form to the view.
      */
@@ -199,26 +222,46 @@ abstract class CoreForm extends HTML {
     //@{
     
     /**
-     * Used Internally to start validation of a form element
+     * Used Internally to start validation of a form element What it does is:
+     *  - Based on the 3rd parameter "$validators" in element() function, seperates all functions to call 
+     * on the user provided input for this element. functions () are seperated by the character "|"
      * @param string $name name of the element to start validation
      * @return string | validated user input for this element 
      */
     
     private function doValidation($name){
+        $this->currentElementName = $name;
         $element = $this->elements[$name];
+        // Check if we really need validation
+        if(empty($element[1])){
+            // No validation needed
+            $this->submittedData[$name] = $_POST[$name];    //  subject is now validated!
+            return $_POST[$name];
+        }
         $funcsToCall = explode("|", $element[1]);
         // Get the post value to begin examination!
         $this->core->validate->subject = $_POST[$name];
         foreach($funcsToCall as $func){
             // get parameters for the function
+            // handle escaped values
+            $func = str_replace("\,", ":_:@:", $func);
             $params = explode(",", $func);
             $func = $params[0];
+            if(!method_exists($this->core->validate, $func)){
+                echo "Error: Validation function $func is not defined for element " . $this->getDisplayName($name);
+                exit();
+            }
             unset ($params[0]);
-            call_user_func_array(array($this->core->validate,$func),$params);
+            $paramsFinalized = array();
+            // Handle escaped values 
+            foreach ($params as $i){
+                $paramsFinalized[] = str_replace(":_:@:", ",", $i);
+            }
+            call_user_func_array(array($this->core->validate,$func),$paramsFinalized);
         }
         // Check for errors
         $error = $this->core->validate->exitIfInvalid(false, ", ");
-        $this->error .= (empty ($error))?(""):($element[0] . " $error<br />");
+        $this->error .= (empty ($error))?(""):("&quot;" . $element[0] . "&quot; $error<br />");
         $this->submittedData[$name] = $this->core->validate->subject;    //  subject is now validated!
         return $this->core->validate->subject;
     }
@@ -237,11 +280,11 @@ abstract class CoreForm extends HTML {
      *
      * See HTML::input() for documenttion
      */
-    public function input($name,$type="text", $id="", $value="", $attrArr = null) {
+    public function input($name,$type="text", $value="", $attrArr = null) {
         if($this->validate){
             $value = $this->doValidation($name);
         }
-        return parent::input($name, $type, $id, $value, $attrArr);
+        return parent::input($name, $type, $value, $attrArr);
     }
     
     /**
@@ -249,11 +292,11 @@ abstract class CoreForm extends HTML {
      * See HTML::textarea() for documenttion
      */
     
-    public function textarea($name,$value = "",$attrArr=null, $id= ""){
+    public function textarea($name, $value = "", $attrArr=null){
         if($this->validate){
             $value = $this->doValidation($name);
         }
-        return parent::textarea($name, $value, $attrArr, $id);
+        return parent::textarea($name, $value, $attrArr);
     }
     
     /**
@@ -261,11 +304,11 @@ abstract class CoreForm extends HTML {
      * See HTML::select() for documenttion
      */
     
-    public function select($name, $options, $selectedValue = "", $attrArr= null, $id=null) {
+    public function select($name, $options, $selectedValue = "", $attrArr= null) {
         if($this->validate){
             $selectedValue = $this->doValidation($name);
         }
-        return parent::select($name, $options, $selectedValue, $attrArr, $id);
+        return parent::select($name, $options, $selectedValue, $attrArr);
     }
     
     

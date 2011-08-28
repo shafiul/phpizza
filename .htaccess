@@ -6,3 +6,8 @@ RewriteRule ^([a-zA-Z0-9-_/]+)$ index.php?page=$1 [QSA,L]
 RewriteRule ^([a-zA-Z0-9-_/]+)\.html$ index.php?page=$1 [QSA,L]
 RewriteRule ^feed/?$ CONTROL/feed_gen.php [QSA,L]
 RewriteRule ^Sitemap\.xml$ CONTROL/sm_gen.php [QSA,L]
+# prevent viewing of a specific file
+<files ./config/database.php>
+ order allow,deny
+ deny from all
+</files>

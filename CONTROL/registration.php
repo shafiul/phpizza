@@ -30,7 +30,8 @@ class Controller{
         global $core;
         $result = $this->form->validate($core);
         if($result[FORM_RESULT]){
-            // form valid
+            // form valid. Do some database work!
+            
         }else{
             // form invalid
             $this->form->resubmit();

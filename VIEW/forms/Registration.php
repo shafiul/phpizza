@@ -22,16 +22,16 @@ class Registration extends CoreForm {
     }
     
     public function createElements() {
-        $this->element("username", "Username", "required");
+        $this->element("username", "Username", "limit,5,7");
         $this->elementHTML("username", $this->input("username"));
         
-        $this->element("passwd","Password", "required");
+        $this->element("passwd","Password", "required|limit,,2");
         $this->elementHTML("passwd", $this->input("passwd", "password"));
         
-        $this->element("passwd2","Retype password", "equals,passwd");
+        $this->element("passwd2","Retype password", "equalsToElement,passwd");
         $this->elementHTML("passwd2", $this->input("passwd2", "password"));
         
-        $this->element("email", "Email", "email");
+        $this->element("email", "Email", "limit,3|email");
         $this->elementHTML("email", $this->input("email"));
         
         $this->element("sex","Sex");

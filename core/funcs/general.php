@@ -12,12 +12,19 @@
  * ****** ****** ****** ****** ****** ***** */
 
 /**
+ * @file
  * \brief General-purpose Global functions
  * 
  * @author Shafiul Azam
  */
 
-// Site Related
+
+
+    /**
+     * @name Site related
+     */
+
+    //@{
     
     /**
      * Always use this function to use URLs
@@ -30,16 +37,38 @@
     function url($url){
         return BASE_URL . "/$url" . URL_EXTENTION;
     }
+    
+    
+    /**
+     * Gets full path for a file, just appending constant BASE_URL in front of the file
+     * @param string $filePath  relative path of the file
+     * @return string full path of the file 
+     */
 
-// HTML Related
-
-    function img($filePath){
+    function filePath($filePath){
         // Returns absolute path for the image
         return BASE_URL . "/$filePath";
     }
     
+    //@}
+
+    /**
+     * @name Quick %HTML generators
+     */
+    
+    //@{
+    
+    /**
+     * %HTML <a> tag generator
+     * @param string $url "relative" URL of the path
+     * @param string $text text to display for this link
+     * @return string | generated html 
+     */
+    
     function anchor($url, $text){
         return "<a href = '" . BASE_URL . "/$url" . URL_EXTENTION. "'>$text</a>";
     }
+    
+    //@}
 
 ?>
