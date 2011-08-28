@@ -28,11 +28,19 @@ class Registration extends CoreForm {
         $this->element("passwd","Password", "required");
         $this->elementHTML("passwd", $this->input("passwd", "password"));
         
-        $this->element("passwd2","Retype password", "matches[passwd]");
+        $this->element("passwd2","Retype password", "equals,passwd");
         $this->elementHTML("passwd2", $this->input("passwd2", "password"));
         
         $this->element("email", "Email", "email");
         $this->elementHTML("email", $this->input("email"));
+        
+        $this->element("sex","Sex");
+        $options = array(
+            "Male" => "male",
+            "Female" => "female"
+        );
+        $this->elementHTML("sex", $this->select("sex", $options));
+        
     }
 }
 

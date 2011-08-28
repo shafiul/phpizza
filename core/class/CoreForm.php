@@ -210,7 +210,11 @@ abstract class CoreForm extends HTML {
         // Get the post value to begin examination!
         $this->core->validate->subject = $_POST[$name];
         foreach($funcsToCall as $func){
-            call_user_func(array($this->core->validate, $func));
+            // get parameters for the function
+            $params = explode(",", $func);
+            $func = $params[0];
+            unset ($params[0]);
+            call_user_func_array(array($this->core->validate,$func),$params);
         }
         // Check for errors
         $error = $this->core->validate->exitIfInvalid(false, ", ");
