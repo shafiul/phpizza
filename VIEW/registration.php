@@ -14,6 +14,8 @@
 
 class View extends CustomView{
     function __construct() {
+        // Must call parent's constructor
+        parent::__construct();
         $this->title = "Registration";
     }
     

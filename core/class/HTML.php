@@ -9,7 +9,21 @@ define('MSGBOX_WARNING',2);
 define('MSGBOX_ERROR',3);
 
 
+/**
+ * \brief Generate %HTML strings easily
+ * 
+ * @author Shafiul Azam
+ * 
+ */
+
 class HTML{
+    
+    /**
+     * Generate a single Table Row ( <tr> element)
+     * @param array $td_array | each element of the array should be a column for the Row (<td> element)
+     * @return string | Generated html
+     */
+    
     public function tr($td_array) {
         $str = "<tr>";
         foreach ($td_array as $i) {
@@ -19,31 +33,51 @@ class HTML{
         return $str;
     }
     
-    public function input($name, $type="text", $id="", $value="", $attrArr = null) {
+    /**
+     * @name Form related
+     */
+    
+    //@{
+    
+    /**
+     * Generates html for an <input> element
+     * @param string $name  name attribute
+     * @param string $type  type attribute    
+     * @param string $value value attribute
+     * @param array $attrArr key-value array, key being the attribute and value being the value for that attribute
+     * @return string | generated html 
+     */
+    
+    public function input($name, $type="text", $value="", $attrArr = null) {
         // generate ID
         $id = (empty($id)) ? ($name) : ($id);
         $attrText = "";
-
-        if (isset($attrArr['class']))
-            $attrArr['class'] .= ' roundborder';
-        else
-            $attrArr['class'] = ' roundborder';
+        
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
                 $attrText .= "$k = '$v' ";
         }
-        return "<input id='$id' type='$type' name = '$name' value='$value' $attrText />";
+        return "<input type='$type' name = '$name' value='$value' $attrText />";
     }
 
-    public function select($name, $options, $selectedValue = "", $attrArr= null, $id=null) {
+    /**
+     * Generates html for <select> element
+     * @param string $name "name" attribute
+     * @param array $options key-value array for <option> elements for this select element.
+     *  - key is the label for the option
+     *  - value is the "value" attribute for the option
+     * @param string $selectedValue "value" attribute of the <option> which will be selected by default
+     * @param array $attrArr key-value array, key being the attribute and value being the value for that attribute
+     * @return string | generated html
+     */
+    
+    public function select($name, $options, $selectedValue = "", $attrArr= null) {
         $attrText = "";
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
                 $attrText .= "$k = '$v' ";
         }
         $str = "<select ";
-        if ($id)
-            $str .= " id='$id' ";
         $str.= "$attrText name = '$name'>";
         //var_dump($options);
         foreach ($options as $displayText => $value) {
@@ -54,17 +88,35 @@ class HTML{
         return $str;
     }
     
-    public function textarea($name,$value = "",$attrArr=null, $id= ""){
+    /**
+     * Generates HTML for  <textarea>
+     * @param string $name "name" attribute
+     * @param string $value the value for this textarea: <textarea>$value</textarea>
+     * @param array $attrArr key-value array, key being the attribute and value being the value for that attribute
+     * @return string | generated html 
+     */
+    
+    public function textarea($name,$value = "",$attrArr=null){
         $attrText = "";
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
                 $attrText .= "$k = '$v' ";
         }
-        $str = "<textarea name = '$name' id = '$id' $attrText >$value</textarea>"; 
+        $str = "<textarea name = '$name' $attrText >$value</textarea>"; 
         return $str;
     }
     
+    //@}
     
+    /**
+     * Generates styled %HTML to display important messages
+     * @param string $message the $HTML message to display
+     * @param int $mode indicates status of the message
+     *  - see constants in Funcs::messageExit() function
+     * @param bool $exit if set to true, page dies (exits) after displaying the message
+     * @param string $id ID attribute for the messagebox div
+     * @return string | generated html
+     */
     
     public function msgbox($message, $mode = MSGBOX_SUCCESS, $exit = false, $id = ""){
         // modes: 0: info, 1: success, 2: warning, 3: error

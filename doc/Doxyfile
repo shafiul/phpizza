@@ -137,7 +137,7 @@ FULL_PATH_NAMES        = YES
 # If left blank the directory from which doxygen is run is used as the 
 # path to strip.
 
-STRIP_FROM_PATH        = 
+STRIP_FROM_PATH        = /home/giga/Desktop/www/htdocs/projects/gigamvc/
 
 # The STRIP_FROM_INC_PATH tag can be used to strip a user-defined part of 
 # the path mentioned in the documentation of a class, which tells 
@@ -326,7 +326,7 @@ EXTRACT_ALL            = NO
 # If the EXTRACT_PRIVATE tag is set to YES all private members of a class 
 # will be included in the documentation.
 
-EXTRACT_PRIVATE        = NO
+EXTRACT_PRIVATE        = YES
 
 # If the EXTRACT_STATIC tag is set to YES all static members of a file 
 # will be included in the documentation.
@@ -507,7 +507,7 @@ ENABLED_SECTIONS       =
 # documentation can be controlled using \showinitializer or \hideinitializer 
 # command in the documentation regardless of this setting.
 
-MAX_INITIALIZER_LINES  = 30
+MAX_INITIALIZER_LINES  = 28
 
 # Set the SHOW_USED_FILES tag to NO to disable the list of files generated 
 # at the bottom of the documentation of classes and structs. If set to YES the 
@@ -519,7 +519,7 @@ SHOW_USED_FILES        = YES
 # then setting the SHOW_DIRECTORIES tag to YES will show the directory hierarchy 
 # in the documentation. The default is NO.
 
-SHOW_DIRECTORIES       = NO
+SHOW_DIRECTORIES       = YES
 
 # Set the SHOW_FILES tag to NO to disable the generation of the Files page. 
 # This will remove the Files entry from the Quick Index and from the 
@@ -673,7 +673,16 @@ RECURSIVE              = YES
 # excluded from the INPUT source files. This way you can easily exclude a 
 # subdirectory from a directory tree whose root is specified with the INPUT tag.
 
-EXCLUDE                = 
+EXCLUDE                = /home/giga/Desktop/www/htdocs/projects/gigamvc/3rdparty \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/CONTROL/sample \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/CONTROL/index.php \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/CONTROL/many_views.php \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/CONTROL/simple_validator.php \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/VIEW/sample \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/VIEW/index.php \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/VIEW/demo1.php \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/VIEW/login.php \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/VIEW/registration.php
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 
@@ -701,7 +710,10 @@ EXCLUDE_SYMBOLS        =
 # directories that contain example code fragments that are included (see 
 # the \include command).
 
-EXAMPLE_PATH           = 
+EXAMPLE_PATH           = /home/giga/Desktop/www/htdocs/projects/gigamvc/CONTROL \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/MODEL \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/VIEW \
+                         /home/giga/Desktop/www/htdocs/projects/gigamvc/custom
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the 
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp 
@@ -715,7 +727,7 @@ EXAMPLE_PATTERNS       = *
 # commands irrespective of the value of the RECURSIVE tag. 
 # Possible values are YES and NO. If left blank NO is used.
 
-EXAMPLE_RECURSIVE      = NO
+EXAMPLE_RECURSIVE      = YES
 
 # The IMAGE_PATH tag can be used to specify one or more files or 
 # directories that contain image that are included in the documentation (see 
@@ -884,7 +896,7 @@ HTML_STYLESHEET        =
 # 180 is cyan, 240 is blue, 300 purple, and 360 is red again. 
 # The allowed range is 0 to 359.
 
-HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_HUE    = 219
 
 # The HTML_COLORSTYLE_SAT tag controls the purity (or saturation) of 
 # the colors in the HTML output. For a value of 0 the output will use 
@@ -1093,7 +1105,7 @@ ENUM_VALUES_PER_LINE   = 4
 # JavaScript, DHTML, CSS and frames is required (i.e. any modern browser). 
 # Windows users are probably better off using the HTML help feature.
 
-GENERATE_TREEVIEW      = NO
+GENERATE_TREEVIEW      = YES
 
 # By enabling USE_INLINE_TREES, doxygen will generate the Groups, Directories, 
 # and Class Hierarchy pages using a tree view instead of an ordered list.
@@ -1188,7 +1200,7 @@ LATEX_OUTPUT           = latex
 # generating bitmaps for formulas in the HTML output, but not in the 
 # Makefile that is written to the output directory.
 
-LATEX_CMD_NAME         = 
+LATEX_CMD_NAME         = latex
 
 # The MAKEINDEX_CMD_NAME tag can be used to specify the command name to 
 # generate index for LaTeX. If left blank `makeindex' will be used as the 

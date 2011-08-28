@@ -16,14 +16,17 @@
  * 
  * @author Shafiul Azam
  * 
- * @uses General purpose validation class. $core has an object of this class named $validate
+ * @uses General purpose validation class. $core has an object of this class named $validate 
+ * 
  * $core->validate is heavily used in validating web forms (child of class CoreForm )
+ * 
  * Most of the functions (except userInput() ) of this class are used form validation. 
+ * 
  * You can add your own functions in the custom validator class Validator in custom/class folder.
  * 
- * You can perform a series of validation (calling several functions of this class) on the same string
- * & append error messages, if any of these fucntions fail. The string on which these operations will take
- * place is first stored in variable $subject. Then you call one/more functions (automatically called if you specify
+ * You can perform a series of validation (calling several functions of this class, one after another) on the same string 
+ * & append error messages to member variable $errorArray (automatically)- if any of these fucntions fail. The string on which these validation operations will take 
+ * place is first stored in member variable $subject. Then you call one/more functions (automatically called if you specify
  *  this function names in the object of CoreForm seperated by "|" - see 3rd parameter of CoreForm::element() function.)
  */
 
@@ -55,7 +58,7 @@ class CoreValidator{
      * 
      * This function appends error message to $errorArray
      * @param string $data | string to validate (subject)
-     * @param int $length maximum length the subject might be. Infinity if empty parameter
+     * @param int $length maximum length the subject might be. Infinity if parameter empty
      * @param bool $required if true, validation fails if subject is empty
      * @param string $defaultValue a default value to return if the subject is empty, only applicable when $required is false
      * @return mixed 
@@ -123,7 +126,7 @@ class CoreValidator{
         }
     }
     
-    /*
+    /**
      * @name Validation Functions
      * 
      * These functions are the heart of this class. You can add your own validation functions
@@ -158,7 +161,7 @@ class CoreValidator{
     }
     
     /**
-     * @return bool false : (Not valid) if $subject is empty
+     * @return bool false : if $subject is empty
      */
     
     public function required(){

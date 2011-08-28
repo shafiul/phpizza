@@ -224,7 +224,7 @@ class Core{
      */
     
     public function getForm($formClassName){
-        $formClassName = strtolower($formClassName);
+        $formClassName = $formClassName;
 //        print_r($this->formData);
         return (isset ($this->formData[$formClassName]))?($this->formData[$formClassName]):("Error: $formClassName form not found!");
     }

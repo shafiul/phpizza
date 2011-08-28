@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Description of pageSkeleton
  *
  * Shafiul Azam
@@ -8,26 +8,49 @@
  * Project Manager
  */
 
-//    db_connect();
-
+/**
+ * \brief Basic (core version) class for your VIEWs
+ * 
+ * @author Shafiul Azam
+ * 
+ * You can (in fact, you SHOULD) extend functionality to this class in the CustomView class.
+ * 
+ * Convention while providin file names: (JavaScript & Css files)
+ * - path should be rooted on base directory for javascript/css files
+ * - Do not provide extentions
+ * 
+ */
 class CoreView extends HTML {
 
-    public $title = null;
-    public $icon = null;
-    public $desc = "site description";
-    public $keys = "keywords";
-    public $cssArray = null;
-    public $jsArray = null;
-    public $theme = "";
-    public $includeDefaultCss = true;
-    public $includeDefaultJs = true;
+    public $title = null;   ///<    Title element of %HTML Document for "this page"
+    public $icon = null;       ///<    Icon element of %HTML Document for "this page"
+    public $desc = "site description";   ///<    content attribute of meta with "description" name attribute for "this page"
+    public $keys = "keywords";     ///<    content attribute of meta with "keyword" name attribute for "this page"
+    public $cssArray = null;    ///<    Array for storing custom CSS files to be applied to "this page"
+    public $jsArray = null; ///<    Array for storing JavaScript file names to be applied to "this page"
+    public $theme = ""; ///<    Template to apply to "this page"  
     
-    // Private vars
-    private $defaultCssArray = array("style");
-    private $defaultJsArray = array("jquery/jquery_latest");
+    public $defaultCssArray = null;  ///<    Array for storing CSS files to be applied to all pages by default
+    public $defaultJsArray = null;    ///<    Array for storing JavaScript files to be applied to all pages by default
+    
+    public $includeDefaultCss = true;   ///<    Should apply default CSS files to "this page"?
+    public $includeDefaultJs = true;    ///<    Should apply default JavaScript files to "this page"?
+    
+    
     
     // Public & Private Methods
     
+    /**
+     * Call this function inside your code (controller or view) to create an %HTML div element - which user 
+     * can hide or show by clicking a title.
+     * 
+     * @param string $title heading of the div, also a link to click to toggle visibility   
+     * @param string $content   %HTML content of the div
+     * @param bool $initiallyVisible if false, the %HTML content is initially hidden. $title is always visible
+     * @param string $divId ID attribute for the div
+     * @param string $titleType %HTML to wrap the $title
+     * @return string   Generated %HTML string for the toggable div (with $title as heading) 
+     */
    
     public function toggleDiv($title, $content, $initiallyVisible = false, $divId = "", $titleType = "h4") {
         $display = ($initiallyVisible) ? ("block") : ("none");
@@ -38,41 +61,72 @@ class CoreView extends HTML {
         $html .= "$content</div><br />";
         return $html;
     }
-
     
+    /**
+     * @name Templating Functions
+     * 
+     * You should ONLY call these functions in your template file. Never call these in your controller/view
+     */
+
+    //@{
+    
+    /**
+     * Generate %HTML to include necessary CSS files for your pages
+     * 
+     * For example, see templates/WhiteLove/index.php
+     * 
+     *  - Templating Function, call in your template file.
+     * 
+     *  @return string | generated %HTML 
+     */
 
     public function printCss() {
-        echo "<!-- CSS -->";
+        $html = "<!-- CSS -->";
         // Print Default
         if ($this->includeDefaultCss && isset ($this->defaultCssArray)) {
             foreach ($this->defaultCssArray as $css_i) {
                 $siteTheme = $this->theme;
-                echo '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+                $html .= '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }
         // Print others
         if (isset ($this->cssArray)) {
             foreach ($this->cssArray as $css_i) {
-                echo '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+                $html .= '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }
+        return $html;
     }
 
+    
+    /**
+     * Generate %HTML to include necessary JavaScript files for your pages
+     * 
+     * For example, see templates/WhiteLove/index.php
+     * 
+     *  - Templating Function, call in your template file.
+     * 
+     *  @return string | generated %HTML 
+     */
+    
     public function printJs() {
-        echo "<!-- Js -->";
+        $html = "<!-- Js -->";
         // Print Default
         if ($this->includeDefaultJs && isset ($this->defaultJsArray)) {
             foreach ($this->defaultJsArray as $js_i) {
-                echo "<script src = '" . BASE_URL . "/" . JS_DIR . "/$js_i.js'></script>";
+                $html .= "<script src = '" . BASE_URL . "/" . JS_DIR . "/$js_i.js'></script>";
             }
         }
         // Print others
         if (isset ($this->jsArray)) {
             foreach ($this->jsArray as $js_i) {
-                echo "<script src = '" . BASE_URL . "/" . JS_DIR . "/$js_i.js'></script>";
+                $html .= "<script src = '" . BASE_URL . "/" . JS_DIR . "/$js_i.js'></script>";
             }
         }
+        return $html;
     }
+    
+    //@}
 
 }
 ?>

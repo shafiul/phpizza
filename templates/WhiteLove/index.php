@@ -9,9 +9,9 @@
             // Print Title
             echo "<title>" . $core->view->title . "</title>";
             // Print CSS
-            $core->view->printCss();
+            echo $core->view->printCss();
             // Print Javascript
-            $core->view->printJs();
+            echo $core->view->printJs();
         ?>
     </head>
     <body>

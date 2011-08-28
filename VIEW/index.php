@@ -14,6 +14,8 @@
 
 class View extends CustomView{
     public function __construct() {
+        // Must call parent's constructor
+        parent::__construct();
         // Set titles & other attributes here
         // For demonstration, we're using the value set by the controller
         global $core;  //  Get the instance
