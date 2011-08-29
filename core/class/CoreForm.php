@@ -80,13 +80,6 @@ abstract class CoreForm extends HTML {
         // Creates the HTML form and returns the HTML
         // Create elements
         $this->createElements();
-        // Check if validation required
-        if($this->validate){
-            if(empty($this->error)){
-                // No errors! Form validated
-                return array(true);
-            }
-        }
         // Output HTML 
         $fileUploadCode = ($this->fileUpload)?("enctype='multipart/form-data'"):("");
         $this->formHtml = '<form class="html-form ' . $this->class . '" ' . $fileUploadCode . ' method = "' . $this->method . '" action = "' . $this->action . '" target = "' . $this->target . '" onsubmit = "' . $this->onSubmit . '" id = "' . $this->id . '">';
@@ -102,7 +95,10 @@ abstract class CoreForm extends HTML {
         
         if($this->validate){
             $this->validate = false;
-            $this->resubmit($this->error);  //  Display errors
+            if(empty($this->error)){
+                // No errors! Form validated
+                return array(true);
+            }
             return array(false, $this->error ,  $this->formHtml);
         }
         
@@ -110,8 +106,11 @@ abstract class CoreForm extends HTML {
     }
     
     /**
-     * Call this function within your controller to automatically send the generated html to your view class.
-     * Within your view class, you can call Core::getForm($id) to gain the html, where $id is the class name of the form
+     * \brief Important function to call within your controller
+     * 
+     * Call this function within your controller to automatically send the generated html of the form to your view class.
+     * 
+     * Next, within your view class, you can call Core::getForm($id) to gain the generated html, where $id is the class name of the form
      */
     
     public function sendToView(){
@@ -119,7 +118,10 @@ abstract class CoreForm extends HTML {
     }
     
     /**
-     * Call this function within your controller to start validation of the form.
+     * \brief Important Function  - After a user has submitted the form, call it within your controller to start form validation
+     * 
+     * Call this function within your controller to start validation of the form. Validation functions already defined using element() functions 
+     * are applied one after another on each element of the form.
      * @return array | You will need to check only the 0th element of the array, if you are using sendToView()
      * - 0th element of the array: boolean, true if all validation functions successful, false if one or more validation functions failed. 
      * - 1st element of the array: string, error message if validation failed
@@ -138,6 +140,8 @@ abstract class CoreForm extends HTML {
     // Element related
     
     /**
+     * \brief Important function - to construct elements of your form
+     * 
      * Call this function within your child form class to set various properties for a form element. See parameters 
      * - element() & elementHTML() are always called in pair for an element of the form. element() MUST be called BEFORE the corresponding elementHTML() of the pair.
      * - see Registration or Login class for example. 
@@ -150,8 +154,10 @@ abstract class CoreForm extends HTML {
      *      -   For example: "required|limit,3,5|email" means:
      *      -   First, CoreValidator::required() will be called on the subject
      *      -   Next, CoreValidator::limit() will be called with parameters "3" (1st parameter) & "5" (2nd parameter)
-     *      -   Finally, CoreValidator:: 
+     *      -   Finally, CoreValidator::email() will be called on the subject
+     *           
      *  - Validation functions are located in CoreValidator (in core/class directory) & Validator (in custom/class directory) classes
+     *  You can define your own validation functions in Validator class.
      */
     
     public function element($name,$displayName,$validators = ""){
@@ -159,6 +165,8 @@ abstract class CoreForm extends HTML {
     }
     
     /**
+     * \brief Important function - to set html for your form elements
+     * 
      * Call this function within your child form class to set the %HTML for a form element. 
      * - element() & elementHTML() are always called in pair for an element of the form. element() MUST be called BEFORE the corresponding elementHTML() of the pair.
      * - see Registration or Login class for example. 
@@ -171,6 +179,8 @@ abstract class CoreForm extends HTML {
     }
     
     /**
+     * \brief Important function  - use it to get user-submitted value for element of the form!
+     * 
      * Call this function within your constructor to get VALIDATED user-submitted value for a single element.
      * @param string $name the "name" attribute of the element
      * @return string | validated user submitted value 
@@ -206,7 +216,8 @@ abstract class CoreForm extends HTML {
      */
     
     public function resubmit(){
-        $this->core->funcs->setDisplayMsg($this->error);
+        if($this->error)
+            $this->core->funcs->setDisplayMsg($this->error);
         $this->core->formData[$this->formName] = $this->formHtml;
     }
 

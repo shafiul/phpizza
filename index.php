@@ -7,8 +7,6 @@ session_start();
 
 // Load Configuaration
 require_once dirname(__FILE__) . '/config/general.php';
-// Load DB
-//require_once dirname(__FILE__) . '/core/class/MySQL.php';
 // Load Core Class
 require_once dirname(__FILE__) . '/core/class/Core.php';
 

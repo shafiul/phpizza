@@ -20,13 +20,13 @@
     define('SITE_THEME','WhiteLove');
     define('LANDING_PAGE','index');
     
-//    define('DEBUG_MODE',true);
-    define('DEBUG_MODE',false);
+    define('DEBUG_MODE',true);
+//    define('DEBUG_MODE',false);
     
     define('CONTROLLER_FUNC_CALL_ENABLED' ,true);   //  See Documentation
     
     // Database
-    define('DB_SERVER','MySQL');    //  Possible values: MySQL
+    define('DB_DRIVER','MySQL');    //  Possible values: MySQL
     // rest of the Database configurations can be edited in config/database.php file
     
     ///////////////////////////////////////////////////

@@ -215,6 +215,13 @@ class CoreValidator{
         return true;
     }
     
+    /**
+     * Checks if member variable $subject is withing upper & lower character limit
+     * @param int $minimumChars minimum length $this->subject should be of
+     * @param int $maximumChars maximum length $this->subject can be of
+     * @return boolean false if validation fails, true otherwise
+     */
+    
     public function limit($minimumChars = "", $maximumChars = ""){
         $errorOccured = false;
         if(!empty($minimumChars)){

@@ -15,9 +15,26 @@
  * \brief File operations made-easy
  * 
  * @author Shafiul Azam
+ * 
+ * WARNING: CODES IN THIS FILE MIGHT BE BUGGY, NOT TESTED YET BY THE PROGRAMMER.
  */
 
 class Files{
+    
+    
+    /**
+     * File upload helper via web forms. Call this function after you've uploaded a file via web form
+     * @param string $name "name" attribute of the <input> tag used for the file
+     * @param string $targetDir directory to which the file would be copied
+     * @param string $targetFileName if non-empty, file would be renamed to this name
+     * @param int $sizeLimit if non-empty, this number specifies the maximum number of bytes the file can be in size
+     * @param array $mimeTypeArr array of mime type strings, if non-empty the file must be one of these mime type.
+     * @return array
+     *  -   0th Element: bool | true if file upload successful
+     *  -   1st Element: string | status string to be presented to user 
+     *      -   Special case:
+     *      -   If no file was selected by the user, 0th element is true, 1st element is string "NIL"  
+     */
     
     public function upload($name, $targetDir, $targetFileName=null, $sizeLimit=false, $mimeTypeArr=null) {
         // file upload processing! $name is the NAME attribute of the <input> tag.

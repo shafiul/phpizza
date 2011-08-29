@@ -19,15 +19,17 @@
         $host_name =  php_uname('n');
         
         if($host_name == 'HIRAYAMI-PC'){
+            // For a PC with the name HIRAYAMI-PC
             define('DB_HOST','');
             define('DB_USERNAME','');
             define('DB_PASSWORD','');
             define('DB_DATABASE','');
         }else{
+            // For All PCs
             define('DB_HOST','localhost');
             define('DB_USERNAME','root');
             define('DB_PASSWORD','janina');
-            define('DB_DATABASE','');
+            define('DB_DATABASE','gigamvc');
         }
     }else{
         // PRODUCTION

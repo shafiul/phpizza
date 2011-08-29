@@ -22,6 +22,7 @@ require_once dirname(__FILE__) . "/../funcs/general.php";
 // Required Custom Classes
 require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomView.php";
 require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Validator.php";
+require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomModel.php";
 
 /** \brief The Most important class! 
  * 
@@ -164,6 +165,26 @@ class Core{
     
     public function loadForm($formName){
         $classPath = dirname(__FILE__) . "/../../" . FORMS_DIR . "/$formName.php";
+        return $this->safeRequireOnce($classPath);
+    }
+    
+    /**
+     * Loads necessary model classes. Must be called before database functionality.
+     * 
+     * Demo code is available at CustomModel class. So if your model class extends CustomModel, you do not need to call this function explicitly!
+     * @param string $driver name of the database driver, i.e MySQL
+     * @return bool true if success, false otherwise 
+     */
+    
+    public function loadDatabaseDriver($driver = ""){
+        // if driver empty load default
+        if(empty($driver))
+            $driver = DB_DRIVER;
+        
+        require_once dirname(__FILE__) . "/../../config/database.php";   //  Configuartion file loaded
+        require_once dirname(__FILE__) . "/db/GenericDB.php";   //  Generic database loaded
+        // Load implemented driver
+        $classPath = dirname(__FILE__) . "/db/$driver.php";
         return $this->safeRequireOnce($classPath);
     }
     

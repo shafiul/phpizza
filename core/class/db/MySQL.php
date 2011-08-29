@@ -9,6 +9,11 @@
 
 class MySQL extends GenericDB{
     
+    public function __construct() {
+        // connect!
+        $this->connect();
+    }
+    
     public function setError() {
         $this->errorNo = mysql_errno($this->connectionID);
         $this->errorMsg = mysql_error($this->connectionID);
@@ -17,22 +22,22 @@ class MySQL extends GenericDB{
     public function connect() {
         $this->connectionID = mysql_connect(DB_HOST, DB_USERNAME, DB_PASSWORD);
         if(!$this->connectionID){
-//            $this->errorNo = 0;
-//            $this->errorMsg = "Connection Failed!";
-//            $this->debug();
+            $this->errorNo = 0;
+            $this->errorMsg = "Connection Failed!";
+            $this->debug();
             echo "Database Error! For more information, set DEBUG on";
             exit();
         }
         if(DB_DATABASE && !mysql_select_db(DB_DATABASE, $this->connectionID)){
-//            $this->setError();
-//            $this->debug();
+            $this->setError();
+            $this->debug();
             echo "Database Error! For more information, set DEBUG on";
             exit();
         }
         return $this->connectionID;
     }
     
-    public function insertArray($password_key = "", $password_value = "") {
+    public function insertArray($columnToEncrypt = "", $valueToEncrypt = "") {
         $table = $this->table;
         $fields = $values = array();
 
@@ -44,13 +49,14 @@ class MySQL extends GenericDB{
         $fields = implode(",", $fields);
         $values = implode(",", $values);
         // Check for password types
-        if ($password_key && $password_value) {
-            $fields = $fields . ", $password_key";
-            $values = $values . ", " . $this->encryptionFunction . "('$password_value')"; // stored using secured hash algorithm
+        if ($columnToEncrypt && $valueToEncrypt) {
+            $fields = $fields . ", $columnToEncrypt";
+            $values = $values . ", " . $this->encryptionFunction . "('$valueToEncrypt')"; // stored using secured hash algorithm
         }
         $this->query = "INSERT INTO `$table` ($fields) VALUES ($values)";
+        $result = mysql_query($this->query);
 //        $this->debug();
-        if (mysql_query($this->query)) {
+        if ($result) {
             return mysql_insert_id();
         } else {
             return false;
@@ -66,12 +72,9 @@ class MySQL extends GenericDB{
         }
         $this->query = substr($this->query, 0, strlen($this->query) - 2);
         $this->query .= " WHERE `$identifier_column` = '" . $identifier_value . "'";
-//        $this->debug();
-        if (mysql_query($this->query)) {
-            return true;
-        } else {
-            return false;
-        }
+        $result = mysql_query($this->query);
+        $this->debug();
+        return $result;
     }
     
     public function updateArray() {
@@ -92,12 +95,9 @@ class MySQL extends GenericDB{
         }
         
         $this->query .= " " . $this->rest;
-//        $this->debug();
-        if (mysql_query($this->query)) {
-            return true;
-        } else {
-            return false;
-        }
+        $result = mysql_query($this->query);
+        $this->debug();
+        return $result;
     }
     
     public function selectArray() {
@@ -105,26 +105,27 @@ class MySQL extends GenericDB{
         if (!$this->select) {
             $this->query .= "*";
         } else {
-            $this->query .= implode($this->select, " , ");
+            $this->query .= "`" . implode($this->select, "` , `") . "`";
         }
         $this->query .= " FROM `" . $this->table . "`";
         if ($this->identifier) {
             $this->query .= " WHERE ";
             $sqll = "";
             foreach ($this->identifier as $key => $i) {
-                $sqll[] = "`$key` = " . mysql_real_escape_string('$i');
+                $sqll[] = "`$key` = '" . mysql_real_escape_string($i) . "'";
             }
             $this->query .= implode($sqll, " " . $this->joiner . " ");
         }
         if ($this->rest)
             $this->query .= " " . $this->rest;
+        $result = mysql_query($this->query);
 //        $this->debug();
-        if ($this->return_pointer) {
+        if ($this->returnPointer) {
             // Return link to resources
-            return mysql_query($this->query);
+            return $result;
         } else {
             // Return only the first result
-            return mysql_fetch_array(mysql_query($this->query));
+            return mysql_fetch_array($result);
         }
     }
     
@@ -139,8 +140,9 @@ class MySQL extends GenericDB{
         }
         $this->query .= implode($this->joiner, $where) . $this->rest;
 
-//        $this->debug();
-        return mysql_query($this->query);
+        $result = mysql_query($this->query);
+        $this->debug();
+        return $result;
     }
     
     
@@ -159,6 +161,18 @@ class MySQL extends GenericDB{
 
     function time_unix2sqlTime($unixtime) {
         return gmdate("Y-m-d H:i:s", $unixtime);
+    }
+    
+    // Utility
+    
+    public function clear() {
+        $this->select = null;
+        $this->data = null;
+        $this->identifier = null;
+        $this->rest = "";
+        $this->returnPointer = true;
+        $this->joiner = "AND";
+        $this->query = "";
     }
     
 }

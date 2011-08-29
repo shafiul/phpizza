@@ -34,7 +34,7 @@ class Registration extends CoreForm {
         $this->element("email", "Email", "limit,3|email");
         $this->elementHTML("email", $this->input("email"));
         
-        $this->element("sex","Sex");
+        $this->element("sex","Sex","enum,male:female");
         $options = array(
             "Male" => "male",
             "Female" => "female"
