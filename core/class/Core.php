@@ -26,6 +26,7 @@ require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomModel.ph
 
 /** \brief The Most important class! 
  * 
+ * @author Shafiul Azam
  * This class contains everything you need. An object of this class, $core (global variable) is created
  * for you. Within controllers, views & templates, you can get access to this class by this code:
  * global $core;

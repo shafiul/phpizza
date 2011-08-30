@@ -11,6 +11,13 @@
  *
  * ****** ****** ****** ****** ****** ***** */
 
+/**
+ * \brief Custom Class: Under construction
+ * 
+ * This class will contain some basic functionality for user log in, log out, permission validation 
+ * for pages etc.
+ */
+
 class Authentication{
     /*
      * @return <mixed> returns false if there is now user available of current session username

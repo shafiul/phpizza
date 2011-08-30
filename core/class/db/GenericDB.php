@@ -33,18 +33,28 @@ abstract class GenericDB{
      * Inserts $this->data to schema $this->table. You can encrypt some column's value by using the optional parameters
      * @param "string" $columnToEncrypt name of the column whose value will be encrypted
      * @param "string" $valueToEncrypt this value will be encrypted using $this->encryptionFunction function and stored in $columnToEncrypt column
+     * @return mixed
+     *  - a positive integer, the auto-incremented column's value if possible. Otherwise, boolean true
+     *  - bool false for failure
      */
     abstract public function insertArray($columnToEncrypt="", $valueToEncrypt="");
     /**
      * Updates $this->data to database schema $this->table, WHERE $this->identifier are joined by $this->joiner followed by $this->rest
+     * @return bool true for success, false for failure
      */
     abstract public function updateArray();
     /**
      * SELECTS $this->select from schema $this->table WHERE $this->identifier are joined by $this->joiner followed by $this->rest
+     * @return mixed
+     *  - if $this->returnPointer is false (returns single row), just returns a key-value pair of the returned row, key being the column name & value being the value for the column.
+     * 
+     *  If $this->returnPointer is true (returns multiple row), then returns a pointer variable for retuned row(s). You call database specific function to iterate through all rows. 
+     *  - boolfalse for failure
      */
     abstract public function selectArray();
     /**
      * DELETE row(s) from schema $this->table WHERE $this->identifier are joined by $this->joiner followed by $this->rest
+     * @return bool true for success, false for failure
      */
     abstract public function delete();
     
@@ -64,12 +74,14 @@ abstract class GenericDB{
     abstract public function numReturnedRows();
     /**
      * Number of affected rows after insertArray(), updateArray() or delete()
+     * @return int
      */
     abstract public function numAffectedRows();
     // Knowing about Error
     
     /**
      * Internal function, to set errors (if any occured)
+     * @return int
      */
     abstract public function setError();
     

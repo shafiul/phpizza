@@ -7,7 +7,17 @@
  * Status: Development, buggy
  */
 
+/**
+ * \brief database functionality class for MySQL
+ * 
+ * @author Shafiul Azam
+ */
+
 class MySQL extends GenericDB{
+    
+    /**
+     * Calls connect()
+     */
     
     public function __construct() {
         // connect!
@@ -24,18 +34,27 @@ class MySQL extends GenericDB{
         if(!$this->connectionID){
             $this->errorNo = 0;
             $this->errorMsg = "Connection Failed!";
-            $this->debug();
+//            $this->debug();
             echo "Database Error! For more information, set DEBUG on";
             exit();
         }
         if(DB_DATABASE && !mysql_select_db(DB_DATABASE, $this->connectionID)){
             $this->setError();
-            $this->debug();
+//            $this->debug();
             echo "Database Error! For more information, set DEBUG on";
             exit();
         }
         return $this->connectionID;
     }
+    
+    /**
+     * Inserts $this->data to schema $this->table. You can encrypt some column's value by using the optional parameters
+     * @param "string" $columnToEncrypt name of the column whose value will be encrypted
+     * @param "string" $valueToEncrypt this value will be encrypted using $this->encryptionFunction function and stored in $columnToEncrypt column
+     * @return mixed
+     *  - a non-negative integer, the auto-incremented column's value. 
+     *  - bool false for failure
+     */
     
     public function insertArray($columnToEncrypt = "", $valueToEncrypt = "") {
         $table = $this->table;
@@ -100,6 +119,15 @@ class MySQL extends GenericDB{
         return $result;
     }
     
+    /**
+     * SELECTS $this->select from schema $this->table WHERE $this->identifier are joined by $this->joiner followed by $this->rest
+     * @return mixed
+     *  - if $this->returnPointer is false (returns single row), just returns a key-value pair of the returned row, key being the column name & value being the value for the column.
+     * 
+     *  If $this->returnPointer is true (returns multiple row), then returns a pointer variable for retuned row(s). You call mysql_fetch_array() with the pointer as argument to iterate through all rows. 
+     *  - boolfalse for failure
+     */
+    
     public function selectArray() {
         $this->query = "SELECT ";
         if (!$this->select) {
@@ -154,11 +182,15 @@ class MySQL extends GenericDB{
         return mysql_num_rows($result);
     }
 
-
+    /**
+     * Converts MySQL's date/time variables to UNIX timestamp
+     * @param string $sqltime MySQL's date/time 
+     * @return string  UNIX timestamp
+     */
     function time_sqlTime2unix($sqltime) {
         return strtotime($sqltime . " GMT");
     }
-
+  
     function time_unix2sqlTime($unixtime) {
         return gmdate("Y-m-d H:i:s", $unixtime);
     }

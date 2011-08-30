@@ -13,10 +13,19 @@
  * Last Updated :
  *
  * ****** ****** ****** ****** ****** ***** */
-require_once dirname(__FILE__) . '/generalFuncs.php';
-db_connect();
 
-class blocks {
+/**
+ * \brief Custom Class: Under construction
+ * 
+ * @author Shafiul Azam
+ * @author Imran Hasan
+ * 
+ * Not important. Just create block-htmls to be printed in your page. In sidebars, for example?
+ * 
+ * This class can generate %HTML: A heading, list of clickable items, and arbritary %HTML
+ */
+
+class Blocks {
 
     private $title = "";
     private $items = array();
