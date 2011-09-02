@@ -23,7 +23,6 @@
     define('DEBUG_MODE',true);
 //    define('DEBUG_MODE',false);
     
-    define('CONTROLLER_FUNC_CALL_ENABLED' ,true);   //  See Documentation
     
     // Database
     define('DB_DRIVER','MySQL');    //  Possible values: MySQL

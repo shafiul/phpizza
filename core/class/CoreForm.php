@@ -15,6 +15,14 @@ define("FORM_RESULT", 0);
 define("FORM_ERROR_STRING", 1);
 define("FORM_HTML",2);
 
+// Constants for internal use
+
+define("PIZZA_FORM_DISPLAYNAME",0);
+define("PIZZA_FORM_VALIDATORS",1);
+define("PIZZA_FORM_HTML",2);
+define("PIZZA_FORM_ISVALIDATED",3);
+define("PIZZA_FORM_USERPROVIDEDVALUE",4);
+
 /**
  * \brief Create, submit & validate web-forms
  * 
@@ -52,7 +60,7 @@ abstract class CoreForm extends HTML {
     private $formHtml = ""; ///< Contains the %HTML string generated for this form
     private $core = null;   ///<    A reference to the global $core
     private $formName = ""; ///<    Name of the class which extended me ( CoreClass )
-
+    private $isSubmissionValid = null;  ///< Indicator whether form submission validated
     // Public & private Methods
     
     /**
@@ -97,8 +105,10 @@ abstract class CoreForm extends HTML {
             $this->validate = false;
             if(empty($this->error)){
                 // No errors! Form validated
+                $this->isSubmissionValid = true;
                 return array(true);
             }
+            $this->isSubmissionValid = false;
             return array(false, $this->error ,  $this->formHtml);
         }
         
@@ -134,7 +144,14 @@ abstract class CoreForm extends HTML {
         return $this->create();
     }
     
-    
+    /**
+     * After calling validate() within your controller, you can call this function to learn if form validation succeeded.
+     * @return bool true if form submission validated (all validators returned true), false otherwise
+     * 
+     */
+    public function isSubmissionValid(){
+        return $this->isSubmissionValid;
+    }
     
     
     // Element related
@@ -161,7 +178,10 @@ abstract class CoreForm extends HTML {
      */
     
     public function element($name,$displayName,$validators = ""){
-        $this->elements[$name] = array($displayName, $validators);
+//        $this->elements[$name] = array($displayName, $validators);
+        $this->elements[$name][PIZZA_FORM_DISPLAYNAME] = $displayName;
+        $this->elements[$name][PIZZA_FORM_VALIDATORS] = $validators;
+        $this->elements[$name][PIZZA_FORM_ISVALIDATED] = false;
     }
     
     /**
@@ -171,11 +191,23 @@ abstract class CoreForm extends HTML {
      * - element() & elementHTML() are always called in pair for an element of the form. element() MUST be called BEFORE the corresponding elementHTML() of the pair.
      * - see Registration or Login class for example. 
      * @param string $name the "name" attribute of the element
-     * @param type $html the html for this element. You can use input(), textarea(), select() etc. functions to create the %HTML 
+     * @param type $html the html for this element. You can use input(), textarea(), select() etc. functions to create the %HTML - see tutorials
      */
     public function elementHTML($name,$html){
-        $this->elements[$name][2] = $html;
-//        echo "here " . count($this->elements);
+        // Run validation if already not performed
+        if(!$this->elements[$name][PIZZA_FORM_ISVALIDATED]){
+            // Validation was not performed since dev did not call any of the built in functions to set element
+//            $validatedUserData =  $this->doValidation ($name);
+            $this->elements[$name][PIZZA_FORM_USERPROVIDEDVALUE] = $this->doValidation ($name);
+            // put user submitted value
+//            $this->elements[$name][PIZZA_FORM_HTML] = str_replace('value=""', "value='$validatedUserData'", $html);
+            $this->elements[$name][PIZZA_FORM_HTML] = $html;
+        }else{
+            // validation already done
+            $this->elements[$name][PIZZA_FORM_HTML] = $html;
+        }
+        
+        
     }
     
     /**
@@ -243,6 +275,7 @@ abstract class CoreForm extends HTML {
     private function doValidation($name){
         $this->currentElementName = $name;
         $element = $this->elements[$name];
+        $element[PIZZA_FORM_ISVALIDATED] = true;
         // Check if we really need validation
         if(empty($element[1])){
             // No validation needed

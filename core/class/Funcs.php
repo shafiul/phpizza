@@ -153,8 +153,8 @@ class Funcs {
     public function getDisplayMsg() {
         // Prints error/info/warning messages
         if (!empty($this->displayMessage)) {
-            
-            $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">';
+            $str = '<div align="center"><div class="notification-wrapper" id = "displayM">';
+//            $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">'; // With jQuery's onclick - hide support
             $str .= $this->html->msgbox($this->displayMessage[0], $this->displayMessage[1]);
             $str .= '</div> <br />';
             $str .= '<script>$("#displayM").fadeIn("slow");</script> </div>';

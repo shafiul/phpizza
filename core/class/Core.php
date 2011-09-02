@@ -100,7 +100,7 @@ class Core{
      * @return bool true in success, false in failure.
      */
     
-    public function loadView($view){
+    public function loadView($view=""){
         if(!$this->viewLoaded){
             $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/$view.php";
             if(file_exists($filename)){
@@ -128,6 +128,8 @@ class Core{
             if(file_exists($filename)){
                 $this->controllerLoaded = true;
                 require_once $filename;
+                // Also, generate the controller object & call "functionToCall"
+                $this->generateControllerObject();  // Controller Called!
                 return true;
             }else{
                 $this->debug ("File $filename Not found!");
@@ -153,7 +155,7 @@ class Core{
      * @return bool true in success, false otherwise 
      */
     
-    public function loadCustomFunction($funcFile){
+    public function loadCustomFunctions($funcFile){
         $classPath = dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/funcs/$funcFile.php";
         return $this->safeRequireOnce($classPath);
     }
@@ -299,12 +301,9 @@ class Core{
     
     public function loadMVC($page){
         $this->findPage($page);
-        // Load Defaults
-        $this->loadModel($this->page);
+        // Automatic Model loading no longer supported!
         $this->loadController($this->page);
-        $this->generateControllerObject();  // Controller Called!
         $this->loadView($this->page);
-        
     }
     
     /**
@@ -316,8 +315,11 @@ class Core{
         if($this->viewLoaded){
             $template = $this->theme;
             $templateIndex = dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/index.php";
-            if(!$this->safeRequireOnce($templateIndex))
-                $this->debug ("Template file not found!");
+            if(!$this->safeRequireOnce($templateIndex)){
+//                $this->debug ("Template file not found!");
+                echo "Error: Template file not found";
+                exit();
+            }
         }
     }
     
@@ -335,10 +337,11 @@ class Core{
             // Check if controller loaded
             if(!$this->controllerLoaded){
                 // Invalid request. report 404
-                echo "Error 404 Page not found!";
+                header("HTTP/1.0 404 Not Found");
+//                echo "Error 404 Page not found!";
                 exit(0);
             }
-            $this->debug("View Not Loaded");
+//            $this->debug("View Not Loaded");
         }
     }
     
@@ -350,18 +353,13 @@ class Core{
      */
     
     public function generateControllerObject(){
-        if($this->controllerLoaded){
-            $this->controller = new Controller();
-            
-            if(CONTROLLER_FUNC_CALL_ENABLED){
-                if(method_exists($this->controller, $this->functionToCall))
-                    call_user_func(array($this->controller, $this->functionToCall));
-                else{
-                    echo "Error 404: Controller function not found!";
-                    exit();
-                }
-                    
-            }
+        $this->controller = new Controller();
+        if(method_exists($this->controller, $this->functionToCall))
+            call_user_func(array($this->controller, $this->functionToCall));
+        else{
+            header("HTTP/1.0 404 Not Found");
+//                echo "Error 404: Controller function not found!";
+            exit();
         }
     }
     
@@ -370,35 +368,23 @@ class Core{
     /**
      * Used internally to find out the "page" & "functionToCall"
      * - THIS IS USED INTERNALLY, NEVER CALL THIS FUNCTION! 
-     * @param string $page the query string user provided
+     * @param string $URL the query string user provided
      * @return None 
      */
     
-    public function findPage($page){
-        $pageArr  = explode("/", $page);
+    public function findPage($URL){
+        $pageArr  = explode("/", $URL);
         $numSegments = count($pageArr);
         
-        if(!CONTROLLER_FUNC_CALL_ENABLED){
-            $this->page = $page;
-            return;
-        }
+        $this->functionToCall = $pageArr[$numSegments - 1];
         
         if($numSegments == 1){
-            $this->page = $page;
+            $this->page = $URL;
             $this->functionToCall = "index";
         }else{
-            // Check if full path exists
-            $controllerPath = dirname(__FILE__) . "/../../" . CONTROL_DIR . "/$page.php";
-            $viewPath = dirname(__FILE__) . "/../../" . VIEW_DIR . "/$page.php";
-            if(file_exists($controllerPath) || file_exists($viewPath)){
-                $this->page = $page;
-                $this->functionToCall = "index";
-            }else{
-                // Check later.
-                $this->functionToCall = $pageArr[$numSegments - 1];
-                unset($pageArr[$numSegments - 1]);
-                $this->page = implode("/", $pageArr);
-            }
+            $this->functionToCall = $pageArr[$numSegments - 1];
+            unset($pageArr[$numSegments - 1]);
+            $this->page = implode("/", $pageArr);
         }
 //        $this->debug("Page: " . $this->page);
     }
