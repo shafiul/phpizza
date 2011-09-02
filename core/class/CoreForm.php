@@ -20,8 +20,6 @@ define("FORM_HTML",2);
 define("PIZZA_FORM_DISPLAYNAME",0);
 define("PIZZA_FORM_VALIDATORS",1);
 define("PIZZA_FORM_HTML",2);
-define("PIZZA_FORM_ISVALIDATED",3);
-define("PIZZA_FORM_USERPROVIDEDVALUE",4);
 
 /**
  * \brief Create, submit & validate web-forms
@@ -181,7 +179,6 @@ abstract class CoreForm extends HTML {
 //        $this->elements[$name] = array($displayName, $validators);
         $this->elements[$name][PIZZA_FORM_DISPLAYNAME] = $displayName;
         $this->elements[$name][PIZZA_FORM_VALIDATORS] = $validators;
-        $this->elements[$name][PIZZA_FORM_ISVALIDATED] = false;
     }
     
     /**
@@ -194,20 +191,7 @@ abstract class CoreForm extends HTML {
      * @param type $html the html for this element. You can use input(), textarea(), select() etc. functions to create the %HTML - see tutorials
      */
     public function elementHTML($name,$html){
-        // Run validation if already not performed
-        if(!$this->elements[$name][PIZZA_FORM_ISVALIDATED]){
-            // Validation was not performed since dev did not call any of the built in functions to set element
-//            $validatedUserData =  $this->doValidation ($name);
-            $this->elements[$name][PIZZA_FORM_USERPROVIDEDVALUE] = $this->doValidation ($name);
-            // put user submitted value
-//            $this->elements[$name][PIZZA_FORM_HTML] = str_replace('value=""', "value='$validatedUserData'", $html);
-            $this->elements[$name][PIZZA_FORM_HTML] = $html;
-        }else{
-            // validation already done
-            $this->elements[$name][PIZZA_FORM_HTML] = $html;
-        }
-        
-        
+        $this->elements[$name][PIZZA_FORM_HTML] = $html;
     }
     
     /**
@@ -239,7 +223,7 @@ abstract class CoreForm extends HTML {
      */
     
     public function getDisplayName($name){
-        return $this->elements[$name][0];
+        return $this->elements[$name][PIZZA_FORM_DISPLAYNAME];
     }
     
     /**
@@ -275,9 +259,8 @@ abstract class CoreForm extends HTML {
     private function doValidation($name){
         $this->currentElementName = $name;
         $element = $this->elements[$name];
-        $element[PIZZA_FORM_ISVALIDATED] = true;
         // Check if we really need validation
-        if(empty($element[1])){
+        if(empty($element[PIZZA_FORM_VALIDATORS])){
             // No validation needed
             $this->submittedData[$name] = $_POST[$name];    //  subject is now validated!
             return $_POST[$name];
