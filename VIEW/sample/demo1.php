@@ -13,7 +13,7 @@
 
 
 
-class View extends CustomView{
+class View extends Template{
     public function __construct() {
         // Must call parent's constructor
         parent::__construct();
@@ -21,7 +21,7 @@ class View extends CustomView{
         $this->title = "Demo 1";
     }
     
-    public function printMainPageContent() {
+    public function mainContent() {
         global $core;   //  Got instance of core
         // This function must be implemented!
         // now follows html:

@@ -27,6 +27,7 @@ class Controller{
         global $core;   // Get instance
         $title = "Title set via index function.";
         $core->setData('title',$title);
+        $core->loadView();
     }
     
     public function demo(){
@@ -35,6 +36,7 @@ class Controller{
         global $core;   // Get instance
         $title = "Title set via demo function.";
         $core->setData('title',$title);
+        $core->loadView();
     }
 }
 

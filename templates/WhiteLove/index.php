@@ -19,8 +19,7 @@
         <div id="wrap">
 
             <div id="header">
-                <h1><a href="#">Website Title</a></h1>
-                <h2>Subheader, website description H2</h2>
+                <?php $core->view->header();  ?>
             </div>
 
 
@@ -30,7 +29,7 @@
                     <?php
                         echo $core->funcs->getDisplayMsg();
                         echo "<br />";
-                        $core->view->printMainPageContent();
+                        $core->view->mainContent();
                     ?>
                 </div>
 

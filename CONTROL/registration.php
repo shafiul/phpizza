@@ -23,7 +23,9 @@ class Controller{
     }
     
     function index(){
+        global $core;
         $this->form->sendToView();
+        $core->loadView();
     }
     
     function submit(){
@@ -51,6 +53,7 @@ class Controller{
                 // Set an error message
                 $core->funcs->setDisplayMsg("This username already exists (id: " . $result['id'] . " ) please choose a different username", MSGBOX_WARNING);
                 $this->form->resubmit();
+                $core->loadView();
                 return; // exit
             }
             
@@ -69,6 +72,7 @@ class Controller{
         }else{
             // form invalid
             $this->form->resubmit();
+            $core->loadView();
         }
     }
 }

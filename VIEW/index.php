@@ -12,7 +12,8 @@
  * ****** ****** ****** ****** ****** ***** */
 
 
-class View extends CustomView{
+class View extends Template{
+    
     public function __construct() {
         // Must call parent's constructor
         parent::__construct();
@@ -20,9 +21,10 @@ class View extends CustomView{
         // For demonstration, we're using the value set by the controller
         global $core;  //  Get the instance
         $this->title = $core->getData('title');
+        $this->headline = "Dummy";
     }
     
-    public function printMainPageContent() {
+    public function mainContent() {
         // This function must be implemented!
         // now follows html:
         ?>

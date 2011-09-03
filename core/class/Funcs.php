@@ -10,7 +10,6 @@
 
 class Funcs {
 
-    private $displayMessage = "";   ///<    Variable used for displaying messages in VIEWs
     private $html;  ///<     A reference to the $core->$html, object of HTML class
     
     
@@ -138,7 +137,8 @@ class Funcs {
      */
     
     public function setDisplayMsg($msg,$status = MSGBOX_ERROR){
-        $this->displayMessage = array($msg, $status);
+//        $this->displayMessage = array($msg, $status);
+        $this->setSessData('displayMessage', array($msg, $status));
     }
     
     /**
@@ -148,23 +148,24 @@ class Funcs {
      * Get the %HTML message set via setDisplayMsg() - The function will do styling based on 
      * $status parameter of setDisplayMsg() function
      * @return string Generated %HTML if message exists, empty string otherwise.
+     * 
      */
     
     public function getDisplayMsg() {
         // Prints error/info/warning messages
-        if (!empty($this->displayMessage)) {
+        if ($dM = $this->getSessData('displayMessage')) {
             $str = '<div align="center"><div class="notification-wrapper" id = "displayM">';
 //            $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">'; // With jQuery's onclick - hide support
-            $str .= $this->html->msgbox($this->displayMessage[0], $this->displayMessage[1]);
+            $str .= $this->html->msgbox($dM[0], $dM[1]);
             $str .= '</div> <br />';
             $str .= '<script>$("#displayM").fadeIn("slow");</script> </div>';
-            $this->displayMessage = "";
+            // Finally, unset the session data
+            $this->unsetSessData('displayMessage');
         } else {
             $str = "";
         }
         return $str;
     }
-
 }
 
 ?>

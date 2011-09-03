@@ -12,14 +12,14 @@
  *
  * ****** ****** ****** ****** ****** ***** */
 
-class View extends CustomView{
+class View extends Template{
     function __construct() {
         // Must call parent's constructor
         parent::__construct();
         $this->title = "Registration";
     }
     
-    function printMainPageContent() {
+    function mainContent() {
         global $core;
         echo $core->getForm("Registration");
     }

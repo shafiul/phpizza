@@ -12,14 +12,14 @@
  *
  * ****** ****** ****** ****** ****** ***** */
 
-class View extends CustomView{
+class View extends Template{
     function __construct() {
         // Must call parent's constructor
         parent::__construct();
         $this->title  = "Demo Login form";
     }
     
-    function printMainPageContent() {
+    function mainContent() {
         global $core;
         // Uncomment following to manually present the Form
 //        $errors = $core->getData("formError");

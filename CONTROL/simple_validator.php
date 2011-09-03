@@ -4,16 +4,17 @@ class Controller{
     
     function index(){
             global $core;
-            echo $core->getDisplayMsg();
+            echo $core->funcs->getDisplayMsg();
         ?>
         <ul>
-            <li><a href="simple_validator/test.html">Invalid example (user did not submit desired value): page redirects to this page</a></li>
-            <li><a href="simple_validator/test.html?noRedirect=yes">Invalid example (user did not submit desired value): page does not redirect</a></li>
-            <li><a href="simple_validator/test.html?id=something">Valid Example. Value passed is: &quot;something&quot;</a></li>
+            <li><a href="simple_validator/test">Invalid example (user did not submit desired value): page redirects to this page</a></li>
+            <li><a href="simple_validator/test?noRedirect=yes">Invalid example (user did not submit desired value): page does not redirect</a></li>
+            <li><a href="simple_validator/test?id=something">Valid Example. Value passed is: &quot;something&quot;</a></li>
 <!--            <li><a href="simple_validator.html"></a></li>-->
             
         </ul>
         <?php
+//        $core->loadView();
     }
     
     function test(){
@@ -35,6 +36,7 @@ class Controller{
         echo "<br />ID is: &quot;$id&quot; | noRedirect Is: &quot;$noRedirect&quot;";
         
         echo "<hr /><a href = '../simple_validator.html'>Back</a>";
+       
     }
     
 }

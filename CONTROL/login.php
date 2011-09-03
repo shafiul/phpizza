@@ -28,10 +28,11 @@ class Controller{
     public function index(){
         // Generate a login form.
         // You can use following commented code to manually send the form to VIEW.
-//        global $core;
+        global $core;
 //        $core->setData("loginForm",  $this->form->create());
         // Or, use built-in function!
         $this->form->sendToView();
+        $core->loadView();
     }
     
     public function submit(){
@@ -53,6 +54,7 @@ class Controller{
 //            $core->setData("loginForm",  $result[2]);
             // Or, you can do this automatically:
             $this->form->resubmit();
+            $core->loadView();
         }
         
     }

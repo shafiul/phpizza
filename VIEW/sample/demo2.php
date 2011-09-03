@@ -12,7 +12,7 @@
  * ****** ****** ****** ****** ****** ***** */
 
 
-class View extends CustomView{
+class View extends Template{
     public function __construct() {
         // Must call parent's constructor
         parent::__construct();
@@ -20,7 +20,7 @@ class View extends CustomView{
         $this->title = "Demo 2";
     }
     
-    public function printMainPageContent() {
+    public function mainContent() {
         // This function must be implemented!
         // now follows html:
         ?>

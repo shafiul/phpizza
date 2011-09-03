@@ -13,14 +13,14 @@
 // Classes
 require_once dirname(__FILE__) . "/HTML.php";
 require_once dirname(__FILE__) . "/Funcs.php";
-require_once dirname(__FILE__) . "/CoreForm.php";
+
 require_once dirname(__FILE__) . "/CoreValidator.php";
-require_once dirname(__FILE__) . "/CoreView.php";
+
 // Helper Functions
 require_once dirname(__FILE__) . "/../funcs/general.php";
 
 // Required Custom Classes
-require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomView.php";
+
 require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Validator.php";
 require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomModel.php";
 
@@ -69,7 +69,7 @@ class Core{
         $this->validate = new Validator($this);
         $this->formData = array();
         // Theme
-        $this->theme = SITE_THEME;  //  Can lode from DB too.
+        $this->theme = SITE_THEME;  //  Can load from DB too.
     }
     
     /* Loaders */
@@ -94,23 +94,29 @@ class Core{
     }
     
     /**
-     * Use this function to Load a View class. You can load ONLY ONE view class for a "page".
+     * Use this function to Load a View class. You should load ONLY ONE view class for a "page".
      * Call this function within your constructor. If not called, the default view gets loaded.
      * @param string $view name of the View class. This class must extend CustomView & reside under VIEW directory.
      * @return bool true in success, false in failure.
      */
     
     public function loadView($view=""){
-        if(!$this->viewLoaded){
-            $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/$view.php";
-            if(file_exists($filename)){
-                $this->viewLoaded = true;
-                require_once $filename;
-                return true;
-            }else{
-                $this->debug ("File $filename Not found!");
-                return false;
-            }
+        if(empty ($view))
+            $view = $this->page;
+        // First, load the CoreView Class
+        require_once dirname(__FILE__) . "/CoreView.php";
+        // Next, load template class from template folder
+        $template = $this->theme;
+        require_once  dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/Template.php";
+        // Load the specific VIEW class.
+        $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/$view.php";
+        if(file_exists($filename)){
+            $this->viewLoaded = true;
+            require_once $filename;
+            return true;
+        }else{
+            $this->debug ("File $filename Not found!");
+            return false;
         }
     }
     
@@ -132,7 +138,7 @@ class Core{
                 $this->generateControllerObject();  // Controller Called!
                 return true;
             }else{
-                $this->debug ("File $filename Not found!");
+//                $this->debug ("File $filename Not found!");
                 return false;
             }
         }
@@ -167,6 +173,9 @@ class Core{
      */
     
     public function loadForm($formName){
+        // First include core form
+        require_once dirname(__FILE__) . "/CoreForm.php";
+        // Now include particular form
         $classPath = dirname(__FILE__) . "/../../" . FORMS_DIR . "/$formName.php";
         return $this->safeRequireOnce($classPath);
     }
@@ -293,7 +302,7 @@ class Core{
     /* Useful functions for index page */
     
     /**
-     * Used to load the default model, view & controller.
+     * Used to load the default controller.
      * - You should NEVER call this function! As this function is automatically called by the framework.
      * @param string $page "The Page"
      * @return None
@@ -301,9 +310,11 @@ class Core{
     
     public function loadMVC($page){
         $this->findPage($page);
-        // Automatic Model loading no longer supported!
+        // Automatic Model, View loading no longer supported!
         $this->loadController($this->page);
-        $this->loadView($this->page);
+        // Only load VIEW if not loaded - used to load a view if no controller available for this page.
+        if(!$this->viewLoaded)
+            $this->loadView();  //  Default view will be loaded.
     }
     
     /**

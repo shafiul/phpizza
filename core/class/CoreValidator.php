@@ -118,8 +118,11 @@ class CoreValidator{
         $errorString = implode($joiner,$this->errorArray);
         $this->errorArray = array();    //  Reset the error Array.
         if(!empty($errorString)){
-            if($exit)
+            if($exit){
                 $this->core->funcs->messageExit("$errorString", 3, $this->redirectURL);
+//                $this->core->funcs->setDisplayMsg($errorString,3);
+//                return;
+            }
             return $errorString;
         }else{
             return false;   //  Returns false if valid!
