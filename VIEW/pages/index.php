@@ -21,9 +21,12 @@ class View extends Template{
         // For demonstration, we're using the value set by the controller
         global $core;  //  Get the instance
         $this->title = $core->getData('title');
-        $this->headline = "Dummy";
+        $this->heading = "Welcome to the landing page!";
     }
     
+    
+
+
     public function mainContent() {
         // This function must be implemented!
         // now follows html:
@@ -48,6 +51,7 @@ class View extends Template{
                         congue nulla diam non urna.
                     </div>
         <?php
+        
     }
 }
 

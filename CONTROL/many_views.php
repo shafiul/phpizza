@@ -9,8 +9,9 @@ class Controller{
     }
     
     function index(){
-        echo "<a href = 'many_views/test1.html'>Load VIEW/index.php view</a> <br />";
-        echo "<a href = 'many_views/test1.html'>Load VIEW/sample/demo1.php view</a> <br />";
+        echo anchor("many_views/test1", "Load VIEW/index.php view");
+        echo "<br />";
+        echo anchor("many_views/test2", "Load VIEW/sample/demo1.php view");
     }
     
     function test1(){

@@ -17,6 +17,7 @@ class Controller{
     function index(){
         global $core;
         $core->setData("mainContent","<h1>This content was set from index function!</h1>");
+        $core->loadView();
     }
 }
 

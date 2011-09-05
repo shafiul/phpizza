@@ -18,15 +18,24 @@
 
 abstract class Template extends CoreView{
     
+    // vars
+    
+    public $heading;    ///< For setting the Headline of the page
+    
+    
     /**
-     * Set default CSS & JavaScript files for all pages
+     *  - Sets default CSS & JavaScript files for all pages
+     *  - Loads the custom "Blocks" class for your convenience.
      */
     
     public function __construct() {
         $this->defaultCssArray = array("style");
         $this->defaultJsArray = array("jquery/jquery_latest");
         // a dummy headline
-        $this->headline = "A dummy headline";
+        $this->heading = "A dummy headline";
+        // Instantiate the $block object.
+        global $core;
+        $core->loadCustomClass("Blocks");
     }
     
     // Functions to implement in your views
@@ -34,9 +43,15 @@ abstract class Template extends CoreView{
     /**
      * @name Recommended Functions for the Template class
      * 
-     * It is highly recommended that a Template class should have following abstract functions. 
+     * It is highly recommended that a Template class should have following functions. 
      * These functions are too much common and can be used in almost all websites. 
      * So, use following function names & call them appropriately in your template's index.php page.
+     * 
+     * You can define the body of this functions, or leave the body to be implemented in the VIEW classes. 
+     * 
+     * If the functionality is totally VIEW-specific (like setting the main %HTML contents of a page), you should define the 
+     * functions as abstract. Otherwise, if you think functionality is common for all VIEWs, you may define the body of the function(s) here. 
+     * Note that, developers can easily override the functions in specific VIEW class, so the technique is flexible.
      */
     
     //@{
@@ -49,16 +64,54 @@ abstract class Template extends CoreView{
     public function header(){
         echo '
             <h1><a href="' . url('index') .'">Ki Obosthaaa!</a></h1>
-                <h2>Welcome to Pizza MVC framework!</h2>
+                <h2>' . $this->heading . '</h2>
             ';
     }
 
 
     /**
+     * Function for the "main entry" of the page. Since this is totally page-dependant, 
+     * this function should be left as Abstract, to be implemented in the view of the page. 
+     * 
      * Called inside template file to print the "main" body of the %HTML document
      */
     
     abstract public function mainContent(); // Page's main entry
+    
+    /**
+     * General purpose function for printing sidebars. In the following function, you can 
+     * implement the "default" sidebars applicable to all views. However, if you need custom sidebar 
+     * in any view, you can easily override this function.
+     * @param string $alignment - possible values: "left","right"
+     */
+    
+    public function sidebar($alignment) {
+        global $core;
+        switch($alignment){
+            case 'left':
+                // No left sidebar
+                break;
+            case 'right':
+                // print general links
+                $core->loadBlock("GeneralLinks");
+                $i = new GeneralLinks();
+                echo $i->get();
+                // print links to forms
+                $core->loadBlock("FormLinks");
+                $i = new FormLinks();
+                echo $i->get();
+                break;
+        }
+    }
+    
+    /**
+     * Footer of the template. Footers does not normally change in Views. So, you can staticly determine the page 
+     * footer here. 
+     */
+    
+    public function footer(){
+        
+    }
     
     //@}
 }

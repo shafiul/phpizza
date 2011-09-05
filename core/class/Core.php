@@ -43,9 +43,9 @@ class Core{
     public $functionToCall; ///<  contains the name of the function of constructor to call.
     public $formData;   ///<    Key-value Array for containing HTML strings for web forms
     // Others
-    public $theme;  ///<    Name of the template
+    public $template;  ///<    Name of the template. This must be name of the template's folder under "templates" directory.
     private $data;  ///<    Key-value array for containing variables, which are passed from Controller to View.
-    
+    private $isStatic; ///< true if the page is static: no controller to load, view automatically called.
     // Load sttus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
     public $viewLoaded = false;         ///<    Boolean, true if view class loaded.        
@@ -67,9 +67,12 @@ class Core{
         $this->html = new HTML();
         $this->funcs = new Funcs($this);
         $this->validate = new Validator($this);
+        // Set some default characteristics
+        $this->isStatic = false;
+        // init some member vars
         $this->formData = array();
-        // Theme
-        $this->theme = SITE_THEME;  //  Can load from DB too.
+        // Set site template
+        $this->template = SITE_THEME;  //  Can load from DB too.
     }
     
     /* Loaders */
@@ -95,8 +98,10 @@ class Core{
     
     /**
      * Use this function to Load a View class. You should load ONLY ONE view class for a "page".
-     * Call this function within your constructor. If not called, the default view gets loaded.
-     * @param string $view name of the View class. This class must extend CustomView & reside under VIEW directory.
+     * Call this function within your constructor EXPLICITLY. If you forget to call this function, No VIEW will be loaded!
+     *  - However, this function is automatically called by the Core if user is requesting some "static" page (page with no controller).
+     * @param string $view name of the View class. This class must extend CustomView & reside under VIEW/pages/ directory.
+     *  - if you don't pass the parameter, default view for the page gets loaded.
      * @return bool true in success, false in failure.
      */
     
@@ -106,18 +111,31 @@ class Core{
         // First, load the CoreView Class
         require_once dirname(__FILE__) . "/CoreView.php";
         // Next, load template class from template folder
-        $template = $this->theme;
+        $template = $this->template;
         require_once  dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/Template.php";
         // Load the specific VIEW class.
-        $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/$view.php";
+        $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/pages/$view.php";
         if(file_exists($filename)){
             $this->viewLoaded = true;
             require_once $filename;
             return true;
         }else{
-            $this->debug ("File $filename Not found!");
+//            $this->debug ("File $filename Not found!");
             return false;
         }
+    }
+    
+    /**
+     * Use this function where appropriate (maybe within Template class or in your VIEW classes) to load
+     * the "%HTML Blocks" - you can find some sample classes in GeneralLinks and FormLinks classes.
+     * @param string $block name of the file. This file must reside in VIEW/blocks/ directory. 
+     */
+    
+    public function loadBlock($block){
+        // You should load the Blocks custom class manually before calling this function.
+//        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
+        $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/blocks/$block.php";
+        require_once $filename;
     }
     
     /**
@@ -213,7 +231,7 @@ class Core{
      */
     
     public function setTemplate($theme){
-        $this->theme = $theme;
+        $this->template = $theme;
     }
     
     
@@ -296,7 +314,7 @@ class Core{
     
     public function debug($str){
         if(DEBUG_MODE)
-            echo "<br /><pre>$str</pre>";
+            echo "<pre>$str</pre>";
     }
     
     /* Useful functions for index page */
@@ -309,12 +327,16 @@ class Core{
      */
     
     public function loadMVC($page){
-        $this->findPage($page);
         // Automatic Model, View loading no longer supported!
-        $this->loadController($this->page);
-        // Only load VIEW if not loaded - used to load a view if no controller available for this page.
-        if(!$this->viewLoaded)
-            $this->loadView();  //  Default view will be loaded.
+        $this->findPage($page);
+        if($this->isStatic){
+            // No controller. Load view
+            $this->loadView();  //  Default view is loaded
+        }else{
+            // Load Controller.
+            $this->loadController($this->page);
+        }
+        
     }
     
     /**
@@ -324,7 +346,7 @@ class Core{
     
     public function loadTemplate(){
         if($this->viewLoaded){
-            $template = $this->theme;
+            $template = $this->template;
             $templateIndex = dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/index.php";
             if(!$this->safeRequireOnce($templateIndex)){
 //                $this->debug ("Template file not found!");
@@ -343,14 +365,14 @@ class Core{
         if($this->viewLoaded){
             $this->view = new View();
             // Set the template: important
-            $this->view->theme = $this->theme;
+            $this->view->theme = $this->template;
         }else{
             // Check if controller loaded
             if(!$this->controllerLoaded){
                 // Invalid request. report 404
                 header("HTTP/1.0 404 Not Found");
-//                echo "Error 404 Page not found!";
-                exit(0);
+                echo "Error 404 Page not found!";
+                exit(0);  
             }
 //            $this->debug("View Not Loaded");
         }
@@ -369,7 +391,7 @@ class Core{
             call_user_func(array($this->controller, $this->functionToCall));
         else{
             header("HTTP/1.0 404 Not Found");
-//                echo "Error 404: Controller function not found!";
+                echo "Error 404: Requested controller-method not found!";
             exit();
         }
     }
@@ -387,17 +409,32 @@ class Core{
         $pageArr  = explode("/", $URL);
         $numSegments = count($pageArr);
         
-        $this->functionToCall = $pageArr[$numSegments - 1];
-        
-        if($numSegments == 1){
+        if($numSegments == 1 && $pageArr[0] != "static"){
             $this->page = $URL;
-            $this->functionToCall = "index";
+            $this->functionToCall = DEFAULT_FUNCTION2CALL;
         }else{
-            $this->functionToCall = $pageArr[$numSegments - 1];
-            unset($pageArr[$numSegments - 1]);
-            $this->page = implode("/", $pageArr);
+            // Handle static pages first.
+            if($pageArr[0] == "static"){
+                // STATIC: No controller here.
+                $this->isStatic = true;
+                unset ($pageArr[0]);
+                $this->page = implode("/", $pageArr);
+            }else{
+                // DYNAMIC
+                // Check if full path exists
+                $controllerPath = dirname(__FILE__) . "/../../" . CONTROL_DIR . "/$URL.php";
+                if(file_exists($controllerPath)){
+                    $this->page = $URL;
+                    $this->functionToCall = DEFAULT_FUNCTION2CALL;
+                }else{
+                    // Check later.
+                    $this->functionToCall = $pageArr[$numSegments - 1];
+                    unset($pageArr[$numSegments - 1]);
+                    $this->page = implode("/", $pageArr);
+                }
+            }    
         }
-//        $this->debug("Page: " . $this->page);
+//        $this->debug("Page: " . $this->page . " FunctionToCall: " . $this->functionToCall);
     }
     
     //@}

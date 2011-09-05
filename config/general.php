@@ -34,6 +34,9 @@
     define('URL_EXTENTION','');    //  Provide with leading dot (.html for example) 
     // or empty for no extention
     
+    define('DEFAULT_FUNCTION2CALL',"index");
+    
+    // Paths
     define('IMAGE_DIR','images');
     define('JS_DIR','client/js');
     define('TEMPLATE_DIR','templates');

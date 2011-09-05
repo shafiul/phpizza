@@ -38,7 +38,7 @@ $time = explode(' ', $time);
 $time = $time[1] + $time[0];
 $finish = $time;
 $total_time = round(($finish - $pizzaStartTime), 4);
-echo '<br /><br />Page generated in '.$total_time.' seconds.'."\n";
+$core->debug("Page generated in $total_time seconds.");
 
 ?>
 

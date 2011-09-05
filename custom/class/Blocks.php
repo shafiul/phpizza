@@ -5,9 +5,6 @@
  * Author       :   Shafiul Azam
  *              :   ishafiul@gmail.com
  *              :   Project Manager
- * Edited By    :   Imran Hasan Hira
- *              :   imranhasanhira@gmail.com
- *              :   Core Developer
  * Page         :
  * Description  :
  * Last Updated :
@@ -15,74 +12,67 @@
  * ****** ****** ****** ****** ****** ***** */
 
 /**
- * \brief Custom Class: Under construction
+ * \brief Custom Class: For generating common-styled %HTML blocks.
+ * 
+ * Use this function to generate %HTML blocks - mostly to use in your Template 's sidebars.
+ * 
+ * Generally, this class creates generated %HTML when calling the create() function. Generated %HTML contains:
+ *  - A title for the block
+ *  - Arbitrary (optional) html
+ *  - A list with items (mostly, links)
+ *  - Arbitrary (optional) html 
  * 
  * @author Shafiul Azam
- * @author Imran Hasan
  * 
  * Not important. Just create block-htmls to be printed in your page. In sidebars, for example?
  * 
  * This class can generate %HTML: A heading, list of clickable items, and arbritary %HTML
  */
 
-class Blocks {
+class Blocks extends HTML {
 
-    private $title = "";
-    private $items = array();
+    public $title = "";     ///< Title for the block
+    public $items = array();    ///< key-value pair array for list item links. Key is the text to display for links, and value is the url for the link. 
+    public $postHTML = "";  ///< html that should be printed after the list
+    public $preHTML = "";   ///< html that should be printed before the list
+    public $headTag = "h2"; ///<    html tag that should surround the $title
+    
+    // For internal use
     private $attrs = array();
-    public $html = "";
+    
+    /**
+     * Simple Constructor
+     * @param string $title Title for the block. 
+     */
 
-    public function __construct($title) {
+    public function __construct($title = "") {
         $this->title = $title;
     }
 
-    public function setItems($items) {
-        $this->items = $items;
-    }
-
-    public function setAttrs($attrs) {
-        $this->attrs = $attrs;
-    }
-
-    public function generate() {
-        $html = '<div class="sidemenu">
-            <h3>' . $this->title . '</h3>
-                <ul>';
-
-        $html .= $this->html;
-        if (isset($this->items)){
-            foreach ($this->items as $k => $v){
-                $attr = (isset($this->attrs[$k]))?($this->attrs[$k]):('');
-                $html .= "<li><a href = '$v'" . $attr . " >$k</a></li>\n";
-            }
-        }
-        $html .= '</ul>
-            </div>';
-        return $html;
-    }
-
-}
-
-class sideBlocks {
-
-    //put your code here
-
-    public static function example($classBy = "cellBrand", $type = "p") {
-        $bTitle = array("cellBrand" => "Manufacturer");
-        $bTitle['cellNetwork'] = ($type == "p") ? ("Network / Carrier") : ("Categories");
-
-        $block = new blocks("Select " . $bTitle[$classBy]);
-        $items = array();
-        $link = "cellList.html?t=$type&value=$classBy&alias=";
-        $result = mysql_return_array(KEYVAL_TABLE, array('kkey', 'alias'), array('type' => $type, 'vvalue' => $classBy));
-        while ($i = mysql_fetch_array($result)) {
-            $items[$i['kkey']] = $link . $i['alias'];
-        }
-        $block->setItems($items);
-        return $block->generate();
-    }
-
+    /**
+     * Generates output %HTML - in this function you must return the desired %HTML for the block. 
+     * @return string generated %HTML 
+     */
     
+    public function create() {
+        $hTag = $this->headTag;
+        $this->html = "<div>
+            <$hTag>" . $this->title . "</$hTag>
+                ";
+
+        $this->html .= $this->preHTML . "<ul>";
+        if (isset($this->items)){
+//            foreach ($this->items as $k => $v){
+//                $attr = (isset($this->attrs[$k]))?($this->attrs[$k]):('');
+//                $this->html .= "<li><a href = '$v'" . $attr . " >$k</a></li>\n";
+//            }
+            $this->html .= $this->lists($this->items);
+        }
+        $this->html .=  '</ul>';
+        $this->html .= $this->postHTML . '</div>';
+        return $this->html;
+    }
+
 }
 
 ?>

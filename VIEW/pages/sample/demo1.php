@@ -12,26 +12,28 @@
  * ****** ****** ****** ****** ****** ***** */
 
 
+
 class View extends Template{
     public function __construct() {
         // Must call parent's constructor
         parent::__construct();
         // Set titles & other attributes here
-        $this->title = "Demo 1";
+        $this->title = "Demo 1 passing param";
     }
     
     public function mainContent() {
+        global $core;   //  Got instance of core
         // This function must be implemented!
         // now follows html:
         ?>
-                    This view was loaded without any controller <br /><br />
-                    To pass an parameter and get it in the view without the help of controller 
-                    use get method. <a href="demo1.html?id=hello!">Example here</a>
+                    <ul>
+                        <li>This is a nested view, under the &QUOT;sample&quot; folder</li>
+                        <li>You can nest it as deep as you want</li>
+                    </ul>
                     <br />
                     
         <?php
-            if(isset($_REQUEST['id']))
-                echo "parameter passed via get method: " . $_REQUEST['id'];
+            echo $core->getData("mainContent");
     }
 }
 

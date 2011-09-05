@@ -34,6 +34,33 @@ class HTML{
     }
     
     /**
+     * Generates html for lists - ordered or unordered
+     * @param array $items - 1 dimensional array of html strings- which are items of the list.
+     * @param string $listType "ul" for Unordered (Bullet) list, "ol" for ordered (numbered) list.
+     * @param array $attrArr key-value array, key being the attribute and value being the value for that attribute
+     * @return html | generated html 
+     */
+    
+    public function lists($items, $listType="ul", $attrArr = null){
+        $attrText = "";
+        if ($attrArr) {
+            foreach ($attrArr as $k => $v)
+                $attrText .= "$k = '$v' ";
+        }
+        $str = "<$listType $attrText> \n";
+        foreach($items as $i){
+            $str .= "\t <li>$i</li> \n";
+        }
+        $str .= "</$listType> \n";
+        return $str;
+    }
+    
+    public function anchor($url, $text){
+        return "<a href = '$url'>$text</a>";
+    }
+
+
+    /**
      * @name Form related
      */
     
