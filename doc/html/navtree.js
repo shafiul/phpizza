@@ -10,22 +10,23 @@ var NAVTREE =
       [ "CoreValidator", "class_core_validator.html", null ],
       [ "CoreView", "class_core_view.html", null ],
       [ "CustomModel", "class_custom_model.html", null ],
-      [ "CustomView", "class_custom_view.html", null ],
       [ "Files", "class_files.html", null ],
+      [ "FormLinks", "class_form_links.html", null ],
       [ "Funcs", "class_funcs.html", null ],
+      [ "GeneralLinks", "class_general_links.html", null ],
       [ "GenericDB", "class_generic_d_b.html", null ],
       [ "HTML", "class_h_t_m_l.html", null ],
       [ "Login", "class_login.html", null ],
       [ "MySQL", "class_my_s_q_l.html", null ],
       [ "Registration", "class_registration.html", null ],
       [ "RegistrationModel", "class_registration_model.html", null ],
-      [ "sideBlocks", "classside_blocks.html", null ],
-      [ "Validator", "class_validator.html", null ]
+      [ "Template", "class_template.html", null ],
+      [ "Validator", "class_validator.html", null ],
+      [ "View", "class_view.html", null ]
     ] ],
     [ "Data Structure Index", "classes.html", null ],
     [ "Class Hierarchy", "hierarchy.html", [
       [ "Authentication", "class_authentication.html", null ],
-      [ "Blocks", "class_blocks.html", null ],
       [ "Controller", "class_controller.html", null ],
       [ "Core", "class_core.html", null ],
       [ "CoreValidator", "class_core_validator.html", [
@@ -35,20 +36,29 @@ var NAVTREE =
         [ "RegistrationModel", "class_registration_model.html", null ]
       ] ],
       [ "Files", "class_files.html", null ],
+      [ "FormLinks", "class_form_links.html", null ],
       [ "Funcs", "class_funcs.html", null ],
+      [ "GeneralLinks", "class_general_links.html", null ],
       [ "GenericDB", "class_generic_d_b.html", [
         [ "MySQL", "class_my_s_q_l.html", null ]
       ] ],
       [ "HTML", "class_h_t_m_l.html", [
+        [ "Blocks", "class_blocks.html", null ],
         [ "CoreForm", "class_core_form.html", [
           [ "Login", "class_login.html", null ],
           [ "Registration", "class_registration.html", null ]
         ] ],
         [ "CoreView", "class_core_view.html", [
-          [ "CustomView", "class_custom_view.html", null ]
+          [ "Template", "class_template.html", [
+            [ "View", "class_view.html", null ],
+            [ "View", "class_view.html", null ],
+            [ "View", "class_view.html", null ],
+            [ "View", "class_view.html", null ],
+            [ "View", "class_view.html", null ],
+            [ "View", "class_view.html", null ]
+          ] ]
         ] ]
-      ] ],
-      [ "sideBlocks", "classside_blocks.html", null ]
+      ] ]
     ] ],
     [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
@@ -69,13 +79,21 @@ var NAVTREE =
       [ "custom/class/Authentication.php", null, null ],
       [ "custom/class/Blocks.php", null, null ],
       [ "custom/class/CustomModel.php", null, null ],
-      [ "custom/class/CustomView.php", null, null ],
       [ "custom/class/Files.php", null, null ],
       [ "custom/class/Validator.php", null, null ],
-      [ "MODEL/registration.php", null, null ],
+      [ "MODEL/RegistrationModel.php", null, null ],
       [ "templates/WhiteLove/index.php", null, null ],
+      [ "templates/WhiteLove/Template.php", null, null ],
+      [ "VIEW/blocks/FormLinks.php", null, null ],
+      [ "VIEW/blocks/GeneralLinks.php", null, null ],
       [ "VIEW/forms/Login.php", null, null ],
-      [ "VIEW/forms/Registration.php", null, null ]
+      [ "VIEW/forms/Registration.php", null, null ],
+      [ "VIEW/pages/demo1.php", null, null ],
+      [ "VIEW/pages/index.php", null, null ],
+      [ "VIEW/pages/login.php", null, null ],
+      [ "VIEW/pages/registration.php", null, null ],
+      [ "VIEW/pages/sample/demo1.php", null, null ],
+      [ "VIEW/pages/sample/demo2.php", null, null ]
     ] ],
     [ "Directories", "dirs.html", [
       [ "config", "dir_ceb8d53eddbee6de4f63cd2d0b43bfdc.html", null ],
@@ -94,7 +112,11 @@ var NAVTREE =
         [ "WhiteLove", "dir_933c55b782dbf5bfb3a3262ba3e68688.html", null ]
       ] ],
       [ "VIEW", "dir_28298104348cfebcb12a3dae8753a486.html", [
-        [ "forms", "dir_394a0967c552489e1570b58b628bc103.html", null ]
+        [ "blocks", "dir_17c2826c27de9f3dffcb216e7a022fef.html", null ],
+        [ "forms", "dir_394a0967c552489e1570b58b628bc103.html", null ],
+        [ "pages", "dir_6decc1996b24287e32244d1f71b3647d.html", [
+          [ "sample", "dir_26e28f675afa9d4b663ab22dee3cd0db.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Globals", "globals.html", null ]

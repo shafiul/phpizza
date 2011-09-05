@@ -96,10 +96,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ab25941a477cf4f0f98439627cefbca08">loadModel</a> ($model)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a70a631bebbf046e2a26aa3396644627d">loadView</a> ($view)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a5e3478d18666a38b792b0b14a2eb8382">loadView</a> ($view=&quot;&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#af9cba21ff909ef91bf2a4ebad4daf7ae">loadBlock</a> ($block)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a5a5a4ee9b37745db873c776b38b2ddd5">loadController</a> ($controller)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a99fc050124b53e484d924fafc832b683">loadCustomClass</a> ($className)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a48528b52e7c0a6bf9c72f5f08f8ae197">loadCustomFunction</a> ($funcFile)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a52ffc849ccd16b8298d527d9e3957c7e">loadCustomFunctions</a> ($funcFile)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a8da25279cb2f1b6c9b5aafb2bc831393">loadForm</a> ($formName)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ae8c93ef969d174ce59ba8b7287fafbfc">loadDatabaseDriver</a> ($driver=&quot;&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ad2d0fb6fc69c0df824e1f51c2cfb0081">setTemplate</a> ($theme)</td></tr>
@@ -118,7 +119,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a45a2dccc02668261cfe68a06fe683da4">loadTemplate</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a316c85d1fe5fa4bcbe9a1b1dfb063bb4">generateViewObject</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a56f9c54e491d9693b95a680bbb533c31">generateControllerObject</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a7d7ea6e938a06e211825276c859a3367">findPage</a> ($page)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ae8187871ea55e2646ddc7f76f3483cc2">findPage</a> ($URL)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae769c5994d729265f11b85920819dd7b"></a><!-- doxytag: member="Core::$funcs" ref="ae769c5994d729265f11b85920819dd7b" args="" -->
@@ -132,7 +133,7 @@ Data Fields</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object of class: <a class="el" href="class_validator.html">Validator</a>. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acccf2eac8663e0cebe8101e90fbab089"></a><!-- doxytag: member="Core::$view" ref="acccf2eac8663e0cebe8101e90fbab089" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#acccf2eac8663e0cebe8101e90fbab089">$view</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object of class: <a class="el" href="class_custom_view.html" title="All VIEW classes should extend this class.">CustomView</a>. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object of class: CustomView. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a388ef7b1db5e6f728e63cee704ce6e23"></a><!-- doxytag: member="Core::$controller" ref="a388ef7b1db5e6f728e63cee704ce6e23" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a388ef7b1db5e6f728e63cee704ce6e23">$controller</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object of class: <a class="el" href="class_controller.html">Controller</a>. <br/></td></tr>
@@ -145,23 +146,23 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab052ac8d8bf958ae51cb1965ca42695d"></a><!-- doxytag: member="Core::$formData" ref="ab052ac8d8bf958ae51cb1965ca42695d" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ab052ac8d8bf958ae51cb1965ca42695d">$formData</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value Array for containing <a class="el" href="class_h_t_m_l.html" title="Generate HTML strings easily.">HTML</a> strings for web forms. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ae541f7fe1c5e21cb4535f88ec9e9dc"></a><!-- doxytag: member="Core::$theme" ref="a1ae541f7fe1c5e21cb4535f88ec9e9dc" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the template. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3e9534005fd516d941f6a5569896e01"></a><!-- doxytag: member="Core::$template" ref="aa3e9534005fd516d941f6a5569896e01" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#aa3e9534005fd516d941f6a5569896e01">$template</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the template. This must be name of the template's folder under "templates" directory. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa114dd9b0e4b7558e833e033460ee69"></a><!-- doxytag: member="Core::$controllerLoaded" ref="afa114dd9b0e4b7558e833e033460ee69" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#afa114dd9b0e4b7558e833e033460ee69">$controllerLoaded</a> = false</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean, true if controller class loaded. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fc2d63524966e0440328d6c003d94d3"></a><!-- doxytag: member="Core::$viewLoaded" ref="a7fc2d63524966e0440328d6c003d94d3" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a7fc2d63524966e0440328d6c003d94d3">$viewLoaded</a> = false</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean, true if view class loaded. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a376b1e6262f5c7ecfa3b6b4eabc4fc21"></a><!-- doxytag: member="Core::$modelLoaded" ref="a376b1e6262f5c7ecfa3b6b4eabc4fc21" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a376b1e6262f5c7ecfa3b6b4eabc4fc21">$modelLoaded</a> = false</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean, true if "Default" model class loaded. See documentation. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6efc15b5a2314dd4b5aaa556a375c6d6"></a><!-- doxytag: member="Core::$data" ref="a6efc15b5a2314dd4b5aaa556a375c6d6" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value array for containing variables, which are passed from <a class="el" href="class_controller.html">Controller</a> to View. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value array for containing variables, which are passed from <a class="el" href="class_controller.html">Controller</a> to <a class="el" href="class_view.html">View</a>. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5456eddb56153d6f21919217ada3229"></a><!-- doxytag: member="Core::$isStatic" ref="ab5456eddb56153d6f21919217ada3229" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ab5456eddb56153d6f21919217ada3229">$isStatic</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">true if the page is static: no controller to load, view automatically called. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The Most important class! </p>
@@ -222,11 +223,11 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00286">286</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00291">291</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7d7ea6e938a06e211825276c859a3367"></a><!-- doxytag: member="Core::findPage" ref="a7d7ea6e938a06e211825276c859a3367" args="($page)" -->
+<a class="anchor" id="ae8187871ea55e2646ddc7f76f3483cc2"></a><!-- doxytag: member="Core::findPage" ref="ae8187871ea55e2646ddc7f76f3483cc2" args="($URL)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -234,7 +235,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">findPage </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>page</em></td><td>)</td>
+          <td class="paramname"><em>URL</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -244,7 +245,7 @@ Private Attributes</h2></td></tr>
 <ul>
 <li>THIS IS USED INTERNALLY, NEVER CALL THIS FUNCTION! <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$page</td><td>the query string user provided </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$URL</td><td>the query string user provided </td></tr>
   </table>
   </dd>
 </dl>
@@ -252,7 +253,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00377">377</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00380">380</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -274,7 +275,7 @@ Private Attributes</h2></td></tr>
 <li>You should NEVER call this function! As this function is automatically called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00352">352</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00360">360</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -291,12 +292,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Creates an object of the View class.</p>
+<p>Creates an object of the <a class="el" href="class_view.html">View</a> class.</p>
 <ul>
 <li>You should NEVER call this function! As this function is automatically called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00329">329</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00336">336</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -314,7 +315,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Use this function within your View to retrive the variable you passed within your controller. </p>
+<p>Use this function within your <a class="el" href="class_view.html">View</a> to retrive the variable you passed within your controller. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$id</td><td>ID you used when calling <a class="el" href="class_core.html#a5f8cc6fff01d7d5b068edd4353e79f12">setData()</a> </td></tr>
@@ -325,7 +326,7 @@ Private Attributes</h2></td></tr>
 <dd>
 bool false - if you provide invalid ID </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00232">232</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00237">237</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -343,7 +344,7 @@ bool false - if you provide invalid ID </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Call this function within your View to get html string of a form.</p>
+<p>Call this function within your <a class="el" href="class_view.html">View</a> to get html string of a form.</p>
 <ul>
 <li>Before calling this function, within your <a class="el" href="class_controller.html">Controller</a> prepare the form &amp; call <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">CoreForm::sendToView()</a> , see <a class="el" href="class_core_form.html" title="Create, submit &amp; validate web-forms.">CoreForm</a> documentation <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -355,7 +356,33 @@ bool false - if you provide invalid ID </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00248">248</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00253">253</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af9cba21ff909ef91bf2a4ebad4daf7ae"></a><!-- doxytag: member="Core::loadBlock" ref="af9cba21ff909ef91bf2a4ebad4daf7ae" args="($block)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">loadBlock </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>block</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Use this function where appropriate (maybe within <a class="el" href="class_template.html" title="All VIEW classes should extend this class.">Template</a> class or in your VIEW classes) to load the "%HTML Blocks" - you can find some sample classes in <a class="el" href="class_general_links.html" title="project specific class: &quot;%HTML Block&quot; example.">GeneralLinks</a> and <a class="el" href="class_form_links.html" title="project specific class: &quot;%HTML Block&quot; example.">FormLinks</a> classes. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$block</td><td>name of the file. This file must reside in VIEW/blocks/ directory. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00119">119</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -383,9 +410,8 @@ bool false - if you provide invalid ID </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>bool </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00125">125</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00133">133</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -412,16 +438,16 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00145">145</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00147">147</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a48528b52e7c0a6bf9c72f5f08f8ae197"></a><!-- doxytag: member="Core::loadCustomFunction" ref="a48528b52e7c0a6bf9c72f5f08f8ae197" args="($funcFile)" -->
+<a class="anchor" id="a52ffc849ccd16b8298d527d9e3957c7e"></a><!-- doxytag: member="Core::loadCustomFunctions" ref="a52ffc849ccd16b8298d527d9e3957c7e" args="($funcFile)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">loadCustomFunction </td>
+          <td class="memname">loadCustomFunctions </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>funcFile</em></td><td>)</td>
@@ -439,7 +465,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00156">156</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00158">158</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -467,7 +493,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true if success, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00180">180</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00185">185</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -494,7 +520,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00167">167</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00169">169</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -519,9 +545,8 @@ bool false - if you provide invalid ID </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false in failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00084">84</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00086">86</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -539,7 +564,7 @@ bool false - if you provide invalid ID </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Used to load the default model, view &amp; controller.</p>
+<p>Used to load the default controller.</p>
 <ul>
 <li>You should NEVER call this function! As this function is automatically called by the framework. <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -551,7 +576,7 @@ bool false - if you provide invalid ID </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00300">300</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00305">305</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -573,11 +598,11 @@ bool false - if you provide invalid ID </dd></dl>
 <li>You should NEVER call this function! As this function is internally called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00315">315</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00323">323</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a70a631bebbf046e2a26aa3396644627d"></a><!-- doxytag: member="Core::loadView" ref="a70a631bebbf046e2a26aa3396644627d" args="($view)" -->
+<a class="anchor" id="a5e3478d18666a38b792b0b14a2eb8382"></a><!-- doxytag: member="Core::loadView" ref="a5e3478d18666a38b792b0b14a2eb8382" args="($view=&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -585,22 +610,25 @@ bool false - if you provide invalid ID </dd></dl>
           <td class="memname">loadView </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>view</em></td><td>)</td>
+          <td class="paramname"><em>view</em> = <code>&quot;&quot;</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Use this function to Load a View class. You can load ONLY ONE view class for a "page". Call this function within your constructor. If not called, the default view gets loaded. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Use this function to Load a <a class="el" href="class_view.html">View</a> class. You should load ONLY ONE view class for a "page". Call this function within your constructor EXPLICITLY. If you forget to call this function, No VIEW will be loaded!</p>
+<ul>
+<li>However, this function is automatically called by the <a class="el" href="class_core.html" title="The Most important class!">Core</a> if user is requesting some "static" page (page with no controller). <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$view</td><td>name of the View class. This class must extend <a class="el" href="class_custom_view.html" title="All VIEW classes should extend this class.">CustomView</a> &amp; reside under VIEW directory. </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$view</td><td>name of the <a class="el" href="class_view.html">View</a> class. This class must extend CustomView &amp; reside under VIEW/pages/ directory.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false in failure. </dd></dl>
+</li>
+<li>if you don't pass the parameter, default view for the page gets loaded. </li>
+</ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00103">103</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00099">99</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -627,7 +655,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true if file found, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00263">263</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00268">268</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -655,7 +683,7 @@ bool false - if you provide invalid ID </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Use this function within your controller to pass a variable to View. Within View, you can get the data by calling <a class="el" href="class_core.html#aaa8e59fa124cd71adf7c6ff59bb2de74">getData()</a> , $id is the ID of the variable. </p>
+<p>Use this function within your controller to pass a variable to <a class="el" href="class_view.html">View</a>. Within <a class="el" href="class_view.html">View</a>, you can get the data by calling <a class="el" href="class_core.html#aaa8e59fa124cd71adf7c6ff59bb2de74">getData()</a> , $id is the ID of the variable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$id</td><td>ID of the variable. You must use the same ID when you call <a class="el" href="class_core.html#aaa8e59fa124cd71adf7c6ff59bb2de74">getData()</a> to retrie the variable </td></tr>
@@ -665,7 +693,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>None </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00221">221</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00226">226</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -695,7 +723,7 @@ bool false - if you provide invalid ID </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00204">204</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00209">209</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -707,7 +735,7 @@ bool false - if you provide invalid ID </dd></dl>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core.html">Core</a>      </li>
-      <li class="footer">Generated on Wed Aug 31 2011 01:01:25 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 5 2011 16:17:18 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

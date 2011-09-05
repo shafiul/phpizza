@@ -78,8 +78,8 @@
     
     function anchor($url, $text){
         $urlArr = explode("?", $url,2); // Split based on the query string
-        $extention = (isset ($urlArr[1]))?($urlArr[1]):("");
-        return "<a href = '" . BASE_URL . "/" . $urlArr[0] . URL_EXTENTION. "?" . $extention . "'>$text</a>";
+        $queryString = (isset ($urlArr[1]))?( "?" . $urlArr[1]):("");
+        return "<a href = '" . BASE_URL . "/" . $urlArr[0] . URL_EXTENTION . $queryString . "'>$text</a>";
     }
     
     
@@ -93,8 +93,8 @@
     
     function anchor_static($url, $text){
         $urlArr = explode("?", $url,2); // Split based on the query string
-        $extention = (isset ($urlArr[1]))?($urlArr[1]):("");
-        return "<a href = '" . BASE_URL . "/static/" . $urlArr[0] . URL_EXTENTION. "?" . $extention . "'>$text</a>";
+        $queryString = (isset ($urlArr[1]))?("?" . $urlArr[1]):("");
+        return "<a href = '" . BASE_URL . "/static/" . $urlArr[0] . URL_EXTENTION. $queryString . "'>$text</a>";
     }
     
     //@}

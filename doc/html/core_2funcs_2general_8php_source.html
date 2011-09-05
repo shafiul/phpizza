@@ -100,26 +100,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00038"></a>00038         <span class="keywordflow">return</span> BASE_URL . <span class="stringliteral">&quot;/$url&quot;</span> . URL_EXTENTION;
 <a name="l00039"></a>00039     }
 <a name="l00040"></a>00040     
-<a name="l00041"></a>00041     
-<a name="l00048"></a><a class="code" href="core_2funcs_2general_8php.html#ae9280e1165fc441651226ce8fdd3043b">00048</a>     function <a class="code" href="core_2funcs_2general_8php.html#ae9280e1165fc441651226ce8fdd3043b">filePath</a>($filePath){
-<a name="l00049"></a>00049         <span class="comment">// Returns absolute path for the image</span>
-<a name="l00050"></a>00050         <span class="keywordflow">return</span> BASE_URL . <span class="stringliteral">&quot;/$filePath&quot;</span>;
-<a name="l00051"></a>00051     }
+<a name="l00048"></a><a class="code" href="core_2funcs_2general_8php.html#ae9c21a7f7b8bfb34697583a730eaf24a">00048</a>     function <a class="code" href="core_2funcs_2general_8php.html#ae9c21a7f7b8bfb34697583a730eaf24a">url_static</a>($url){
+<a name="l00049"></a>00049         <span class="keywordflow">return</span> BASE_URL . <span class="stringliteral">&quot;/static/$url&quot;</span> . URL_EXTENTION;
+<a name="l00050"></a>00050     }
+<a name="l00051"></a>00051     
 <a name="l00052"></a>00052     
-<a name="l00054"></a>00054 
-<a name="l00060"></a>00060     
-<a name="l00068"></a><a class="code" href="core_2funcs_2general_8php.html#af65d819e9aa7eed68a2f0acee1eca1e3">00068</a>     function <a class="code" href="core_2funcs_2general_8php.html#af65d819e9aa7eed68a2f0acee1eca1e3">anchor</a>($url, $text){
-<a name="l00069"></a>00069         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;a href = &#39;&quot;</span> . BASE_URL . <span class="stringliteral">&quot;/$url&quot;</span> . URL_EXTENTION. <span class="stringliteral">&quot;&#39;&gt;$text&lt;/a&gt;&quot;</span>;
-<a name="l00070"></a>00070     }
+<a name="l00059"></a><a class="code" href="core_2funcs_2general_8php.html#ae9280e1165fc441651226ce8fdd3043b">00059</a>     function <a class="code" href="core_2funcs_2general_8php.html#ae9280e1165fc441651226ce8fdd3043b">filePath</a>($filePath){
+<a name="l00060"></a>00060         <span class="comment">// Returns absolute path for the image</span>
+<a name="l00061"></a>00061         <span class="keywordflow">return</span> BASE_URL . <span class="stringliteral">&quot;/$filePath&quot;</span>;
+<a name="l00062"></a>00062     }
+<a name="l00063"></a>00063     
+<a name="l00065"></a>00065 
 <a name="l00071"></a>00071     
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 ?&gt;
+<a name="l00079"></a><a class="code" href="core_2funcs_2general_8php.html#af65d819e9aa7eed68a2f0acee1eca1e3">00079</a>     function <a class="code" href="core_2funcs_2general_8php.html#af65d819e9aa7eed68a2f0acee1eca1e3">anchor</a>($url, $text){
+<a name="l00080"></a>00080         $urlArr = explode(<span class="stringliteral">&quot;?&quot;</span>, $url,2); <span class="comment">// Split based on the query string</span>
+<a name="l00081"></a>00081         $queryString = (isset ($urlArr[1]))?( <span class="stringliteral">&quot;?&quot;</span> . $urlArr[1]):(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00082"></a>00082         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;a href = &#39;&quot;</span> . BASE_URL . <span class="stringliteral">&quot;/&quot;</span> . $urlArr[0] . URL_EXTENTION . $queryString . <span class="stringliteral">&quot;&#39;&gt;$text&lt;/a&gt;&quot;</span>;
+<a name="l00083"></a>00083     }
+<a name="l00084"></a>00084     
+<a name="l00085"></a>00085     
+<a name="l00086"></a>00086     
+<a name="l00094"></a><a class="code" href="core_2funcs_2general_8php.html#a6c929216cb349b9d121ae58e7c26020f">00094</a>     function <a class="code" href="core_2funcs_2general_8php.html#a6c929216cb349b9d121ae58e7c26020f">anchor_static</a>($url, $text){
+<a name="l00095"></a>00095         $urlArr = explode(<span class="stringliteral">&quot;?&quot;</span>, $url,2); <span class="comment">// Split based on the query string</span>
+<a name="l00096"></a>00096         $queryString = (isset ($urlArr[1]))?(<span class="stringliteral">&quot;?&quot;</span> . $urlArr[1]):(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00097"></a>00097         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;a href = &#39;&quot;</span> . BASE_URL . <span class="stringliteral">&quot;/static/&quot;</span> . $urlArr[0] . URL_EXTENTION. $queryString . <span class="stringliteral">&quot;&#39;&gt;$text&lt;/a&gt;&quot;</span>;
+<a name="l00098"></a>00098     }
+<a name="l00099"></a>00099     
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="core_2funcs_2general_8php.html">general.php</a>      </li>
-      <li class="footer">Generated on Wed Aug 31 2011 01:01:25 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 5 2011 16:17:18 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

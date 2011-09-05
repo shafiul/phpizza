@@ -11,18 +11,18 @@
  *
  * ****** ****** ****** ****** ****** ***** */
 // Classes
-require_once dirname(__FILE__) . "/HTML.php";
-require_once dirname(__FILE__) . "/Funcs.php";
+require dirname(__FILE__) . "/HTML.php";
+require dirname(__FILE__) . "/Funcs.php";
 
-require_once dirname(__FILE__) . "/CoreValidator.php";
+require dirname(__FILE__) . "/CoreValidator.php";
 
 // Helper Functions
-require_once dirname(__FILE__) . "/../funcs/general.php";
+require dirname(__FILE__) . "/../funcs/general.php";
 
 // Required Custom Classes
 
-require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Validator.php";
-require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomModel.php";
+require dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Validator.php";
+require dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomModel.php";
 
 /** \brief The Most important class! 
  * 
@@ -49,7 +49,7 @@ class Core{
     // Load sttus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
     public $viewLoaded = false;         ///<    Boolean, true if view class loaded.        
-    public $modelLoaded = false;        ///<    Boolean, true if "Default" model class loaded. See documentation
+//    public $modelLoaded = false;        ///<    Boolean, true if "Default" model class loaded. See documentation
     
     // vars for internal use. Don't use/depend on any of these in your code
      
@@ -81,19 +81,11 @@ class Core{
      * Use this function to Load a Model class. You can load any number of model classes.
      * Call this function within your constructor. If not called, the default Model gets loaded automatically.
      * @param string $model name of the Model class. This class must reside under MODEL directory.
-     * @return bool true in success, false in failure.
      */
     
     public function loadModel($model){
         $filename = dirname(__FILE__) . "/../../" . MODEL_DIR . "/$model.php";
-        if(file_exists($filename)){
-            $this->modelLoaded = true;
-            require_once $filename;
-            return true;
-        }else{
-            $this->debug ("File $filename Not found!");
-            return false;
-        }
+        require $filename;
     }
     
     /**
@@ -102,27 +94,20 @@ class Core{
      *  - However, this function is automatically called by the Core if user is requesting some "static" page (page with no controller).
      * @param string $view name of the View class. This class must extend CustomView & reside under VIEW/pages/ directory.
      *  - if you don't pass the parameter, default view for the page gets loaded.
-     * @return bool true in success, false in failure.
      */
     
     public function loadView($view=""){
         if(empty ($view))
             $view = $this->page;
         // First, load the CoreView Class
-        require_once dirname(__FILE__) . "/CoreView.php";
+        require dirname(__FILE__) . "/CoreView.php";
         // Next, load template class from template folder
         $template = $this->template;
-        require_once  dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/Template.php";
+        require  dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/Template.php";
         // Load the specific VIEW class.
         $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/pages/$view.php";
-        if(file_exists($filename)){
-            $this->viewLoaded = true;
-            require_once $filename;
-            return true;
-        }else{
-//            $this->debug ("File $filename Not found!");
-            return false;
-        }
+        $this->viewLoaded = true;
+        require $filename;
     }
     
     /**
@@ -135,7 +120,7 @@ class Core{
         // You should load the Blocks custom class manually before calling this function.
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
         $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/blocks/$block.php";
-        require_once $filename;
+        require $filename;
     }
     
     /**
@@ -143,23 +128,14 @@ class Core{
      * - You should NEVER call this function! As this function is automatically called by the framework.
      * 
      * @param string $controller name of the controller class
-     * @return bool
      */
     
     public function loadController($controller){
-        if(!$this->controllerLoaded){
-            $filename = dirname(__FILE__) . "/../../" . CONTROL_DIR . "/$controller.php";
-            if(file_exists($filename)){
-                $this->controllerLoaded = true;
-                require_once $filename;
-                // Also, generate the controller object & call "functionToCall"
-                $this->generateControllerObject();  // Controller Called!
-                return true;
-            }else{
-//                $this->debug ("File $filename Not found!");
-                return false;
-            }
-        }
+        $filename = dirname(__FILE__) . "/../../" . CONTROL_DIR . "/$controller.php";
+        $this->controllerLoaded = true;
+        require_once $filename;
+        // Also, generate the controller object & call "functionToCall"
+        $this->generateControllerObject();  // Controller Called!
     }
     
     /**
@@ -348,11 +324,7 @@ class Core{
         if($this->viewLoaded){
             $template = $this->template;
             $templateIndex = dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/index.php";
-            if(!$this->safeRequireOnce($templateIndex)){
-//                $this->debug ("Template file not found!");
-                echo "Error: Template file not found";
-                exit();
-            }
+            require $templateIndex;
         }
     }
     
