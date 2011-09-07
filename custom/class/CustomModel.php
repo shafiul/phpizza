@@ -1,19 +1,7 @@
 <?php
 
-/* * ***** ****** ****** ****** ****** ******
- *
- * Author       :   Shafiul Azam
- *              :   ishafiul@gmail.com
- *              :   Project Manager, 
- *              :   PROGmaatic Developer Network
- * Page         :
- * Description  :   
- * Last Updated :
- *
- * ****** ****** ****** ****** ****** ***** */
-
 /**
- * \brief A fundamental model class. You extend me in your MODELS
+ * \brief A fundamental model class. You extend this class in your MODELS
  * 
  * @author Shafiul Azam
  */
@@ -23,6 +11,7 @@ class CustomModel {
     
     /**
      * You should call this function as the first line within your MODEL class's constructor.
+     * 
      * Loads your favorite database driver.
      */
     

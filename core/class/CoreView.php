@@ -28,7 +28,7 @@ class CoreView extends HTML {
     public $keys = "keywords";     ///<    content attribute of meta with "keyword" name attribute for "this page"
     public $cssArray = null;    ///<    Array for storing custom CSS files to be applied to "this page"
     public $jsArray = null; ///<    Array for storing JavaScript file names to be applied to "this page"
-    public $theme = ""; ///<    Template to apply to "this page"  
+    public $template = ""; ///<    Template to apply to "this page"  
     
     public $defaultCssArray = null;  ///<    Array for storing CSS files to be applied to all pages by default
     public $defaultJsArray = null;    ///<    Array for storing JavaScript files to be applied to all pages by default
@@ -85,7 +85,7 @@ class CoreView extends HTML {
         // Print Default
         if ($this->includeDefaultCss && isset ($this->defaultCssArray)) {
             foreach ($this->defaultCssArray as $css_i) {
-                $siteTheme = $this->theme;
+                $siteTheme = $this->template;
                 $html .= '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }

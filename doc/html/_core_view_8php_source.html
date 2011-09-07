@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00028"></a><a class="code" href="class_core_view.html#af20635b6c08e03bfee9e3fc036fa80f3">00028</a>     <span class="keyword">public</span> <a class="code" href="class_core_view.html#af20635b6c08e03bfee9e3fc036fa80f3" title="content attribute of meta with &amp;quot;keyword&amp;quot; name attribute for &amp;quot;this page&amp;quot;">$keys</a> = <span class="stringliteral">&quot;keywords&quot;</span>;     
 <a name="l00029"></a><a class="code" href="class_core_view.html#a6b5695b172f2e0de9e1025d3df06df2d">00029</a>     <span class="keyword">public</span> <a class="code" href="class_core_view.html#a6b5695b172f2e0de9e1025d3df06df2d" title="Array for storing custom CSS files to be applied to &amp;quot;this page&amp;quot;.">$cssArray</a> = null;    
 <a name="l00030"></a><a class="code" href="class_core_view.html#a8e7c220e330a1bb5ef965c0f01e851be">00030</a>     <span class="keyword">public</span> <a class="code" href="class_core_view.html#a8e7c220e330a1bb5ef965c0f01e851be" title="Array for storing JavaScript file names to be applied to &amp;quot;this page&amp;quot;.">$jsArray</a> = null; 
-<a name="l00031"></a><a class="code" href="class_core_view.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">00031</a>     <span class="keyword">public</span> <a class="code" href="class_core_view.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc" title="Template to apply to &amp;quot;this page&amp;quot;.">$theme</a> = <span class="stringliteral">&quot;&quot;</span>; 
+<a name="l00031"></a><a class="code" href="class_core_view.html#aa3e9534005fd516d941f6a5569896e01">00031</a>     <span class="keyword">public</span> <a class="code" href="class_core_view.html#aa3e9534005fd516d941f6a5569896e01" title="Template to apply to &amp;quot;this page&amp;quot;.">$template</a> = <span class="stringliteral">&quot;&quot;</span>; 
 <a name="l00032"></a>00032     
 <a name="l00033"></a><a class="code" href="class_core_view.html#aacaacb2a73313f2f7e2fbc800b65f84e">00033</a>     <span class="keyword">public</span> <a class="code" href="class_core_view.html#aacaacb2a73313f2f7e2fbc800b65f84e" title="Array for storing CSS files to be applied to all pages by default.">$defaultCssArray</a> = null;  
 <a name="l00034"></a><a class="code" href="class_core_view.html#aab0271b7083e9b84871a1adcec98887d">00034</a>     <span class="keyword">public</span> <a class="code" href="class_core_view.html#aab0271b7083e9b84871a1adcec98887d" title="Array for storing JavaScript files to be applied to all pages by default.">$defaultJsArray</a> = null;    
@@ -128,7 +128,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00085"></a>00085         <span class="comment">// Print Default</span>
 <a name="l00086"></a>00086         <span class="keywordflow">if</span> ($this-&gt;includeDefaultCss &amp;&amp; isset ($this-&gt;defaultCssArray)) {
 <a name="l00087"></a>00087             <span class="keywordflow">foreach</span> ($this-&gt;defaultCssArray as $css_i) {
-<a name="l00088"></a>00088                 $siteTheme = $this-&gt;theme;
+<a name="l00088"></a>00088                 $siteTheme = $this-&gt;<span class="keyword">template</span>;
 <a name="l00089"></a>00089                 $html .= <span class="stringliteral">&#39;&lt;LINK href=&quot;&#39;</span> . BASE_URL . <span class="stringliteral">&quot;/&quot;</span> . TEMPLATE_DIR . <span class="stringliteral">&quot;/&quot;</span> . $siteTheme . <span class="stringliteral">&quot;/css/$css_i.css&quot;</span> . <span class="stringliteral">&#39;&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&#39;</span>;
 <a name="l00090"></a>00090             }
 <a name="l00091"></a>00091         }
@@ -167,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>CoreView.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:17:18 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

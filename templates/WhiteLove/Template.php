@@ -1,12 +1,14 @@
 <?php
 
 /**
- * \brief All VIEW classes should extend this class
+ * \brief All VIEW classes should extend this class. All themes/templates should have their own Template class.
  * 
  * @author Shafiul Azam
  * @author Put your name here!
  * 
- * All view classes (classes in VIEW folder) should extend this class & implement the abstract functions 
+ * !!! Functions of this class is called in the template's index.php page !!!
+ * 
+ * All view classes (classes in VIEW/pages folder) should extend this class & implement the abstract functions 
  * defined in this class.
  * 
  * You should define additional functions in this class, to generate necessary %HTML for your pages.
@@ -20,10 +22,11 @@ abstract class Template extends CoreView{
     
     // vars
     
-    public $heading;    ///< For setting the Headline of the page
+    public $heading;    ///< A custom (template-specific) variable. For setting the Headline of the page
     
     
     /**
+     * Perorms some routine tasks:
      *  - Sets default CSS & JavaScript files for all pages
      *  - Loads the custom "Blocks" class for your convenience.
      */

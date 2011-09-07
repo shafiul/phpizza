@@ -1,16 +1,5 @@
 <?php
 
-/* * ***** ****** ****** ****** ****** ******
- *
- * Author       :   Shafiul Azam
- *              :   ishafiul@gmail.com
- *              :   Project Manager
- * Page         :
- * Description  :
- * Last Updated :
- *
- * ****** ****** ****** ****** ****** ***** */
-
 /**
  * \brief Custom Class: For generating common-styled %HTML blocks.
  * 
@@ -32,13 +21,11 @@
 class Blocks extends HTML {
 
     public $title = "";     ///< Title for the block
-    public $items = array();    ///< key-value pair array for list item links. Key is the text to display for links, and value is the url for the link. 
+    public $items = array();    ///< 1-dimension array for list items.  
     public $postHTML = "";  ///< html that should be printed after the list
     public $preHTML = "";   ///< html that should be printed before the list
     public $headTag = "h2"; ///<    html tag that should surround the $title
     
-    // For internal use
-    private $attrs = array();
     
     /**
      * Simple Constructor

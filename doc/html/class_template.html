@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="Template" --><!-- doxytag: inherits="CoreView" -->
-<p>All VIEW classes should extend this class.  
+<p>All VIEW classes should extend this class. All themes/templates should have their own <a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> class.  
 <a href="#_details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Template:</div>
@@ -111,7 +111,7 @@ Inheritance diagram for Template:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Recommended Functions for the Template class</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>It is highly recommended that a <a class="el" href="class_template.html" title="All VIEW classes should extend this class.">Template</a> class should have following functions. These functions are too much common and can be used in almost all websites. So, use following function names &amp; call them appropriately in your template's index.php page.</p>
+<tr><td colspan="2"><div class="groupText"><p>It is highly recommended that a <a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> class should have following functions. These functions are too much common and can be used in almost all websites. So, use following function names &amp; call them appropriately in your template's index.php page.</p>
 <p>You can define the body of this functions, or leave the body to be implemented in the VIEW classes.</p>
 <p>If the functionality is totally VIEW-specific (like setting the main HTML contents of a page), you should define the functions as abstract. Otherwise, if you think functionality is common for all VIEWs, you may define the body of the function(s) here. Note that, developers can easily override the functions in specific VIEW class, so the technique is flexible. </p>
 </div></td></tr>
@@ -123,19 +123,20 @@ Public Member Functions</h2></td></tr>
 Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a196169be7715d466e3310388b096598c"></a><!-- doxytag: member="Template::$heading" ref="a196169be7715d466e3310388b096598c" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#a196169be7715d466e3310388b096598c">$heading</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">For setting the Headline of the page. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A custom (template-specific) variable. For setting the Headline of the page. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>All VIEW classes should extend this class. </p>
+<div class="textblock"><p>All VIEW classes should extend this class. All themes/templates should have their own <a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> class. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam </dd>
 <dd>
 Put your name here!</dd></dl>
-<p>All view classes (classes in VIEW folder) should extend this class &amp; implement the abstract functions defined in this class.</p>
+<p>!!! Functions of this class is called in the template's index.php page !!!</p>
+<p>All view classes (classes in VIEW/pages folder) should extend this class &amp; implement the abstract functions defined in this class.</p>
 <p>You should define additional functions in this class, to generate necessary HTML for your pages.</p>
 <p>You should call these functions in appropriate places in your template file. For example, see <a class="el" href="templates_2_white_love_2index_8php_source.html">templates/WhiteLove/index.php</a> (the default template file)</p>
 <p>You should define these functions abstract &amp; implement in your VIEW classes. </p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00019">19</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="_template_8php_source.html#l00021">21</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a095c5d389db211932136b53f25f39685"></a><!-- doxytag: member="Template::__construct" ref="a095c5d389db211932136b53f25f39685" args="()" -->
 <div class="memitem">
@@ -150,6 +151,7 @@ Put your name here!</dd></dl>
       </table>
 </div>
 <div class="memdoc">
+<p>Perorms some routine tasks:</p>
 <ul>
 <li>Sets default CSS &amp; JavaScript files for all pages</li>
 <li>Loads the custom "Blocks" class for your convenience. </li>
@@ -157,7 +159,7 @@ Put your name here!</dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_view.html#a095c5d389db211932136b53f25f39685">View</a>, <a class="el" href="class_view.html#a095c5d389db211932136b53f25f39685">View</a>, <a class="el" href="class_view.html#a095c5d389db211932136b53f25f39685">View</a>, <a class="el" href="class_view.html#a095c5d389db211932136b53f25f39685">View</a>, <a class="el" href="class_view.html#a095c5d389db211932136b53f25f39685">View</a>, and <a class="el" href="class_view.html#a095c5d389db211932136b53f25f39685">View</a>.</p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00031">31</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="_template_8php_source.html#l00034">34</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
 
 </div>
 </div>
@@ -177,7 +179,7 @@ Put your name here!</dd></dl>
 <div class="memdoc">
 <p>Footer of the template. Footers does not normally change in Views. So, you can staticly determine the page footer here. </p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00112">112</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="_template_8php_source.html#l00115">115</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
 
 </div>
 </div>
@@ -196,7 +198,7 @@ Put your name here!</dd></dl>
 <div class="memdoc">
 <p>Called inside template file to print the headings body of the HTML document Can leave as a abstract function, or you can implement the body of the function here, if suitable. </p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00064">64</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="_template_8php_source.html#l00067">67</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
 
 </div>
 </div>
@@ -242,7 +244,7 @@ Put your name here!</dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00088">88</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="_template_8php_source.html#l00091">91</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
 
 </div>
 </div>
@@ -254,7 +256,7 @@ Put your name here!</dd></dl>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_template.html">Template</a>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:17:19 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

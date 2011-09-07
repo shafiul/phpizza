@@ -1,26 +1,18 @@
 <?php
 
-/* * ***** ****** ****** ****** ****** ******
- *
- * Author       :   Shafiul Azam
- *              :   ishafiul@gmail.com
- *              :   Project Manager, 
- *              :   PROGmaatic Developer Network
- * Page         :
- * Description  :   
- * Last Updated :
- *
- * ****** ****** ****** ****** ****** ***** */
-
 /**
- * \define Your custom validation functions
+ * \brief Your custom validation functions
  * 
  * @author Shafiul Azam
  * @author Put your name here!
+ * 
+ * Put your custom validation functions here. 
+ * 
+ * To learn how to write validation function, see tutorials.
  */
 
 class Validator extends CoreValidator {
-    // Put your custom validation functions here
+    
     
     /**
      * Checks if $this->subject is one of the values specified by $possibleValues

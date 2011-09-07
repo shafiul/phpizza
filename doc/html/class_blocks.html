@@ -82,8 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Data Fields</a> &#124;
-<a href="#pri-attribs">Private Attributes</a>  </div>
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
 <h1>Blocks Class Reference</h1>  </div>
 </div>
@@ -112,7 +111,7 @@ Data Fields</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Title for the block. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a737abdef83dabb219182c1e88887c6c3"></a><!-- doxytag: member="Blocks::$items" ref="a737abdef83dabb219182c1e88887c6c3" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blocks.html#a737abdef83dabb219182c1e88887c6c3">$items</a> = array()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">key-value pair array for list item links. Key is the text to display for links, and value is the url for the link. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">1-dimension array for list items. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5b4e40629bb801b254ed80647d46031"></a><!-- doxytag: member="Blocks::$postHTML" ref="ae5b4e40629bb801b254ed80647d46031" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blocks.html#ae5b4e40629bb801b254ed80647d46031">$postHTML</a> = &quot;&quot;</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">html that should be printed after the list <br/></td></tr>
@@ -122,14 +121,10 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac244e69aca165f9dffc3871403cbdaff"></a><!-- doxytag: member="Blocks::$headTag" ref="ac244e69aca165f9dffc3871403cbdaff" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blocks.html#ac244e69aca165f9dffc3871403cbdaff">$headTag</a> = &quot;h2&quot;</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">html tag that should surround the $title <br/></td></tr>
-<tr><td colspan="2"><h2><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4cf24d99d068a1aefe99caf8dd8a458"></a><!-- doxytag: member="Blocks::$attrs" ref="af4cf24d99d068a1aefe99caf8dd8a458" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>$attrs</b> = array()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Custom Class: For generating common-styled HTML blocks. </p>
-<p>Use this function to generate HTML blocks - mostly to use in your <a class="el" href="class_template.html" title="All VIEW classes should extend this class.">Template</a> 's sidebars.</p>
+<p>Use this function to generate HTML blocks - mostly to use in your <a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> 's sidebars.</p>
 <p>Generally, this class creates generated HTML when calling the <a class="el" href="class_blocks.html#a435e7d7525d4bcd0ed5e34a469f3adf6">create()</a> function. Generated HTML contains:</p>
 <ul>
 <li>A title for the block</li>
@@ -141,7 +136,7 @@ Private Attributes</h2></td></tr>
 <p>Not important. Just create block-htmls to be printed in your page. In sidebars, for example?</p>
 <p>This class can generate HTML: A heading, list of clickable items, and arbritary HTML </p>
 
-<p>Definition at line <a class="el" href="_blocks_8php_source.html#l00032">32</a> of file <a class="el" href="_blocks_8php_source.html">Blocks.php</a>.</p>
+<p>Definition at line <a class="el" href="_blocks_8php_source.html#l00021">21</a> of file <a class="el" href="_blocks_8php_source.html">Blocks.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac68dc278d7c57fbcbb675550c5a17fb6"></a><!-- doxytag: member="Blocks::__construct" ref="ac68dc278d7c57fbcbb675550c5a17fb6" args="($title=&quot;&quot;)" -->
 <div class="memitem">
@@ -165,7 +160,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_blocks_8php_source.html#l00048">48</a> of file <a class="el" href="_blocks_8php_source.html">Blocks.php</a>.</p>
+<p>Definition at line <a class="el" href="_blocks_8php_source.html#l00035">35</a> of file <a class="el" href="_blocks_8php_source.html">Blocks.php</a>.</p>
 
 </div>
 </div>
@@ -186,7 +181,7 @@ Private Attributes</h2></td></tr>
 <p>Generates output HTML - in this function you must return the desired HTML for the block. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="_blocks_8php_source.html#l00057">57</a> of file <a class="el" href="_blocks_8php_source.html">Blocks.php</a>.</p>
+<p>Definition at line <a class="el" href="_blocks_8php_source.html#l00044">44</a> of file <a class="el" href="_blocks_8php_source.html">Blocks.php</a>.</p>
 
 </div>
 </div>
@@ -198,7 +193,7 @@ Private Attributes</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_blocks.html">Blocks</a>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:17:18 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

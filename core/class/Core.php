@@ -44,6 +44,7 @@ class Core{
     public $formData;   ///<    Key-value Array for containing HTML strings for web forms
     // Others
     public $template;  ///<    Name of the template. This must be name of the template's folder under "templates" directory.
+    public $templateFileName;   ///< name of the file to load under this template's directory. Default value is "index.php". You can change it before calling loadView()
     private $data;  ///<    Key-value array for containing variables, which are passed from Controller to View.
     private $isStatic; ///< true if the page is static: no controller to load, view automatically called.
     // Load sttus
@@ -73,6 +74,7 @@ class Core{
         $this->formData = array();
         // Set site template
         $this->template = SITE_THEME;  //  Can load from DB too.
+        $this->templateFileName = "index.php";
     }
     
     /* Loaders */
@@ -337,7 +339,7 @@ class Core{
         if($this->viewLoaded){
             $this->view = new View();
             // Set the template: important
-            $this->view->theme = $this->template;
+            $this->view->template = $this->template;
         }else{
             // Check if controller loaded
             if(!$this->controllerLoaded){

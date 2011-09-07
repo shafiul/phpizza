@@ -1,16 +1,5 @@
 <?php
 
-/* * ***** ****** ****** ****** ****** ******
- *
- * Author       :   Shafiul Azam
- *              :   ishafiul@gmail.com
- *              :   Project Manager
- * Page         :
- * Description  :   
- * Last Updated :
- *
- * ****** ****** ****** ****** ****** ***** */
-
 /**
  * \brief File operations made-easy
  * 
