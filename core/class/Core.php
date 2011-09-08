@@ -15,19 +15,18 @@ require "$pizza__CorePath/class/CoreValidator.php";
 require "$pizza__CorePath/funcs/general.php";
 
 // Required Custom Classes
-
 require "$pizza__CustomPath/class/Validator.php";
 require "$pizza__CustomPath/class/CustomModel.php";
 
 // Autoloader
 
 /**
- * Autoloading Core Classes - core classes exist in core/class directory.
+ * Autoloading Custom Classes - custom classes exist in custom/class directory.
  * @param type $className 
  */
 
 function __autoload($className){
-    require PROJECT_DIR . "/core/class/$className.php";
+    require PROJECT_DIR . "/custom/class/$className.php";
 }
 
 /** \brief The Most important class - makes the framework working! 
