@@ -1,15 +1,5 @@
 <?php
 
-/* * ***** ****** ****** ****** ****** ******
- *
- * Author       :   Shafiul Azam
- *              :   ishafiul@gmail.com
- *              :   Project Manager
- * Page         :
- * Description  :   
- * Last Updated :
- *
- * ****** ****** ****** ****** ****** ***** */
 // define some paths
 
 $pizza__CorePath =  PROJECT_DIR . "/core";
@@ -29,7 +19,18 @@ require "$pizza__CorePath/funcs/general.php";
 require "$pizza__CustomPath/class/Validator.php";
 require "$pizza__CustomPath/class/CustomModel.php";
 
-/** \brief The Most important class! 
+// Autoloader
+
+/**
+ * Autoloading Core Classes - core classes exist in core/class directory.
+ * @param type $className 
+ */
+
+function __autoload($className){
+    require PROJECT_DIR . "/core/class/$className.php";
+}
+
+/** \brief The Most important class - makes the framework working! 
  * 
  * @author Shafiul Azam
  * This class contains everything you need. An object of this class, $core (global variable) is created
@@ -55,9 +56,9 @@ class Core{
     // Load sttus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
     public $viewLoaded = false;         ///<    Boolean, true if view class loaded.        
-//    public $modelLoaded = false;        ///<    Boolean, true if "Default" model class loaded. See documentation
     
     // vars for internal use. Don't use/depend on any of these in your code
+    
     private $__coreDir;
     // constructor
     

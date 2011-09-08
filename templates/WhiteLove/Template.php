@@ -36,9 +36,6 @@ abstract class Template extends CoreView{
         $this->defaultJsArray = array("jquery/jquery_latest");
         // a dummy headline
         $this->heading = "A dummy headline";
-        // Instantiate the $block object.
-        global $core;
-        $core->loadCustomClass("Blocks");
     }
     
     // Functions to implement in your views

@@ -6,8 +6,9 @@ ini_set('display_errors', '1');
 session_start();
 
 
-// Time Calculation
+// Calculation of time taken to generate the page
 // ***************************************************************************
+// comment out this block in production server
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
@@ -16,9 +17,9 @@ $pizzaStartTime = $time;
 // Time Calculation
 
 // Load Configuaration
-require_once dirname(__FILE__) . '/config.php';
+require dirname(__FILE__) . '/config.php';
 // Load Core Class
-require_once dirname(__FILE__) . '/core/class/Core.php';
+require dirname(__FILE__) . '/core/class/Core.php';
 
 // Create Core Object
 $core = new Core();
@@ -30,12 +31,13 @@ $core->loadMVC($page);
 
 // ***************************************************************************
 // Time Calculation
+// comment out following code in production server
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
 $finish = $time;
 $total_time = round(($finish - $pizzaStartTime), 4);
-$core->debug("Page generated in $total_time seconds.");
+$core->debug("<br /><br />Page generated in $total_time seconds.");
 
 ?>
 
