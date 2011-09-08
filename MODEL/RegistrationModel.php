@@ -15,12 +15,12 @@
 /**
  * \define a demonstration-purpose model
  * 
- * Your class must extend CustomModel
+ * Your class must extend CoreModel
  * @author Shafiul Azam
  */
 
 
-class RegistrationModel extends CustomModel{
+class RegistrationModel extends CoreModel{
     
     /**
      * Constructor must call parent's constructor

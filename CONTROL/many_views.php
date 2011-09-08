@@ -4,8 +4,10 @@
 // apply this knowledge when controller_func_call is false.
 
 
-class Controller{
-    function __construct() {
+class Controller extends CoreController{
+    function __construct($core) {
+        // Call parent's constructor. 
+        parent::__construct($core);
     }
     
     function index(){
@@ -16,19 +18,19 @@ class Controller{
     
     function test1(){
         // Set data required for the view page
-        global $core;   // Get instance
+           // Get instance
         $title = "Title set via test1 function.";
-        $core->setData('title',$title);
+        $this->core->setData('title',$title);
         // Load the view
-        $core->loadView("index");
+        $this->core->loadView("index");
     }
     
     function test2(){
         // Set data required for the view page
-        global $core;
-        $core->setData("mainContent","<h1>This content was set from test2 function!</h1>");
+        
+        $this->core->setData("mainContent","<h1>This content was set from test2 function!</h1>");
         // Load the view
-        $core->loadView("sample/demo1");
+        $this->core->loadView("sample/demo1");
     }
 }
 

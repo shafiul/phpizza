@@ -31,7 +31,9 @@ abstract class Template extends CoreView{
      *  - Loads the custom "Blocks" class for your convenience.
      */
     
-    public function __construct() {
+    public function __construct($core) {
+        // First call parent's Constructor
+        parent::__construct($core);
         $this->defaultCssArray = array("style");
         $this->defaultJsArray = array("jquery/jquery_latest");
         // a dummy headline

@@ -13,22 +13,22 @@
  * ****** ****** ****** ****** ****** ***** */
 
 class View extends Template{
-    function __construct() {
+    function __construct($core) {
         // Must call parent's constructor
-        parent::__construct();
+        parent::__construct($core);
         $this->title  = "Demo Login form";
     }
     
     function mainContent() {
-        global $core;
+        
         // Uncomment following to manually present the Form
-//        $errors = $core->getData("formError");
+//        $errors = $this->core->getData("formError");
 //        if(!empty($errors)){
 //            echo "<font color='red'>$errors</font> <br /><br />";
 //        }
-//        echo $core->getData("loginForm");
+//        echo $this->core->getData("loginForm");
         // Or, use following function to do all these!
-        echo $core->getForm("Login");
+        echo $this->core->getForm("Login");
     }
 }
 

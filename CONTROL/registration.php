@@ -12,29 +12,30 @@
  *
  * ****** ****** ****** ****** ****** ***** */
 
-class Controller{
+class Controller extends CoreController{
     
     private $form;
     
-    function __construct() {
-        global $core;
-        $core->loadForm("Registration");
+    function __construct($core) {
+        // Call parent's constructor. 
+        parent::__construct($core);
+        $this->core->loadForm("Registration");
         $this->form = new Registration($core);
     }
     
     function index(){
-        global $core;
+        
         $this->form->sendToView();
-        $core->loadView();
+        $this->core->loadView();
     }
     
     function submit(){
-        global $core;
+        
         $result = $this->form->validate();
         if($result[FORM_RESULT]){
             // form valid. Do some database work!
             // Load the model 
-            $core->loadModel('RegistrationModel');
+            $this->core->loadModel('RegistrationModel');
             
             $model = new RegistrationModel();   //  Create object of the default model. Since this is the default model (filename: registration), it was automatically loaded :)
             $userSubmittedData = $this->form->getAll(); // Get user submissions
@@ -51,9 +52,9 @@ class Controller{
             $result = $db->selectArray();
             if($result){
                 // Set an error message
-                $core->funcs->setDisplayMsg("This username already exists (id: " . $result['id'] . " ) please choose a different username", MSGBOX_WARNING);
+                $this->core->funcs->setDisplayMsg("This username already exists (id: " . $result['id'] . " ) please choose a different username", MSGBOX_WARNING);
                 $this->form->resubmit();
-                $core->loadView();
+                $this->core->loadView();
                 return; // exit
             }
             
@@ -72,7 +73,7 @@ class Controller{
         }else{
             // form invalid
             $this->form->resubmit();
-            $core->loadView();
+            $this->core->loadView();
         }
     }
 }

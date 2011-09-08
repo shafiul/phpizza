@@ -14,13 +14,13 @@
 
 class View extends Template{
     
-    public function __construct() {
+    public function __construct($core) {
         // Must call parent's constructor
-        parent::__construct();
+        parent::__construct($core);
         // Set titles & other attributes here
         // For demonstration, we're using the value set by the controller
-        global $core;  //  Get the instance
-        $this->title = $core->getData('title');
+          //  Get the instance
+        $this->title = $this->core->getData('title');
         $this->heading = "Welcome to the landing page!";
     }
     

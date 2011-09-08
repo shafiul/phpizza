@@ -1,10 +1,11 @@
 <?php
 
-class Controller{
+class Controller extends CoreController{
     
-    function index(){
-            global $core;
-            echo $core->funcs->getDisplayMsg();
+    function index($core){
+            // Call parent's constructor. 
+            parent::__construct($core);
+            echo $this->core->funcs->getDisplayMsg();
         ?>
         <ul>
             <li><a href="simple_validator/test">Invalid example (user did not submit desired value): page redirects to this page</a></li>
@@ -14,21 +15,21 @@ class Controller{
             
         </ul>
         <?php
-//        $core->loadView();
+//        $this->core->loadView();
     }
     
     function test(){
-        global $core;
-        $id = $core->validate->userInput('id');
-        $noRedirect = $core->validate->userInput('noRedirect',"",false);    //  Not required, uses a default value 
+        
+        $id = $this->core->validate->userInput('id');
+        $noRedirect = $this->core->validate->userInput('noRedirect',"",false);    //  Not required, uses a default value 
         
         if($noRedirect == "yes"){
             // Don't exit, process within this page
-            $errorMsg = $core->validate->exitIfInvalid(false);
+            $errorMsg = $this->core->validate->exitIfInvalid(false);
             if($errorMsg)
                 echo "Error occured. Details: $errorMsg";
         }else{
-            $core->validate->exitIfInvalid();   // Exit if not valid
+            $this->core->validate->exitIfInvalid();   // Exit if not valid
         }
         
         

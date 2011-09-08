@@ -37,9 +37,15 @@ class CoreView extends HTML {
     public $includeDefaultCss = true;   ///<    Should apply default CSS files to "this page"?
     public $includeDefaultJs = true;    ///<    Should apply default JavaScript files to "this page"?
     
-    
+    // Reference to Core
+    public $core;   ///< A reference to $core
     
     // Public & Private Methods
+    
+    
+    public function __construct($core) {
+        $this->core = $core;
+    }
     
     /**
      * Call this function inside your code (controller or view) to create an %HTML div element - which user 

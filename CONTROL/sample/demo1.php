@@ -7,17 +7,18 @@
 
 // Just passing some variables to access from VIEW
 
-class Controller{
+class Controller extends CoreController{
     
-    function __construct() {
-        global $core;
-        $core->setData("mainContent","<h1>This content was set from constructor function!</h1>");
+    function __construct($core) {
+        // Call parent's constructor. 
+        parent::__construct($core);
+        $this->core->setData("mainContent","<h1>This content was set from constructor function!</h1>");
     }
     
     function index(){
-        global $core;
-        $core->setData("mainContent","<h1>This content was set from index function!</h1>");
-        $core->loadView();
+        
+        $this->core->setData("mainContent","<h1>This content was set from index function!</h1>");
+        $this->core->loadView();
     }
 }
 

@@ -13,9 +13,9 @@
 
 
 class View extends Template{
-    public function __construct() {
+    public function __construct($core) {
         // Must call parent's constructor
-        parent::__construct();
+        parent::__construct($core);
         // Allow static load
         $this->staticLoadAllowed = true;
         // Set titles & other attributes here

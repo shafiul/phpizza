@@ -16,7 +16,6 @@ require "$pizza__CorePath/funcs/general.php";
 
 // Required Custom Classes
 require "$pizza__CustomPath/class/Validator.php";
-require "$pizza__CustomPath/class/CustomModel.php";
 
 // Autoloader
 
@@ -93,6 +92,10 @@ class Core{
      */
     
     public function loadModel($model){
+        // First include once core model class
+        require_once $this->__coreDir . "/class/CoreModel.php";
+        // Load DB driver
+        $this->loadDatabaseDriver();
         $filename = PROJECT_DIR . "/" . MODEL_DIR . "/$model.php";
         require $filename;
     }
@@ -128,7 +131,7 @@ class Core{
     public function loadBlock($block){
         // You should load the Blocks custom class manually before calling this function.
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
-        $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/blocks/$block.php";
+        $filename = PROJECT_DIR . "/" . VIEW_DIR . "/blocks/$block.php";
         require $filename;
     }
     
@@ -140,6 +143,9 @@ class Core{
      */
     
     private function loadController($controller){
+        // Load Core Controller
+        require $this->__coreDir . "/class/CoreController.php";
+        // Load this specific controller
         $filename = PROJECT_DIR . "/" . CONTROL_DIR . "/$controller.php";
         $this->controllerLoaded = true;
         if(file_exists($filename)){
@@ -194,18 +200,13 @@ class Core{
      * 
      * Demo code is available at CustomModel class. So if your model class extends CustomModel, you do not need to call this function explicitly!
      * @param string $driver name of the database driver, i.e MySQL
-     * @return bool true if success, false otherwise 
      */
     
-    public function loadDatabaseDriver($driver = ""){
-        // if driver empty load default
-        if(empty($driver))
-            $driver = DB_DRIVER;
-        
+    public function loadDatabaseDriver(){
+        $driver = DB_DRIVER;
         require_once $this->__coreDir . "/class/db/GenericDB.php";   //  Generic database loaded
         // Load implemented driver
-        $classPath = $this->__coreDir . "/class/db/$driver.php";
-        return $this->safeRequireOnce($classPath);
+        require_once $this->__coreDir . "/class/db/$driver.php";
     }
     
     
@@ -357,7 +358,7 @@ class Core{
     
     private function generateViewObject(){
         if($this->viewLoaded){
-            $this->view = new View();
+            $this->view = new View($this);
             // Check static permission
             if($this->isStatic && !$this->view->staticLoadAllowed){
                 echo "Error: Loading this page statically is denied.";
@@ -385,7 +386,7 @@ class Core{
      */
     
     public function generateControllerObject(){
-        $this->controller = new Controller();
+        $this->controller = new Controller($this);
         if(method_exists($this->controller, $this->functionToCall))
             call_user_func(array($this->controller, $this->functionToCall));
         else{

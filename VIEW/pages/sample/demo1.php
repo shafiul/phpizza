@@ -14,15 +14,15 @@
 
 
 class View extends Template{
-    public function __construct() {
+    public function __construct($core) {
         // Must call parent's constructor
-        parent::__construct();
+        parent::__construct($core);
         // Set titles & other attributes here
         $this->title = "Demo 1 passing param";
     }
     
     public function mainContent() {
-        global $core;   //  Got instance of core
+           //  Got instance of core
         // This function must be implemented!
         // now follows html:
         ?>
@@ -33,7 +33,7 @@ class View extends Template{
                     <br />
                     
         <?php
-            echo $core->getData("mainContent");
+            echo $this->core->getData("mainContent");
     }
 }
 
