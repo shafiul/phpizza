@@ -10,19 +10,24 @@
  * Last Updated :
  *
  * ****** ****** ****** ****** ****** ***** */
-// Classes
-require dirname(__FILE__) . "/HTML.php";
-require dirname(__FILE__) . "/Funcs.php";
+// define some paths
 
-require dirname(__FILE__) . "/CoreValidator.php";
+$pizza__CorePath =  PROJECT_DIR . "/core";
+$pizza__CustomPath = PROJECT_DIR . "/" . CUSTOM_DIR;
+
+// Include required Classes
+require "$pizza__CorePath/class/HTML.php";
+require "$pizza__CorePath/class/Funcs.php";
+
+require "$pizza__CorePath/class/CoreValidator.php";
 
 // Helper Functions
-require dirname(__FILE__) . "/../funcs/general.php";
+require "$pizza__CorePath/funcs/general.php";
 
 // Required Custom Classes
 
-require dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Validator.php";
-require dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/CustomModel.php";
+require "$pizza__CustomPath/class/Validator.php";
+require "$pizza__CustomPath/class/CustomModel.php";
 
 /** \brief The Most important class! 
  * 
@@ -53,7 +58,7 @@ class Core{
 //    public $modelLoaded = false;        ///<    Boolean, true if "Default" model class loaded. See documentation
     
     // vars for internal use. Don't use/depend on any of these in your code
-     
+    private $__coreDir;
     // constructor
     
     /**
@@ -75,6 +80,8 @@ class Core{
         // Set site template
         $this->template = SITE_THEME;  //  Can load from DB too.
         $this->templateFileName = "index.php";
+        // Set up internal vars
+        $this->__coreDir = PROJECT_DIR . "/core";
     }
     
     /* Loaders */
@@ -86,7 +93,7 @@ class Core{
      */
     
     public function loadModel($model){
-        $filename = dirname(__FILE__) . "/../../" . MODEL_DIR . "/$model.php";
+        $filename = PROJECT_DIR . "/" . MODEL_DIR . "/$model.php";
         require $filename;
     }
     
@@ -102,12 +109,12 @@ class Core{
         if(empty ($view))
             $view = $this->page;
         // First, load the CoreView Class
-        require dirname(__FILE__) . "/CoreView.php";
+        require $this->__coreDir . "/class/CoreView.php";
         // Next, load template class from template folder
         $template = $this->template;
-        require  dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/Template.php";
+        require  PROJECT_DIR . "/" . TEMPLATE_DIR . "/$template/Template.php";
         // Load the specific VIEW class.
-        $filename = dirname(__FILE__) . "/../../" . VIEW_DIR . "/pages/$view.php";
+        $filename = PROJECT_DIR . "/" . VIEW_DIR . "/pages/$view.php";
         $this->viewLoaded = true;
         require $filename;
     }
@@ -132,8 +139,8 @@ class Core{
      * @param string $controller name of the controller class
      */
     
-    public function loadController($controller){
-        $filename = dirname(__FILE__) . "/../../" . CONTROL_DIR . "/$controller.php";
+    private function loadController($controller){
+        $filename = PROJECT_DIR . "/" . CONTROL_DIR . "/$controller.php";
         $this->controllerLoaded = true;
         if(file_exists($filename)){
             require $filename;
@@ -153,7 +160,7 @@ class Core{
      */
     
     public function loadCustomClass($className){
-        $classPath = dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/$className.php";
+        $classPath = PROJECT_DIR . "/" . CUSTOM_DIR . "/class/$className.php";
         return $this->safeRequireOnce($classPath);
     }
     
@@ -164,7 +171,7 @@ class Core{
      */
     
     public function loadCustomFunctions($funcFile){
-        $classPath = dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/funcs/$funcFile.php";
+        $classPath = PROJECT_DIR . "/" . CUSTOM_DIR . "/funcs/$funcFile.php";
         return $this->safeRequireOnce($classPath);
     }
     
@@ -176,9 +183,9 @@ class Core{
     
     public function loadForm($formName){
         // First include core form
-        require_once dirname(__FILE__) . "/CoreForm.php";
+        require_once $this->__coreDir . "/class/CoreForm.php";
         // Now include particular form
-        $classPath = dirname(__FILE__) . "/../../" . FORMS_DIR . "/$formName.php";
+        $classPath = PROJECT_DIR . "/" . FORMS_DIR . "/$formName.php";
         return $this->safeRequireOnce($classPath);
     }
     
@@ -195,10 +202,9 @@ class Core{
         if(empty($driver))
             $driver = DB_DRIVER;
         
-        require_once dirname(__FILE__) . "/../../config/database.php";   //  Configuartion file loaded
-        require_once dirname(__FILE__) . "/db/GenericDB.php";   //  Generic database loaded
+        require_once $this->__coreDir . "/class/db/GenericDB.php";   //  Generic database loaded
         // Load implemented driver
-        $classPath = dirname(__FILE__) . "/db/$driver.php";
+        $classPath = $this->__coreDir . "/class/db/$driver.php";
         return $this->safeRequireOnce($classPath);
     }
     
@@ -305,6 +311,10 @@ class Core{
     
     /**
      * Used to load the default controller.
+     * 
+     * It also calls generateViewObject() followed by loadTemplate() to finish generating the page.
+     * 
+     * Warning:
      * - You should NEVER call this function! As this function is automatically called by the framework.
      * @param string $page "The Page"
      * @return None
@@ -320,6 +330,10 @@ class Core{
             // Load Controller.
             $this->loadController($this->page);
         }
+        // Create VIEW
+        $this->generateViewObject();
+        // Load Site Template
+        $this->loadTemplate();
         
     }
     
@@ -328,10 +342,10 @@ class Core{
      * - You should NEVER call this function! As this function is internally called by the framework. 
      */
     
-    public function loadTemplate(){
+    private function loadTemplate(){
         if($this->viewLoaded){
             $template = $this->template;
-            $templateIndex = dirname(__FILE__) . "/../../" . TEMPLATE_DIR . "/$template/index.php";
+            $templateIndex = PROJECT_DIR . "/" . TEMPLATE_DIR . "/$template/" . $this->templateFileName;
             require $templateIndex;
         }
     }
@@ -341,7 +355,7 @@ class Core{
      * - You should NEVER call this function! As this function is automatically called by the framework. 
      */
     
-    public function generateViewObject(){
+    private function generateViewObject(){
         if($this->viewLoaded){
             $this->view = new View();
             // Check static permission

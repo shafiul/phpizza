@@ -16,7 +16,7 @@ $pizzaStartTime = $time;
 // Time Calculation
 
 // Load Configuaration
-require_once dirname(__FILE__) . '/config/general.php';
+require_once dirname(__FILE__) . '/config.php';
 // Load Core Class
 require_once dirname(__FILE__) . '/core/class/Core.php';
 
@@ -27,10 +27,6 @@ $page = $core->validate->userInput('page', "", false, LANDING_PAGE);
 $page = rtrim($page,"/");
 // Load model, view & controller
 $core->loadMVC($page);
-// Create VIEW
-$core->generateViewObject();
-// Load Site Template
-$core->loadTemplate();
 
 // ***************************************************************************
 // Time Calculation

@@ -12,6 +12,13 @@
     *
     * ****** ****** ****** ****** ****** ******/
 
+    // Database configuration
+    define('DB_DRIVER','MySQL');    //  Possible values: MySQL
+    // Database credentials
+    define('DB_HOST','localhost');
+    define('DB_USERNAME','root');
+    define('DB_PASSWORD','janina');
+    define('DB_DATABASE','gigamvc');
 
     // Constants
     define('BASE_URL', 'http://localhost/htdocs/projects/gigamvc');    // Without trailing slash!!!
@@ -24,9 +31,6 @@
 //    define('DEBUG_MODE',false);
     
     
-    // Database
-    define('DB_DRIVER','MySQL');    //  Possible values: MySQL
-    // rest of the Database configurations can be edited in config/database.php file
     
     ///////////////////////////////////////////////////
     // Generally, you don't need to modify followings.
@@ -48,6 +52,11 @@
 
     // Configuration - User
     define('CAPTCHA_ON',true);
+    
+    // System configuration : Never change following settings!
+    
+    define('PROJECT_DIR', dirname(__FILE__));
+    
 
 
 ?>
