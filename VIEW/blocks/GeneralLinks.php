@@ -38,7 +38,7 @@ class GeneralLinks{
         $generalPages = $this->block->lists(array(
             anchor("index", "home"),
             anchor("sample/demo1", "sample/demo1"),
-            anchor("simple_validadtor","Simple Validator"),
+            anchor("simple_validator","Simple Validator"),
             anchor("many_views","Dynamic views")
         ));
         $formPages = $this->block->lists(array(

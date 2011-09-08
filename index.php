@@ -27,6 +27,7 @@ $page = $core->validate->userInput('page', "", false, LANDING_PAGE);
 $page = rtrim($page,"/");
 // Load model, view & controller
 $core->loadMVC($page);
+// Create VIEW
 $core->generateViewObject();
 // Load Site Template
 $core->loadTemplate();

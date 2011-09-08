@@ -135,9 +135,15 @@ class Core{
     public function loadController($controller){
         $filename = dirname(__FILE__) . "/../../" . CONTROL_DIR . "/$controller.php";
         $this->controllerLoaded = true;
-        require_once $filename;
-        // Also, generate the controller object & call "functionToCall"
-        $this->generateControllerObject();  // Controller Called!
+        if(file_exists($filename)){
+            require $filename;
+            // Also, generate the controller object & call "functionToCall"
+            $this->generateControllerObject();  // Controller Called!
+        }else{
+            echo "Error 404: Page Not Found";
+            exit();
+        }
+        
     }
     
     /**
@@ -208,9 +214,9 @@ class Core{
      * @return None
      */
     
-    public function setTemplate($theme){
-        $this->template = $theme;
-    }
+//    public function setTemplate($theme){
+//        $this->template = $theme;
+//    }
     
     
 
@@ -272,7 +278,7 @@ class Core{
             require_once $filename;
             return true;
         }else{
-            $this->debug ("File $filename Not found!");
+//            $this->debug ("File $filename Not found!");
             return false;
         }
     }
@@ -338,6 +344,11 @@ class Core{
     public function generateViewObject(){
         if($this->viewLoaded){
             $this->view = new View();
+            // Check static permission
+            if($this->isStatic && !$this->view->staticLoadAllowed){
+                echo "Error: Loading this page statically is denied.";
+                exit();
+            }
             // Set the template: important
             $this->view->template = $this->template;
         }else{
@@ -379,7 +390,7 @@ class Core{
      * @return None 
      */
     
-    public function findPage($URL){
+    private function findPage($URL){
         $pageArr  = explode("/", $URL);
         $numSegments = count($pageArr);
         

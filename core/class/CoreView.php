@@ -29,6 +29,7 @@ class CoreView extends HTML {
     public $cssArray = null;    ///<    Array for storing custom CSS files to be applied to "this page"
     public $jsArray = null; ///<    Array for storing JavaScript file names to be applied to "this page"
     public $template = ""; ///<    Template to apply to "this page"  
+    public $staticLoadAllowed = false;  ///<    If set false (which is default) the VIEW can not be loaded statically (without any controller)
     
     public $defaultCssArray = null;  ///<    Array for storing CSS files to be applied to all pages by default
     public $defaultJsArray = null;    ///<    Array for storing JavaScript files to be applied to all pages by default
