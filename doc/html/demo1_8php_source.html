@@ -97,37 +97,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00013"></a>00013 
 <a name="l00014"></a>00014 
 <a name="l00015"></a><a class="code" href="class_view.html">00015</a> <span class="keyword">class </span><a class="code" href="class_view.html">View</a> <span class="keyword">extends</span> <a class="code" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a>{
-<a name="l00016"></a><a class="code" href="class_view.html#a095c5d389db211932136b53f25f39685">00016</a>     <span class="keyword">public</span> function <a class="code" href="class_view.html#a095c5d389db211932136b53f25f39685">__construct</a>() {
+<a name="l00016"></a><a class="code" href="class_view.html#a64585b415473be548941a9f4f12bb8ec">00016</a>     <span class="keyword">public</span> function <a class="code" href="class_view.html#a64585b415473be548941a9f4f12bb8ec">__construct</a>(<a class="code" href="class_core_view.html#aa432de3bacb7ced3632fa0ee0269ada3" title="A reference to $core.">$core</a>) {
 <a name="l00017"></a>00017         <span class="comment">// Must call parent&#39;s constructor</span>
-<a name="l00018"></a>00018         <a class="code" href="class_view.html#a095c5d389db211932136b53f25f39685">parent::__construct</a>();
-<a name="l00019"></a>00019         <span class="comment">// Set titles &amp; other attributes here</span>
-<a name="l00020"></a>00020         $this-&gt;title = <span class="stringliteral">&quot;Demo 1&quot;</span>;
-<a name="l00021"></a>00021     }
-<a name="l00022"></a>00022     
-<a name="l00023"></a><a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">00023</a>     <span class="keyword">public</span> function <a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">mainContent</a>() {
-<a name="l00024"></a>00024         <span class="comment">// This function must be implemented!</span>
-<a name="l00025"></a>00025         <span class="comment">// now follows html:</span>
-<a name="l00026"></a>00026         ?&gt;
-<a name="l00027"></a>00027                     This view was loaded without any controller &lt;br /&gt;&lt;br /&gt;
-<a name="l00028"></a>00028                     To pass an parameter and <span class="keyword">get</span> it in the view without the help of controller 
-<a name="l00029"></a>00029                     use <span class="keyword">get</span> method. 
-<a name="l00030"></a>00030                     &lt;?php echo <a class="code" href="core_2funcs_2general_8php.html#a6c929216cb349b9d121ae58e7c26020f">anchor_static</a>(<span class="stringliteral">&quot;demo1?id=hello&quot;</span>, <span class="stringliteral">&quot;Example Here&quot;</span>) ?&gt;
-<a name="l00031"></a>00031 &lt;!--                    &lt;a href=<span class="stringliteral">&quot;demo1.html?id=hello!&quot;</span>&gt;Example here&lt;/a&gt;--&gt;
-<a name="l00032"></a>00032                     &lt;br /&gt;
-<a name="l00033"></a>00033                     
-<a name="l00034"></a>00034         &lt;?php
-<a name="l00035"></a>00035             <span class="keywordflow">if</span>(isset($_REQUEST[<span class="stringliteral">&#39;id&#39;</span>]))
-<a name="l00036"></a>00036                 echo <span class="stringliteral">&quot;parameter passed via get method: &quot;</span> . $_REQUEST[<span class="stringliteral">&#39;id&#39;</span>];
-<a name="l00037"></a>00037     }
-<a name="l00038"></a>00038 }
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 ?&gt;
+<a name="l00018"></a>00018         <a class="code" href="class_view.html#a64585b415473be548941a9f4f12bb8ec">parent::__construct</a>(<a class="code" href="class_core_view.html#aa432de3bacb7ced3632fa0ee0269ada3" title="A reference to $core.">$core</a>);
+<a name="l00019"></a>00019         <span class="comment">// Allow static load</span>
+<a name="l00020"></a>00020         $this-&gt;staticLoadAllowed = <span class="keyword">true</span>;
+<a name="l00021"></a>00021         <span class="comment">// Set titles &amp; other attributes here</span>
+<a name="l00022"></a>00022         $this-&gt;title = <span class="stringliteral">&quot;Demo 1&quot;</span>;
+<a name="l00023"></a>00023     }
+<a name="l00024"></a>00024     
+<a name="l00025"></a><a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">00025</a>     <span class="keyword">public</span> function <a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">mainContent</a>() {
+<a name="l00026"></a>00026         <span class="comment">// This function must be implemented!</span>
+<a name="l00027"></a>00027         <span class="comment">// now follows html:</span>
+<a name="l00028"></a>00028         ?&gt;
+<a name="l00029"></a>00029                     This view was loaded without any controller &lt;br /&gt;&lt;br /&gt;
+<a name="l00030"></a>00030                     To pass an parameter and <span class="keyword">get</span> it in the view without the help of controller 
+<a name="l00031"></a>00031                     use <span class="keyword">get</span> method. 
+<a name="l00032"></a>00032                     &lt;?php echo <a class="code" href="general_8php.html#a6c929216cb349b9d121ae58e7c26020f">anchor_static</a>(<span class="stringliteral">&quot;demo1?id=hello&quot;</span>, <span class="stringliteral">&quot;Example Here&quot;</span>) ?&gt;
+<a name="l00033"></a>00033 &lt;!--                    &lt;a href=<span class="stringliteral">&quot;demo1.html?id=hello!&quot;</span>&gt;Example here&lt;/a&gt;--&gt;
+<a name="l00034"></a>00034                     &lt;br /&gt;
+<a name="l00035"></a>00035                     
+<a name="l00036"></a>00036         &lt;?php
+<a name="l00037"></a>00037             <span class="keywordflow">if</span>(isset($_REQUEST[<span class="stringliteral">&#39;id&#39;</span>]))
+<a name="l00038"></a>00038                 echo <span class="stringliteral">&quot;parameter passed via get method: &quot;</span> . $_REQUEST[<span class="stringliteral">&#39;id&#39;</span>];
+<a name="l00039"></a>00039     }
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>demo1.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 12 2011 00:31:14 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

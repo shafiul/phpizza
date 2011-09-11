@@ -25,16 +25,17 @@ class Login extends CoreForm {
     
     function createElements(){
         // This function should be present
+        // 
         // Generate form elements
+        $elements = array();
         
-        $this->element('email', "Email", "email");
-        $this->elementHTML('email', $this->input("email"));
+        $elements['email'] = array("Email","email","input");
+        $elements['passwd'] = array("Password","required|htmlspecialchars","input",array(
+            "password"
+        ));
+        $elements['comment'] = array('Comment (optional)', 'htmlspecialchars',"textarea");
         
-        $this->element('passwd', "Password", "required|htmlspecialchars");
-        $this->elementHTML('passwd', $this->input('passwd', 'password'));
-        
-        $this->element('comment', "Comment (optional)", "htmlspecialchars");
-        $this->elementHTML('comment', $this->textarea("comment"));
+        $this->setElements($elements);
     }
     
     

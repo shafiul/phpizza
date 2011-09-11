@@ -100,41 +100,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00016"></a>00016     <span class="keyword">public</span> function __construct(<a class="code" href="class_core_form.html#aa432de3bacb7ced3632fa0ee0269ada3" title="A reference to the global $core.">$core</a>) {
 <a name="l00017"></a>00017         <span class="comment">// MUST call parent&#39;s constructor</span>
 <a name="l00018"></a>00018         parent::__construct($this, <a class="code" href="class_core_form.html#aa432de3bacb7ced3632fa0ee0269ada3" title="A reference to the global $core.">$core</a>);
-<a name="l00019"></a>00019         $this-&gt;action = <a class="code" href="core_2funcs_2general_8php.html#ab39f151a1e427d9e0a88b93df2388bb1">url</a>(<span class="stringliteral">&#39;registration/submit&#39;</span>);
+<a name="l00019"></a>00019         $this-&gt;action = <a class="code" href="general_8php.html#ab39f151a1e427d9e0a88b93df2388bb1">url</a>(<span class="stringliteral">&#39;registration/submit&#39;</span>);
 <a name="l00020"></a>00020         $this-&gt;submitButtonText = <span class="stringliteral">&quot;Register!&quot;</span>;
 <a name="l00021"></a>00021         $this-&gt;tableCellSpacing = <span class="stringliteral">&quot;10px&quot;</span>;
 <a name="l00022"></a>00022     }
 <a name="l00023"></a>00023     
 <a name="l00024"></a><a class="code" href="class_registration.html#ab9cc7a749f39fa604e5e065f486a7ee6">00024</a>     <span class="keyword">public</span> function <a class="code" href="class_registration.html#ab9cc7a749f39fa604e5e065f486a7ee6">createElements</a>() {
-<a name="l00025"></a>00025         $this-&gt;<a class="code" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element</a>(<span class="stringliteral">&quot;username&quot;</span>, <span class="stringliteral">&quot;Username&quot;</span>, <span class="stringliteral">&quot;limit,5,7&quot;</span>);
-<a name="l00026"></a>00026         $this-&gt;<a class="code" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML</a>(<span class="stringliteral">&quot;username&quot;</span>, $this-&gt;<a class="code" href="class_core_form.html#a7d9d6e1c757b3af2726a4d347e169281">input</a>(<span class="stringliteral">&quot;username&quot;</span>));
+<a name="l00025"></a>00025         
+<a name="l00026"></a>00026         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a> = array();
 <a name="l00027"></a>00027         
-<a name="l00028"></a>00028         $this-&gt;<a class="code" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element</a>(<span class="stringliteral">&quot;passwd&quot;</span>,<span class="stringliteral">&quot;Password&quot;</span>, <span class="stringliteral">&quot;required|limit,,2&quot;</span>);
-<a name="l00029"></a>00029         $this-&gt;<a class="code" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML</a>(<span class="stringliteral">&quot;passwd&quot;</span>, $this-&gt;<a class="code" href="class_core_form.html#a7d9d6e1c757b3af2726a4d347e169281">input</a>(<span class="stringliteral">&quot;passwd&quot;</span>, <span class="stringliteral">&quot;password&quot;</span>));
-<a name="l00030"></a>00030         
-<a name="l00031"></a>00031         $this-&gt;<a class="code" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element</a>(<span class="stringliteral">&quot;passwd2&quot;</span>,<span class="stringliteral">&quot;Retype password&quot;</span>, <span class="stringliteral">&quot;equalsToElement,passwd&quot;</span>);
-<a name="l00032"></a>00032         $this-&gt;<a class="code" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML</a>(<span class="stringliteral">&quot;passwd2&quot;</span>, $this-&gt;<a class="code" href="class_core_form.html#a7d9d6e1c757b3af2726a4d347e169281">input</a>(<span class="stringliteral">&quot;passwd2&quot;</span>, <span class="stringliteral">&quot;password&quot;</span>));
+<a name="l00028"></a>00028         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;username&#39;</span>] = array(<span class="stringliteral">&quot;Username&quot;</span>,<span class="stringliteral">&quot;limit,5,7&quot;</span>,<span class="stringliteral">&quot;input&quot;</span>);
+<a name="l00029"></a>00029         
+<a name="l00030"></a>00030         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;passwd&#39;</span>] = array(<span class="stringliteral">&quot;Password&quot;</span>, <span class="stringliteral">&quot;required|limit,,2&quot;</span>, <span class="stringliteral">&quot;input&quot;</span>, array(<span class="stringliteral">&quot;password&quot;</span>));
+<a name="l00031"></a>00031         
+<a name="l00032"></a>00032         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;passwd2&#39;</span>] = array(<span class="stringliteral">&quot;Retype password&quot;</span>, <span class="stringliteral">&quot;equalsToElement,passwd&quot;</span>, <span class="stringliteral">&quot;input&quot;</span>, array(<span class="stringliteral">&quot;password&quot;</span>));
 <a name="l00033"></a>00033         
-<a name="l00034"></a>00034         $this-&gt;<a class="code" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element</a>(<span class="stringliteral">&quot;email&quot;</span>, <span class="stringliteral">&quot;Email&quot;</span>, <span class="stringliteral">&quot;limit,3|email&quot;</span>);
-<a name="l00035"></a>00035         $this-&gt;<a class="code" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML</a>(<span class="stringliteral">&quot;email&quot;</span>, $this-&gt;<a class="code" href="class_core_form.html#a7d9d6e1c757b3af2726a4d347e169281">input</a>(<span class="stringliteral">&quot;email&quot;</span>));
-<a name="l00036"></a>00036         
-<a name="l00037"></a>00037         $this-&gt;<a class="code" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element</a>(<span class="stringliteral">&quot;sex&quot;</span>,<span class="stringliteral">&quot;Sex&quot;</span>,<span class="stringliteral">&quot;enum,male:female&quot;</span>);
-<a name="l00038"></a>00038         $options = array(
-<a name="l00039"></a>00039             <span class="stringliteral">&quot;Male&quot;</span> =&gt; <span class="stringliteral">&quot;male&quot;</span>,
-<a name="l00040"></a>00040             <span class="stringliteral">&quot;Female&quot;</span> =&gt; <span class="stringliteral">&quot;female&quot;</span>
-<a name="l00041"></a>00041         );
-<a name="l00042"></a>00042         $this-&gt;<a class="code" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML</a>(<span class="stringliteral">&quot;sex&quot;</span>, $this-&gt;<a class="code" href="class_core_form.html#a30750bdb8c1415d016b5bc2445a2d740">select</a>(<span class="stringliteral">&quot;sex&quot;</span>, $options));
-<a name="l00043"></a>00043         
+<a name="l00034"></a>00034         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;email&#39;</span>] = array(<span class="stringliteral">&quot;Email&quot;</span>, <span class="stringliteral">&quot;limit,3|email&quot;</span>, <span class="stringliteral">&quot;input&quot;</span>);
+<a name="l00035"></a>00035         
+<a name="l00036"></a>00036         $options = array(
+<a name="l00037"></a>00037             <span class="stringliteral">&quot;Male&quot;</span> =&gt; <span class="stringliteral">&quot;male&quot;</span>,
+<a name="l00038"></a>00038             <span class="stringliteral">&quot;Female&quot;</span> =&gt; <span class="stringliteral">&quot;female&quot;</span>
+<a name="l00039"></a>00039         );
+<a name="l00040"></a>00040         
+<a name="l00041"></a>00041         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;sex&#39;</span>] = array(<span class="stringliteral">&quot;Sex&quot;</span>,<span class="stringliteral">&quot;enum,male:female&quot;</span>, <span class="stringliteral">&quot;select&quot;</span>, array($options, <span class="stringliteral">&quot;female&quot;</span>));
+<a name="l00042"></a>00042         
+<a name="l00043"></a>00043         $this-&gt;<a class="code" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">setElements</a>(<a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>);
 <a name="l00044"></a>00044     }
 <a name="l00045"></a>00045 }
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 ?&gt;
+<a name="l00046"></a>00046 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>Registration.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

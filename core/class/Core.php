@@ -422,7 +422,7 @@ class Core{
             }else{
                 // DYNAMIC
                 // Check if full path exists
-                $controllerPath = dirname(__FILE__) . "/../../" . CONTROL_DIR . "/$URL.php";
+                $controllerPath = PROJECT_DIR . "/" . CONTROL_DIR . "/$URL.php";
                 if(file_exists($controllerPath)){
                     $this->page = $URL;
                     $this->functionToCall = DEFAULT_FUNCTION2CALL;

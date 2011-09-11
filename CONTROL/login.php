@@ -40,8 +40,8 @@ class Controller extends CoreController{
         // When form submitted, this function runs. This was set by
         // setting the "action" variable of the Form class.
         
-        $result = $this->form->validate($core);
-        if($result[0]){
+        $result = $this->form->validate();
+        if($this->form->isSubmissionValid()){
             // Form Validated
             echo "Form Valid! <br />";
             // Print all submitted values

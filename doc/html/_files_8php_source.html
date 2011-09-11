@@ -84,54 +84,88 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
-<a name="l00011"></a><a class="code" href="class_files.html">00011</a> <span class="keyword">class </span><a class="code" href="class_files.html" title="File operations made-easy.">Files</a>{
+<a name="l00011"></a><a class="code" href="class_files.html">00011</a> <span class="keyword">class </span><a class="code" href="class_files.html" title="File uploading made-easy.">Files</a>{
 <a name="l00012"></a>00012     
-<a name="l00013"></a>00013     
-<a name="l00028"></a><a class="code" href="class_files.html#a20d7f22f8cc0d99993b1cd264ea831b7">00028</a>     <span class="keyword">public</span> function <a class="code" href="class_files.html#a20d7f22f8cc0d99993b1cd264ea831b7">upload</a>($name, $targetDir, $targetFileName=null, $sizeLimit=<span class="keyword">false</span>, $mimeTypeArr=null) {
-<a name="l00029"></a>00029         <span class="comment">// file upload processing! $name is the NAME attribute of the &lt;input&gt; tag.</span>
-<a name="l00030"></a>00030         <span class="comment">// If $targetFileName is provided, that name will be used when saving the uploaded file</span>
-<a name="l00031"></a>00031         <span class="comment">// otherwise original name will be used while saving the uploaded file.</span>
-<a name="l00032"></a>00032         <span class="comment">// RETURNS FALSE FOR SUCCESSFUL UPLOAD, OTHERWISE AN ERROR MESSAGE.</span>
-<a name="l00033"></a>00033         <span class="comment">//error checking</span>
-<a name="l00034"></a>00034         <span class="keywordflow">if</span> ($_FILES[$name][<span class="stringliteral">&quot;size&quot;</span>] &lt;= 0)
-<a name="l00035"></a>00035             <span class="keywordflow">return</span> array(<span class="keyword">true</span>,<span class="stringliteral">&quot;NIL&quot;</span>);   <span class="comment">// No file selected -- no upload!</span>
-<a name="l00036"></a>00036         <span class="keywordflow">if</span> ($_FILES[$name][<span class="stringliteral">&quot;error&quot;</span>] &gt; 0)
-<a name="l00037"></a>00037             <span class="keywordflow">return</span> array(<span class="keyword">false</span>,$_FILES[<span class="stringliteral">&quot;file&quot;</span>][<span class="stringliteral">&quot;error&quot;</span>]);
-<a name="l00038"></a>00038         <span class="comment">// size check</span>
-<a name="l00039"></a>00039         <span class="keywordflow">if</span> ($sizeLimit &amp;&amp; ($_FILES[$name][<span class="stringliteral">&quot;size&quot;</span>] &gt; $sizeLimit))
-<a name="l00040"></a>00040             <span class="keywordflow">return</span> array(<span class="keyword">false</span>,<span class="stringliteral">&quot;File to large, max limit is $sizeLimit bytes&quot;</span>);
-<a name="l00041"></a>00041         <span class="comment">// MIMETYPE CHECK</span>
-<a name="l00042"></a>00042         <span class="keywordflow">if</span> (!empty($mimeTypeArr)) {
-<a name="l00043"></a>00043             <span class="keywordflow">if</span> (!in_array(strtolower($_FILES[$name][<span class="stringliteral">&quot;type&quot;</span>]), $mimeTypeArr))
-<a name="l00044"></a>00044                 <span class="keywordflow">return</span> array(<span class="keyword">false</span>,<span class="stringliteral">&quot;This type of file (&quot;</span> . $_FILES[$name][<span class="stringliteral">&#39;type&#39;</span>] . <span class="stringliteral">&quot;) is not allowed for upload.&quot;</span>);
-<a name="l00045"></a>00045         }
-<a name="l00046"></a>00046         <span class="comment">// ALLOWED FOR UPLOAD. GENERATE TARGET FILE PATH</span>
-<a name="l00047"></a>00047         <span class="keywordflow">if</span> (!$targetFileName)
-<a name="l00048"></a>00048             $targetFileName = basename($_FILES[$name][<span class="stringliteral">&#39;name&#39;</span>]);
-<a name="l00049"></a>00049         $targetPath = $targetDir . $targetFileName;
-<a name="l00050"></a>00050         <span class="comment">// UPLOAD</span>
-<a name="l00051"></a>00051         <span class="keywordflow">if</span> (move_uploaded_file($_FILES[$name][<span class="stringliteral">&#39;tmp_name&#39;</span>], $targetPath)) {
-<a name="l00052"></a>00052             <span class="comment">// CHMOD</span>
-<a name="l00053"></a>00053             chmod($targetPath, 0755);
-<a name="l00054"></a>00054         } <span class="keywordflow">else</span> {
-<a name="l00055"></a>00055             <span class="comment">//echo $_FILES[$name][&#39;tmp_name&#39;] . &quot;:&quot; . $targetPath;</span>
-<a name="l00056"></a>00056             <span class="comment">//exit();</span>
-<a name="l00057"></a>00057             <span class="keywordflow">return</span> array(<span class="keyword">false</span>,<span class="stringliteral">&quot;Can not move file. Upload failed.&quot;</span>);
-<a name="l00058"></a>00058         }
-<a name="l00059"></a>00059         <span class="keywordflow">return</span> array(<span class="keyword">true</span>,<span class="stringliteral">&quot;Upload successful!&quot;</span>);
-<a name="l00060"></a>00060     }
-<a name="l00061"></a>00061     
-<a name="l00062"></a>00062     
-<a name="l00063"></a>00063 }
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 ?&gt;
+<a name="l00013"></a>00013     <span class="keyword">public</span> $name;
+<a name="l00014"></a>00014     <span class="keyword">public</span> $targetDir;
+<a name="l00015"></a>00015     <span class="keyword">public</span> $targetFileName = null;
+<a name="l00016"></a>00016     <span class="keyword">public</span> $sizeLimit = null;
+<a name="l00017"></a>00017     <span class="keyword">public</span> $AllowedMimeArr = null;
+<a name="l00018"></a>00018     <span class="keyword">public</span> $AllowedextentionArr = null;
+<a name="l00019"></a>00019     <span class="keyword">public</span> $ifFileExists;
+<a name="l00020"></a>00020     <span class="keyword">public</span> $targetFilePermission;
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023     <span class="keyword">public</span> function __construct() {
+<a name="l00024"></a>00024         <span class="comment">// Set some default configuration</span>
+<a name="l00025"></a>00025         $this-&gt;ifFileExists = <span class="stringliteral">&quot;overwrite&quot;</span>;
+<a name="l00026"></a>00026         $this-&gt;targetFilePermission = 0664; <span class="comment">// For files</span>
+<a name="l00027"></a>00027 <span class="comment">//        $this-&gt;targetFilePermission = 0774; // For directories</span>
+<a name="l00028"></a>00028     }
+<a name="l00029"></a>00029 
+<a name="l00044"></a><a class="code" href="class_files.html#a160ae63d11b56d3190b172facb43a343">00044</a>     <span class="keyword">public</span> function <a class="code" href="class_files.html#a160ae63d11b56d3190b172facb43a343">upload</a>() {
+<a name="l00045"></a>00045         <span class="comment">// file upload processing! $name is the NAME attribute of the &lt;input&gt; tag.</span>
+<a name="l00046"></a>00046         <span class="comment">// If $targetFileName is provided, that name will be used when saving the uploaded file</span>
+<a name="l00047"></a>00047         <span class="comment">// otherwise original name will be used while saving the uploaded file.</span>
+<a name="l00048"></a>00048         <span class="comment">// RETURNS FALSE FOR SUCCESSFUL UPLOAD, OTHERWISE AN ERROR MESSAGE.</span>
+<a name="l00049"></a>00049         <span class="comment">//error checking</span>
+<a name="l00050"></a>00050         <span class="keywordflow">if</span> ($_FILES[$name][<span class="stringliteral">&quot;size&quot;</span>] &lt;= 0)
+<a name="l00051"></a>00051             <span class="keywordflow">return</span> array(<span class="keyword">true</span>,<span class="stringliteral">&quot;NIL&quot;</span>);   <span class="comment">// No file selected -- no upload!</span>
+<a name="l00052"></a>00052         <span class="keywordflow">if</span> ($_FILES[$name][<span class="stringliteral">&quot;error&quot;</span>] &gt; 0)
+<a name="l00053"></a>00053             <span class="keywordflow">return</span> array(<span class="keyword">false</span>,$_FILES[<span class="stringliteral">&quot;file&quot;</span>][<span class="stringliteral">&quot;error&quot;</span>]);
+<a name="l00054"></a>00054         <span class="comment">// size check</span>
+<a name="l00055"></a>00055         <span class="keywordflow">if</span> ($sizeLimit &amp;&amp; ($_FILES[$name][<span class="stringliteral">&quot;size&quot;</span>] &gt; $sizeLimit))
+<a name="l00056"></a>00056             <span class="keywordflow">return</span> array(<span class="keyword">false</span>,<span class="stringliteral">&quot;File to large, max limit is $sizeLimit bytes&quot;</span>);
+<a name="l00057"></a>00057         <span class="comment">// MIMETYPE CHECK</span>
+<a name="l00058"></a>00058         <span class="keywordflow">if</span> (!empty($mimeTypeArr)) {
+<a name="l00059"></a>00059             <span class="keywordflow">if</span> (!in_array(strtolower($_FILES[$name][<span class="stringliteral">&quot;type&quot;</span>]), $mimeTypeArr))
+<a name="l00060"></a>00060                 <span class="keywordflow">return</span> array(<span class="keyword">false</span>,<span class="stringliteral">&quot;This type of file (&quot;</span> . $_FILES[$name][<span class="stringliteral">&#39;type&#39;</span>] . <span class="stringliteral">&quot;) is not allowed for upload.&quot;</span>);
+<a name="l00061"></a>00061         }
+<a name="l00062"></a>00062         <span class="comment">// ALLOWED FOR UPLOAD. GENERATE TARGET FILE PATH</span>
+<a name="l00063"></a>00063         <span class="keywordflow">if</span> (!$targetFileName)
+<a name="l00064"></a>00064             $targetFileName = basename($_FILES[$name][<span class="stringliteral">&#39;name&#39;</span>]);
+<a name="l00065"></a>00065         $targetPath = $targetDir . $targetFileName;
+<a name="l00066"></a>00066         <span class="comment">// What if file already exists?</span>
+<a name="l00067"></a>00067         <span class="keywordflow">if</span>(file_exists($targetPath)){
+<a name="l00068"></a>00068             <span class="keywordflow">switch</span> ($ifFileExists){
+<a name="l00069"></a>00069                 <span class="keywordflow">case</span> <span class="stringliteral">&#39;overwrite&#39;</span>:
+<a name="l00070"></a>00070                     <span class="keywordflow">break</span>;
+<a name="l00071"></a>00071                 <span class="keywordflow">case</span> <span class="stringliteral">&#39;fail&#39;</span>:
+<a name="l00072"></a>00072                     <span class="keywordflow">return</span> array(<span class="keyword">false</span>,<span class="stringliteral">&quot;File already exists. Try again renaming the file.&quot;</span>);
+<a name="l00073"></a>00073                     <span class="keywordflow">break</span>;
+<a name="l00074"></a>00074                 <span class="keywordflow">case</span> <span class="stringliteral">&#39;rename&#39;</span>:
+<a name="l00075"></a>00075                     $pathinfo = pathinfo($targetPath);
+<a name="l00076"></a>00076                     $targetPath = $pathinfo[<span class="stringliteral">&#39;dirname&#39;</span>] . <span class="stringliteral">&quot;/&quot;</span> . $pathinfo[<span class="stringliteral">&#39;filename&#39;</span>] . <span class="stringliteral">&quot;_&quot;</span> . date(<span class="stringliteral">&quot;jMY-g-i-a&quot;</span>, time()) . <span class="stringliteral">&quot;.&quot;</span> . $pathinfo[<span class="stringliteral">&#39;extension&#39;</span>];
+<a name="l00077"></a>00077                     <span class="keywordflow">break</span>;
+<a name="l00078"></a>00078             }
+<a name="l00079"></a>00079             
+<a name="l00080"></a>00080 <span class="comment">//            echo $targetPath;</span>
+<a name="l00081"></a>00081 <span class="comment">//            exit();</span>
+<a name="l00082"></a>00082         }
+<a name="l00083"></a>00083         <span class="comment">// UPLOAD</span>
+<a name="l00084"></a>00084         <span class="keywordflow">if</span> (move_uploaded_file($_FILES[$name][<span class="stringliteral">&#39;tmp_name&#39;</span>], $targetPath)) {
+<a name="l00085"></a>00085             <span class="comment">// CHMOD</span>
+<a name="l00086"></a>00086             chmod($targetPath, 0755);
+<a name="l00087"></a>00087         } <span class="keywordflow">else</span> {
+<a name="l00088"></a>00088             <span class="comment">//echo $_FILES[$name][&#39;tmp_name&#39;] . &quot;:&quot; . $targetPath;</span>
+<a name="l00089"></a>00089             <span class="comment">//exit();</span>
+<a name="l00090"></a>00090             <span class="keywordflow">return</span> array(<span class="keyword">false</span>,<span class="stringliteral">&quot;Can not move file. Upload failed.&quot;</span>,$targetPath);
+<a name="l00091"></a>00091         }
+<a name="l00092"></a>00092         <span class="keywordflow">return</span> array(<span class="keyword">true</span>,<span class="stringliteral">&quot;Upload successful!&quot;</span>, $targetPath);
+<a name="l00093"></a>00093         <span class="keywordflow">return</span> array(<span class="keyword">true</span>,<span class="stringliteral">&quot;Upload successful!&quot;</span>);
+<a name="l00094"></a>00094     }
+<a name="l00095"></a>00095     
+<a name="l00096"></a>00096     
+<a name="l00097"></a>00097 }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>Files.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

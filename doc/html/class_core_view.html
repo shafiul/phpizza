@@ -96,19 +96,15 @@ Inheritance diagram for CoreView:</div>
  <div class="center">
   <img src="class_core_view.png" usemap="#CoreView_map" alt=""/>
   <map id="CoreView_map" name="CoreView_map">
-<area href="class_h_t_m_l.html" alt="HTML" shape="rect" coords="195,0,263,24"/>
-<area href="class_template.html" alt="Template" shape="rect" coords="195,112,263,136"/>
-<area href="class_view.html" alt="View" shape="rect" coords="0,168,68,192"/>
-<area href="class_view.html" alt="View" shape="rect" coords="78,168,146,192"/>
-<area href="class_view.html" alt="View" shape="rect" coords="156,168,224,192"/>
-<area href="class_view.html" alt="View" shape="rect" coords="234,168,302,192"/>
-<area href="class_view.html" alt="View" shape="rect" coords="312,168,380,192"/>
-<area href="class_view.html" alt="View" shape="rect" coords="390,168,458,192"/>
+<area href="class_h_t_m_l.html" alt="HTML" shape="rect" coords="0,0,68,24"/>
+<area href="class_template.html" alt="Template" shape="rect" coords="0,112,68,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="CoreView::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($core)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a4357dd4d57f755f989a27656d9321c21">toggleDiv</a> ($title, $content, $initiallyVisible=false, $divId=&quot;&quot;, $titleType=&quot;h4&quot;)</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Templating Functions</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>You should ONLY call these functions in your template file. Never call these in your controller/view </p>
@@ -138,6 +134,9 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3e9534005fd516d941f6a5569896e01"></a><!-- doxytag: member="CoreView::$template" ref="aa3e9534005fd516d941f6a5569896e01" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aa3e9534005fd516d941f6a5569896e01">$template</a> = &quot;&quot;</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> to apply to "this page". <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb31e75efb937e41542b4a321856a94f"></a><!-- doxytag: member="CoreView::$staticLoadAllowed" ref="afb31e75efb937e41542b4a321856a94f" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#afb31e75efb937e41542b4a321856a94f">$staticLoadAllowed</a> = false</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If set false (which is default) the VIEW can not be loaded statically (without any controller) <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacaacb2a73313f2f7e2fbc800b65f84e"></a><!-- doxytag: member="CoreView::$defaultCssArray" ref="aacaacb2a73313f2f7e2fbc800b65f84e" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aacaacb2a73313f2f7e2fbc800b65f84e">$defaultCssArray</a> = null</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array for storing CSS files to be applied to all pages by default. <br/></td></tr>
@@ -150,6 +149,9 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65043fbf000fbd4ec0a5feb3909ecd25"></a><!-- doxytag: member="CoreView::$includeDefaultJs" ref="a65043fbf000fbd4ec0a5feb3909ecd25" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a65043fbf000fbd4ec0a5feb3909ecd25">$includeDefaultJs</a> = true</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Should apply default JavaScript files to "this page"? <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa432de3bacb7ced3632fa0ee0269ada3"></a><!-- doxytag: member="CoreView::$core" ref="aa432de3bacb7ced3632fa0ee0269ada3" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aa432de3bacb7ced3632fa0ee0269ada3">$core</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to $core. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Basic (core version) class for your VIEWs. </p>
@@ -183,7 +185,7 @@ Data Fields</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00083">83</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00090">90</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -207,7 +209,7 @@ Data Fields</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00112">112</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00119">119</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -266,7 +268,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string Generated HTML string for the toggable div (with $title as heading) </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00055">55</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00062">62</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -278,7 +280,7 @@ Data Fields</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_view.html">CoreView</a>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

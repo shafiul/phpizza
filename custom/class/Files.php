@@ -1,7 +1,7 @@
 <?php
 
 /**
- * \brief File operations made-easy
+ * \brief File uploading made-easy
  * 
  * @author Shafiul Azam
  * 
@@ -10,8 +10,24 @@
 
 class Files{
     
-    
-    /**
+    public $name;
+    public $targetDir;
+    public $targetFileName = null;
+    public $sizeLimit = null;
+    public $AllowedMimeArr = null;
+    public $AllowedextentionArr = null;
+    public $ifFileExists;
+    public $targetFilePermission;
+
+
+    public function __construct() {
+        // Set some default configuration
+        $this->ifFileExists = "overwrite";
+        $this->targetFilePermission = 0664; // For files
+//        $this->targetFilePermission = 0774; // For directories
+    }
+
+        /**
      * File upload helper via web forms. Call this function after you've uploaded a file via web form
      * @param string $name "name" attribute of the <input> tag used for the file
      * @param string $targetDir directory to which the file would be copied
@@ -25,7 +41,7 @@ class Files{
      *      -   If no file was selected by the user, 0th element is true, 1st element is string "NIL"  
      */
     
-    public function upload($name, $targetDir, $targetFileName=null, $sizeLimit=false, $mimeTypeArr=null) {
+    public function upload() {
         // file upload processing! $name is the NAME attribute of the <input> tag.
         // If $targetFileName is provided, that name will be used when saving the uploaded file
         // otherwise original name will be used while saving the uploaded file.
@@ -47,6 +63,23 @@ class Files{
         if (!$targetFileName)
             $targetFileName = basename($_FILES[$name]['name']);
         $targetPath = $targetDir . $targetFileName;
+        // What if file already exists?
+        if(file_exists($targetPath)){
+            switch ($ifFileExists){
+                case 'overwrite':
+                    break;
+                case 'fail':
+                    return array(false,"File already exists. Try again renaming the file.");
+                    break;
+                case 'rename':
+                    $pathinfo = pathinfo($targetPath);
+                    $targetPath = $pathinfo['dirname'] . "/" . $pathinfo['filename'] . "_" . date("jMY-g-i-a", time()) . "." . $pathinfo['extension'];
+                    break;
+            }
+            
+//            echo $targetPath;
+//            exit();
+        }
         // UPLOAD
         if (move_uploaded_file($_FILES[$name]['tmp_name'], $targetPath)) {
             // CHMOD
@@ -54,8 +87,9 @@ class Files{
         } else {
             //echo $_FILES[$name]['tmp_name'] . ":" . $targetPath;
             //exit();
-            return array(false,"Can not move file. Upload failed.");
+            return array(false,"Can not move file. Upload failed.",$targetPath);
         }
+        return array(true,"Upload successful!", $targetPath);
         return array(true,"Upload successful!");
     }
     

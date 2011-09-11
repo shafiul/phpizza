@@ -31,7 +31,7 @@ class FormLinks{
         $this->block = new Blocks("Help Links");
         // Construct the Block! First construct links...
         $linksArr = array(
-            "<a href = 'doc/html'>Class Documentation</a>",
+            anchor("doc/html", "Class Documentation"),
             $this->block->anchor("http://pizzamvc.com", "Project Homepage")
         );
         $this->block->items = $linksArr;

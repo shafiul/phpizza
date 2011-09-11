@@ -144,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00106"></a>00106         }
 <a name="l00107"></a>00107         $str = <span class="stringliteral">&quot;&lt;select &quot;</span>;
 <a name="l00108"></a>00108         $str.= <span class="stringliteral">&quot;$attrText name = &#39;$name&#39;&gt;&quot;</span>;
-<a name="l00109"></a>00109         <span class="comment">//var_dump($options);</span>
+<a name="l00109"></a>00109 <span class="comment">//        var_dump($options);</span>
 <a name="l00110"></a>00110         <span class="keywordflow">foreach</span> ($options as $displayText =&gt; $value) {
 <a name="l00111"></a>00111             $selected = ($value == $selectedValue) ? (<span class="stringliteral">&quot;selected = &#39;selected&#39;&quot;</span>) : (<span class="stringliteral">&quot;&quot;</span>);
 <a name="l00112"></a>00112             $str .= <span class="stringliteral">&quot;&lt;option $selected name = &#39;$value&#39; value = &#39;$value&#39;&gt;$displayText&lt;/option&gt;&quot;</span>;
@@ -163,31 +163,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00133"></a>00133         <span class="keywordflow">return</span> $str;
 <a name="l00134"></a>00134     }
 <a name="l00135"></a>00135     
-<a name="l00137"></a>00137     
-<a name="l00148"></a><a class="code" href="class_h_t_m_l.html#ae6b07f45661867708c24c67e81d65d72">00148</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#ae6b07f45661867708c24c67e81d65d72">msgbox</a>($message, $mode = MSGBOX_SUCCESS, $exit = <span class="keyword">false</span>, $id = <span class="stringliteral">&quot;&quot;</span>){
-<a name="l00149"></a>00149         <span class="comment">// modes: 0: info, 1: success, 2: warning, 3: error</span>
-<a name="l00150"></a>00150         $str = <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>; 
-<a name="l00151"></a>00151         $base_style = <span class="stringliteral">&quot;border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px; background-repeat: no-repeat; background-position: 10px center; &quot;</span>;
-<a name="l00152"></a>00152         $color = array(<span class="stringliteral">&quot;00529B&quot;</span>, <span class="stringliteral">&quot;4F8A10&quot;</span>, <span class="stringliteral">&quot;9F6000&quot;</span>, <span class="stringliteral">&quot;D8000C&quot;</span>);
-<a name="l00153"></a>00153         $bgcolor = array(<span class="stringliteral">&quot;BDE5F8&quot;</span>,<span class="stringliteral">&quot;DFF2BF&quot;</span>,<span class="stringliteral">&quot;FEEFB3&quot;</span>,<span class="stringliteral">&quot;FFBABA&quot;</span>);
-<a name="l00154"></a>00154         $bgimg = array(<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00155"></a>00155         $style = $base_style . <span class="stringliteral">&quot; color: #&quot;</span> . $color[$mode] . <span class="stringliteral">&quot;; background-color: #&quot;</span> . $bgcolor[$mode] . <span class="stringliteral">&quot;; background-image: url(&#39;&quot;</span> . $bgimg[$mode] . <span class="stringliteral">&quot;&#39;);&quot;</span>;
-<a name="l00156"></a>00156         $str .= <span class="stringliteral">&quot;&lt;div id = &#39;$id&#39; style = \&quot;$style\&quot;&gt;$message&lt;/div&gt;&quot;</span>;
-<a name="l00157"></a>00157         $str .= <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00158"></a>00158         <span class="keywordflow">return</span> $str;
-<a name="l00159"></a>00159         <span class="keywordflow">if</span>($exit){
-<a name="l00160"></a>00160             exit();
-<a name="l00161"></a>00161         }
-<a name="l00162"></a>00162     }
-<a name="l00163"></a>00163     
-<a name="l00164"></a>00164 }
-<a name="l00165"></a>00165 ?&gt;
+<a name="l00136"></a>00136     
+<a name="l00138"></a>00138     
+<a name="l00149"></a><a class="code" href="class_h_t_m_l.html#ae6b07f45661867708c24c67e81d65d72">00149</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#ae6b07f45661867708c24c67e81d65d72">msgbox</a>($message, $mode = MSGBOX_SUCCESS, $exit = <span class="keyword">false</span>, $id = <span class="stringliteral">&quot;&quot;</span>){
+<a name="l00150"></a>00150         <span class="comment">// modes: 0: info, 1: success, 2: warning, 3: error</span>
+<a name="l00151"></a>00151         $str = <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>; 
+<a name="l00152"></a>00152         $base_style = <span class="stringliteral">&quot;border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px; background-repeat: no-repeat; background-position: 10px center; &quot;</span>;
+<a name="l00153"></a>00153         $color = array(<span class="stringliteral">&quot;00529B&quot;</span>, <span class="stringliteral">&quot;4F8A10&quot;</span>, <span class="stringliteral">&quot;9F6000&quot;</span>, <span class="stringliteral">&quot;D8000C&quot;</span>);
+<a name="l00154"></a>00154         $bgcolor = array(<span class="stringliteral">&quot;BDE5F8&quot;</span>,<span class="stringliteral">&quot;DFF2BF&quot;</span>,<span class="stringliteral">&quot;FEEFB3&quot;</span>,<span class="stringliteral">&quot;FFBABA&quot;</span>);
+<a name="l00155"></a>00155         $bgimg = array(<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00156"></a>00156         $style = $base_style . <span class="stringliteral">&quot; color: #&quot;</span> . $color[$mode] . <span class="stringliteral">&quot;; background-color: #&quot;</span> . $bgcolor[$mode] . <span class="stringliteral">&quot;; background-image: url(&#39;&quot;</span> . $bgimg[$mode] . <span class="stringliteral">&quot;&#39;);&quot;</span>;
+<a name="l00157"></a>00157         $str .= <span class="stringliteral">&quot;&lt;div id = &#39;$id&#39; style = \&quot;$style\&quot;&gt;$message&lt;/div&gt;&quot;</span>;
+<a name="l00158"></a>00158         $str .= <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
+<a name="l00159"></a>00159         <span class="keywordflow">return</span> $str;
+<a name="l00160"></a>00160         <span class="keywordflow">if</span>($exit){
+<a name="l00161"></a>00161             exit();
+<a name="l00162"></a>00162         }
+<a name="l00163"></a>00163     }
+<a name="l00164"></a>00164     
+<a name="l00165"></a>00165 }
+<a name="l00166"></a>00166 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>HTML.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

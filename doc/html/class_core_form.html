@@ -112,12 +112,9 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a184909dab34698899937d810a9f5d393">validate</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important Function - After a user has submitted the form, call it within your controller to start form validation.  <a href="#a184909dab34698899937d810a9f5d393"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#af8a17f478754a0df8727c837e8e8eef6">isSubmissionValid</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1">element</a> ($name, $displayName, $validators=&quot;&quot;)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function - to construct elements of your form.  <a href="#abb762e90f466dc56938cabc2b0abe2b1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0">elementHTML</a> ($name, $html)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function - to set html for your form elements.  <a href="#a05b6d00134abc7d7a9d2936ea0b17be0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#af5ea6a083ddb07beb8a30dd32e309ceb">get</a> ($name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function - use it to get user-submitted value for element of the form!  <a href="#af5ea6a083ddb07beb8a30dd32e309ceb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">setElements</a> ($elem)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#aba0d5b303383fb5b1fabb5fd01cd3800">getAll</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#ae495567b97b9d53edccdf6f0a587b369">getDisplayName</a> ($name)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a2145ce3d54cbe7aef97a815a41b4d144">resubmit</a> ()</td></tr>
@@ -247,7 +244,7 @@ Private Attributes</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">object</td><td class="paramname">$ob</td><td>should be always "$this" - reference to the child class. </td></tr>
-    <tr><td class="paramtype"><a class="el" href="class_core.html" title="The Most important class!">Core</a></td><td class="paramname">$core</td><td>a reference to the global $core </td></tr>
+    <tr><td class="paramtype"><a class="el" href="class_core.html" title="The Most important class - makes the framework working!">Core</a></td><td class="paramname">$core</td><td>a reference to the global $core </td></tr>
   </table>
   </dd>
 </dl>
@@ -272,8 +269,8 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Creates &amp; returns HTML for this form.</p>
 <ul>
-<li>You do not need to use this function at all if you use <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">sendToView()</a> function. Example: <a class="el" href="_c_o_n_t_r_o_l_2registration_8php_source.html">CONTROL/registration.php</a> &amp; VIEW/registration.php</li>
-<li>If you want to manually send the generated HTML of the form to your view class, you may call this function within your controller. See example: <a class="el" href="_c_o_n_t_r_o_l_2login_8php_source.html">CONTROL/login.php</a> &amp; VIEW/login.php <dl class="return"><dt><b>Returns:</b></dt><dd>string generated html for this form </dd></dl>
+<li>You do not need to use this function at all if you use <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">sendToView()</a> function. Example: <a class="el" href="registration_8php_source.html">CONTROL/registration.php</a> &amp; VIEW/registration.php</li>
+<li>If you want to manually send the generated HTML of the form to your view class, you may call this function within your controller. See example: <a class="el" href="login_8php_source.html">CONTROL/login.php</a> &amp; VIEW/login.php <dl class="return"><dt><b>Returns:</b></dt><dd>string generated html for this form </dd></dl>
 </li>
 </ul>
 
@@ -294,7 +291,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Within this function call a sequence of <a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> &amp; <a class="el" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML()</a> functions in pair. For example, see <a class="el" href="class_registration.html">Registration</a> class </p>
+<p>Within this function: build an array for your form-elements. Then set the elements using <a class="el" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">setElements()</a> function.</p>
+<p>For example, see <a class="el" href="class_registration.html">Registration</a> class </p>
 
 <p>Reimplemented in <a class="el" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">Login</a>, and <a class="el" href="class_registration.html#ab9cc7a749f39fa604e5e065f486a7ee6">Registration</a>.</p>
 
@@ -316,7 +314,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Used Internally to start validation of a form element What it does is:</p>
 <ul>
-<li>Based on the 3rd parameter "$validators" in <a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> function, seperates all functions to call on the user provided input for this element. functions () are seperated by the character "|" <dl><dt><b>Parameters:</b></dt><dd>
+<li>Based on the 3rd parameter "$validators" in element() function, seperates all functions to call on the user provided input for this element. functions () are seperated by the character "|" <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$name</td><td>name of the element to start validation </td></tr>
   </table>
@@ -326,115 +324,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00259">259</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abb762e90f466dc56938cabc2b0abe2b1"></a><!-- doxytag: member="CoreForm::element" ref="abb762e90f466dc56938cabc2b0abe2b1" args="($name, $displayName, $validators=&quot;&quot;)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">element </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>displayName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>validators</em> = <code>&quot;&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Important function - to construct elements of your form. </p>
-<p>Call this function within your child form class to set various properties for a form element. See parameters</p>
-<ul>
-<li><a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> &amp; <a class="el" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML()</a> are always called in pair for an element of the form. <a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> MUST be called BEFORE the corresponding <a class="el" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML()</a> of the pair.</li>
-<li>see <a class="el" href="class_registration.html">Registration</a> or <a class="el" href="class_login.html">Login</a> class for example. <dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$name</td><td>the "name" attribute of the element </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$displayName</td><td>the label displayed for the element. This value also used for identifying the element in error messages. </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$validators</td><td>names of validation functions seperated by "|" - see documentations for details.</p>
-<ul>
-<li>seperate each function name by a "|" character (without the quotes)</li>
-<li>you can pass parameters to a function. To pass parameter: type the parameters after the function name, seperated by commas ","</li>
-<li>if you are going to pass a paramter which itself contains comma "," character(s), escape each comma by a slash "\"<ul>
-<li>For example: "required|limit,3,5|email" means:</li>
-<li>First, <a class="el" href="class_core_validator.html#abd2999eed85fa7437ba20d06fc517623">CoreValidator::required()</a> will be called on the subject</li>
-<li>Next, <a class="el" href="class_core_validator.html#afa7bb4814dcca36ab6bf22c9b7144807">CoreValidator::limit()</a> will be called with parameters "3" (1st parameter) &amp; "5" (2nd parameter)</li>
-<li>Finally, <a class="el" href="class_core_validator.html#a0814d3be8538f244db1f0f63a9588a30">CoreValidator::email()</a> will be called on the subject</li>
-</ul>
-</li>
-</ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-<ul>
-<li>Validation functions are located in <a class="el" href="class_core_validator.html" title="Validates user-submitted inputs.">CoreValidator</a> (in core/class directory) &amp; <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> (in custom/class directory) classes You can define your own validation functions in <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> class. </li>
-</ul>
-</li>
-</ul>
-
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00178">178</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a05b6d00134abc7d7a9d2936ea0b17be0"></a><!-- doxytag: member="CoreForm::elementHTML" ref="a05b6d00134abc7d7a9d2936ea0b17be0" args="($name, $html)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">elementHTML </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>html</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Important function - to set html for your form elements. </p>
-<p>Call this function within your child form class to set the HTML for a form element.</p>
-<ul>
-<li><a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> &amp; <a class="el" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML()</a> are always called in pair for an element of the form. <a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> MUST be called BEFORE the corresponding <a class="el" href="class_core_form.html#a05b6d00134abc7d7a9d2936ea0b17be0" title="Important function - to set html for your form elements.">elementHTML()</a> of the pair.</li>
-<li>see <a class="el" href="class_registration.html">Registration</a> or <a class="el" href="class_login.html">Login</a> class for example. <dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$name</td><td>the "name" attribute of the element </td></tr>
-    <tr><td class="paramtype">type</td><td class="paramname">$html</td><td>the html for this element. You can use <a class="el" href="class_core_form.html#a7d9d6e1c757b3af2726a4d347e169281">input()</a>, <a class="el" href="class_core_form.html#a9c1d65268a0864077fbff06c4ead6724">textarea()</a>, <a class="el" href="class_core_form.html#a30750bdb8c1415d016b5bc2445a2d740">select()</a> etc. functions to create the HTML - see tutorials </td></tr>
-  </table>
-  </dd>
-</dl>
-</li>
-</ul>
-
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00193">193</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00256">256</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -463,7 +353,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | validated user submitted value </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00205">205</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00165">165</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -483,7 +373,7 @@ Private Attributes</h2></td></tr>
 <p>Call this function within your constructor to get VALIDATED user-submitted value for all form elements. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>array | key-value array where key is the "name" attribute of the element. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00214">214</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00211">211</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -501,7 +391,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the Human-readable name (Display Name) of an element. This display name was set by the 2nd parameter of <a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> function </p>
+<p>Returns the Human-readable name (Display Name) of an element. This display name was set by the 2nd parameter of element() function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$name</td><td>"name" attribute of the element </td></tr>
@@ -510,7 +400,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string Display-name of the element. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00225">225</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00222">222</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -554,7 +444,7 @@ Private Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_h_t_m_l.html#a7d9d6e1c757b3af2726a4d347e169281">HTML</a>.</p>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00310">310</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00307">307</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -593,7 +483,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>If you are using <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">sendToView()</a> call this function within your constructor to automatically send error message &amp; generated html (with user-provided values) of the form to the view. </p>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00234">234</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00231">231</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -637,7 +527,7 @@ Private Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_h_t_m_l.html#a30750bdb8c1415d016b5bc2445a2d740">HTML</a>.</p>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00334">334</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00331">331</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -660,6 +550,56 @@ Private Attributes</h2></td></tr>
 <p>Next, within your view class, you can call <a class="el" href="class_core.html#ae6b7675e89d9f097b7c500679212aef4">Core::getForm</a>($id) to gain the generated html, where $id is the class name of the form </p>
 
 <p>Definition at line <a class="el" href="_core_form_8php_source.html#l00124">124</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac6ad8bdd681892a6f4b67923874fd38d"></a><!-- doxytag: member="CoreForm::setElements" ref="ac6ad8bdd681892a6f4b67923874fd38d" args="($elem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">setElements </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>elem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Use this function to set the elements created for your form. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$elem</td><td>is a mixed array. Each element of the form will contribute an element of this $elem array. For each element, we need an array (key-value) of following format:</p>
+<ul>
+<li>key is: string, "name" attribute of the form element.</li>
+<li>value is: array (mixed) of following type:<ul>
+<li>0th element: string | Label (user-friendly display name) of the element</li>
+<li>1st element: string | names of validation functions seperated by "|" - see documentations for details.<ul>
+<li>seperate each function name by a "|" character (without the quotes)</li>
+<li>you can pass parameters to a function. To pass parameter: type the parameters after the function name, seperated by commas ","</li>
+<li>if you are going to pass a paramter which itself contains comma "," character(s), escape each comma by a slash "\"<ul>
+<li>For example: "required|limit,3,5|email" means:</li>
+<li>First, <a class="el" href="class_core_validator.html#abd2999eed85fa7437ba20d06fc517623">CoreValidator::required()</a> will be called on the subject</li>
+<li>Next, <a class="el" href="class_core_validator.html#afa7bb4814dcca36ab6bf22c9b7144807">CoreValidator::limit()</a> will be called with parameters "3" (1st parameter) &amp; "5" (2nd parameter)</li>
+<li>Finally, <a class="el" href="class_core_validator.html#a0814d3be8538f244db1f0f63a9588a30">CoreValidator::email()</a> will be called on the subject</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2nd element: name of the function that will be called to generate HTML for this element.</li>
+<li>3rd element: an array whose elements will be passed to the function just mentioned (2nd element) as parameters.</li>
+</ul>
+</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Validation functions are located in <a class="el" href="class_core_validator.html" title="Validates user-submitted inputs.">CoreValidator</a> (in core/class directory) &amp; <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> (in custom/class directory) classes. You can define your own validation functions in <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> class.</p>
+<p>You can get complete examples in <a class="el" href="class_login.html">Login</a> &amp; <a class="el" href="class_registration.html">Registration</a> class (see source code: <a class="el" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">Login::createElements()</a> <a class="el" href="class_registration.html#ab9cc7a749f39fa604e5e065f486a7ee6">Registration::createElements()</a> ). Also, see tutorials. </p>
+
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00194">194</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -697,7 +637,7 @@ Private Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_h_t_m_l.html#a9c1d65268a0864077fbff06c4ead6724">HTML</a>.</p>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00322">322</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00319">319</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -716,7 +656,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Important Function - After a user has submitted the form, call it within your controller to start form validation. </p>
-<p>Call this function within your controller to start validation of the form. Validation functions already defined using <a class="el" href="class_core_form.html#abb762e90f466dc56938cabc2b0abe2b1" title="Important function - to construct elements of your form.">element()</a> functions are applied one after another on each element of the form. </p>
+<p>Call this function within your controller to start validation of the form. Validation functions already defined using element() functions are applied one after another on each element of the form. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>array | You will need to check only the 0th element of the array, if you are using <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">sendToView()</a><ul>
 <li>0th element of the array: boolean, true if all validation functions successful, false if one or more validation functions failed.</li>
 <li>1st element of the array: string, error message if validation failed</li>
@@ -736,7 +676,7 @@ Private Attributes</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_form.html">CoreForm</a>      </li>
-      <li class="footer">Generated on Mon Sep 5 2011 16:37:30 for gigamvc by&#160;
+      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

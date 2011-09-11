@@ -106,7 +106,7 @@ class HTML{
         }
         $str = "<select ";
         $str.= "$attrText name = '$name'>";
-        //var_dump($options);
+//        var_dump($options);
         foreach ($options as $displayText => $value) {
             $selected = ($value == $selectedValue) ? ("selected = 'selected'") : ("");
             $str .= "<option $selected name = '$value' value = '$value'>$displayText</option>";
@@ -132,6 +132,7 @@ class HTML{
         $str = "<textarea name = '$name' $attrText >$value</textarea>"; 
         return $str;
     }
+    
     
     //@}
     

@@ -37,7 +37,7 @@ class Controller extends CoreController{
             // Load the model 
             $this->core->loadModel('RegistrationModel');
             
-            $model = new RegistrationModel();   //  Create object of the default model. Since this is the default model (filename: registration), it was automatically loaded :)
+            $model = new RegistrationModel($this->core);   //  Create object of the default model. Since this is the default model (filename: registration), it was automatically loaded :)
             $userSubmittedData = $this->form->getAll(); // Get user submissions
             // Construct the data array to insert in database
             $data = array();

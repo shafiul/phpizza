@@ -26,9 +26,9 @@ class RegistrationModel extends CoreModel{
      * Constructor must call parent's constructor
      */
     
-    public function __construct() {
+    public function __construct($core) {
         // Must call parent's constructor
-        parent::__construct();
+        parent::__construct($core);
         // Initialize database object
         $this->db = new MySQL();
         // apply some common settings

@@ -155,46 +155,6 @@ abstract class CoreForm extends HTML {
     // Element related
     
     /**
-     * \brief Important function - to construct elements of your form
-     * 
-     * Call this function within your child form class to set various properties for a form element. See parameters 
-     * - element() & elementHTML() are always called in pair for an element of the form. element() MUST be called BEFORE the corresponding elementHTML() of the pair.
-     * - see Registration or Login class for example. 
-     * @param string $name the "name" attribute of the element
-     * @param string $displayName the label displayed for the element. This value also used for identifying the element in error messages.
-     * @param string $validators names of validation functions seperated by "|" - see documentations for details. 
-     *  - seperate each function name by a "|" character (without the quotes)
-     *  - you can pass parameters to a function. To pass parameter: type the parameters after the function name, seperated by commas ","
-     *  - if you are going to pass a paramter which itself contains comma "," character(s), escape each comma by a slash "\"
-     *      -   For example: "required|limit,3,5|email" means:
-     *      -   First, CoreValidator::required() will be called on the subject
-     *      -   Next, CoreValidator::limit() will be called with parameters "3" (1st parameter) & "5" (2nd parameter)
-     *      -   Finally, CoreValidator::email() will be called on the subject
-     *           
-     *  - Validation functions are located in CoreValidator (in core/class directory) & Validator (in custom/class directory) classes
-     *  You can define your own validation functions in Validator class.
-     */
-    
-    public function element($name,$displayName,$validators = ""){
-//        $this->elements[$name] = array($displayName, $validators);
-        $this->elements[$name][PIZZA_FORM_DISPLAYNAME] = $displayName;
-        $this->elements[$name][PIZZA_FORM_VALIDATORS] = $validators;
-    }
-    
-    /**
-     * \brief Important function - to set html for your form elements
-     * 
-     * Call this function within your child form class to set the %HTML for a form element. 
-     * - element() & elementHTML() are always called in pair for an element of the form. element() MUST be called BEFORE the corresponding elementHTML() of the pair.
-     * - see Registration or Login class for example. 
-     * @param string $name the "name" attribute of the element
-     * @param type $html the html for this element. You can use input(), textarea(), select() etc. functions to create the %HTML - see tutorials
-     */
-    public function elementHTML($name,$html){
-        $this->elements[$name][PIZZA_FORM_HTML] = $html;
-    }
-    
-    /**
      * \brief Important function  - use it to get user-submitted value for element of the form!
      * 
      * Call this function within your constructor to get VALIDATED user-submitted value for a single element.
@@ -204,6 +164,43 @@ abstract class CoreForm extends HTML {
     
     public function get($name){
         return (isset($this->submittedData[$name]))?($this->submittedData[$name]):(null);
+    }
+    
+    /**
+     * Use this function to set the elements created for your form.
+     * @param array $elem is a mixed array. Each element of the form will contribute an element of this $elem array. 
+     * For each element, we need an array (key-value) of following format:
+     *  - key is: string, "name" attribute of the form element.
+     *  - value is: array (mixed) of following type:
+     *      - 0th element: string | Label (user-friendly display name) of the element
+     *      - 1st element: string | names of validation functions seperated by "|" - see documentations for details. 
+     *          - seperate each function name by a "|" character (without the quotes)
+     *          - you can pass parameters to a function. To pass parameter: type the parameters after the function name, seperated by commas ","
+     *          - if you are going to pass a paramter which itself contains comma "," character(s), escape each comma by a slash "\"
+     *              -   For example: "required|limit,3,5|email" means:
+     *              -   First, CoreValidator::required() will be called on the subject
+     *              -   Next, CoreValidator::limit() will be called with parameters "3" (1st parameter) & "5" (2nd parameter)
+     *              -   Finally, CoreValidator::email() will be called on the subject
+     *      - 2nd element: name of the function that will be called to generate %HTML for this element.
+     *      - 3rd element: an array whose elements will be passed to the function just mentioned (2nd element) as parameters. 
+     * 
+     * 
+     * Validation functions are located in CoreValidator (in core/class directory) & Validator (in custom/class directory) classes. 
+     * You can define your own validation functions in Validator class.
+     * 
+     * You can get complete examples in Login & Registration class (see source code: Login::createElements() Registration::createElements() ). Also, see tutorials.
+     */
+    
+    public function setElements($elem){
+        foreach ($elem as $name=>$eArr){
+            $this->elements[$name][PIZZA_FORM_DISPLAYNAME] = $eArr[0];
+            $this->elements[$name][PIZZA_FORM_VALIDATORS] = $eArr[1];
+            if(isset ($eArr[3]))
+                array_unshift($eArr[3], $name); //  push $name at the beginning of the array
+            else
+                $eArr[3] = array($name);    //  create a new array with only element $name in it
+            $this->elements[$name][PIZZA_FORM_HTML] = call_user_func_array(array($this,$eArr[2]),  $eArr[3]);
+        }
     }
     
     /**
@@ -348,7 +345,9 @@ abstract class CoreForm extends HTML {
     //@{
     
     /**
-     * Within this function call a sequence of element() & elementHTML() functions in pair. 
+     * Within this function: build an array for your form-elements. Then set the elements 
+     * using setElements() function.
+     * 
      * For example, see Registration class
      */
     
