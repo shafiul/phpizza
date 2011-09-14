@@ -264,7 +264,7 @@ abstract class CoreForm extends HTML {
         }
         $funcsToCall = explode("|", $element[1]);
         // Get the post value to begin examination!
-        $this->core->validate->subject = $_POST[$name];
+        $this->core->validate->subject = (isset($_POST[$name]))?($_POST[$name]):("");
         foreach($funcsToCall as $func){
             // get parameters for the function
             // handle escaped values

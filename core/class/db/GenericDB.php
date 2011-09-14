@@ -92,7 +92,7 @@ abstract class GenericDB{
      * if DB_DEBUG_MODE_ON constant is set true.
      */
     public function debug(){
-        if(DB_DEBUG_MODE_ON){
+        if(DEBUG_MODE){
             $this->setError();
             echo "<PRE>";
             echo "Query: " . $this->query;

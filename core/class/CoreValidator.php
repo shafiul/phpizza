@@ -270,6 +270,15 @@ class CoreValidator{
         return $errorOccured;
     }
     
+    /**
+     * Always return true.
+     * @return type 
+     */
+    
+    public function dummy(){
+        return true;
+    }
+    
     //@}
     
     

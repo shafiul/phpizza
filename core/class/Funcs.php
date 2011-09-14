@@ -28,7 +28,9 @@ class Funcs {
      * @param bool $byHeader    if true, redirection done by html header. else, by javascript 
      */
 
-    public function redirect($page='../index.php?', $byHeader = true) {
+    public function redirect($page="", $byHeader = true) {
+        if(empty($page))
+            $page = url(LANDING_PAGE);
         if ($byHeader) {
             header("Location: $page");
         }else{

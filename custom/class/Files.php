@@ -11,11 +11,11 @@
 class Files{
     
     public $name;
-    public $targetDir;
+    public $targetDir;  ///< directory to which the file would be copied, MUST END WITH FORWARD SLASH (/)
     public $targetFileName = null;
     public $sizeLimit = null;
     public $AllowedMimeArr = null;
-    public $AllowedextentionArr = null;
+    public $AllowedextentionArr = null; ///< Must give in all lowercase
     public $ifFileExists;
     public $targetFilePermission;
 
@@ -47,25 +47,32 @@ class Files{
         // otherwise original name will be used while saving the uploaded file.
         // RETURNS FALSE FOR SUCCESSFUL UPLOAD, OTHERWISE AN ERROR MESSAGE.
         //error checking
-        if ($_FILES[$name]["size"] <= 0)
-            return array(true,"NIL");   // No file selected -- no upload!
-        if ($_FILES[$name]["error"] > 0)
+        if ($_FILES[$this->name]["size"] <= 0)
+            return array(true,"NIL","");   // No file selected -- no upload!
+        if ($_FILES[$this->name]["error"] > 0)
             return array(false,$_FILES["file"]["error"]);
         // size check
-        if ($sizeLimit && ($_FILES[$name]["size"] > $sizeLimit))
-            return array(false,"File to large, max limit is $sizeLimit bytes");
+        if ($this->sizeLimit && ($_FILES[$this->name]["size"] > $this->sizeLimit))
+            return array(false,"File to large, max limit is " . $this->sizeLimit . " bytes");
         // MIMETYPE CHECK
-        if (!empty($mimeTypeArr)) {
-            if (!in_array(strtolower($_FILES[$name]["type"]), $mimeTypeArr))
-                return array(false,"This type of file (" . $_FILES[$name]['type'] . ") is not allowed for upload.");
+        if (!empty($this->mimeTypeArr)) {
+            if (!in_array(strtolower($_FILES[$this->name]["type"]), $this->mimeTypeArr))
+                return array(false,"This type of file (" . $_FILES[$this->name]['type'] . ") is not allowed for upload.");
         }
+        // Check extention 
+        $pathinfo = pathinfo($_FILES[$this->name]['name']);
+        $fileExtention = strtolower($pathinfo['extension']);
+        
+        if(!in_array($fileExtention, $this->AllowedextentionArr))
+            return array(false,"This file extention is not allowed.");
+        
         // ALLOWED FOR UPLOAD. GENERATE TARGET FILE PATH
-        if (!$targetFileName)
-            $targetFileName = basename($_FILES[$name]['name']);
-        $targetPath = $targetDir . $targetFileName;
+        if (!$this->targetFileName)
+            $this->targetFileName = basename($_FILES[$this->name]['name']);
+        $targetPath = $this->targetDir . $this->targetFileName . ".$fileExtention";
         // What if file already exists?
         if(file_exists($targetPath)){
-            switch ($ifFileExists){
+            switch ($this->ifFileExists){
                 case 'overwrite':
                     break;
                 case 'fail':
@@ -81,16 +88,15 @@ class Files{
 //            exit();
         }
         // UPLOAD
-        if (move_uploaded_file($_FILES[$name]['tmp_name'], $targetPath)) {
+        if (move_uploaded_file($_FILES[$this->name]['tmp_name'], $targetPath)) {
             // CHMOD
-            chmod($targetPath, 0755);
+            chmod($targetPath, $this->targetFilePermission);
         } else {
-            //echo $_FILES[$name]['tmp_name'] . ":" . $targetPath;
+            //echo $_FILES[$this->name]['tmp_name'] . ":" . $targetPath;
             //exit();
             return array(false,"Can not move file. Upload failed.",$targetPath);
         }
         return array(true,"Upload successful!", $targetPath);
-        return array(true,"Upload successful!");
     }
     
     
