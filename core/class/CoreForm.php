@@ -196,16 +196,17 @@ abstract class CoreForm extends HTML {
         foreach ($elem as $name=>$eArr){
             $this->elements[$name][PIZZA_FORM_DISPLAYNAME] = $eArr[0];
             $this->elements[$name][PIZZA_FORM_VALIDATORS] = $eArr[1];
-            if(isset ($eArr[3]))
+            if(isset ($eArr[3])){
                 array_unshift($eArr[3], $name); //  push $name at the beginning of the array
-            else
-                $eArr[3] = array($name);    //  create a new array with only element $name in it
+            }else{
+                $eArr[3] = array($name,null);    //  create a new array with only element $name in it
+            }
             // Run Validators
             if($this->validate){
                 // WARNING: "value" must be present in the 2nd element of the HTML generator functions!!!
-                $eArr[3][1] = $this->doValidation($name);
+                $eArr[3][2] = $this->doValidation($name);
             }
-            $this->elements[$name][PIZZA_FORM_HTML] = call_user_func_array(array("HTML",$eArr[2]),  $eArr[3]);
+            $this->elements[$name][PIZZA_FORM_HTML] = call_user_func_array(array("HTML",$eArr[2]), $eArr[3]);
         }
     }
     

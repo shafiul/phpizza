@@ -76,8 +76,6 @@ class HTML{
      */
     
     public static function input($name, $type="text", $value="", $attrArr = null) {
-        // generate ID
-        $id = (empty($id)) ? ($name) : ($id);
         $attrText = "";
         
         if ($attrArr) {
@@ -125,7 +123,7 @@ class HTML{
      * @return string | generated html 
      */
     
-    public static function textarea($name,$value = "",$attrArr=null){
+    public static function textarea($name,$attrArr=null,$value = ""){
         $attrText = "";
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
@@ -135,10 +133,6 @@ class HTML{
         return $str;
     }
     
-    public static function hidden($name,$value=""){
-        $str = "<input name = '$name' type='hidden' value='$value' />"; 
-        return $str;
-    }
     
     
     //@}
