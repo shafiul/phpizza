@@ -59,6 +59,7 @@ abstract class CoreForm extends HTML {
     private $core = null;   ///<    A reference to the global $core
     private $formName = ""; ///<    Name of the class which extended me ( CoreClass )
     private $isSubmissionValid = null;  ///< Indicator whether form submission validated
+    private $hiddenElementsData = "";
     // Public & private Methods
     
     /**
@@ -199,7 +200,12 @@ abstract class CoreForm extends HTML {
                 array_unshift($eArr[3], $name); //  push $name at the beginning of the array
             else
                 $eArr[3] = array($name);    //  create a new array with only element $name in it
-            $this->elements[$name][PIZZA_FORM_HTML] = call_user_func_array(array($this,$eArr[2]),  $eArr[3]);
+            // Run Validators
+            if($this->validate){
+                // WARNING: "value" must be present in the 2nd element of the HTML generator functions!!!
+                $eArr[3][1] = $this->doValidation($name);
+            }
+            $this->elements[$name][PIZZA_FORM_HTML] = call_user_func_array(array("HTML",$eArr[2]),  $eArr[3]);
         }
     }
     
@@ -293,60 +299,7 @@ abstract class CoreForm extends HTML {
     
     //@}
     
-    /**
-     * @name Functions for creating %HTML for form-elements
-     */
-    
-    
-    //@{
-    
-    /**
-     *
-     * See HTML::input() for documenttion
-     */
-    public function input($name,$type="text", $value="", $attrArr = null) {
-        if($this->validate){
-            $value = $this->doValidation($name);
-        }
-        return parent::input($name, $type, $value, $attrArr);
-    }
-    
-    /**
-     *
-     * See HTML::textarea() for documenttion
-     */
-    
-    public function textarea($name, $value = "", $attrArr=null){
-        if($this->validate){
-            $value = $this->doValidation($name);
-        }
-        return parent::textarea($name, $value, $attrArr);
-    }
-    
-    /**
-     *
-     * See HTML::select() for documenttion
-     */
-    
-    public function select($name, $options, $selectedValue = "", $attrArr= null) {
-        if($this->validate){
-            $selectedValue = $this->doValidation($name);
-        }
-        return parent::select($name, $options, $selectedValue, $attrArr);
-    }
-    
-    
-    
-    public function hidden($name, $value = "") {
-        if($this->validate){
-            $value = $this->doValidation($name);
-        }
-        return parent::hidden($name, $value);
-    }
-    
-    
-    //@}
-    
+
     /**
      * @name Abstract functions: implement these functions in Child class.
      */

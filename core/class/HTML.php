@@ -75,7 +75,7 @@ class HTML{
      * @return string | generated html 
      */
     
-    public function input($name, $type="text", $value="", $attrArr = null) {
+    public static function input($name, $type="text", $value="", $attrArr = null) {
         // generate ID
         $id = (empty($id)) ? ($name) : ($id);
         $attrText = "";
@@ -98,7 +98,7 @@ class HTML{
      * @return string | generated html
      */
     
-    public function select($name, $options, $selectedValue = "", $attrArr= null) {
+    public static function select($name, $options, $selectedValue = "", $attrArr= null) {
         $attrText = "";
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
@@ -125,7 +125,7 @@ class HTML{
      * @return string | generated html 
      */
     
-    public function textarea($name,$value = "",$attrArr=null){
+    public static function textarea($name,$value = "",$attrArr=null){
         $attrText = "";
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
@@ -135,7 +135,7 @@ class HTML{
         return $str;
     }
     
-    public function hidden($name,$value=""){
+    public static function hidden($name,$value=""){
         $str = "<input name = '$name' type='hidden' value='$value' />"; 
         return $str;
     }

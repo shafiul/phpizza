@@ -50,9 +50,10 @@ class CoreModel {
         return $this->db->selectArray();
     }
     
-    public function selectAll($identifierArr = null){
+    public function selectAll($identifierArr = null, $selectArr = null){
         $this->db->clear();
         $this->db->identifier = $identifierArr;
+        $this->db->select = $selectArr;
         return $this->db->selectArray();
     }
 
