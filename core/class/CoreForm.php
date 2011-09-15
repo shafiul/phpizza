@@ -336,6 +336,15 @@ abstract class CoreForm extends HTML {
     }
     
     
+    
+    public function hidden($name, $value = "") {
+        if($this->validate){
+            $value = $this->doValidation($name);
+        }
+        return parent::hidden($name, $value);
+    }
+    
+    
     //@}
     
     /**

@@ -8,7 +8,7 @@
 
 class CoreModel {
     public $core;
-    private $db;        ///<    object for database
+    public $db;        ///<    object for database
     
     /**
      * You should call this function as the first line within your MODEL class's constructor.
@@ -22,6 +22,46 @@ class CoreModel {
     public function __construct($core) {
         $this->core = $core;
     }
+    
+    /**
+     * @name Useful functions for Models
+     */
+    
+    //{
+    
+    
+    public function insertWithPassword($data,$passwordColumn,$passwordValue){
+        $this->db->data = $data;
+        return $this->db->insertArray($passwordColumn, $passwordValue);
+    }
+    
+    public function insert($data){
+        $this->db->data = $data;
+        return $this->db->insertArray();
+    }
+    
+    public function ifExist($identifierArr,$selectArr=null,$joiner="AND"){
+        if(!isset ($selectArr))
+            $selectArr = array('id');
+        $this->db->select = $selectArr;
+        $this->db->identifier = $identifierArr;
+        $this->db->joiner = $joiner;
+        $this->db->returnPointer = false;
+        return $this->db->selectArray();
+    }
+    
+    public function selectAll($identifierArr = null){
+        $this->db->clear();
+        $this->db->identifier = $identifierArr;
+        return $this->db->selectArray();
+    }
+
+
+
+
+
+
+    //}
 }
 
 ?>

@@ -115,6 +115,8 @@ class HTML{
         return $str;
     }
     
+
+
     /**
      * Generates HTML for  <textarea>
      * @param string $name "name" attribute
@@ -130,6 +132,11 @@ class HTML{
                 $attrText .= "$k = '$v' ";
         }
         $str = "<textarea name = '$name' $attrText >$value</textarea>"; 
+        return $str;
+    }
+    
+    public function hidden($name,$value=""){
+        $str = "<input name = '$name' type='hidden' value='$value' />"; 
         return $str;
     }
     

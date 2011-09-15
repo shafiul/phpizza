@@ -207,5 +207,7 @@ class MySQL extends GenericDB{
         $this->query = "";
     }
     
+    
+    
 }
 ?>
