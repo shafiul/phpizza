@@ -87,17 +87,20 @@ class Core{
     
     /**
      * Use this function to Load a Model class. You can load any number of model classes.
+     * 
      * Call this function within your constructor. If not called, the default Model gets loaded automatically.
      * @param string $model name of the Model class. This class must reside under MODEL directory.
      */
     
-    public function loadModel($model){
+    public function loadModel($model,&$var){
         // First include once core model class
         require_once $this->__coreDir . "/class/CoreModel.php";
         // Load DB driver
         $this->loadDatabaseDriver();
         $filename = PROJECT_DIR . "/" . MODEL_DIR . "/$model.php";
         require $filename;
+        $className = end(explode("/", $model));
+        $var = new $className($this);
     }
     
     /**
@@ -183,16 +186,21 @@ class Core{
     
     /**
      * Call this from your controller to load a Form
+     * 
+     * WARNING: No directory hierarchy is supported under VIEW/forms directory. That means, all of your forms 
+     * must reside in VIEW/forms directory, you can not create directory & load forms from them!
+     * 
      * @param string $formName name of the class. This class must extend CoreForm & reside in VIEW/forms directory.
      * @return bool true in success, false otherwise 
      */
     
-    public function loadForm($formName){
+    public function loadForm($formName,&$var){
         // First include core form
         require_once $this->__coreDir . "/class/CoreForm.php";
         // Now include particular form
         $classPath = PROJECT_DIR . "/" . FORMS_DIR . "/$formName.php";
-        return $this->safeRequireOnce($classPath);
+        require $classPath;
+        $var = new $formName($this);
     }
     
     /**

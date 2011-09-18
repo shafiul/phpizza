@@ -20,6 +20,8 @@ define("FORM_HTML",2);
 define("PIZZA_FORM_DISPLAYNAME",0);
 define("PIZZA_FORM_VALIDATORS",1);
 define("PIZZA_FORM_HTML",2);
+define("PIZZA_FORM_HTML_FUNCNAME",3);
+define("PIZZA_FORM_HTML_FUNC_ARGS",4);
 
 /**
  * \brief Create, submit & validate web-forms
@@ -194,12 +196,14 @@ abstract class CoreForm extends HTML {
     
     public function setElements($elem){
         foreach ($elem as $name=>$eArr){
+            $arraySuffix = (strpos($name, "[]"))?("[]"):("");
+            $name = str_replace("[]", "", $name);
             $this->elements[$name][PIZZA_FORM_DISPLAYNAME] = $eArr[0];
             $this->elements[$name][PIZZA_FORM_VALIDATORS] = $eArr[1];
             if(isset ($eArr[3])){
-                array_unshift($eArr[3], $name); //  push $name at the beginning of the array
+                array_unshift($eArr[3], $name . $arraySuffix); //  push $name at the beginning of the array
             }else{
-                $eArr[3] = array($name,null);    //  create a new array with only element $name in it
+                $eArr[3] = array($name . $arraySuffix,null);    //  create a new array with only element $name in it
             }
             // Run Validators
             if($this->validate){
@@ -261,11 +265,15 @@ abstract class CoreForm extends HTML {
      */
     
     private function doValidation($name){
+        // Strip off array symbols from the name
+        $name = str_replace("[]", "", $name);
         $this->currentElementName = $name;
         $element = $this->elements[$name];
         // Check if we really need validation
         if(empty($element[PIZZA_FORM_VALIDATORS])){
             // No validation needed
+            if(!isset($_POST[$name]))
+                return "";
             $this->submittedData[$name] = $_POST[$name];    //  subject is now validated!
             return $_POST[$name];
         }

@@ -134,6 +134,10 @@ class HTML{
     }
     
     
+//    public static function checkbox($name,$options,$value='',$attrArr=null,$breakStr = '<br />'){
+//        $str = 
+//    }
+    
     
     //@}
     
