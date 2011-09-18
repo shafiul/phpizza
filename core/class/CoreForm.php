@@ -52,7 +52,7 @@ abstract class CoreForm extends HTML {
     public $class = ""; ///<    for Form attribute "class"
     public $displaySubmissionErrors = true; ///< Set to true if you want to display error messages when form validation fails
     public $currentElementName = "";    ///< "name" attribute of currently processing form element - available while validating form
-
+    public $validators = null;      ///< Key-value array, key is "name" attribute or an alement, value is List of validators.
 
     private $validate = false;  ///<    Automatically set to true when you're validating a submitted form
     private $submittedData = array();   ///< Used to store user-submitted data by this form
@@ -61,7 +61,6 @@ abstract class CoreForm extends HTML {
     private $core = null;   ///<    A reference to the global $core
     private $formName = ""; ///<    Name of the class which extended me ( CoreClass )
     private $isSubmissionValid = null;  ///< Indicator whether form submission validated
-    private $hiddenElementsData = "";
     // Public & private Methods
     
     /**
@@ -85,34 +84,25 @@ abstract class CoreForm extends HTML {
      * @return string generated html for this form 
      */
     
-    public function create() {
+    public function generateHTML() {
         // Creates the HTML form and returns the HTML
-        // Create elements
-        $this->createElements();
         // Output HTML 
         $fileUploadCode = ($this->fileUpload)?("enctype='multipart/form-data'"):("");
         $this->formHtml = '<form class="html-form ' . $this->class . '" ' . $fileUploadCode . ' method = "' . $this->method . '" action = "' . $this->action . '" target = "' . $this->target . '" onsubmit = "' . $this->onSubmit . '" id = "' . $this->id . '">';
         $this->formHtml .= '<table class="html-form-table" cellspacing = "' . $this->tableCellSpacing . '" cellpadding =  "' . $this->tableCellPadding . '"  border = "' . $this->tableBorder . '"><tbody>';
         // Loop through the components and print one component per row
 //        echo count($this->elements);
-        foreach($this->elements as $label=>$content){
-            $this->formHtml .= $this->tr(array($content[0],$content[2])) . "\n";
+        foreach($this->elements as $elemName=>$content){
+            // Get user-submitted, validated data
+            $argArr = $this->elements[$elemName][PIZZA_FORM_HTML_FUNC_ARGS];
+            $argArr[2] = $this->submittedData[$elemName];
+            $elemHTML = call_user_func_array(array("HTML",$content[PIZZA_FORM_HTML_FUNCNAME]), $argArr);
+            $this->formHtml .= $this->tr(array($content[PIZZA_FORM_DISPLAYNAME],$elemHTML)) . "\n";
         }
         $this->formHtml .= '</tbody></table><br />' . $this->arbritaryHTML . '<br />';
         $this->formHtml .= '<input id="'. $this->submitButtonId .'" class=html-form-submit type = "submit" value = "' . $this->submitButtonText . '" />';
         $this->formHtml .= '</form>';
-        
-        if($this->validate){
-            $this->validate = false;
-            if(empty($this->error)){
-                // No errors! Form validated
-                $this->isSubmissionValid = true;
-                return array(true);
-            }
-            $this->isSubmissionValid = false;
-            return array(false, $this->error ,  $this->formHtml);
-        }
-        
+ 
         return $this->formHtml;
     }
     
@@ -125,7 +115,10 @@ abstract class CoreForm extends HTML {
      */
     
     public function sendToView(){
-        $this->core->formData[$this->formName] = $this->create();
+        if($this->error)
+            $this->core->funcs->setDisplayMsg($this->error);
+        $this->createElements();
+        $this->core->formData[$this->formName] = $this->generateHTML();
     }
     
     /**
@@ -133,6 +126,8 @@ abstract class CoreForm extends HTML {
      * 
      * Call this function within your controller to start validation of the form. Validation functions already defined using element() functions 
      * are applied one after another on each element of the form.
+     * 
+     * WARNING: return type got changed. update doc
      * @return array | You will need to check only the 0th element of the array, if you are using sendToView()
      * - 0th element of the array: boolean, true if all validation functions successful, false if one or more validation functions failed. 
      * - 1st element of the array: string, error message if validation failed
@@ -142,18 +137,14 @@ abstract class CoreForm extends HTML {
     public function validate(){
         // When form submitted, used this to validate the form.
         $this->validate = true;
-        return $this->create();
-    }
-    
-    /**
-     * After calling validate() within your controller, you can call this function to learn if form validation succeeded.
-     * @return bool true if form submission validated (all validators returned true), false otherwise
-     * 
-     */
-    public function isSubmissionValid(){
+        $this->createValidators();
+        // Run validation
+        foreach ($this->validators as $elemName=>$temp){
+            $this->submittedData[$elemName] = $this->doValidation($elemName);
+        }
+        $this->isSubmissionValid = (empty($this->error))?(true):(false);
         return $this->isSubmissionValid;
     }
-    
     
     // Element related
     
@@ -199,21 +190,23 @@ abstract class CoreForm extends HTML {
             $arraySuffix = (strpos($name, "[]"))?("[]"):("");
             $name = str_replace("[]", "", $name);
             $this->elements[$name][PIZZA_FORM_DISPLAYNAME] = $eArr[0];
-            $this->elements[$name][PIZZA_FORM_VALIDATORS] = $eArr[1];
-            if(isset ($eArr[3])){
-                array_unshift($eArr[3], $name . $arraySuffix); //  push $name at the beginning of the array
+            $this->elements[$name][PIZZA_FORM_HTML_FUNCNAME] = $eArr[1];
+            // arguments of HTML generating funcs
+            if(isset ($eArr[2])){
+                array_unshift($eArr[2], $name . $arraySuffix); //  push $name at the beginning of the array
             }else{
-                $eArr[3] = array($name . $arraySuffix,null);    //  create a new array with only element $name in it
+                $eArr[2] = array($name . $arraySuffix,null);    //  create a new array with only element $name in it
             }
-            // Run Validators
-            if($this->validate){
-                // WARNING: "value" must be present in the 2nd element of the HTML generator functions!!!
-                $eArr[3][2] = $this->doValidation($name);
+            $this->elements[$name][PIZZA_FORM_HTML_FUNC_ARGS] = $eArr[2];
+            // Store developer provided value. This is available from $eArr[2][2]
+            if(empty ($this->submittedData[$name])){
+                $this->submittedData[$name] = (empty($eArr[2][2]))?(""):($eArr[2][2]);
             }
-            $this->elements[$name][PIZZA_FORM_HTML] = call_user_func_array(array("HTML",$eArr[2]), $eArr[3]);
         }
     }
     
+
+
     /**
      * Call this function within your constructor to get VALIDATED user-submitted value for all form elements.
      * @return array | key-value array where key is the "name" attribute of the element. 
@@ -234,19 +227,7 @@ abstract class CoreForm extends HTML {
         return $this->elements[$name][PIZZA_FORM_DISPLAYNAME];
     }
     
-    /**
-     * If you are using sendToView() call this function within your constructor to automatically
-     * send error message & generated html (with user-provided values) of the form to the view.
-     */
-    
-    public function resubmit(){
-        if($this->error)
-            $this->core->funcs->setDisplayMsg($this->error);
-        $this->core->formData[$this->formName] = $this->formHtml;
-    }
 
-
-    
     /**
      * @name Functions for Internal Use
      * These functions are called automatically within the framework.
@@ -266,18 +247,17 @@ abstract class CoreForm extends HTML {
     
     private function doValidation($name){
         // Strip off array symbols from the name
-        $name = str_replace("[]", "", $name);
+//        $name = str_replace("[]", "", $name);
         $this->currentElementName = $name;
-        $element = $this->elements[$name];
         // Check if we really need validation
-        if(empty($element[PIZZA_FORM_VALIDATORS])){
+        if(empty($this->validators[$name])){
             // No validation needed
             if(!isset($_POST[$name]))
                 return "";
             $this->submittedData[$name] = $_POST[$name];    //  subject is now validated!
             return $_POST[$name];
         }
-        $funcsToCall = explode("|", $element[1]);
+        $funcsToCall = explode("|", $this->validators[$name]);
         // Get the post value to begin examination!
         $this->core->validate->subject = (isset($_POST[$name]))?($_POST[$name]):("");
         foreach($funcsToCall as $func){
@@ -323,6 +303,9 @@ abstract class CoreForm extends HTML {
      */
     
     abstract public function createElements();  //  To be implemented
+    public function createValidators(){
+        // To be implemented in forms
+    }
     //@}
 }
 
