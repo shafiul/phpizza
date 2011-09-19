@@ -76,7 +76,7 @@ class MySQL extends GenericDB{
         $result = mysql_query($this->query);
 //        $this->debug();
         if ($result) {
-            return mysql_insert_id();
+            return ($this->returnInsertID)?(mysql_insert_id()):(true);
         } else {
             return false;
         }
@@ -193,6 +193,21 @@ class MySQL extends GenericDB{
   
     function time_unix2sqlTime($unixtime) {
         return gmdate("Y-m-d H:i:s", $unixtime);
+    }
+    
+    public function startTransaction(){
+        mysql_query("SET AUTOCOMMIT=0");
+        mysql_query("START TRANSACTION");
+    }
+    
+    public function commit(){
+         mysql_query("COMMIT");
+         mysql_query("SET AUTOCOMMIT=1");
+    }
+    
+    public function rollback(){
+        mysql_query("ROLLBACK");
+        mysql_query("SET AUTOCOMMIT=1");
     }
     
     // Utility

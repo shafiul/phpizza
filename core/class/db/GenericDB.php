@@ -21,7 +21,7 @@ abstract class GenericDB{
     public $returnPointer = true;  ///<     Return pointer/single data from selectArray
     public $select = null;  ///<    Array, entries denote which columns will be selected in selectArray()
     public $connectionID = null;    ///<    Connection identifier after successful database connection
-    
+    public $returnInsertID = true;  ///< Boolean, whether returns "Insert ID" for select command. 
     
     // Functions to implement
     
