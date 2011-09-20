@@ -58,6 +58,7 @@ class Core{
     // vars for internal use. Don't use/depend on any of these in your code
     
     private $__coreDir;
+    private $__autoloaded;
     // constructor
     
     /**
@@ -98,7 +99,7 @@ class Core{
         // Load DB driver
         $this->loadDatabaseDriver();
         $filename = PROJECT_DIR . "/" . MODEL_DIR . "/$model.php";
-        require $filename;
+        require_once $filename;
         $className = end(explode("/", $model));
         $var = new $className($this);
     }
@@ -332,6 +333,9 @@ class Core{
     public function loadMVC($page){
         // Automatic Model, View loading no longer supported!
         $this->findPage($page);
+        // Autoloading
+        $this->autoloadFromConfig();
+        // Load Controllers/Views
         if($this->isStatic){
             // No controller. Load view
             $this->loadView();  //  Default view is loaded
@@ -445,6 +449,27 @@ class Core{
 //        $this->debug("Page: " . $this->page . " FunctionToCall: " . $this->functionToCall);
     }
     
+    private function autoloadFromConfig(){
+        global $pizza_autoload;
+        $al = $pizza_autoload;
+        // Custom classes
+        if(isset ($al['custom'])){
+            foreach ($al['custom'] as $className){
+                require PROJECT_DIR . "/" . CUSTOM_DIR . "/class/$className.php";
+                $this->__autoloaded['custom'][$className] = new $className($this);
+            }
+        }
+    }
+    
+    public function getAutoVar($className,$type){
+        return (isset ($this->__autoloaded[$type][$className]))?($this->__autoloaded[$type][$className]):(false);
+    }
+    
+    public function getPage(){
+        return $this->page;
+    }
+
+
     //@}
     
     

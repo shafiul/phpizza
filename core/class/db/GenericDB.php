@@ -12,6 +12,7 @@ abstract class GenericDB{
     public $table = "";  ///< Name of the table (schema) on which db operation will take place
     public $data = null;   ///<  Key-value pair of Data to insert/update
     public $identifier = null; ///< Key-value pair of identifier to be used after WHERE clause (i.e. $identifier["username"] => "giga" is for WHILE `username` = 'giga')
+    public $tableJoinIdentifier = null;
     public $encryptionFunction = "SHA"; ///< Name of the encryption function to apply on $valueToEncrypt in insertArray()
     public $errorNo;    ///<    Error number, if error occurs
     public $errorMsg;   ///<    Descriptive error message, if occurs

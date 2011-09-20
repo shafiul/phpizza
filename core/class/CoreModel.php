@@ -51,7 +51,7 @@ class CoreModel {
     }
     
     public function selectAll($identifierArr = null, $selectArr = null){
-        $this->db->clear();
+//        $this->db->clear();
         $this->db->identifier = $identifierArr;
         $this->db->select = $selectArr;
         return $this->db->selectArray();

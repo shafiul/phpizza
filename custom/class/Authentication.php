@@ -18,41 +18,55 @@
  * for pages etc.
  */
 
-class Authentication{
-    /*
-     * @return <mixed> returns false if there is now user available of current session username
-     * otherwise mixed
-     */
-
-    public function isLoggedIn() {
-        $tuser = $this->getSessData('member');
-        if (!empty($tuser['username'])) {
-            //  WHAT THE F!!!!
-            return mysql_return_array(USER_TABLE, array("username"), array("username" => $tuser['username']), false);
-        }
+class Auth{
+    public $core;
+    public $urls;
+    public $data = false;
+    public $isMember = false;
+    public $redirectURL;
+    
+    private $sessionVarName = "hti_auth";
+    
+    public function __construct($core) {
+        $this->core = $core;
+        // Set patterns & other configurations
+        $this->redirectURL = "";    //  redirect to referer
+        $this->urls = array("admin/"); 
+        // Call function to start validation
+        $this->globalValidation();
     }
-
-    /*
-     * returns currently logged username or if there is no user logged in then return the prameter back;
-     */
-
-    public function getLoggedUsername($default="") {
-        $tuser = $this->getSessData('member');
-        if ($tuser['username']) {
-            return $tuser['username'];
-        }
-        return $default;
-    }
-
-    public function getLoggedUserEmail($default="") {
-        $tuser = $this->getSessData('member');
-        if (!empty($tuser['username'])) {
-            $res = mysql_return_array(USER_TABLE, array("email"), array("username" => $tuser['username']), false);
-            if ($res['email']) {
-                return $res['email'];
+    
+    private function globalValidation(){
+        $this->hasAccess(HTI_NONREGISTERED);
+        // restrict access totally in following pages:
+        if($this->data['type'] < HTI_ADMIN){
+            foreach ($this->urls as $url){
+                $page = $this->core->getPage();
+                if(strpos($page, $url) === 0){
+                    $this->core->funcs->messageExit("Sorry, but you are not authenticated to view these resources!");
+                }
             }
         }
-        return $default;
+        
+    }
+    
+    public function hasAccess($requiredMemberType=HTI_STUDENT){
+        $this->data = $this->core->funcs->getSessData($this->sessionVarName);
+//        echo var_dump($_SESSION);
+        if($this->data){
+//            echo "Auth";
+            $this->isMember = true;
+            return ($this->data['type'] < $requiredMemberType)?(false):(true);
+        }else{
+//            echo "Not auth";
+            $this->isMember = false;
+        }
+        return $this->isMember;
+    }
+    
+    public function redirectIfNotAuthenticated($requiredMemberType){
+        if($this->data['type'] < $requiredMemberType)
+            $this->core->funcs->messageExit("Sorry, but you are not authenticated to view these resources!");
     }
 }
 

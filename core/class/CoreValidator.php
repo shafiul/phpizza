@@ -256,18 +256,27 @@ class CoreValidator{
         $errorOccured = false;
         if(!empty($minimumChars)){
             if(strlen($this->subject) < $minimumChars){
-                $this->errorArray[] = "should be at least $minimumChars characters";
+                $this->errorArray[] = "should be at least $minimumChars character(s)";
                 $errorOccured = true;
             }
         }
         if(!empty ($maximumChars)){
             if(strlen($this->subject) > $maximumChars){
-                $this->errorArray[] = "can be at most $maximumChars characters";
+                $this->errorArray[] = "can be at most $maximumChars character(s)";
                 $errorOccured = true;
             }
             
         }
         return $errorOccured;
+    }
+    
+    public function int(){
+        $this->subject = (int)($this->subject);
+        if(!is_int($this->subject)){
+            $this->errorArray[] = "is not an integer";
+            return false;
+        }
+        return true;
     }
     
     /**

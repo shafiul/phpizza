@@ -133,14 +133,32 @@ class MySQL extends GenericDB{
         if (!$this->select) {
             $this->query .= "*";
         } else {
-            $this->query .= "`" . implode($this->select, "` , `") . "`";
+            $this->query .= implode($this->select, ", ");
         }
-        $this->query .= " FROM `" . $this->table . "`";
+        if(is_array($this->table)){
+            $tables = implode(', ', $this->table);
+            $this->query .= ' FROM ' . $tables;
+        }else{
+            $this->query .= " FROM `" . $this->table . "`";
+        }
+        
         if ($this->identifier) {
             $this->query .= " WHERE ";
             $sqll = "";
             foreach ($this->identifier as $key => $i) {
-                $sqll[] = "`$key` = '" . mysql_real_escape_string($i) . "'";
+                $sqll[] = "$key = '" . mysql_real_escape_string($i) . "'";
+            }
+            $this->query .= implode($sqll, " " . $this->joiner . " ");
+        }
+        if ($this->tableJoinIdentifier) {
+            if($this->identifier){
+                $this->query .= ' ' . $this->joiner . ' ';
+            }else{
+                $this->query .= " WHERE ";
+            }
+            $sqll = "";
+            foreach ($this->tableJoinIdentifier as $key => $i) {
+                $sqll[] = "$key = " . mysql_real_escape_string($i) . "";
             }
             $this->query .= implode($sqll, " " . $this->joiner . " ");
         }
