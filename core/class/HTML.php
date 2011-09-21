@@ -55,7 +55,7 @@ class HTML{
         return $str;
     }
     
-    public function anchor($url, $text){
+    public static function anchor($url, $text){
         return "<a href = '$url'>$text</a>";
     }
 
