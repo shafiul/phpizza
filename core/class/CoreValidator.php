@@ -271,14 +271,24 @@ class CoreValidator{
     }
     
     public function int(){
-        $this->subject = (int)($this->subject);
-        if(!is_int($this->subject)){
-            $this->errorArray[] = "is not an integer";
+        $pattern = '@[\D]@';
+        if(preg_match($pattern, $this->subject) !== 0){
+            $this->errorArray[] = "is not an integer.";
             return false;
         }
         return true;
     }
     
+    public function alphanumeric(){
+        $pattern = '@[^\w-]@i';
+        if(preg_match($pattern, $this->subject) !== 0){
+            $this->errorArray[] = "is not an alphanumeric, only letters, digits, underscore & hyphen are allowed.";
+            return false;
+        }
+        return true;
+    }
+
+
     /**
      * Always return true.
      * @return type 

@@ -20,7 +20,7 @@
  * - Do not provide extentions
  * 
  */
-class CoreView extends HTML {
+class CoreView{
 
     public $title = null;   ///<    Title element of %HTML Document for "this page"
     public $icon = null;       ///<    Icon element of %HTML Document for "this page"

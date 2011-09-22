@@ -24,7 +24,7 @@ class HTML{
      * @return string | Generated html
      */
     
-    public function tr($td_array) {
+    public static function tr($td_array) {
         $str = "<tr>";
         foreach ($td_array as $i) {
             $str .= "<td>$i</td>";
@@ -41,7 +41,7 @@ class HTML{
      * @return html | generated html 
      */
     
-    public function lists($items, $listType="ul", $attrArr = null){
+    public static function lists($items, $listType="ul", $attrArr = null){
         $attrText = "";
         if ($attrArr) {
             foreach ($attrArr as $k => $v)
@@ -151,7 +151,7 @@ class HTML{
      * @return string | generated html
      */
     
-    public function msgbox($message, $mode = MSGBOX_SUCCESS, $exit = false, $id = ""){
+    public static function msgbox($message, $mode = MSGBOX_SUCCESS, $exit = false, $id = ""){
         // modes: 0: info, 1: success, 2: warning, 3: error
         $str = "<br>"; 
         $base_style = "border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px; background-repeat: no-repeat; background-position: 10px center; ";

@@ -22,7 +22,7 @@ class Auth{
     public $core;
     public $urls;
     public $data = false;
-    public $isMember = false;
+    public $isLoggedIn = false;
     public $redirectURL;
     
     private $sessionVarName = "hti_auth";
@@ -55,13 +55,13 @@ class Auth{
 //        echo var_dump($_SESSION);
         if($this->data){
 //            echo "Auth";
-            $this->isMember = true;
+            $this->isLoggedIn = true;
             return ($this->data['type'] < $requiredMemberType)?(false):(true);
         }else{
 //            echo "Not auth";
-            $this->isMember = false;
+            $this->isLoggedIn = false;
         }
-        return $this->isMember;
+        return $this->isLoggedIn;
     }
     
     public function redirectIfNotAuthenticated($requiredMemberType){

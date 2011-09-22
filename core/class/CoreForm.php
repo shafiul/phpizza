@@ -33,7 +33,7 @@ define("PIZZA_FORM_HTML_FUNC_ARGS",4);
  * - If validation fails, automatically generate Error messages & re-present form to user, keeping user provided data intact.
  */
 
-abstract class CoreForm extends HTML {
+abstract class CoreForm{
     
 
     public $action = '';    ///<    for form attribute "action"
@@ -54,6 +54,8 @@ abstract class CoreForm extends HTML {
     public $currentElementName = "";    ///< "name" attribute of currently processing form element - available while validating form
     public $validators = null;      ///< Key-value array, key is "name" attribute or an alement, value is List of validators.
 
+    public $arrVal = null;   ///< getting value from a key-value array safely 
+    
     private $validate = false;  ///<    Automatically set to true when you're validating a submitted form
     private $submittedData = array();   ///< Used to store user-submitted data by this form
     private $error = "";    ///< Contains error-strings if form validation fails.
@@ -81,7 +83,7 @@ abstract class CoreForm extends HTML {
      * Creates & returns %HTML for this form. 
      * - You do not need to use this function at all if you use sendToView() function. Example: CONTROL/registration.php & VIEW/registration.php
      * - If you want to manually send the generated %HTML of the form to your view class, you may call this function within your controller. See example: CONTROL/login.php & VIEW/login.php
-     * @return string generated html for this form 
+     * @return none
      */
     
     public function generateHTML() {
@@ -97,13 +99,11 @@ abstract class CoreForm extends HTML {
             $argArr = $this->elements[$elemName][PIZZA_FORM_HTML_FUNC_ARGS];
             $argArr[2] = $this->submittedData[$elemName];
             $elemHTML = call_user_func_array(array("HTML",$content[PIZZA_FORM_HTML_FUNCNAME]), $argArr);
-            $this->formHtml .= $this->tr(array($content[PIZZA_FORM_DISPLAYNAME],$elemHTML)) . "\n";
+            $this->formHtml .= HTML::tr(array($content[PIZZA_FORM_DISPLAYNAME],$elemHTML)) . "\n";
         }
         $this->formHtml .= '</tbody></table><br />' . $this->arbritaryHTML . '<br />';
         $this->formHtml .= '<input id="'. $this->submitButtonId .'" class=html-form-submit type = "submit" value = "' . $this->submitButtonText . '" />';
         $this->formHtml .= '</form>';
- 
-        return $this->formHtml;
     }
     
     /**
@@ -114,7 +114,7 @@ abstract class CoreForm extends HTML {
      * Next, within your view class, you can call Core::getForm($id) to gain the generated html, where $id is the class name of the form
      */
     
-    public function sendToView(){
+    public function sendToView($returnOnly = false){
         if($this->error)
             $this->core->funcs->setDisplayMsg($this->error);
         // Set display names
@@ -126,7 +126,10 @@ abstract class CoreForm extends HTML {
         }
             
         $this->createElements();
-        $this->core->formData[$this->formName] = $this->generateHTML();
+        $this->generateHTML();
+        if($returnOnly)
+            return $this->formHtml;
+        $this->core->formData[$this->formName] = $this->formHtml;
     }
     
     /**
@@ -170,6 +173,13 @@ abstract class CoreForm extends HTML {
     
     public function get($name){
         return (isset($this->submittedData[$name]))?($this->submittedData[$name]):(null);
+    }
+    
+    public function arrVal($index){
+        if(isset($this->arrVal[$index]))
+            return $this->arrVal[$index];
+        else
+            return "";
     }
     
     /**

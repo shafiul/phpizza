@@ -40,14 +40,33 @@ class CoreModel {
         return $this->db->insertArray();
     }
     
-    public function ifExist($identifierArr,$selectArr=null,$joiner="AND"){
+    public function update($data,$identifier){
+        $this->db->data = $data;
+        $this->db->identifier = $identifier;
+        return $this->db->updateArray();
+    }
+    
+    public function ifExist($identifierArr,$selectArr=null){
         if(!isset ($selectArr))
             $selectArr = array('id');
         $this->db->select = $selectArr;
         $this->db->identifier = $identifierArr;
-        $this->db->joiner = $joiner;
         $this->db->returnPointer = false;
         return $this->db->selectArray();
+    }
+    
+    
+    /**
+     * Does not insert if already exists in database
+     */
+    
+    public function insertOnce($data,$identifier){
+        if($this->ifExist($identifier,$identifier))
+            return -1;
+        else{
+//            $this->db->clear();
+            return $this->insert($data);
+        }
     }
     
     public function selectAll($identifierArr = null, $selectArr = null){

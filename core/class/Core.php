@@ -132,11 +132,12 @@ class Core{
      * @param string $block name of the file. This file must reside in VIEW/blocks/ directory. 
      */
     
-    public function loadBlock($block){
-        // You should load the Blocks custom class manually before calling this function.
+    public function loadBlock($block,&$var){
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
         $filename = PROJECT_DIR . "/" . VIEW_DIR . "/blocks/$block.php";
         require $filename;
+        $className = end(explode("/", $block));
+        $var = new $className($this);
     }
     
     /**

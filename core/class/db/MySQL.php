@@ -115,7 +115,7 @@ class MySQL extends GenericDB{
         
         $this->query .= " " . $this->rest;
         $result = mysql_query($this->query);
-        $this->debug();
+//        $this->debug();
         return $result;
     }
     
@@ -234,6 +234,7 @@ class MySQL extends GenericDB{
         $this->select = null;
         $this->data = null;
         $this->identifier = null;
+        $this->tableJoinIdentifier = null;
         $this->rest = "";
         $this->returnPointer = true;
         $this->joiner = "AND";
