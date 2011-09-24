@@ -59,6 +59,11 @@ class Core{
     
     private $__coreDir;
     private $__autoloaded;
+    
+    // Internal
+    
+    private $oneModelLoaded = false;    ///< Whether CoreModel & DB driver already loaded
+    
     // constructor
     
     /**
@@ -94,10 +99,14 @@ class Core{
      */
     
     public function loadModel($model,&$var){
-        // First include once core model class
-        require_once $this->__coreDir . "/class/CoreModel.php";
-        // Load DB driver
-        $this->loadDatabaseDriver();
+        if(!$this->oneModelLoaded){
+            // First include once core model class
+            require_once $this->__coreDir . "/class/CoreModel.php";
+            // Load DB driver
+            $this->loadDatabaseDriver();
+            $this->oneModelLoaded = true;
+        }
+        
         $filename = PROJECT_DIR . "/" . MODEL_DIR . "/$model.php";
         require_once $filename;
         $className = end(explode("/", $model));
@@ -450,6 +459,12 @@ class Core{
 //        $this->debug("Page: " . $this->page . " FunctionToCall: " . $this->functionToCall);
     }
     
+    /**
+     *
+     * @global array $pizza_autoload 
+     */
+    
+    
     private function autoloadFromConfig(){
         global $pizza_autoload;
         $al = $pizza_autoload;
@@ -460,9 +475,22 @@ class Core{
                 $this->__autoloaded['custom'][$className] = new $className($this);
             }
         }
+        // MODELS
+        if(isset ($al['model'])){
+            // First include once core model class
+            require_once $this->__coreDir . "/class/CoreModel.php";
+            // Load DB driver
+            $this->loadDatabaseDriver();
+            $this->oneModelLoaded = true;
+            // Include all models
+            foreach ($al['model'] as $className){
+                require PROJECT_DIR . '/' . MODEL_DIR . '/' . $className . '.php';
+                $this->__autoloaded['model'][$className] = new $className($this);
+            }
+        }
     }
     
-    public function getAutoVar($className,$type){
+    public function getAutoVar($className,$type='custom'){
         return (isset ($this->__autoloaded[$type][$className]))?($this->__autoloaded[$type][$className]):(false);
     }
     

@@ -96,6 +96,7 @@ abstract class CoreForm{
 //        echo count($this->elements);
         foreach($this->elements as $elemName=>$content){
             // Get user-submitted, validated data
+//            echo '<br />For element: ' . $elemName . '<br />';
             $argArr = $this->elements[$elemName][PIZZA_FORM_HTML_FUNC_ARGS];
             $argArr[2] = $this->submittedData[$elemName];
             $elemHTML = call_user_func_array(array("HTML",$content[PIZZA_FORM_HTML_FUNCNAME]), $argArr);

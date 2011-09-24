@@ -133,6 +133,10 @@ class HTML{
         return $str;
     }
     
+    public static function dummy($name,$attrArr=null,$value=''){
+        // Does nothing!
+    }
+    
     
 //    public static function checkbox($name,$options,$value='',$attrArr=null,$breakStr = '<br />'){
 //        $str = 
