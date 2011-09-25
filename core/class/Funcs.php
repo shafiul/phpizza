@@ -168,6 +168,16 @@ class Funcs {
         }
         return $str;
     }
+    
+    
+    /**
+     * Returns date formatted in human readable way. 
+     * @param int $unixTimestamp | Leave empty to return current time
+     */
+    
+    public function date($unixTimestamp=null){
+        return date("j F Y, g:i a",$unixTimestamp);
+    }
 }
 
 ?>

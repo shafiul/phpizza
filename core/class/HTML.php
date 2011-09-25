@@ -133,6 +133,14 @@ class HTML{
         return $str;
     }
     
+    /**
+     * A dummy form element creator. Takes all arguments like a regular html element creator 
+     * but outputs nothing. May be suitable for some applications.
+     * @param type $name
+     * @param type $attrArr
+     * @param type $value 
+     */
+    
     public static function dummy($name,$attrArr=null,$value=''){
         // Does nothing!
     }

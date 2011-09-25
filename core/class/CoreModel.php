@@ -77,7 +77,10 @@ class CoreModel {
     }
 
 
-
+    public function delete($identifierArr){
+        $this->db->identifier = $identifierArr;
+        return $this->db->delete();
+    }
 
 
 

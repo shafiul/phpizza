@@ -82,6 +82,11 @@
         return "<a href = '" . BASE_URL . "/" . $urlArr[0] . URL_EXTENTION . $queryString . "'>$text</a>";
     }
     
+    function confirmAndGo($url,$text,$confirmationMessage){
+        $url = url($url);
+        return '<a href = "#" onclick ="if(confirm(\'' . $confirmationMessage . '\')){window.location=\'' . $url .'\'}">' . $text . '</a>';
+    }
+    
     
     
     /**
