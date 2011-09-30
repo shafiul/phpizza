@@ -82,11 +82,35 @@
         return "<a href = '" . BASE_URL . "/" . $urlArr[0] . URL_EXTENTION . $queryString . "'>$text</a>";
     }
     
+    /**
+     *
+     * @param type $url
+     * @param type $text
+     * @param type $confirmationMessage
+     * @return type 
+     */
+    
     function confirmAndGo($url,$text,$confirmationMessage){
         $url = url($url);
         return '<a href = "#" onclick ="if(confirm(\'' . $confirmationMessage . '\')){window.location=\'' . $url .'\'}">' . $text . '</a>';
     }
     
+    /**
+     *
+     * @param type $url
+     * @param type $attrArr 
+     */
+    
+    function img($url, $attrArr=null){
+        $attrText = '';
+        if ($attrArr) {
+            foreach ($attrArr as $k => $v)
+                $attrText .= "$k = '$v' ";
+        }
+        $str = '<img ' .$attrText;
+        $str .= ' src ="' . BASE_URL . "/" . $url . '" />'; 
+        return $str;
+    }
     
     
     /**

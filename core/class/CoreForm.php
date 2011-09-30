@@ -53,7 +53,8 @@ abstract class CoreForm{
     public $displaySubmissionErrors = true; ///< Set to true if you want to display error messages when form validation fails
     public $currentElementName = "";    ///< "name" attribute of currently processing form element - available while validating form
     public $validators = null;      ///< Key-value array, key is "name" attribute or an alement, value is List of validators.
-
+    public $noErrorFormatting = false;
+    public $errorStringSeperator = '<br />';
     public $arrVal = null;   ///< getting value from a key-value array safely 
     
     private $validate = false;  ///<    Automatically set to true when you're validating a submitted form
@@ -149,6 +150,7 @@ abstract class CoreForm{
     public function validate(){
         // When form submitted, used this to validate the form.
         $this->validate = true;
+        $this->error = array();
         // Run validation
         foreach ($this->validators as $elemName=>$temp){
             $this->elements[$elemName][PIZZA_FORM_DISPLAYNAME] = $temp[0];
@@ -158,6 +160,7 @@ abstract class CoreForm{
                 $this->submittedData[$elemName] = isset ($_POST[$elemName])?($_POST[$elemName]):("");
             }
         }
+        $this->error = implode($this->errorStringSeperator, $this->error);
         $this->isSubmissionValid = (empty($this->error))?(true):(false);
         return $this->isSubmissionValid;
     }
@@ -183,6 +186,16 @@ abstract class CoreForm{
             return "";
     }
     
+    /**
+     * 
+     * @return string | Error string, if the form submission failed.
+     */
+    
+    public function getError(){
+        return $this->error;
+    }
+
+
     /**
      * Use this function to set the elements created for your form.
      * @param array $elem is a mixed array. Each element of the form will contribute an element of this $elem array. 
@@ -273,7 +286,8 @@ abstract class CoreForm{
         $this->currentElementName = $name;
         $funcsToCall = explode("|", $validators);
         // Get the post value to begin examination!
-        $this->core->validate->subject = (isset($_POST[$name]))?($_POST[$name]):("");
+        $this->core->validate->subject = (isset($_REQUEST[$name]))?($_REQUEST[$name]):("");
+//        $this->core->validate->subject = (isset($_POST[$name]))?($_POST[$name]):("");
         foreach($funcsToCall as $func){
             // get parameters for the function
             // handle escaped values
@@ -294,7 +308,13 @@ abstract class CoreForm{
         }
         // Check for errors
         $error = $this->core->validate->exitIfInvalid(false, ", ");
-        $this->error .= (empty ($error))?(""):("&quot;" . $this->elements[$name][PIZZA_FORM_DISPLAYNAME] . "&quot; $error<br />");
+        if(!empty($error)){
+            if($this->noErrorFormatting)
+                $this->error[] = $this->elements[$name][PIZZA_FORM_DISPLAYNAME] . ' - ' . $error;
+            else
+                $this->error[] = '&quot;' . $this->elements[$name][PIZZA_FORM_DISPLAYNAME] . '&quot; ' . $error;
+
+        }
         $this->submittedData[$name] = $this->core->validate->subject;    //  subject is now validated!
         return $this->core->validate->subject;
     }

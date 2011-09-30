@@ -70,7 +70,7 @@ class MySQL extends GenericDB{
         // Check for password types
         if ($columnToEncrypt && $valueToEncrypt) {
             $fields = $fields . ", $columnToEncrypt";
-            $values = $values . ", " . $this->encryptionFunction . "('$valueToEncrypt')"; // stored using secured hash algorithm
+            $values = $values . ", " . $this->encryptionFunction . "('" . mysql_real_escape_string($valueToEncrypt) . "')"; // stored using secured hash algorithm
         }
         $this->query = "INSERT INTO `$table` ($fields) VALUES ($values)";
         $result = mysql_query($this->query);
@@ -96,7 +96,7 @@ class MySQL extends GenericDB{
         return $result;
     }
     
-    public function updateArray() {
+    public function updateArray($columnToEncrypt = "", $valueToEncrypt = "") {
         $fields = $values = array();
         $this->query = "UPDATE `" . $this->table . "` SET ";
         foreach (array_keys($this->data) as $key) {
@@ -104,6 +104,9 @@ class MySQL extends GenericDB{
             $this->query .= "'" . mysql_real_escape_string($this->data[$key]) . "', ";
         }
         $this->query = substr($this->query, 0, strlen($this->query) - 2);
+        if($columnToEncrypt && $valueToEncrypt){
+            $this->query .= ', `' . $columnToEncrypt . '` = ' . $this->encryptionFunction . '(\'' . mysql_real_escape_string($valueToEncrypt) . '\')';
+        }
         if($this->identifier){
             $this->query .= " WHERE ";
             $where = array();
@@ -150,6 +153,7 @@ class MySQL extends GenericDB{
             }
             $this->query .= implode($sqll, " " . $this->joiner . " ");
         }
+        
         if ($this->tableJoinIdentifier) {
             if($this->identifier){
                 $this->query .= ' ' . $this->joiner . ' ';
@@ -187,8 +191,26 @@ class MySQL extends GenericDB{
         $this->query .= implode($this->joiner, $where) . $this->rest;
 
         $result = mysql_query($this->query);
-        $this->debug();
+//        $this->debug();
         return $result;
+    }
+    
+    public function countAll(){
+        $this->query = 'SELECT COUNT(*) as pizzadbtotal FROM 
+            `' . $this->table .'` ';
+        if ($this->identifier) {
+            $this->query .= " WHERE ";
+            $sqll = "";
+            foreach ($this->identifier as $key => $i) {
+                $sqll[] = "$key = '" . mysql_real_escape_string($i) . "'";
+            }
+            $this->query .= implode($sqll, " " . $this->joiner . " ");
+        }
+        if ($this->rest)
+            $this->query .= " " . $this->rest;
+        $result = mysql_query($this->query);
+        $row = mysql_fetch_assoc($result);
+        return $row['pizzadbtotal'];
     }
     
     

@@ -488,6 +488,12 @@ class Core{
                 $this->__autoloaded['model'][$className] = new $className($this);
             }
         }
+        // Custom Function
+        if(isset ($al['func'])){
+            foreach ($al['func'] as $className){
+                require PROJECT_DIR . '/' . CUSTOM_DIR . '/funcs/' . $className . '.php';
+            }
+        }
     }
     
     public function getAutoVar($className,$type='custom'){

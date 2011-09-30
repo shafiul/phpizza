@@ -24,12 +24,35 @@ class HTML{
      * @return string | Generated html
      */
     
-    public static function tr($td_array) {
-        $str = "<tr>";
+    public static function tr($td_array, $type='tr') {
+        $str = '<' . $type . '>';
         foreach ($td_array as $i) {
             $str .= "<td>$i</td>";
         }
-        $str .= "</tr>";
+        $str .= '</' . $type . '>';
+        return $str;
+    }
+    
+    
+    public static function table($data,$attrArr=null,$insertTh=true){
+        $attrText = '';
+        if ($attrArr) {
+            foreach ($attrArr as $k => $v)
+                $attrText .= "$k = '$v' ";
+        }
+        $str = '<table ' . $attrText . ' >';
+        if($insertTh){
+            foreach ($data[0] as $cell)
+                $str .= '<th>' . $cell . '</th>'; 
+            unset ($data[0]);
+        }
+        foreach($data as $row){
+            $str .= '<tr>';
+            foreach ($row as $cell)
+                $str .= '<td>' . $cell . '</td>'; 
+            $str .= '</tr>';
+        }
+        $str .= '</table>';
         return $str;
     }
     
