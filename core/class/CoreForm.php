@@ -40,7 +40,7 @@ abstract class CoreForm{
     public $method = 'post';    ///<    for form attribute "method"
     public $target = '';        ///<    for Form attribute "target"
     public $onSubmit = '';  ///<    for Form attribute "onsubmit"
-    public $elements = array(); ///<    Key-value array for storing form elements
+    private $elements = array(); ///<    Key-value array for storing form elements
     public $submitButtonText = '';  ///<    Text displayed at form submit button
     public $tableBorder = '0';  ///<    for Table attribute "border"
     public $tableCellSpacing = '';  ///<    for Table attribute "cellspacing"
@@ -56,6 +56,7 @@ abstract class CoreForm{
     public $noErrorFormatting = false;
     public $errorStringSeperator = '<br />';
     public $arrVal = null;   ///< getting value from a key-value array safely 
+    public $allowGetRequests = false;
     
     private $validate = false;  ///<    Automatically set to true when you're validating a submitted form
     private $submittedData = array();   ///< Used to store user-submitted data by this form
@@ -78,6 +79,8 @@ abstract class CoreForm{
         $this->formName = get_class($ob);
         // Also, send my reference to the validator
         $this->core->validate->form = $this;
+        // Attrributes
+        $this->submitButtonText = 'Submit';
     }
     
     /**
@@ -286,8 +289,10 @@ abstract class CoreForm{
         $this->currentElementName = $name;
         $funcsToCall = explode("|", $validators);
         // Get the post value to begin examination!
-        $this->core->validate->subject = (isset($_REQUEST[$name]))?($_REQUEST[$name]):("");
-//        $this->core->validate->subject = (isset($_POST[$name]))?($_POST[$name]):("");
+        if($this->allowGetRequests)
+            $this->core->validate->subject = (isset($_REQUEST[$name]))?($_REQUEST[$name]):("");
+        else
+            $this->core->validate->subject = (isset($_POST[$name]))?($_POST[$name]):("");
         foreach($funcsToCall as $func){
             // get parameters for the function
             // handle escaped values

@@ -132,7 +132,12 @@ class Core{
         // Load the specific VIEW class.
         $filename = PROJECT_DIR . "/" . VIEW_DIR . "/pages/$view.php";
         $this->viewLoaded = true;
-        require $filename;
+        $requireResult = $this->safeRequire($filename);
+        if($this->isStatic && !$requireResult){
+//            $this->viewLoaded = false;
+            echo 'Error 404: This static page is currently unavailble!';
+            exit();
+        }
     }
     
     /**
@@ -189,6 +194,11 @@ class Core{
      * @param string $funcFile name of the file. This file must reside in CUSTOM/funcs directory.
      * @return bool true in success, false otherwise 
      */
+    
+    
+    public function load3p($fileName){
+        require_once PROJECT_DIR . '/' . THIRDPARTY_DIR . '/' . $fileName . '.php';
+    }
     
     public function loadCustomFunctions($funcFile){
         $classPath = PROJECT_DIR . "/" . CUSTOM_DIR . "/funcs/$funcFile.php";
@@ -302,6 +312,16 @@ class Core{
     public function safeRequireOnce($filename){
         if(file_exists($filename)){
             require_once $filename;
+            return true;
+        }else{
+//            $this->debug ("File $filename Not found!");
+            return false;
+        }
+    }
+    
+    public function safeRequire($filename){
+        if(file_exists($filename)){
+            require $filename;
             return true;
         }else{
 //            $this->debug ("File $filename Not found!");
@@ -468,6 +488,14 @@ class Core{
     private function autoloadFromConfig(){
         global $pizza_autoload;
         $al = $pizza_autoload;
+        
+        // Custom Function
+        if(isset ($al['func'])){
+            foreach ($al['func'] as $className){
+                require PROJECT_DIR . '/' . CUSTOM_DIR . '/funcs/' . $className . '.php';
+            }
+        }
+        
         // Custom classes
         if(isset ($al['custom'])){
             foreach ($al['custom'] as $className){
@@ -488,12 +516,7 @@ class Core{
                 $this->__autoloaded['model'][$className] = new $className($this);
             }
         }
-        // Custom Function
-        if(isset ($al['func'])){
-            foreach ($al['func'] as $className){
-                require PROJECT_DIR . '/' . CUSTOM_DIR . '/funcs/' . $className . '.php';
-            }
-        }
+        
     }
     
     public function getAutoVar($className,$type='custom'){

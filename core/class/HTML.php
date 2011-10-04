@@ -128,10 +128,20 @@ class HTML{
         $str = "<select ";
         $str.= "$attrText name = '$name'>";
 //        var_dump($options);
-        foreach ($options as $displayText => $value) {
-            $selected = ($value == $selectedValue) ? ("selected = 'selected'") : ("");
-            $str .= "<option $selected name = '$value' value = '$value'>$displayText</option>";
+//        print_r($selectedValue);
+//        exit();
+        if(is_array($selectedValue)){
+            foreach ($options as $displayText => $value) {
+                $selected = (in_array($value, $selectedValue)) ? ("selected = 'selected'") : ("");
+                $str .= "<option $selected name = '$value' value = '$value'>$displayText</option>";
+            }
+        }else{
+            foreach ($options as $displayText => $value) {
+                $selected = ($value == $selectedValue) ? ("selected = 'selected'") : ("");
+                $str .= "<option $selected name = '$value' value = '$value'>$displayText</option>";
+            }
         }
+        
         $str .= "</select>";
         return $str;
     }

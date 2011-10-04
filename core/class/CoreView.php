@@ -47,6 +47,11 @@ class CoreView{
         $this->core = $core;
     }
     
+    public function setStatic(){
+        $this->staticLoadAllowed = true;
+    }
+    
+    
     /**
      * Call this function inside your code (controller or view) to create an %HTML div element - which user 
      * can hide or show by clicking a title.
@@ -132,6 +137,7 @@ class CoreView{
         }
         return $html;
     }
+    
     
     //@}
 
