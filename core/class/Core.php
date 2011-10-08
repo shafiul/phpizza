@@ -329,7 +329,12 @@ class Core{
         }
     }
     
-    
+    private function loadLang(){
+        if(defined('DEFAULT_LANG'))
+            require_once PROJECT_DIR . '/' . 'lang/' . DEFAULT_LANG . '.php';
+    }
+
+
     /** @name Functions for Internal Use
      * These functions are used internally by the framework.
      * - You should NEVER call these functions! As they are automatically called by the framework.
@@ -363,6 +368,8 @@ class Core{
     public function loadMVC($page){
         // Automatic Model, View loading no longer supported!
         $this->findPage($page);
+        // Autoload Lang
+        $this->loadLang();
         // Autoloading
         $this->autoloadFromConfig();
         // Load Controllers/Views
