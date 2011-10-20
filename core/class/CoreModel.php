@@ -48,7 +48,7 @@ class CoreModel {
     
     public function ifExist($identifierArr,$selectArr=null){
         if(!isset ($selectArr))
-            $selectArr = array('id');
+            $selectArr = array_keys($identifierArr);
         $this->db->select = $selectArr;
         $this->db->identifier = $identifierArr;
         $this->db->returnPointer = false;
@@ -69,6 +69,17 @@ class CoreModel {
         }
     }
     
+    public function insertOrUpdate($data, $identifier){
+        if($this->ifExist($identifierArr)){
+            // Update
+            return $this->update($data, $identifier);
+        }else{
+            // Create New
+            return $this->insert($data);
+        }
+    }
+
+
     public function selectAll($identifierArr = null, $selectArr = null){
 //        $this->db->clear();
         $this->db->identifier = $identifierArr;

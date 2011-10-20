@@ -261,6 +261,7 @@ class MySQL extends GenericDB{
         $this->returnPointer = true;
         $this->joiner = "AND";
         $this->query = "";
+        $this->returnInsertID = true;
     }
     
     
