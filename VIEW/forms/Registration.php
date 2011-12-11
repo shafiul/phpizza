@@ -16,29 +16,37 @@ class Registration extends CoreForm {
     public function __construct($core) {
         // MUST call parent's constructor
         parent::__construct($this, $core);
+        // URL where form processing will be done!
         $this->action = url('registration/submit');
+        // Do some CSS tweaking!
         $this->submitButtonText = "Register!";
         $this->tableCellSpacing = "10px";
+        // Create some validators to be applied on User submitted data.
+        $this->validators =array(
+            'username' => array('Username', "limit,5,7"),
+            'passwd' => array('Password', 'required|limit,,2'),
+            'passwd2' => array('Retype password', 'equalsToElement,passwd'),
+            'email' => array('Email', 'limit,3|email'),
+            'sex' => array('Sex', 'enum,male:female')
+        );
+        
     }
     
     public function createElements() {
         
         $elements = array();
         
-        $elements['username'] = array("Username","limit,5,7","input");
-        
-        $elements['passwd'] = array("Password", "required|limit,,2", "input", array("password"));
-        
-        $elements['passwd2'] = array("Retype password", "equalsToElement,passwd", "input", array("password"));
-        
-        $elements['email'] = array("Email", "limit,3|email", "input");
+        $elements['username'] = array("input");
+        $elements['passwd'] = array("input", array("password"));
+        $elements['passwd2'] = array("input", array("password"));
+        $elements['email'] = array("input");
         
         $options = array(
             "Male" => "male",
             "Female" => "female"
         );
         
-        $elements['sex'] = array("Sex","enum,male:female", "select", array($options, "female"));
+        $elements['sex'] = array("select", array($options, "female"));
         
         $this->setElements($elements);
     }

@@ -20,7 +20,7 @@
  */
 
 
-class RegistrationModel extends CoreModel{
+class UserModel extends CoreModel{
     
     /**
      * Constructor must call parent's constructor
@@ -29,24 +29,23 @@ class RegistrationModel extends CoreModel{
     public function __construct($core) {
         // Must call parent's constructor
         parent::__construct($core);
-        // Initialize database object
-        $this->db = new MySQL();
-        // apply some common settings
+        // Should set name of the table!
         $this->db->table = "user";
     }
     
+    
+    
     /**
-     * Demo function which inserts some values to database 
+     * Demo function to perform a registration
+     * @return  
      */
     
-    public function insert($arrToInsert, $passValue){
-        $this->db->data = $arrToInsert;
-        return $this->db->insertArray("password", $passValue);
-    }
-    
-    public function getDB(){
-        // Get a reference of the $db object. Can be harmful???
-        return $this->db;
+    public function reg($data,$password,$identifier){
+        if($this->ifExist($identifier)){
+            return false;
+        }else{
+            return $this->insertWithPassword($data, 'password', $password);
+        }
     }
     
 }

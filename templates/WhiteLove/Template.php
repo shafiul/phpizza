@@ -65,7 +65,7 @@ abstract class Template extends CoreView{
     
     public function header(){
         echo '
-            <h1><a href="' . url('index') .'">Ki Obosthaaa!</a></h1>
+            <h1><a href="' . url('index') .'"><i>PHPizza</i></a></h1>
                 <h2>' . $this->heading . '</h2>
             ';
     }
@@ -95,12 +95,10 @@ abstract class Template extends CoreView{
                 break;
             case 'right':
                 // print general links
-                $core->loadBlock("GeneralLinks");
-                $i = new GeneralLinks();
+                $i = $core->loadBlock("GeneralLinks");
                 echo $i->get();
                 // print links to forms
-                $core->loadBlock("FormLinks");
-                $i = new FormLinks();
+                $i = $core->loadBlock("FormLinks");
                 echo $i->get();
                 break;
         }

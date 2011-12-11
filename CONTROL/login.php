@@ -20,10 +20,8 @@ class Controller extends CoreController{
     public function __construct($core) {
         // Call parent's constructor. 
         parent::__construct($core);
-        if(!$this->core->loadForm('Login'))
+        if(!$this->core->loadForm('Login', $this->form))
             $this->core->funcs->messageExit("Cannot load form");
-        // Create a form object
-        $this->form = new Login($core);
     }
     
     public function index(){

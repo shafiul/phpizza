@@ -59,6 +59,7 @@ class Core{
     
     private $__coreDir;
     private $__autoloaded;
+    private $__version;                 ///< Core Version
     
     // Internal
     
@@ -75,6 +76,7 @@ class Core{
      */
     
     public function __construct() {
+        $this->__version = "1.0.0";
         $this->html = new HTML();
         $this->funcs = new Funcs($this);
         $this->validate = new Validator($this);
@@ -89,6 +91,14 @@ class Core{
         $this->__coreDir = PROJECT_DIR . "/core";
     }
     
+    /**
+     * Get PHPizza Version
+     */
+    
+    public function getVersion(){
+        return $this->__version;
+    }
+    
     /* Loaders */
     
     /**
@@ -96,9 +106,10 @@ class Core{
      * 
      * Call this function within your constructor. If not called, the default Model gets loaded automatically.
      * @param string $model name of the Model class. This class must reside under MODEL directory.
+     * @return object of newly loaded model.
      */
     
-    public function loadModel($model,&$var){
+    public function loadModel($model){
         if(!$this->oneModelLoaded){
             // First include once core model class
             require_once $this->__coreDir . "/class/CoreModel.php";
@@ -111,6 +122,7 @@ class Core{
         require_once $filename;
         $className = end(explode("/", $model));
         $var = new $className($this);
+        return $var;
     }
     
     /**
@@ -144,14 +156,16 @@ class Core{
      * Use this function where appropriate (maybe within Template class or in your VIEW classes) to load
      * the "%HTML Blocks" - you can find some sample classes in GeneralLinks and FormLinks classes.
      * @param string $block name of the file. This file must reside in VIEW/blocks/ directory. 
+     * @return object of newly created block.
      */
     
-    public function loadBlock($block,&$var){
+    public function loadBlock($block){
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
         $filename = PROJECT_DIR . "/" . VIEW_DIR . "/blocks/$block.php";
         require $filename;
         $className = end(explode("/", $block));
         $var = new $className($this);
+        return $var;
     }
     
     /**
@@ -212,16 +226,17 @@ class Core{
      * must reside in VIEW/forms directory, you can not create directory & load forms from them!
      * 
      * @param string $formName name of the class. This class must extend CoreForm & reside in VIEW/forms directory.
-     * @return bool true in success, false otherwise 
+     * @return object of newly created class
      */
     
-    public function loadForm($formName,&$var){
+    public function loadForm($formName){
         // First include core form
         require_once $this->__coreDir . "/class/CoreForm.php";
         // Now include particular form
         $classPath = PROJECT_DIR . "/" . FORMS_DIR . "/$formName.php";
         require $classPath;
         $var = new $formName($this);
+        return $var;
     }
     
     /**
@@ -526,7 +541,14 @@ class Core{
         
     }
     
-    public function getAutoVar($className,$type='custom'){
+    /**
+     * Get instance of an autoloaded class. This can be autoloaded Custom Class or Model
+     * @param type $className
+     * @param string $type - This can be any of 'custom' or 'model'
+     * @return object - instance of the autoloaded class if successful. FALSE otherwise 
+     */
+    
+    public function autoload($className,$type='custom'){
         return (isset ($this->__autoloaded[$type][$className]))?($this->__autoloaded[$type][$className]):(false);
     }
     

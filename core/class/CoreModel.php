@@ -21,6 +21,14 @@ class CoreModel {
     
     public function __construct($core) {
         $this->core = $core;
+        // Create Object
+        $driver = DB_DRIVER;
+        $this->db = new $driver();
+//        switch(DB_DRIVER){
+//            case 'MySQL':
+//                $this->db = new MySQL();
+//                break;
+//        }
     }
     
     /**
@@ -29,22 +37,52 @@ class CoreModel {
     
     //{
     
+    /**
+     * Handy function to insert some data in database along with a "password" field. 
+     * Password field will be stored encrypted in your database.
+     * @param mixed $data - key-value pair of "database column name" as key & "data to insert" as value.
+     * @param string $passwordColumn - name of database column where password will be stored
+     * @param string $passwordValue - data to insert in password column.
+     * @return type 
+     */
     
     public function insertWithPassword($data,$passwordColumn,$passwordValue){
         $this->db->data = $data;
         return $this->db->insertArray($passwordColumn, $passwordValue);
     }
     
+    /**
+     * Handy function to insert some data in database
+     * @param mixed $data - key-value pair of "database column name" as key & "data to insert" as value.
+     * @return type 
+     */
+    
     public function insert($data){
         $this->db->data = $data;
         return $this->db->insertArray();
     }
+    
+    
+    /**
+     * Handy function to update data in Database.
+     * @param mixed $data - key-value array.
+     * @param mixed $identifier - key-value array. This array sets the "WHERE" parameters of query.
+     * @return type 
+     */
     
     public function update($data,$identifier){
         $this->db->data = $data;
         $this->db->identifier = $identifier;
         return $this->db->updateArray();
     }
+    
+    
+    /**
+     * Handy function to check if data set as $identifierArr already exists in Database.
+     * @param mixed $identifierArr - key-value array.
+     * @param array $selectArr - Value to be used in "SELECT" part in query.
+     * @return type 
+     */
     
     public function ifExist($identifierArr,$selectArr=null){
         if(!isset ($selectArr))
@@ -57,7 +95,7 @@ class CoreModel {
     
     
     /**
-     * Does not insert if already exists in database
+     * Does not insert if data already exists in database
      */
     
     public function insertOnce($data,$identifier){
@@ -68,6 +106,13 @@ class CoreModel {
             return $this->insert($data);
         }
     }
+    
+    /**
+     * If $data already exists in Database, update it, or inset as new Data
+     * @param type $data
+     * @param type $identifier
+     * @return type 
+     */
     
     public function insertOrUpdate($data, $identifier){
         if($this->ifExist($identifierArr)){
