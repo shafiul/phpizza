@@ -72,6 +72,8 @@ var NAVTREE =
     [ "File List", "files.html", [
       [ "config.php", null, null ],
       [ "index.php", null, null ],
+      [ "post_script.php", "post__script_8php.html", null ],
+      [ "pre_script.php", "pre__script_8php.html", null ],
       [ "userconfig.php", null, null ],
       [ "CONTROL/login.php", null, null ],
       [ "CONTROL/registration.php", null, null ],
