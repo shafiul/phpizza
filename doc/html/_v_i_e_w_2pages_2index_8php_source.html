@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: VIEW/pages/index.php Source File</title>
+<title>PHPizza: VIEW/pages/index.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -104,48 +104,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00020"></a>00020         <span class="comment">// Set titles &amp; other attributes here</span>
 <a name="l00021"></a>00021         <span class="comment">// For demonstration, we&#39;re using the value set by the controller</span>
 <a name="l00022"></a>00022           <span class="comment">//  Get the instance</span>
-<a name="l00023"></a>00023         $this-&gt;title = $this-&gt;core-&gt;getData(<span class="stringliteral">&#39;title&#39;</span>);
-<a name="l00024"></a>00024         $this-&gt;heading = <span class="stringliteral">&quot;Welcome to the landing page!&quot;</span>;
-<a name="l00025"></a>00025     }
+<a name="l00023"></a>00023         $this-&gt;heading = <span class="stringliteral">&quot;Fast, Devs-friendly MVC framework for Professional PHP Developers&quot;</span>;
+<a name="l00024"></a>00024     }
+<a name="l00025"></a>00025     
 <a name="l00026"></a>00026     
-<a name="l00027"></a>00027     
+<a name="l00027"></a>00027 
 <a name="l00028"></a>00028 
-<a name="l00029"></a>00029 
-<a name="l00030"></a><a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">00030</a>     <span class="keyword">public</span> function <a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">mainContent</a>() {
-<a name="l00031"></a>00031         <span class="comment">// This function must be implemented!</span>
-<a name="l00032"></a>00032         <span class="comment">// now follows html:</span>
-<a name="l00033"></a>00033         ?&gt;
-<a name="l00034"></a>00034                     &lt;h2&gt;&lt;a href=<span class="stringliteral">&quot;#&quot;</span>&gt;License and terms of use&lt;/a&gt;&lt;/h2&gt;
-<a name="l00035"></a>00035                     &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;articles&quot;</span>&gt;
-<a name="l00036"></a>00036                         White Love Rounded is a CSS <span class="keyword">template</span> that is free and fully standards compliant. &lt;a href=<span class="stringliteral">&quot;http://www.free-css-templates.com/&quot;</span>&gt;Free CSS Templates&lt;/a&gt; designed <span class="keyword">this</span> <span class="keyword">template</span>.
-<a name="l00037"></a>00037                         This <span class="keyword">template</span> is allowed <span class="keywordflow">for</span> all uses, including commercial use, as it is released under the &lt;strong&gt;Creative Commons Attributions 2.5&lt;/strong&gt; license. The only stipulation to the use of <span class="keyword">this</span> free <span class="keyword">template</span> is that the links appearing in the <a class="code" href="class_template.html#ae5058e5b790e8cea2dd33c1c9bbcbbd4">footer</a> remain intact. Beyond that, simply enjoy and have fun with it!  
-<a name="l00038"></a>00038                         &lt;br /&gt;&lt;br /&gt;
-<a name="l00039"></a>00039                         &lt;img src=<span class="stringliteral">&quot;&lt;?php echo filePath(&quot;</span>images/pic.jpg<span class="stringliteral">&quot;);  ?&gt;&quot;</span> alt=<span class="stringliteral">&quot;Example pic&quot;</span> style=<span class="stringliteral">&quot;border: 3px solid #ccc;&quot;</span> /&gt;
-<a name="l00040"></a>00040                         &lt;br /&gt;&lt;br /&gt;
-<a name="l00041"></a>00041                         Donec nulla. Aenean eu augue ac nisl tincidunt rutrum. Proin erat justo, pharetra eget, posuere at, malesuada 
-<a name="l00042"></a>00042                         et, nulla. Donec pretium nibh sed est faucibus suscipit. Nunc nisi. Nullam vehicula. In ipsum lorem, bibendum sed, 
-<a name="l00043"></a>00043                         consectetuer et, gravida id, erat. Ut imperdiet, leo vel condimentum faucibus, risus justo feugiat purus, vitae 
-<a name="l00044"></a>00044                         congue nulla diam non urna.
-<a name="l00045"></a>00045                     &lt;/div&gt;
-<a name="l00046"></a>00046                     &lt;h2&gt;&lt;a href=<span class="stringliteral">&quot;#&quot;</span>&gt;Title with a link - Example of heading 2&lt;/a&gt;&lt;/h2&gt;
-<a name="l00047"></a>00047                     &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;articles&quot;</span>&gt;
-<a name="l00048"></a>00048                         Donec nulla. Aenean eu augue ac nisl tincidunt rutrum. Proin erat justo, pharetra eget, posuere at, malesuada 
-<a name="l00049"></a>00049                         et, nulla. Donec pretium nibh sed est faucibus suscipit. Nunc nisi. Nullam vehicula. In ipsum lorem, bibendum sed, 
-<a name="l00050"></a>00050                         consectetuer et, gravida id, erat. Ut imperdiet, leo vel condimentum faucibus, risus justo feugiat purus, vitae 
-<a name="l00051"></a>00051                         congue nulla diam non urna.
-<a name="l00052"></a>00052                     &lt;/div&gt;
-<a name="l00053"></a>00053         &lt;?php
-<a name="l00054"></a>00054         
-<a name="l00055"></a>00055     }
-<a name="l00056"></a>00056 }
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 ?&gt;
+<a name="l00029"></a><a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">00029</a>     <span class="keyword">public</span> function <a class="code" href="class_view.html#a4fdfdd184adfc8b317652650926bb21a">mainContent</a>() {
+<a name="l00030"></a>00030         <span class="comment">// This function must be implemented!</span>
+<a name="l00031"></a>00031         <span class="comment">// now follows html:</span>
+<a name="l00032"></a>00032         ?&gt;
+<a name="l00033"></a>00033                     &lt;h2&gt;&lt;a href=<span class="stringliteral">&quot;#&quot;</span>&gt;License and terms of use&lt;/a&gt;&lt;/h2&gt;
+<a name="l00034"></a>00034                     &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;articles&quot;</span>&gt;
+<a name="l00035"></a>00035                         White Love Rounded is a CSS <span class="keyword">template</span> that is free and fully standards compliant. &lt;a href=<span class="stringliteral">&quot;http://www.free-css-templates.com/&quot;</span>&gt;Free CSS Templates&lt;/a&gt; designed <span class="keyword">this</span> <span class="keyword">template</span>.
+<a name="l00036"></a>00036                         This <span class="keyword">template</span> is allowed <span class="keywordflow">for</span> all uses, including commercial use, as it is released under the &lt;strong&gt;Creative Commons Attributions 2.5&lt;/strong&gt; license. The only stipulation to the use of <span class="keyword">this</span> free <span class="keyword">template</span> is that the links appearing in the <a class="code" href="class_template.html#ae5058e5b790e8cea2dd33c1c9bbcbbd4">footer</a> remain intact. Beyond that, simply enjoy and have fun with it!  
+<a name="l00037"></a>00037                         &lt;br /&gt;&lt;br /&gt;
+<a name="l00038"></a>00038                         &lt;<a class="code" href="general_8php.html#ad1ce9e5aaf63204938228677f53eca9d">img</a> src=<span class="stringliteral">&quot;&lt;?php echo filePath(&quot;</span>images/pic.jpg<span class="stringliteral">&quot;);  ?&gt;&quot;</span> alt=<span class="stringliteral">&quot;Example pic&quot;</span> style=<span class="stringliteral">&quot;border: 3px solid #ccc;&quot;</span> /&gt;
+<a name="l00039"></a>00039                         &lt;br /&gt;&lt;br /&gt;
+<a name="l00040"></a>00040                         Donec nulla. Aenean eu augue ac nisl tincidunt rutrum. Proin erat justo, pharetra eget, posuere at, malesuada 
+<a name="l00041"></a>00041                         et, nulla. Donec pretium nibh sed est faucibus suscipit. Nunc nisi. Nullam vehicula. In ipsum lorem, bibendum sed, 
+<a name="l00042"></a>00042                         consectetuer et, gravida id, erat. Ut imperdiet, leo vel condimentum faucibus, risus justo feugiat purus, vitae 
+<a name="l00043"></a>00043                         congue nulla diam non urna.
+<a name="l00044"></a>00044                     &lt;/div&gt;
+<a name="l00045"></a>00045                     &lt;h2&gt;&lt;a href=<span class="stringliteral">&quot;#&quot;</span>&gt;Title with a link - Example of heading 2&lt;/a&gt;&lt;/h2&gt;
+<a name="l00046"></a>00046                     &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;articles&quot;</span>&gt;
+<a name="l00047"></a>00047                         Donec nulla. Aenean eu augue ac nisl tincidunt rutrum. Proin erat justo, pharetra eget, posuere at, malesuada 
+<a name="l00048"></a>00048                         et, nulla. Donec pretium nibh sed est faucibus suscipit. Nunc nisi. Nullam vehicula. In ipsum lorem, bibendum sed, 
+<a name="l00049"></a>00049                         consectetuer et, gravida id, erat. Ut imperdiet, leo vel condimentum faucibus, risus justo feugiat purus, vitae 
+<a name="l00050"></a>00050                         congue nulla diam non urna.
+<a name="l00051"></a>00051                     &lt;/div&gt;
+<a name="l00052"></a>00052         &lt;?php
+<a name="l00053"></a>00053         
+<a name="l00054"></a>00054     }
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>index.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:31:14 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

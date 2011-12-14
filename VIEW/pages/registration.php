@@ -21,7 +21,7 @@ class View extends Template{
     
     function mainContent() {
         
-        echo $this->core->getForm("Registration");
+        echo $this->form("Registration");
     }
 }
 

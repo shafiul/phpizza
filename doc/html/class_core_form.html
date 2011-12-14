@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: CoreForm Class Reference</title>
+<title>PHPizza: CoreForm Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -83,12 +83,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Data Fields</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>CoreForm Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="CoreForm" --><!-- doxytag: inherits="HTML" -->
+<!-- doxytag: class="CoreForm" -->
 <p>Create, submit &amp; validate web-forms.  
 <a href="#_details">More...</a></p>
 <div class="dynheader">
@@ -97,33 +98,30 @@ Inheritance diagram for CoreForm:</div>
  <div class="center">
   <img src="class_core_form.png" usemap="#CoreForm_map" alt=""/>
   <map id="CoreForm_map" name="CoreForm_map">
-<area href="class_h_t_m_l.html" alt="HTML" shape="rect" coords="44,0,122,24"/>
-<area href="class_login.html" alt="Login" shape="rect" coords="0,112,78,136"/>
-<area href="class_registration.html" alt="Registration" shape="rect" coords="88,112,166,136"/>
+<area href="class_login.html" alt="Login" shape="rect" coords="0,56,78,80"/>
+<area href="class_registration.html" alt="Registration" shape="rect" coords="88,56,166,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a2dbc5baa6b594a250153c161b2ed0177">__construct</a> ($ob, $core)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a435e7d7525d4bcd0ed5e34a469f3adf6">create</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f">sendToView</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function to call within your controller.  <a href="#a6bc0f04f6b065ab982e00ee3c84ce52f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3">sendToView</a> ($returnOnly=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function to call within your <a class="el" href="class_controller.html">Controller</a> classes.  <a href="#aeda64fd46926abe5fdf70d6bbc8900c3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a184909dab34698899937d810a9f5d393">validate</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important Function - After a user has submitted the form, call it within your controller to start form validation.  <a href="#a184909dab34698899937d810a9f5d393"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#af8a17f478754a0df8727c837e8e8eef6">isSubmissionValid</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#af5ea6a083ddb07beb8a30dd32e309ceb">get</a> ($name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function - use it to get user-submitted value for element of the form!  <a href="#af5ea6a083ddb07beb8a30dd32e309ceb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a676b8936a5bbe4d649636f917831b1f9"></a><!-- doxytag: member="CoreForm::arrVal" ref="a676b8936a5bbe4d649636f917831b1f9" args="($index)" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>arrVal</b> ($index)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a24ada5decce3d1b79cd82f5a90ccf404">getError</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">setElements</a> ($elem)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#aba0d5b303383fb5b1fabb5fd01cd3800">getAll</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#ae495567b97b9d53edccdf6f0a587b369">getDisplayName</a> ($name)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a2145ce3d54cbe7aef97a815a41b4d144">resubmit</a> ()</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Functions for creating HTML for form-elements</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a7d9d6e1c757b3af2726a4d347e169281">input</a> ($name, $type=&quot;text&quot;, $value=&quot;&quot;, $attrArr=null)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a9c1d65268a0864077fbff06c4ead6724">textarea</a> ($name, $value=&quot;&quot;, $attrArr=null)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a30750bdb8c1415d016b5bc2445a2d740">select</a> ($name, $options, $selectedValue=&quot;&quot;, $attrArr=null)</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Abstract functions: implement these functions in Child class.</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#ab9cc7a749f39fa604e5e065f486a7ee6">createElements</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa1becaa51dc65ed3bb3923d06ad0325"></a><!-- doxytag: member="CoreForm::createValidators" ref="aaa1becaa51dc65ed3bb3923d06ad0325" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>createValidators</b> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa698a3e72116e8e778be0e95d908ee30"></a><!-- doxytag: member="CoreForm::$action" ref="aa698a3e72116e8e778be0e95d908ee30" args="" -->
@@ -138,9 +136,6 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad5d0a900d4ea7554a839231f89c6625"></a><!-- doxytag: member="CoreForm::$onSubmit" ref="aad5d0a900d4ea7554a839231f89c6625" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#aad5d0a900d4ea7554a839231f89c6625">$onSubmit</a> = ''</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">for Form attribute "onsubmit" <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad18dd8fbe31b294e2bc4711dcde4548d"></a><!-- doxytag: member="CoreForm::$elements" ref="ad18dd8fbe31b294e2bc4711dcde4548d" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d">$elements</a> = array()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value array for storing form elements. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4db6000a3b11a95fe6cb9d23f7b6d04e"></a><!-- doxytag: member="CoreForm::$submitButtonText" ref="a4db6000a3b11a95fe6cb9d23f7b6d04e" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a4db6000a3b11a95fe6cb9d23f7b6d04e">$submitButtonText</a> = ''</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Text displayed at form submit button. <br/></td></tr>
@@ -174,14 +169,30 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a532493a02260b140e8706257eafa564e"></a><!-- doxytag: member="CoreForm::$currentElementName" ref="a532493a02260b140e8706257eafa564e" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a532493a02260b140e8706257eafa564e">$currentElementName</a> = &quot;&quot;</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">"name" attribute of currently processing form element - available while validating form <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92dc1d646f00c393e2ed76a7ec06e76b"></a><!-- doxytag: member="CoreForm::$validators" ref="a92dc1d646f00c393e2ed76a7ec06e76b" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a92dc1d646f00c393e2ed76a7ec06e76b">$validators</a> = null</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value array, key is "name" attribute or an alement, value is List of validators. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afcc48fb29b1b551cd1be10f7f889d842"></a><!-- doxytag: member="CoreForm::$noErrorFormatting" ref="afcc48fb29b1b551cd1be10f7f889d842" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>$noErrorFormatting</b> = false</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e9be2b3c9e6ed4d217406b9ab055554"></a><!-- doxytag: member="CoreForm::$errorStringSeperator" ref="a5e9be2b3c9e6ed4d217406b9ab055554" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>$errorStringSeperator</b> = '&lt;br /&gt;'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22d3e9c88d2377bde7536f12f4c48d6d"></a><!-- doxytag: member="CoreForm::$arrVal" ref="a22d3e9c88d2377bde7536f12f4c48d6d" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a22d3e9c88d2377bde7536f12f4c48d6d">$arrVal</a> = null</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">getting value from a key-value array safely <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1c32982b36256c93df6927cd2a23d70"></a><!-- doxytag: member="CoreForm::$allowGetRequests" ref="af1c32982b36256c93df6927cd2a23d70" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>$allowGetRequests</b> = false</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a423e6fdd1402abf321e7e93a5d2d2f7b">generateHTML</a> ()</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Functions for Internal Use</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>These functions are called automatically within the framework. You should NEVER call these functions in your code! </p>
 </div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#aef31ad89eb757266eb23c36db8f47d63">doValidation</a> ($name)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a4a48be1dd6b79814f35bb8c6c88d7dee">doValidation</a> ($name, $validators)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad18dd8fbe31b294e2bc4711dcde4548d"></a><!-- doxytag: member="CoreForm::$elements" ref="ad18dd8fbe31b294e2bc4711dcde4548d" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d">$elements</a> = array()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value array for storing form elements. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a320b75b46e1832c327d9d47b4cea9e7d"></a><!-- doxytag: member="CoreForm::$validate" ref="a320b75b46e1832c327d9d47b4cea9e7d" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a320b75b46e1832c327d9d47b4cea9e7d">$validate</a> = false</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically set to true when you're validating a submitted form. <br/></td></tr>
@@ -214,7 +225,7 @@ Private Attributes</h2></td></tr>
 <li>If validation fails, automatically generate Error messages &amp; re-present form to user, keeping user provided data intact. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00034">34</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00036">36</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2dbc5baa6b594a250153c161b2ed0177"></a><!-- doxytag: member="CoreForm::__construct" ref="a2dbc5baa6b594a250153c161b2ed0177" args="($ob, $core)" -->
 <div class="memitem">
@@ -249,35 +260,11 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00071">71</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00077">77</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a435e7d7525d4bcd0ed5e34a469f3adf6"></a><!-- doxytag: member="CoreForm::create" ref="a435e7d7525d4bcd0ed5e34a469f3adf6" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">create </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Creates &amp; returns HTML for this form.</p>
-<ul>
-<li>You do not need to use this function at all if you use <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">sendToView()</a> function. Example: <a class="el" href="registration_8php_source.html">CONTROL/registration.php</a> &amp; VIEW/registration.php</li>
-<li>If you want to manually send the generated HTML of the form to your view class, you may call this function within your controller. See example: <a class="el" href="login_8php_source.html">CONTROL/login.php</a> &amp; VIEW/login.php <dl class="return"><dt><b>Returns:</b></dt><dd>string generated html for this form </dd></dl>
-</li>
-</ul>
-
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00085">85</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ab9cc7a749f39fa604e5e065f486a7ee6"></a><!-- doxytag: member="CoreForm::createElements" ref="ab9cc7a749f39fa604e5e065f486a7ee6" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -298,7 +285,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aef31ad89eb757266eb23c36db8f47d63"></a><!-- doxytag: member="CoreForm::doValidation" ref="aef31ad89eb757266eb23c36db8f47d63" args="($name)" -->
+<a class="anchor" id="a4a48be1dd6b79814f35bb8c6c88d7dee"></a><!-- doxytag: member="CoreForm::doValidation" ref="a4a48be1dd6b79814f35bb8c6c88d7dee" args="($name, $validators)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -306,8 +293,18 @@ Private Attributes</h2></td></tr>
           <td class="memname">doValidation </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>validators</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -324,7 +321,31 @@ Private Attributes</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00256">256</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00291">291</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a423e6fdd1402abf321e7e93a5d2d2f7b"></a><!-- doxytag: member="CoreForm::generateHTML" ref="a423e6fdd1402abf321e7e93a5d2d2f7b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">generateHTML </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Creates &amp; returns HTML for this form.</p>
+<ul>
+<li>You do not need to use this function at all if you use <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3" title="Important function to call within your Controller classes.">sendToView()</a> function. Example: <a class="el" href="_c_o_n_t_r_o_l_2registration_8php_source.html">CONTROL/registration.php</a> &amp; VIEW/registration.php</li>
+<li>If you want to manually send the generated HTML of the form to your view class, you may call this function within your controller. See example: <a class="el" href="_c_o_n_t_r_o_l_2login_8php_source.html">CONTROL/login.php</a> &amp; VIEW/login.php</li>
+</ul>
+<dl class="return"><dt><b>Returns:</b></dt><dd>none </dd></dl>
+
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00094">94</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -353,7 +374,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | validated user submitted value </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00165">165</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00186">186</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -373,7 +394,7 @@ Private Attributes</h2></td></tr>
 <p>Call this function within your constructor to get VALIDATED user-submitted value for all form elements. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>array | key-value array where key is the "name" attribute of the element. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00211">211</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00258">258</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -400,60 +421,16 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string Display-name of the element. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00222">222</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00269">269</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7d9d6e1c757b3af2726a4d347e169281"></a><!-- doxytag: member="CoreForm::input" ref="a7d9d6e1c757b3af2726a4d347e169281" args="($name, $type=&quot;text&quot;, $value=&quot;&quot;, $attrArr=null)" -->
+<a class="anchor" id="a24ada5decce3d1b79cd82f5a90ccf404"></a><!-- doxytag: member="CoreForm::getError" ref="a24ada5decce3d1b79cd82f5a90ccf404" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">input </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>type</em> = <code>&quot;text&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>value</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>attrArr</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>See <a class="el" href="class_h_t_m_l.html#a7d9d6e1c757b3af2726a4d347e169281">HTML::input()</a> for documenttion </p>
-
-<p>Reimplemented from <a class="el" href="class_h_t_m_l.html#a7d9d6e1c757b3af2726a4d347e169281">HTML</a>.</p>
-
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00307">307</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af8a17f478754a0df8727c837e8e8eef6"></a><!-- doxytag: member="CoreForm::isSubmissionValid" ref="af8a17f478754a0df8727c837e8e8eef6" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">isSubmissionValid </td>
+          <td class="memname">getError </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -461,95 +438,43 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>After calling <a class="el" href="class_core_form.html#a184909dab34698899937d810a9f5d393" title="Important Function - After a user has submitted the form, call it within your controller to start for...">validate()</a> within your controller, you can call this function to learn if form validation succeeded. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>bool true if form submission validated (all validators returned true), false otherwise </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string | Error string, if the form submission failed. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00150">150</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2145ce3d54cbe7aef97a815a41b4d144"></a><!-- doxytag: member="CoreForm::resubmit" ref="a2145ce3d54cbe7aef97a815a41b4d144" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">resubmit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>If you are using <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">sendToView()</a> call this function within your constructor to automatically send error message &amp; generated html (with user-provided values) of the form to the view. </p>
-
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00231">231</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00202">202</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a30750bdb8c1415d016b5bc2445a2d740"></a><!-- doxytag: member="CoreForm::select" ref="a30750bdb8c1415d016b5bc2445a2d740" args="($name, $options, $selectedValue=&quot;&quot;, $attrArr=null)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">select </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>selectedValue</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>attrArr</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>See <a class="el" href="class_h_t_m_l.html#a30750bdb8c1415d016b5bc2445a2d740">HTML::select()</a> for documenttion </p>
-
-<p>Reimplemented from <a class="el" href="class_h_t_m_l.html#a30750bdb8c1415d016b5bc2445a2d740">HTML</a>.</p>
-
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00331">331</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6bc0f04f6b065ab982e00ee3c84ce52f"></a><!-- doxytag: member="CoreForm::sendToView" ref="a6bc0f04f6b065ab982e00ee3c84ce52f" args="()" -->
+<a class="anchor" id="aeda64fd46926abe5fdf70d6bbc8900c3"></a><!-- doxytag: member="CoreForm::sendToView" ref="aeda64fd46926abe5fdf70d6bbc8900c3" args="($returnOnly=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">sendToView </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>returnOnly</em> = <code>false</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Important function to call within your controller. </p>
-<p>Call this function within your controller to automatically send the generated html of the form to your view class.</p>
-<p>Next, within your view class, you can call <a class="el" href="class_core.html#ae6b7675e89d9f097b7c500679212aef4">Core::getForm</a>($id) to gain the generated html, where $id is the class name of the form </p>
+<p>Important function to call within your <a class="el" href="class_controller.html">Controller</a> classes. </p>
+<p>Call this function within your <a class="el" href="class_controller.html">Controller</a> classes to automatically send the generated HTML of the form to your <a class="el" href="class_view.html">View</a> class.</p>
+<p>Next, within your view class, you can call <a class="el" href="class_core_view.html#ab885424c1d43ef4a1ad651e26aeb5930">CoreView::form</a>($id) to get the generated html, where $id is the class name of the form </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$returnOnly</td><td>bool</p>
+<ul>
+<li>is false by default</li>
+<li>if true, returns the generated HTML, also does not pass validation errors as <em>status</em> <em>messages</em> </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00124">124</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00126">126</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -599,45 +524,7 @@ Private Attributes</h2></td></tr>
 <p>Validation functions are located in <a class="el" href="class_core_validator.html" title="Validates user-submitted inputs.">CoreValidator</a> (in core/class directory) &amp; <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> (in custom/class directory) classes. You can define your own validation functions in <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> class.</p>
 <p>You can get complete examples in <a class="el" href="class_login.html">Login</a> &amp; <a class="el" href="class_registration.html">Registration</a> class (see source code: <a class="el" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">Login::createElements()</a> <a class="el" href="class_registration.html#ab9cc7a749f39fa604e5e065f486a7ee6">Registration::createElements()</a> ). Also, see tutorials. </p>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00194">194</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9c1d65268a0864077fbff06c4ead6724"></a><!-- doxytag: member="CoreForm::textarea" ref="a9c1d65268a0864077fbff06c4ead6724" args="($name, $value=&quot;&quot;, $attrArr=null)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">textarea </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>value</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>attrArr</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>See <a class="el" href="class_h_t_m_l.html#a9c1d65268a0864077fbff06c4ead6724">HTML::textarea()</a> for documenttion </p>
-
-<p>Reimplemented from <a class="el" href="class_h_t_m_l.html#a9c1d65268a0864077fbff06c4ead6724">HTML</a>.</p>
-
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00319">319</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00232">232</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -656,15 +543,16 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Important Function - After a user has submitted the form, call it within your controller to start form validation. </p>
-<p>Call this function within your controller to start validation of the form. Validation functions already defined using element() functions are applied one after another on each element of the form. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>array | You will need to check only the 0th element of the array, if you are using <a class="el" href="class_core_form.html#a6bc0f04f6b065ab982e00ee3c84ce52f" title="Important function to call within your controller.">sendToView()</a><ul>
+<p>Call this function within your controller to start validation of the form. Validation functions already defined using element() functions are applied one after another on each element of the form.</p>
+<p>WARNING: return type got changed. update doc </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array | You will need to check only the 0th element of the array, if you are using <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3" title="Important function to call within your Controller classes.">sendToView()</a><ul>
 <li>0th element of the array: boolean, true if all validation functions successful, false if one or more validation functions failed.</li>
 <li>1st element of the array: string, error message if validation failed</li>
 <li>2nd element of the array: string, re-generated html of the form, with user submitted values :-) </li>
 </ul>
 </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00139">139</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00158">158</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
 </div>
 </div>
@@ -676,7 +564,7 @@ Private Attributes</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_form.html">CoreForm</a>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

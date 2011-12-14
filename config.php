@@ -50,6 +50,15 @@
     define('LANDING_PAGE','index');
     
     /**
+     * Autoloads
+     */
+    
+    $pizza_autoload = array(
+        'custom' => array(),      ///< Custom Classes
+        'model' => array()    ///< MODELS
+    );
+    
+    /**
      * Debug Mode
      */
     

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: core/class/HTML.php Source File</title>
+<title>PHPizza: core/class/HTML.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -85,110 +85,154 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 <span class="comment">// Constants</span>
-<a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">// MsgBox Status related</span>
-<a name="l00006"></a>00006 define(<span class="stringliteral">&#39;MSGBOX_INFO&#39;</span>,0);
-<a name="l00007"></a>00007 define(<span class="stringliteral">&#39;MSGBOX_SUCCESS&#39;</span>,1);
-<a name="l00008"></a>00008 define(<span class="stringliteral">&#39;MSGBOX_WARNING&#39;</span>,2);
-<a name="l00009"></a>00009 define(<span class="stringliteral">&#39;MSGBOX_ERROR&#39;</span>,3);
-<a name="l00010"></a>00010 
-<a name="l00011"></a>00011 
-<a name="l00019"></a><a class="code" href="class_h_t_m_l.html">00019</a> <span class="keyword">class </span><a class="code" href="class_h_t_m_l.html" title="Generate HTML strings easily.">HTML</a>{
-<a name="l00020"></a>00020     
-<a name="l00027"></a><a class="code" href="class_h_t_m_l.html#a61e38ad0c3013529f97f09bdddd16965">00027</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#a61e38ad0c3013529f97f09bdddd16965">tr</a>($td_array) {
-<a name="l00028"></a>00028         $str = <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
-<a name="l00029"></a>00029         <span class="keywordflow">foreach</span> ($td_array as $i) {
-<a name="l00030"></a>00030             $str .= <span class="stringliteral">&quot;&lt;td&gt;$i&lt;/td&gt;&quot;</span>;
-<a name="l00031"></a>00031         }
-<a name="l00032"></a>00032         $str .= <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
-<a name="l00033"></a>00033         <span class="keywordflow">return</span> $str;
-<a name="l00034"></a>00034     }
-<a name="l00035"></a>00035     
-<a name="l00044"></a><a class="code" href="class_h_t_m_l.html#ad14b36a2a9f091ba6c852c19db8fbe97">00044</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#ad14b36a2a9f091ba6c852c19db8fbe97">lists</a>($items, $listType=<span class="stringliteral">&quot;ul&quot;</span>, $attrArr = null){
-<a name="l00045"></a>00045         $attrText = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00046"></a>00046         <span class="keywordflow">if</span> ($attrArr) {
-<a name="l00047"></a>00047             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
-<a name="l00048"></a>00048                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
+<a name="l00004"></a>00004 <span class="comment">// MsgBox Status related</span>
+<a name="l00005"></a>00005 define(<span class="stringliteral">&#39;MSGBOX_INFO&#39;</span>, 0);
+<a name="l00006"></a>00006 define(<span class="stringliteral">&#39;MSGBOX_SUCCESS&#39;</span>, 1);
+<a name="l00007"></a>00007 define(<span class="stringliteral">&#39;MSGBOX_WARNING&#39;</span>, 2);
+<a name="l00008"></a>00008 define(<span class="stringliteral">&#39;MSGBOX_ERROR&#39;</span>, 3);
+<a name="l00009"></a>00009 
+<a name="l00016"></a><a class="code" href="class_h_t_m_l.html">00016</a> <span class="keyword">class </span><a class="code" href="class_h_t_m_l.html" title="Generate HTML strings easily.">HTML</a> {
+<a name="l00017"></a>00017 
+<a name="l00023"></a><a class="code" href="class_h_t_m_l.html#aec5a705ad11741d4e741910ebff8c52d">00023</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#aec5a705ad11741d4e741910ebff8c52d">tr</a>($td_array, $type=<span class="stringliteral">&#39;tr&#39;</span>) {
+<a name="l00024"></a>00024         $str = <span class="charliteral">&#39;&lt;&#39;</span> . $type . <span class="charliteral">&#39;&gt;&#39;</span>;
+<a name="l00025"></a>00025         <span class="keywordflow">foreach</span> ($td_array as $i) {
+<a name="l00026"></a>00026             $str .= <span class="stringliteral">&quot;&lt;td&gt;$i&lt;/td&gt;&quot;</span>;
+<a name="l00027"></a>00027         }
+<a name="l00028"></a>00028         $str .= <span class="stringliteral">&#39;&lt;/&#39;</span> . $type . <span class="charliteral">&#39;&gt;&#39;</span>;
+<a name="l00029"></a>00029         <span class="keywordflow">return</span> $str;
+<a name="l00030"></a>00030     }
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032     <span class="keyword">public</span> <span class="keyword">static</span> function table($data, $attrArr=null, $insertTh=<span class="keyword">true</span>) {
+<a name="l00033"></a>00033         $attrText = <span class="stringliteral">&#39;&#39;</span>;
+<a name="l00034"></a>00034         <span class="keywordflow">if</span> ($attrArr) {
+<a name="l00035"></a>00035             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
+<a name="l00036"></a>00036                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
+<a name="l00037"></a>00037         }
+<a name="l00038"></a>00038         $str = <span class="stringliteral">&#39;&lt;table &#39;</span> . $attrText . <span class="stringliteral">&#39; &gt;&#39;</span>;
+<a name="l00039"></a>00039         <span class="keywordflow">if</span> ($insertTh) {
+<a name="l00040"></a>00040             <span class="keywordflow">foreach</span> ($data[0] as $cell)
+<a name="l00041"></a>00041                 $str .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . $cell . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00042"></a>00042             unset($data[0]);
+<a name="l00043"></a>00043         }
+<a name="l00044"></a>00044         <span class="keywordflow">foreach</span> ($data as $row) {
+<a name="l00045"></a>00045             $str .= <span class="stringliteral">&#39;&lt;tr&gt;&#39;</span>;
+<a name="l00046"></a>00046             <span class="keywordflow">foreach</span> ($row as $cell)
+<a name="l00047"></a>00047                 $str .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . $cell . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00048"></a>00048             $str .= <span class="stringliteral">&#39;&lt;/tr&gt;&#39;</span>;
 <a name="l00049"></a>00049         }
-<a name="l00050"></a>00050         $str = <span class="stringliteral">&quot;&lt;$listType $attrText&gt; \n&quot;</span>;
-<a name="l00051"></a>00051         <span class="keywordflow">foreach</span>($items as $i){
-<a name="l00052"></a>00052             $str .= <span class="stringliteral">&quot;\t &lt;li&gt;$i&lt;/li&gt; \n&quot;</span>;
-<a name="l00053"></a>00053         }
-<a name="l00054"></a>00054         $str .= <span class="stringliteral">&quot;&lt;/$listType&gt; \n&quot;</span>;
-<a name="l00055"></a>00055         <span class="keywordflow">return</span> $str;
-<a name="l00056"></a>00056     }
-<a name="l00057"></a>00057     
-<a name="l00058"></a>00058     <span class="keyword">public</span> function anchor($url, $text){
-<a name="l00059"></a>00059         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;a href = &#39;$url&#39;&gt;$text&lt;/a&gt;&quot;</span>;
-<a name="l00060"></a>00060     }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 
-<a name="l00068"></a>00068     
-<a name="l00078"></a><a class="code" href="class_h_t_m_l.html#a7d9d6e1c757b3af2726a4d347e169281">00078</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#a7d9d6e1c757b3af2726a4d347e169281">input</a>($name, $type=<span class="stringliteral">&quot;text&quot;</span>, $value=<span class="stringliteral">&quot;&quot;</span>, $attrArr = null) {
-<a name="l00079"></a>00079         <span class="comment">// generate ID</span>
-<a name="l00080"></a>00080         $id = (empty($id)) ? ($name) : ($id);
-<a name="l00081"></a>00081         $attrText = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00082"></a>00082         
-<a name="l00083"></a>00083         <span class="keywordflow">if</span> ($attrArr) {
-<a name="l00084"></a>00084             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
-<a name="l00085"></a>00085                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;input type=&#39;$type&#39; name = &#39;$name&#39; value=&#39;$value&#39; $attrText /&gt;&quot;</span>;
-<a name="l00088"></a>00088     }
-<a name="l00089"></a>00089 
-<a name="l00101"></a><a class="code" href="class_h_t_m_l.html#a30750bdb8c1415d016b5bc2445a2d740">00101</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#a30750bdb8c1415d016b5bc2445a2d740">select</a>($name, $options, $selectedValue = <span class="stringliteral">&quot;&quot;</span>, $attrArr= null) {
-<a name="l00102"></a>00102         $attrText = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00103"></a>00103         <span class="keywordflow">if</span> ($attrArr) {
-<a name="l00104"></a>00104             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
-<a name="l00105"></a>00105                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107         $str = <span class="stringliteral">&quot;&lt;select &quot;</span>;
-<a name="l00108"></a>00108         $str.= <span class="stringliteral">&quot;$attrText name = &#39;$name&#39;&gt;&quot;</span>;
-<a name="l00109"></a>00109 <span class="comment">//        var_dump($options);</span>
-<a name="l00110"></a>00110         <span class="keywordflow">foreach</span> ($options as $displayText =&gt; $value) {
-<a name="l00111"></a>00111             $selected = ($value == $selectedValue) ? (<span class="stringliteral">&quot;selected = &#39;selected&#39;&quot;</span>) : (<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00112"></a>00112             $str .= <span class="stringliteral">&quot;&lt;option $selected name = &#39;$value&#39; value = &#39;$value&#39;&gt;$displayText&lt;/option&gt;&quot;</span>;
-<a name="l00113"></a>00113         }
-<a name="l00114"></a>00114         $str .= <span class="stringliteral">&quot;&lt;/select&gt;&quot;</span>;
-<a name="l00115"></a>00115         <span class="keywordflow">return</span> $str;
-<a name="l00116"></a>00116     }
-<a name="l00117"></a>00117     
-<a name="l00126"></a><a class="code" href="class_h_t_m_l.html#a9c1d65268a0864077fbff06c4ead6724">00126</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#a9c1d65268a0864077fbff06c4ead6724">textarea</a>($name,$value = <span class="stringliteral">&quot;&quot;</span>,$attrArr=null){
-<a name="l00127"></a>00127         $attrText = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00128"></a>00128         <span class="keywordflow">if</span> ($attrArr) {
-<a name="l00129"></a>00129             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
-<a name="l00130"></a>00130                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
-<a name="l00131"></a>00131         }
-<a name="l00132"></a>00132         $str = <span class="stringliteral">&quot;&lt;textarea name = &#39;$name&#39; $attrText &gt;$value&lt;/textarea&gt;&quot;</span>; 
-<a name="l00133"></a>00133         <span class="keywordflow">return</span> $str;
-<a name="l00134"></a>00134     }
-<a name="l00135"></a>00135     
-<a name="l00136"></a>00136     
-<a name="l00138"></a>00138     
-<a name="l00149"></a><a class="code" href="class_h_t_m_l.html#ae6b07f45661867708c24c67e81d65d72">00149</a>     <span class="keyword">public</span> function <a class="code" href="class_h_t_m_l.html#ae6b07f45661867708c24c67e81d65d72">msgbox</a>($message, $mode = MSGBOX_SUCCESS, $exit = <span class="keyword">false</span>, $id = <span class="stringliteral">&quot;&quot;</span>){
-<a name="l00150"></a>00150         <span class="comment">// modes: 0: info, 1: success, 2: warning, 3: error</span>
-<a name="l00151"></a>00151         $str = <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>; 
-<a name="l00152"></a>00152         $base_style = <span class="stringliteral">&quot;border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px; background-repeat: no-repeat; background-position: 10px center; &quot;</span>;
-<a name="l00153"></a>00153         $color = array(<span class="stringliteral">&quot;00529B&quot;</span>, <span class="stringliteral">&quot;4F8A10&quot;</span>, <span class="stringliteral">&quot;9F6000&quot;</span>, <span class="stringliteral">&quot;D8000C&quot;</span>);
-<a name="l00154"></a>00154         $bgcolor = array(<span class="stringliteral">&quot;BDE5F8&quot;</span>,<span class="stringliteral">&quot;DFF2BF&quot;</span>,<span class="stringliteral">&quot;FEEFB3&quot;</span>,<span class="stringliteral">&quot;FFBABA&quot;</span>);
-<a name="l00155"></a>00155         $bgimg = array(<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00156"></a>00156         $style = $base_style . <span class="stringliteral">&quot; color: #&quot;</span> . $color[$mode] . <span class="stringliteral">&quot;; background-color: #&quot;</span> . $bgcolor[$mode] . <span class="stringliteral">&quot;; background-image: url(&#39;&quot;</span> . $bgimg[$mode] . <span class="stringliteral">&quot;&#39;);&quot;</span>;
-<a name="l00157"></a>00157         $str .= <span class="stringliteral">&quot;&lt;div id = &#39;$id&#39; style = \&quot;$style\&quot;&gt;$message&lt;/div&gt;&quot;</span>;
-<a name="l00158"></a>00158         $str .= <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00159"></a>00159         <span class="keywordflow">return</span> $str;
-<a name="l00160"></a>00160         <span class="keywordflow">if</span>($exit){
-<a name="l00161"></a>00161             exit();
-<a name="l00162"></a>00162         }
-<a name="l00163"></a>00163     }
-<a name="l00164"></a>00164     
-<a name="l00165"></a>00165 }
-<a name="l00166"></a>00166 ?&gt;
+<a name="l00050"></a>00050         $str .= <span class="stringliteral">&#39;&lt;/table&gt;&#39;</span>;
+<a name="l00051"></a>00051         <span class="keywordflow">return</span> $str;
+<a name="l00052"></a>00052     }
+<a name="l00053"></a>00053 
+<a name="l00061"></a><a class="code" href="class_h_t_m_l.html#a20e9e2f08afff53ea1c4d7a7c1dc36aa">00061</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#a20e9e2f08afff53ea1c4d7a7c1dc36aa">li</a>($items, $listType=<span class="stringliteral">&quot;ul&quot;</span>, $attrArr = null) {
+<a name="l00062"></a>00062         $attrText = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00063"></a>00063         <span class="keywordflow">if</span> ($attrArr) {
+<a name="l00064"></a>00064             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
+<a name="l00065"></a>00065                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067         $str = <span class="stringliteral">&quot;&lt;$listType $attrText&gt; \n&quot;</span>;
+<a name="l00068"></a>00068         <span class="keywordflow">foreach</span> ($items as $i) {
+<a name="l00069"></a>00069             $str .= <span class="stringliteral">&quot;\t &lt;li&gt;$i&lt;/li&gt; \n&quot;</span>;
+<a name="l00070"></a>00070         }
+<a name="l00071"></a>00071         $str .= <span class="stringliteral">&quot;&lt;/$listType&gt; \n&quot;</span>;
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> $str;
+<a name="l00073"></a>00073     }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075     <span class="keyword">public</span> <span class="keyword">static</span> function a($url, $text) {
+<a name="l00076"></a>00076         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;a href = &#39;$url&#39;&gt;$text&lt;/a&gt;&quot;</span>;
+<a name="l00077"></a>00077     }
+<a name="l00078"></a>00078 
+<a name="l00083"></a>00083 
+<a name="l00092"></a><a class="code" href="class_h_t_m_l.html#ab1fef8fd0c4bdb64f63c69c6866d9eb8">00092</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#ab1fef8fd0c4bdb64f63c69c6866d9eb8">input</a>($name, $type=<span class="stringliteral">&quot;text&quot;</span>, $value=<span class="stringliteral">&quot;&quot;</span>, $attrArr = null) {
+<a name="l00093"></a>00093         $attrText = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095         <span class="keywordflow">if</span> ($attrArr) {
+<a name="l00096"></a>00096             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
+<a name="l00097"></a>00097                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
+<a name="l00098"></a>00098         }
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;input type=&#39;$type&#39; name = &#39;$name&#39; value=&#39;$value&#39; $attrText /&gt;&quot;</span>;
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101 
+<a name="l00112"></a><a class="code" href="class_h_t_m_l.html#a3fa36717fedce1058e47efb8e4094f05">00112</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#a3fa36717fedce1058e47efb8e4094f05">select</a>($name, $options, $selectedValue = <span class="stringliteral">&quot;&quot;</span>, $attrArr= null) {
+<a name="l00113"></a>00113         $attrText = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00114"></a>00114         <span class="keywordflow">if</span> ($attrArr) {
+<a name="l00115"></a>00115             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
+<a name="l00116"></a>00116                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
+<a name="l00117"></a>00117         }
+<a name="l00118"></a>00118         $str = <span class="stringliteral">&quot;&lt;select &quot;</span>;
+<a name="l00119"></a>00119         $str.= <span class="stringliteral">&quot;$attrText name = &#39;$name&#39;&gt;&quot;</span>;
+<a name="l00120"></a>00120 <span class="comment">//        var_dump($options);</span>
+<a name="l00121"></a>00121 <span class="comment">//        print_r($selectedValue);</span>
+<a name="l00122"></a>00122 <span class="comment">//        exit();</span>
+<a name="l00123"></a>00123         <span class="keywordflow">if</span> (is_array($selectedValue)) {
+<a name="l00124"></a>00124             <span class="keywordflow">foreach</span> ($options as $displayText =&gt; $value) {
+<a name="l00125"></a>00125                 $selected = (in_array($value, $selectedValue)) ? (<span class="stringliteral">&quot;selected = &#39;selected&#39;&quot;</span>) : (<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00126"></a>00126                 $str .= <span class="stringliteral">&quot;&lt;option $selected name = &#39;$value&#39; value = &#39;$value&#39;&gt;$displayText&lt;/option&gt;&quot;</span>;
+<a name="l00127"></a>00127             }
+<a name="l00128"></a>00128         } <span class="keywordflow">else</span> {
+<a name="l00129"></a>00129             <span class="keywordflow">foreach</span> ($options as $displayText =&gt; $value) {
+<a name="l00130"></a>00130                 $selected = ($value == $selectedValue) ? (<span class="stringliteral">&quot;selected = &#39;selected&#39;&quot;</span>) : (<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00131"></a>00131                 $str .= <span class="stringliteral">&quot;&lt;option $selected name = &#39;$value&#39; value = &#39;$value&#39;&gt;$displayText&lt;/option&gt;&quot;</span>;
+<a name="l00132"></a>00132             }
+<a name="l00133"></a>00133         }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135         $str .= <span class="stringliteral">&quot;&lt;/select&gt;&quot;</span>;
+<a name="l00136"></a>00136         <span class="keywordflow">return</span> $str;
+<a name="l00137"></a>00137     }
+<a name="l00138"></a>00138 
+<a name="l00146"></a><a class="code" href="class_h_t_m_l.html#adacd575a4c22b9953e783d3be88e91c7">00146</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#adacd575a4c22b9953e783d3be88e91c7">textarea</a>($name, $attrArr=null, $value = <span class="stringliteral">&quot;&quot;</span>) {
+<a name="l00147"></a>00147         $attrText = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00148"></a>00148         <span class="keywordflow">if</span> ($attrArr) {
+<a name="l00149"></a>00149             <span class="keywordflow">foreach</span> ($attrArr as $k =&gt; $v)
+<a name="l00150"></a>00150                 $attrText .= <span class="stringliteral">&quot;$k = &#39;$v&#39; &quot;</span>;
+<a name="l00151"></a>00151         }
+<a name="l00152"></a>00152         $str = <span class="stringliteral">&quot;&lt;textarea name = &#39;$name&#39; $attrText &gt;$value&lt;/textarea&gt;&quot;</span>;
+<a name="l00153"></a>00153         <span class="keywordflow">return</span> $str;
+<a name="l00154"></a>00154     }
+<a name="l00155"></a>00155 
+<a name="l00163"></a><a class="code" href="class_h_t_m_l.html#a857f1e1f6b54da299c24c32a3b540c21">00163</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#a857f1e1f6b54da299c24c32a3b540c21">dummy</a>($name, $attrArr=null, $value=<span class="stringliteral">&#39;&#39;</span>) {
+<a name="l00164"></a>00164         <span class="comment">// Does nothing!</span>
+<a name="l00165"></a>00165     }
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167 <span class="comment">//    public static function checkbox($name,$options,$value=&#39;&#39;,$attrArr=null,$breakStr = &#39;&lt;br /&gt;&#39;){</span>
+<a name="l00168"></a>00168 <span class="comment">//        $str = </span>
+<a name="l00169"></a>00169 <span class="comment">//    }</span>
+<a name="l00171"></a>00171 <span class="comment"></span>
+<a name="l00181"></a><a class="code" href="class_h_t_m_l.html#aa7dcef842ac03e9b4a91772067d80b20">00181</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#aa7dcef842ac03e9b4a91772067d80b20">msgbox</a>($message, $mode = MSGBOX_SUCCESS, $exit = <span class="keyword">false</span>, $id = <span class="stringliteral">&quot;&quot;</span>) {
+<a name="l00182"></a>00182         <span class="comment">// modes: 0: info, 1: success, 2: warning, 3: error</span>
+<a name="l00183"></a>00183         $str = <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
+<a name="l00184"></a>00184         $base_style = <span class="stringliteral">&quot;border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px; background-repeat: no-repeat; background-position: 10px center; &quot;</span>;
+<a name="l00185"></a>00185         $color = array(<span class="stringliteral">&quot;00529B&quot;</span>, <span class="stringliteral">&quot;4F8A10&quot;</span>, <span class="stringliteral">&quot;9F6000&quot;</span>, <span class="stringliteral">&quot;D8000C&quot;</span>);
+<a name="l00186"></a>00186         $bgcolor = array(<span class="stringliteral">&quot;BDE5F8&quot;</span>, <span class="stringliteral">&quot;DFF2BF&quot;</span>, <span class="stringliteral">&quot;FEEFB3&quot;</span>, <span class="stringliteral">&quot;FFBABA&quot;</span>);
+<a name="l00187"></a>00187         $bgimg = array(<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00188"></a>00188         $style = $base_style . <span class="stringliteral">&quot; color: #&quot;</span> . $color[$mode] . <span class="stringliteral">&quot;; background-color: #&quot;</span> . $bgcolor[$mode] . <span class="stringliteral">&quot;; background-image: url(&#39;&quot;</span> . $bgimg[$mode] . <span class="stringliteral">&quot;&#39;);&quot;</span>;
+<a name="l00189"></a>00189         $str .= <span class="stringliteral">&quot;&lt;div id = &#39;$id&#39; style = \&quot;$style\&quot;&gt;$message&lt;/div&gt;&quot;</span>;
+<a name="l00190"></a>00190         $str .= <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
+<a name="l00191"></a>00191         <span class="keywordflow">return</span> $str;
+<a name="l00192"></a>00192         <span class="keywordflow">if</span> ($exit) {
+<a name="l00193"></a>00193             exit();
+<a name="l00194"></a>00194         }
+<a name="l00195"></a>00195     }
+<a name="l00196"></a>00196 
+<a name="l00208"></a><a class="code" href="class_h_t_m_l.html#a16f584dbbe6e3abd7fb5205ece2f97f8">00208</a>     <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_h_t_m_l.html#a16f584dbbe6e3abd7fb5205ece2f97f8">toggleDiv</a>($title, $content, $initiallyVisible = <span class="keyword">false</span>, $divId = <span class="stringliteral">&quot;&quot;</span>, $titleType = <span class="stringliteral">&quot;h4&quot;</span>) {
+<a name="l00209"></a>00209         $display = ($initiallyVisible) ? (<span class="stringliteral">&quot;block&quot;</span>) : (<span class="stringliteral">&quot;none&quot;</span>);
+<a name="l00210"></a>00210         $divId = ($divId) ? ($divId) : (<span class="stringliteral">&quot;tdiv-&quot;</span> . rand());
+<a name="l00211"></a>00211 
+<a name="l00212"></a>00212         $html = <span class="stringliteral">&quot;&lt;$titleType title = &#39;Click to expand&#39; onclick = \&quot;$(&#39;.toggledDivs&#39;).hide(); $(&#39;#$divId&#39;).toggle();\&quot; style = &#39;cursor:pointer; color:#817339;&#39;&gt;$title&lt;/$titleType&gt;&quot;</span>;
+<a name="l00213"></a>00213         $html .= <span class="stringliteral">&quot;&lt;div style = &#39;display:$display;&#39; class = &#39;toggledDivs&#39; id = &#39;$divId&#39;&gt;&quot;</span>;
+<a name="l00214"></a>00214         $html .= <span class="stringliteral">&quot;$content&lt;/div&gt;&lt;br /&gt;&quot;</span>;
+<a name="l00215"></a>00215         <span class="keywordflow">return</span> $html;
+<a name="l00216"></a>00216     }
+<a name="l00217"></a>00217 
+<a name="l00218"></a>00218 }
+<a name="l00219"></a>00219 
+<a name="l00220"></a>00220 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>HTML.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

@@ -20,8 +20,7 @@ class View extends Template{
         // Set titles & other attributes here
         // For demonstration, we're using the value set by the controller
           //  Get the instance
-        $this->title = $this->core->getData('title');
-        $this->heading = "Welcome to the landing page!";
+        $this->heading = "Fast, Devs-friendly MVC framework for Professional PHP Developers";
     }
     
     

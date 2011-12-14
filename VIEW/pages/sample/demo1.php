@@ -33,7 +33,7 @@ class View extends Template{
                     <br />
                     
         <?php
-            echo $this->core->getData("mainContent");
+            echo $this->mainContent;    // This mainContent variable was set from Controller. :P
     }
 }
 

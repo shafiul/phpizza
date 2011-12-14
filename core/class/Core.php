@@ -2,7 +2,7 @@
 
 // define some paths
 
-$pizza__CorePath =  PROJECT_DIR . "/core";
+$pizza__CorePath = PROJECT_DIR . "/core";
 $pizza__CustomPath = PROJECT_DIR . "/" . CUSTOM_DIR;
 
 // Include required Classes
@@ -23,10 +23,41 @@ require "$pizza__CustomPath/class/Validator.php";
  * Autoloading Custom Classes - custom classes exist in custom/class directory.
  * @param type $className 
  */
-
-function __autoload($className){
+function __autoload($className) {
     require PROJECT_DIR . "/custom/class/$className.php";
 }
+
+
+/**
+ * Initiates Pizza!
+ */
+
+final class PHPizza{
+    private $core;
+    public $view;
+    public $validate;
+    
+    /**
+     * Fire up PHPizza Core!
+     */
+    
+    function __construct() {
+        $this->core = new Core();
+        $this->view = $this->core->view;
+        $this->validate = $this->core->validate;
+    }
+    
+    
+    /**
+     * Just calls Core::loadMVC($page)
+     */
+    
+    public function loadMVC($page){
+        $this->core->loadMVC($page);
+    }
+    
+}
+
 
 /** \brief The Most important class - makes the framework working! 
  * 
@@ -36,10 +67,10 @@ function __autoload($className){
  * global $core;
  * In fact, this $core variable is the only thing you need. See it's member variables
  */
+class Core {
 
-class Core{
     public $funcs;  ///<    An object of class: Funcs
-    public $html;   ///<    An object of class: HTML
+//    public $html;   ///<    An object of class: HTML
     public $validate;   ///<    An object of class:  Validator 
     public $view;   ///<    An object of class: CustomView
     public $controller; ///<    An object of class: Controller
@@ -49,24 +80,23 @@ class Core{
     // Others
     public $template;  ///<    Name of the template. This must be name of the template's folder under "templates" directory.
     public $templateFileName;   ///< name of the file to load under this template's directory. Default value is "index.php". You can change it before calling loadView()
-    private $data;  ///<    Key-value array for containing variables, which are passed from Controller to View.
-    private $isStatic; ///< true if the page is static: no controller to load, view automatically called.
+    public $data;  ///<    Key-value array for containing variables.
+    public $cData; ///<    data passing from Controller to View class
+    public $isStatic; ///< true if the page is static: no controller to load, view automatically called.
     // Load sttus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
     public $viewLoaded = false;         ///<    Boolean, true if view class loaded.        
-    
     // vars for internal use. Don't use/depend on any of these in your code
-    
-    private $__coreDir;
-    private $__autoloaded;
+
+    public $coreDir;
+    public $autoloadedData;
     private $__version;                 ///< Core Version
-    
     // Internal
-    
+
     private $oneModelLoaded = false;    ///< Whether CoreModel & DB driver already loaded
-    
+
     // constructor
-    
+
     /**
      * Constractor.
      * - Initializes member variables
@@ -74,10 +104,9 @@ class Core{
      * @param None
      * @return None
      */
-    
     public function __construct() {
-        $this->__version = "1.0.0";
-        $this->html = new HTML();
+        $this->__version = "1.1.0";
+//        $this->html = new HTML();
         $this->funcs = new Funcs($this);
         $this->validate = new Validator($this);
         // Set some default characteristics
@@ -88,19 +117,19 @@ class Core{
         $this->template = SITE_THEME;  //  Can load from DB too.
         $this->templateFileName = "index.php";
         // Set up internal vars
-        $this->__coreDir = PROJECT_DIR . "/core";
+        $this->coreDir = PROJECT_DIR . "/core";
     }
-    
+
     /**
-     * Get PHPizza Version
+     * Returns current PHPizza Version
+     * @return string
      */
-    
-    public function getVersion(){
+    public function getVersion() {
         return $this->__version;
     }
-    
+
     /* Loaders */
-    
+
     /**
      * Use this function to Load a Model class. You can load any number of model classes.
      * 
@@ -108,58 +137,29 @@ class Core{
      * @param string $model name of the Model class. This class must reside under MODEL directory.
      * @return object of newly loaded model.
      */
-    
-    public function loadModel($model){
-        if(!$this->oneModelLoaded){
+    public function loadModel($model) {
+        if (!$this->oneModelLoaded) {
             // First include once core model class
-            require_once $this->__coreDir . "/class/CoreModel.php";
+            require_once $this->coreDir . "/class/CoreModel.php";
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
         }
-        
+
         $filename = PROJECT_DIR . "/" . MODEL_DIR . "/$model.php";
         require_once $filename;
         $className = end(explode("/", $model));
         $var = new $className($this);
         return $var;
     }
-    
-    /**
-     * Use this function to Load a View class. You should load ONLY ONE view class for a "page".
-     * Call this function within your constructor EXPLICITLY. If you forget to call this function, No VIEW will be loaded!
-     *  - However, this function is automatically called by the Core if user is requesting some "static" page (page with no controller).
-     * @param string $view name of the View class. This class must extend CustomView & reside under VIEW/pages/ directory.
-     *  - if you don't pass the parameter, default view for the page gets loaded.
-     */
-    
-    public function loadView($view=""){
-        if(empty ($view))
-            $view = $this->page;
-        // First, load the CoreView Class
-        require $this->__coreDir . "/class/CoreView.php";
-        // Next, load template class from template folder
-        $template = $this->template;
-        require  PROJECT_DIR . "/" . TEMPLATE_DIR . "/$template/Template.php";
-        // Load the specific VIEW class.
-        $filename = PROJECT_DIR . "/" . VIEW_DIR . "/pages/$view.php";
-        $this->viewLoaded = true;
-        $requireResult = $this->safeRequire($filename);
-        if($this->isStatic && !$requireResult){
-//            $this->viewLoaded = false;
-            echo 'Error 404: This static page is currently unavailble!';
-            exit();
-        }
-    }
-    
+
     /**
      * Use this function where appropriate (maybe within Template class or in your VIEW classes) to load
      * the "%HTML Blocks" - you can find some sample classes in GeneralLinks and FormLinks classes.
      * @param string $block name of the file. This file must reside in VIEW/blocks/ directory. 
      * @return object of newly created block.
      */
-    
-    public function loadBlock($block){
+    public function loadBlock($block) {
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
         $filename = PROJECT_DIR . "/" . VIEW_DIR . "/blocks/$block.php";
         require $filename;
@@ -167,96 +167,82 @@ class Core{
         $var = new $className($this);
         return $var;
     }
-    
+
     /**
      * This function loads a Controller class. 
      * - You should NEVER call this function! As this function is automatically called by the framework.
      * 
      * @param string $controller name of the controller class
      */
-    
-    private function loadController($controller){
+    private function loadController($controller) {
         // Load Core Controller
-        require $this->__coreDir . "/class/CoreController.php";
+        require $this->coreDir . "/class/CoreController.php";
         // Load this specific controller
         $filename = PROJECT_DIR . "/" . CONTROL_DIR . "/$controller.php";
         $this->controllerLoaded = true;
-        if(file_exists($filename)){
+        if (file_exists($filename)) {
             require $filename;
             // Also, generate the controller object & call "functionToCall"
             $this->generateControllerObject();  // Controller Called!
-        }else{
+        } else {
             echo "Error 404: Page Not Found";
             exit();
         }
-        
     }
-    
+
+    /**
+     * Use this function to Load a View class. You should load ONLY ONE view class for a "page".
+     * Call this function within your constructor EXPLICITLY. If you forget to call this function, No VIEW will be loaded!
+     *  - However, this function is automatically called by the Core if user is requesting some "static" page (page with no controller).
+     * @param string $view name of the View class. This class must extend CustomView & reside under VIEW/pages/ directory.
+     *  - if you don't pass the parameter, default view for the page gets loaded.
+     */
+    public function loadView($view="") {
+        if (empty($view))
+            $view = $this->page;
+        // First, load the CoreView Class
+        require $this->coreDir . "/class/CoreView.php";
+        // Next, load template class from template folder
+        $template = $this->template;
+        require PROJECT_DIR . "/" . TEMPLATE_DIR . "/$template/Template.php";
+        // Load the specific VIEW class.
+        $filename = PROJECT_DIR . "/" . VIEW_DIR . "/pages/$view.php";
+        $this->viewLoaded = true;
+        $requireResult = $this->safeRequire($filename);
+        if ($this->isStatic && !$requireResult) {
+//            $this->viewLoaded = false;
+            $this->fatal('Error 404: This static page is currently unavailble!');
+        }
+    }
+
     /**
      * Call this from your controller to load a "Custom Class"
+     * THIS FUNCTION IS DEPRECATED - YOU DO NOT NEED TO CALL ANYTHING TO LOAD A CUSTOM CLASS, 
+     * THEY ARE AUTOMATICALLY LOADED!
      * @param string $className name of the class. This class must reside in CUSTOM/class directory.
      * @return bool true in success, false otherwise 
      */
-    
-    public function loadCustomClass($className){
+    public function loadCustomClass($className) {
         $classPath = PROJECT_DIR . "/" . CUSTOM_DIR . "/class/$className.php";
         return $this->safeRequireOnce($classPath);
     }
-    
-    /**
-     * Call this from your controller to load a "Custom Functions" file
-     * @param string $funcFile name of the file. This file must reside in CUSTOM/funcs directory.
-     * @return bool true in success, false otherwise 
-     */
-    
-    
-    public function load3p($fileName){
-        require_once PROJECT_DIR . '/' . THIRDPARTY_DIR . '/' . $fileName . '.php';
-    }
-    
-    public function loadCustomFunctions($funcFile){
-        $classPath = PROJECT_DIR . "/" . CUSTOM_DIR . "/funcs/$funcFile.php";
-        return $this->safeRequireOnce($classPath);
-    }
-    
-    /**
-     * Call this from your controller to load a Form
-     * 
-     * WARNING: No directory hierarchy is supported under VIEW/forms directory. That means, all of your forms 
-     * must reside in VIEW/forms directory, you can not create directory & load forms from them!
-     * 
-     * @param string $formName name of the class. This class must extend CoreForm & reside in VIEW/forms directory.
-     * @return object of newly created class
-     */
-    
-    public function loadForm($formName){
-        // First include core form
-        require_once $this->__coreDir . "/class/CoreForm.php";
-        // Now include particular form
-        $classPath = PROJECT_DIR . "/" . FORMS_DIR . "/$formName.php";
-        require $classPath;
-        $var = new $formName($this);
-        return $var;
-    }
-    
+
     /**
      * Loads necessary model classes. Must be called before database functionality.
      * 
      * Demo code is available at CustomModel class. So if your model class extends CustomModel, you do not need to call this function explicitly!
      * @param string $driver name of the database driver, i.e MySQL
      */
-    
-    public function loadDatabaseDriver(){
+    public function loadDatabaseDriver() {
         $driver = DB_DRIVER;
-        require_once $this->__coreDir . "/class/db/GenericDB.php";   //  Generic database loaded
+        require_once $this->coreDir . "/class/db/GenericDB.php";   //  Generic database loaded
         // Load implemented driver
-        require_once $this->__coreDir . "/class/db/$driver.php";
+        require_once $this->coreDir . "/class/db/$driver.php";
     }
-    
-    
+
     /* Template Related */
-    
-    
+
+
     /**
      * Call this withing your Controller to set a different template, other than the Default one.
      * This change will be valid only for the current "page"
@@ -264,16 +250,11 @@ class Core{
      * @param string $theme name of the template
      * @return None
      */
-    
 //    public function setTemplate($theme){
 //        $this->template = $theme;
 //    }
-    
-    
-
-
     // Data passing across controller-view 
-    
+
     /**
      * Use this function within your controller to pass a variable to View.
      * Within View, you can get the data by calling getData() , $id is the ID of the variable.
@@ -281,94 +262,73 @@ class Core{
      * @param variable $data The actual variable you want to pass.
      * @return None 
      */
-    
-    public function setData($id,$data){
+    public function setData($id, $data) {
         $this->data[$id] = $data;
     }
-    
+
     /**
      * Use this function within your View to retrive the variable you passed within your controller.
      * @param string $id ID you used when calling setData()
      * @return variable you passed using setData() - if you provide valid ID
      * @return bool false - if you provide invalid ID
      */
-    
-    public function getData($id){
-        if(isset ($this->data[$id]))
+    public function getData($id) {
+        if (isset($this->data[$id]))
             return $this->data[$id];
         else
             return false;
     }
-    
-    // Form Related
-    
-    /**
-     * Call this function within your View to get html string of a form.
-     * - Before calling this function, within your Controller prepare the form & call CoreForm::sendToView() , see CoreForm documentation 
-     * @param string $formClassName name of the form - this form must exist in VIEW/forms directory.
-     * @return string html data of the form, or an error string if the form was not set within controller.
-     */
-    
-    public function getForm($formClassName){
-        $formClassName = $formClassName;
-//        print_r($this->formData);
-        return (isset ($this->formData[$formClassName]))?($this->formData[$formClassName]):("Error: $formClassName form not found!");
-    }
-    
-    
-    
-    
+
     /**
      * This function is used to safely load a php file. you can use it instead of require_once()
      * @param string $filename name of the file to load
      * @return bool true if file found, false otherwise. 
      */
-    
-    public function safeRequireOnce($filename){
-        if(file_exists($filename)){
+    public function safeRequireOnce($filename) {
+        if (file_exists($filename)) {
             require_once $filename;
             return true;
-        }else{
+        } else {
 //            $this->debug ("File $filename Not found!");
             return false;
         }
-    }
-    
-    public function safeRequire($filename){
-        if(file_exists($filename)){
-            require $filename;
-            return true;
-        }else{
-//            $this->debug ("File $filename Not found!");
-            return false;
-        }
-    }
-    
-    private function loadLang(){
-        if(defined('DEFAULT_LANG'))
-            require_once PROJECT_DIR . '/' . 'lang/' . DEFAULT_LANG . '.php';
     }
 
+    public function safeRequire($filename) {
+        if (file_exists($filename)) {
+            require $filename;
+            return true;
+        } else {
+//            $this->debug ("File $filename Not found!");
+            return false;
+        }
+    }
+
+    /**
+     * Locale - still testing.
+     */
+    private function loadLang() {
+        if (defined('DEFAULT_LANG'))
+            require_once PROJECT_DIR . '/' . 'lang/' . DEFAULT_LANG . '.php';
+    }
 
     /** @name Functions for Internal Use
      * These functions are used internally by the framework.
      * - You should NEVER call these functions! As they are automatically called by the framework.
      */
-    
     //@{
-    
+
     /**
      * Echoes the string provided as parameter $str if DEBUG_MODE is set true.
      * @param string $str the string to echo.
      */
-    
-    public function debug($str){
-        if(DEBUG_MODE)
+    public function debug($str) {
+        if (DEBUG_MODE)
             echo "<pre>$str</pre>";
     }
-    
+
     /* Useful functions for index page */
-    
+
     /**
      * Used to load the default controller.
      * 
@@ -379,8 +339,7 @@ class Core{
      * @param string $page "The Page"
      * @return None
      */
-    
-    public function loadMVC($page){
+    public function loadMVC($page) {
         // Automatic Model, View loading no longer supported!
         $this->findPage($page);
         // Autoload Lang
@@ -388,10 +347,10 @@ class Core{
         // Autoloading
         $this->autoloadFromConfig();
         // Load Controllers/Views
-        if($this->isStatic){
+        if ($this->isStatic) {
             // No controller. Load view
             $this->loadView();  //  Default view is loaded
-        }else{
+        } else {
             // Load Controller.
             $this->loadController($this->page);
         }
@@ -399,167 +358,163 @@ class Core{
         $this->generateViewObject();
         // Load Site Template
         $this->loadTemplate();
-        
     }
-    
+
     /**
      * Loads necessary files (mainly index.php) from templates/<SELECTED TEMPLATE> folder.
      * - You should NEVER call this function! As this function is internally called by the framework. 
      */
-    
-    private function loadTemplate(){
-        if($this->viewLoaded){
+    private function loadTemplate() {
+        if ($this->viewLoaded) {
             $template = $this->template;
             $templateIndex = PROJECT_DIR . "/" . TEMPLATE_DIR . "/$template/" . $this->templateFileName;
             require $templateIndex;
         }
     }
-    
+
     /**
      * Creates an object of the View class.
      * - You should NEVER call this function! As this function is automatically called by the framework. 
      */
-    
-    private function generateViewObject(){
-        if($this->viewLoaded){
+    private function generateViewObject() {
+        if ($this->viewLoaded) {
             $this->view = new View($this);
+            // create a global instance
+            global $__viewInstance;
+            $__viewInstance = $this->view;
             // Check static permission
-            if($this->isStatic && !$this->view->staticLoadAllowed){
-                echo "Error: Loading this page statically is denied.";
-                exit();
+            if ($this->isStatic && !$this->view->__staticLoadAllowed) {
+                $this->fatal('Error: Loading this page statically is denied.');
             }
             // Set the template: important
             $this->view->template = $this->template;
-        }else{
+            // Pass data set from controller
+            if (!empty($this->cData)) {
+                foreach ($this->cData as $varName => $varValue) {
+                    $this->view->$varName = $varValue;
+                }
+            }
+        } else {
             // Check if controller loaded
-            if(!$this->controllerLoaded){
+            if (!$this->controllerLoaded) {
                 // Invalid request. report 404
                 header("HTTP/1.0 404 Not Found");
                 echo "Error 404 Page not found!";
-                exit(0);  
+                exit(0);
             }
 //            $this->debug("View Not Loaded");
         }
     }
-    
+
     // Controller related
-    
+
     /**
      * Creates object of the Controller class. Also calls the function specified by "functionToCall"
      * - You should NEVER call this function! As this function is automatically called by the framework. 
      */
-    
-    public function generateControllerObject(){
+    public function generateControllerObject() {
         $this->controller = new Controller($this);
-        if(method_exists($this->controller, $this->functionToCall))
+        if (method_exists($this->controller, $this->functionToCall))
             call_user_func(array($this->controller, $this->functionToCall));
-        else{
+        else {
             header("HTTP/1.0 404 Not Found");
-                echo "Error 404: Requested controller-method not found!";
+            echo "Error 404: Requested controller-method not found!";
             exit();
         }
     }
-    
+
     // Utility Functions
-    
+
     /**
      * Used internally to find out the "page" & "functionToCall"
      * - THIS IS USED INTERNALLY, NEVER CALL THIS FUNCTION! 
      * @param string $URL the query string user provided
      * @return None 
      */
-    
-    private function findPage($URL){
-        $pageArr  = explode("/", $URL);
+    private function findPage($URL) {
+        $pageArr = explode("/", $URL);
         $numSegments = count($pageArr);
-        
-        if($numSegments == 1 && $pageArr[0] != "static"){
+
+        if ($numSegments == 1 && $pageArr[0] != "static") {
             $this->page = $URL;
             $this->functionToCall = DEFAULT_FUNCTION2CALL;
-        }else{
+        } else {
             // Handle static pages first.
-            if($pageArr[0] == "static"){
+            if ($pageArr[0] == "static") {
                 // STATIC: No controller here.
                 $this->isStatic = true;
-                unset ($pageArr[0]);
+                unset($pageArr[0]);
                 $this->page = implode("/", $pageArr);
-            }else{
+            } else {
                 // DYNAMIC
                 // Check if full path exists
                 $controllerPath = PROJECT_DIR . "/" . CONTROL_DIR . "/$URL.php";
-                if(file_exists($controllerPath)){
+                if (file_exists($controllerPath)) {
                     $this->page = $URL;
                     $this->functionToCall = DEFAULT_FUNCTION2CALL;
-                }else{
+                } else {
                     // Check later.
                     $this->functionToCall = $pageArr[$numSegments - 1];
                     unset($pageArr[$numSegments - 1]);
                     $this->page = implode("/", $pageArr);
                 }
-            }    
+            }
         }
 //        $this->debug("Page: " . $this->page . " FunctionToCall: " . $this->functionToCall);
     }
-    
+
     /**
      *
      * @global array $pizza_autoload 
      */
-    
-    
-    private function autoloadFromConfig(){
+    private function autoloadFromConfig() {
         global $pizza_autoload;
         $al = $pizza_autoload;
-        
+
         // Custom Function
-        if(isset ($al['func'])){
-            foreach ($al['func'] as $className){
+        if (isset($al['func'])) {
+            foreach ($al['func'] as $className) {
                 require PROJECT_DIR . '/' . CUSTOM_DIR . '/funcs/' . $className . '.php';
             }
         }
-        
+
         // Custom classes
-        if(isset ($al['custom'])){
-            foreach ($al['custom'] as $className){
+        if (isset($al['custom'])) {
+            foreach ($al['custom'] as $className) {
                 require PROJECT_DIR . "/" . CUSTOM_DIR . "/class/$className.php";
-                $this->__autoloaded['custom'][$className] = new $className($this);
+                $this->autoloadedData['custom'][$className] = new $className($this);
             }
         }
         // MODELS
-        if(isset ($al['model'])){
+        if (isset($al['model'])) {
             // First include once core model class
-            require_once $this->__coreDir . "/class/CoreModel.php";
+            require_once $this->coreDir . "/class/CoreModel.php";
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
             // Include all models
-            foreach ($al['model'] as $className){
+            foreach ($al['model'] as $className) {
                 require PROJECT_DIR . '/' . MODEL_DIR . '/' . $className . '.php';
-                $this->__autoloaded['model'][$className] = new $className($this);
+                $this->autoloadedData['model'][$className] = new $className($this);
             }
         }
-        
     }
-    
-    /**
-     * Get instance of an autoloaded class. This can be autoloaded Custom Class or Model
-     * @param type $className
-     * @param string $type - This can be any of 'custom' or 'model'
-     * @return object - instance of the autoloaded class if successful. FALSE otherwise 
-     */
-    
-    public function autoload($className,$type='custom'){
-        return (isset ($this->__autoloaded[$type][$className]))?($this->__autoloaded[$type][$className]):(false);
-    }
-    
-    public function getPage(){
+
+    public function getPage() {
         return $this->page;
     }
 
-
     //@}
-    
-    
+
+    /**
+     * Generate FATAL Errors - should end executing.
+     * @param type $msg 
+     */
+    public function fatal($msg) {
+        echo $msg;
+        exit();
+    }
+
 }
 
 ?>

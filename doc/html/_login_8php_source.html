@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: VIEW/forms/Login.php Source File</title>
+<title>PHPizza: VIEW/forms/Login.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -105,34 +105,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00021"></a>00021         $this-&gt;action = <a class="code" href="general_8php.html#ab39f151a1e427d9e0a88b93df2388bb1">url</a>(<span class="stringliteral">&quot;login/submit&quot;</span>);
 <a name="l00022"></a>00022         $this-&gt;submitButtonText = <span class="stringliteral">&quot;Log In!&quot;</span>;
 <a name="l00023"></a>00023         $this-&gt;tableCellSpacing = <span class="stringliteral">&quot;10px&quot;</span>;
-<a name="l00024"></a>00024     }
-<a name="l00025"></a>00025     
-<a name="l00026"></a><a class="code" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">00026</a>     function <a class="code" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">createElements</a>(){
-<a name="l00027"></a>00027         <span class="comment">// This function should be present</span>
-<a name="l00028"></a>00028         <span class="comment">// </span>
-<a name="l00029"></a>00029         <span class="comment">// Generate form elements</span>
-<a name="l00030"></a>00030         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a> = array();
-<a name="l00031"></a>00031         
-<a name="l00032"></a>00032         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;email&#39;</span>] = array(<span class="stringliteral">&quot;Email&quot;</span>,<span class="stringliteral">&quot;email&quot;</span>,<span class="stringliteral">&quot;input&quot;</span>);
-<a name="l00033"></a>00033         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;passwd&#39;</span>] = array(<span class="stringliteral">&quot;Password&quot;</span>,<span class="stringliteral">&quot;required|htmlspecialchars&quot;</span>,<span class="stringliteral">&quot;input&quot;</span>,array(
-<a name="l00034"></a>00034             <span class="stringliteral">&quot;password&quot;</span>
-<a name="l00035"></a>00035         ));
-<a name="l00036"></a>00036         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;comment&#39;</span>] = array(<span class="stringliteral">&#39;Comment (optional)&#39;</span>, <span class="stringliteral">&#39;htmlspecialchars&#39;</span>,<span class="stringliteral">&quot;textarea&quot;</span>);
-<a name="l00037"></a>00037         
-<a name="l00038"></a>00038         $this-&gt;<a class="code" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">setElements</a>(<a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>);
-<a name="l00039"></a>00039     }
-<a name="l00040"></a>00040     
-<a name="l00041"></a>00041     
-<a name="l00042"></a>00042     
-<a name="l00043"></a>00043 }
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045 ?&gt;
+<a name="l00024"></a>00024         
+<a name="l00025"></a>00025         <span class="comment">// Set some validators</span>
+<a name="l00026"></a>00026         
+<a name="l00027"></a>00027         $this-&gt;validators = array(
+<a name="l00028"></a>00028             <span class="stringliteral">&#39;email&#39;</span> =&gt; array(<span class="stringliteral">&#39;Email&#39;</span>, <span class="stringliteral">&#39;email&#39;</span>),
+<a name="l00029"></a>00029             <span class="stringliteral">&#39;passwd&#39;</span> =&gt; array(<span class="stringliteral">&#39;Password&#39;</span>, <span class="stringliteral">&#39;required|htmlspecialchars&#39;</span>),
+<a name="l00030"></a>00030             <span class="stringliteral">&#39;comment&#39;</span> =&gt; array(<span class="stringliteral">&#39;Comment (optional)&#39;</span>, <span class="stringliteral">&#39;htmlspecialchars&#39;</span>)
+<a name="l00031"></a>00031         );
+<a name="l00032"></a>00032         
+<a name="l00033"></a>00033     }
+<a name="l00034"></a>00034     
+<a name="l00035"></a><a class="code" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">00035</a>     function <a class="code" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">createElements</a>(){
+<a name="l00036"></a>00036         <span class="comment">// This function should be present</span>
+<a name="l00037"></a>00037         <span class="comment">// </span>
+<a name="l00038"></a>00038         <span class="comment">// Generate form elements</span>
+<a name="l00039"></a>00039         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a> = array();
+<a name="l00040"></a>00040         
+<a name="l00041"></a>00041         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;email&#39;</span>] = array(<span class="stringliteral">&quot;input&quot;</span>);
+<a name="l00042"></a>00042         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;passwd&#39;</span>] = array(<span class="stringliteral">&quot;input&quot;</span>,array(<span class="stringliteral">&quot;password&quot;</span>));
+<a name="l00043"></a>00043         <a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>[<span class="stringliteral">&#39;comment&#39;</span>] = array(<span class="stringliteral">&quot;textarea&quot;</span>);
+<a name="l00044"></a>00044         
+<a name="l00045"></a>00045         $this-&gt;<a class="code" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">setElements</a>(<a class="code" href="class_core_form.html#ad18dd8fbe31b294e2bc4711dcde4548d" title="Key-value array for storing form elements.">$elements</a>);
+<a name="l00046"></a>00046     }
+<a name="l00047"></a>00047     
+<a name="l00048"></a>00048     
+<a name="l00049"></a>00049     
+<a name="l00050"></a>00050 }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>Login.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

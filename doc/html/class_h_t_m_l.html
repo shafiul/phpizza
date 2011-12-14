@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: HTML Class Reference</title>
+<title>PHPizza: HTML Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
 <h1>HTML Class Reference</h1>  </div>
 </div>
@@ -95,39 +95,82 @@ Inheritance diagram for HTML:</div>
  <div class="center">
   <img src="class_h_t_m_l.png" usemap="#HTML_map" alt=""/>
   <map id="HTML_map" name="HTML_map">
-<area href="class_blocks.html" alt="Blocks" shape="rect" coords="0,56,78,80"/>
-<area href="class_core_form.html" alt="CoreForm" shape="rect" coords="88,56,166,80"/>
-<area href="class_core_view.html" alt="CoreView" shape="rect" coords="220,56,298,80"/>
-<area href="class_login.html" alt="Login" shape="rect" coords="44,112,122,136"/>
-<area href="class_registration.html" alt="Registration" shape="rect" coords="132,112,210,136"/>
-<area href="class_template.html" alt="Template" shape="rect" coords="220,112,298,136"/>
+<area href="class_blocks.html" alt="Blocks" shape="rect" coords="0,56,49,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a61e38ad0c3013529f97f09bdddd16965">tr</a> ($td_array)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#ad14b36a2a9f091ba6c852c19db8fbe97">lists</a> ($items, $listType=&quot;ul&quot;, $attrArr=null)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af65d819e9aa7eed68a2f0acee1eca1e3"></a><!-- doxytag: member="HTML::anchor" ref="af65d819e9aa7eed68a2f0acee1eca1e3" args="($url, $text)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>anchor</b> ($url, $text)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#ae6b07f45661867708c24c67e81d65d72">msgbox</a> ($message, $mode=MSGBOX_SUCCESS, $exit=false, $id=&quot;&quot;)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#aec5a705ad11741d4e741910ebff8c52d">tr</a> ($td_array, $type='tr')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfa951180250871a44d17d340be32d80"></a><!-- doxytag: member="HTML::table" ref="adfa951180250871a44d17d340be32d80" args="($data, $attrArr=null, $insertTh=true)" -->
+static&#160;</td><td class="memItemRight" valign="bottom"><b>table</b> ($data, $attrArr=null, $insertTh=true)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a20e9e2f08afff53ea1c4d7a7c1dc36aa">li</a> ($items, $listType=&quot;ul&quot;, $attrArr=null)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38477a7e3111eb94dc0bf86019515c72"></a><!-- doxytag: member="HTML::a" ref="a38477a7e3111eb94dc0bf86019515c72" args="($url, $text)" -->
+static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#aa7dcef842ac03e9b4a91772067d80b20">msgbox</a> ($message, $mode=MSGBOX_SUCCESS, $exit=false, $id=&quot;&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a16f584dbbe6e3abd7fb5205ece2f97f8">toggleDiv</a> ($title, $content, $initiallyVisible=false, $divId=&quot;&quot;, $titleType=&quot;h4&quot;)</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Form related</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a7d9d6e1c757b3af2726a4d347e169281">input</a> ($name, $type=&quot;text&quot;, $value=&quot;&quot;, $attrArr=null)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a30750bdb8c1415d016b5bc2445a2d740">select</a> ($name, $options, $selectedValue=&quot;&quot;, $attrArr=null)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a9c1d65268a0864077fbff06c4ead6724">textarea</a> ($name, $value=&quot;&quot;, $attrArr=null)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#ab1fef8fd0c4bdb64f63c69c6866d9eb8">input</a> ($name, $type=&quot;text&quot;, $value=&quot;&quot;, $attrArr=null)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a3fa36717fedce1058e47efb8e4094f05">select</a> ($name, $options, $selectedValue=&quot;&quot;, $attrArr=null)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#adacd575a4c22b9953e783d3be88e91c7">textarea</a> ($name, $attrArr=null, $value=&quot;&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l.html#a857f1e1f6b54da299c24c32a3b540c21">dummy</a> ($name, $attrArr=null, $value='')</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Generate HTML strings easily. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam </dd></dl>
 
-<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00019">19</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00016">16</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a7d9d6e1c757b3af2726a4d347e169281"></a><!-- doxytag: member="HTML::input" ref="a7d9d6e1c757b3af2726a4d347e169281" args="($name, $type=&quot;text&quot;, $value=&quot;&quot;, $attrArr=null)" -->
+<a class="anchor" id="a857f1e1f6b54da299c24c32a3b540c21"></a><!-- doxytag: member="HTML::dummy" ref="a857f1e1f6b54da299c24c32a3b540c21" args="($name, $attrArr=null, $value='')" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">input </td>
+          <td class="memname">static dummy </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>attrArr</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>value</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>A dummy form element creator. Takes all arguments like a regular html element creator but outputs nothing. May be suitable for some applications. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">type</td><td class="paramname">$name</td><td></td></tr>
+    <tr><td class="paramtype">type</td><td class="paramname">$attrArr</td><td></td></tr>
+    <tr><td class="paramtype">type</td><td class="paramname">$value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00163">163</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab1fef8fd0c4bdb64f63c69c6866d9eb8"></a><!-- doxytag: member="HTML::input" ref="ab1fef8fd0c4bdb64f63c69c6866d9eb8" args="($name, $type=&quot;text&quot;, $value=&quot;&quot;, $attrArr=null)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static input </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -153,7 +196,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -170,18 +213,16 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_core_form.html#a7d9d6e1c757b3af2726a4d347e169281">CoreForm</a>.</p>
-
-<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00078">78</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00092">92</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad14b36a2a9f091ba6c852c19db8fbe97"></a><!-- doxytag: member="HTML::lists" ref="ad14b36a2a9f091ba6c852c19db8fbe97" args="($items, $listType=&quot;ul&quot;, $attrArr=null)" -->
+<a class="anchor" id="a20e9e2f08afff53ea1c4d7a7c1dc36aa"></a><!-- doxytag: member="HTML::li" ref="a20e9e2f08afff53ea1c4d7a7c1dc36aa" args="($items, $listType=&quot;ul&quot;, $attrArr=null)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">lists </td>
+          <td class="memname">static li </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>items</em>, </td>
@@ -201,7 +242,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -217,16 +258,16 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>html | generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00044">44</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00061">61</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae6b07f45661867708c24c67e81d65d72"></a><!-- doxytag: member="HTML::msgbox" ref="ae6b07f45661867708c24c67e81d65d72" args="($message, $mode=MSGBOX_SUCCESS, $exit=false, $id=&quot;&quot;)" -->
+<a class="anchor" id="aa7dcef842ac03e9b4a91772067d80b20"></a><!-- doxytag: member="HTML::msgbox" ref="aa7dcef842ac03e9b4a91772067d80b20" args="($message, $mode=MSGBOX_SUCCESS, $exit=false, $id=&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">msgbox </td>
+          <td class="memname">static msgbox </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>message</em>, </td>
@@ -252,7 +293,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -263,7 +304,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramtype">string</td><td class="paramname">$message</td><td>the $HTML message to display </td></tr>
     <tr><td class="paramtype">int</td><td class="paramname">$mode</td><td>indicates status of the message</p>
 <ul>
-<li>see constants in <a class="el" href="class_funcs.html#a9a60e44d93712aa47dad8816453eeb45">Funcs::messageExit()</a> function </li>
+<li>see constants in <a class="el" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">Funcs::messageExit()</a> function </li>
 </ul>
 </td></tr>
     <tr><td class="paramtype">bool</td><td class="paramname">$exit</td><td>if set to true, page dies (exits) after displaying the message </td></tr>
@@ -273,16 +314,16 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00149">149</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00181">181</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a30750bdb8c1415d016b5bc2445a2d740"></a><!-- doxytag: member="HTML::select" ref="a30750bdb8c1415d016b5bc2445a2d740" args="($name, $options, $selectedValue=&quot;&quot;, $attrArr=null)" -->
+<a class="anchor" id="a3fa36717fedce1058e47efb8e4094f05"></a><!-- doxytag: member="HTML::select" ref="a3fa36717fedce1058e47efb8e4094f05" args="($name, $options, $selectedValue=&quot;&quot;, $attrArr=null)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">select </td>
+          <td class="memname">static select </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -308,7 +349,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -330,18 +371,16 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_core_form.html#a30750bdb8c1415d016b5bc2445a2d740">CoreForm</a>.</p>
-
-<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00101">101</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00112">112</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9c1d65268a0864077fbff06c4ead6724"></a><!-- doxytag: member="HTML::textarea" ref="a9c1d65268a0864077fbff06c4ead6724" args="($name, $value=&quot;&quot;, $attrArr=null)" -->
+<a class="anchor" id="adacd575a4c22b9953e783d3be88e91c7"></a><!-- doxytag: member="HTML::textarea" ref="adacd575a4c22b9953e783d3be88e91c7" args="($name, $attrArr=null, $value=&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">textarea </td>
+          <td class="memname">static textarea </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -350,18 +389,18 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>value</em> = <code>&quot;&quot;</code>, </td>
+          <td class="paramname"><em>attrArr</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>attrArr</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>value</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -377,22 +416,89 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_core_form.html#a9c1d65268a0864077fbff06c4ead6724">CoreForm</a>.</p>
-
-<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00126">126</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00146">146</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a61e38ad0c3013529f97f09bdddd16965"></a><!-- doxytag: member="HTML::tr" ref="a61e38ad0c3013529f97f09bdddd16965" args="($td_array)" -->
+<a class="anchor" id="a16f584dbbe6e3abd7fb5205ece2f97f8"></a><!-- doxytag: member="HTML::toggleDiv" ref="a16f584dbbe6e3abd7fb5205ece2f97f8" args="($title, $content, $initiallyVisible=false, $divId=&quot;&quot;, $titleType=&quot;h4&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tr </td>
+          <td class="memname">static toggleDiv </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>td_array</em></td><td>)</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>initiallyVisible</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>divId</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>titleType</em> = <code>&quot;h4&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Call this function inside your code (controller or view) to create an HTML div element - which user can hide or show by clicking a title.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$title</td><td>heading of the div, also a link to click to toggle visibility </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$content</td><td>HTML content of the div </td></tr>
+    <tr><td class="paramtype">bool</td><td class="paramname">$initiallyVisible</td><td>if false, the HTML content is initially hidden. $title is always visible </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$divId</td><td>ID attribute for the div </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$titleType</td><td>HTML to wrap the $title </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string Generated HTML string for the toggable div (with $title as heading) </dd></dl>
+
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00208">208</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aec5a705ad11741d4e741910ebff8c52d"></a><!-- doxytag: member="HTML::tr" ref="aec5a705ad11741d4e741910ebff8c52d" args="($td_array, $type='tr')" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static tr </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>td_array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>type</em> = <code>'tr'</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -408,7 +514,7 @@ Public Member Functions</h2></td></tr>
 <p>element) </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | Generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00027">27</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
+<p>Definition at line <a class="el" href="_h_t_m_l_8php_source.html#l00023">23</a> of file <a class="el" href="_h_t_m_l_8php_source.html">HTML.php</a>.</p>
 
 </div>
 </div>
@@ -420,7 +526,7 @@ Public Member Functions</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_h_t_m_l.html">HTML</a>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

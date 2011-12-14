@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: core/class/Funcs.php Source File</title>
+<title>PHPizza: core/class/Funcs.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -84,101 +84,93 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
-<a name="l00011"></a><a class="code" href="class_funcs.html">00011</a> <span class="keyword">class </span><a class="code" href="class_funcs.html" title="Some general purpose functions.">Funcs</a> {
-<a name="l00012"></a>00012 
-<a name="l00013"></a><a class="code" href="class_funcs.html#a6f96e7fc92441776c9d1cd3386663b40">00013</a>     <span class="keyword">private</span> <a class="code" href="class_funcs.html#a6f96e7fc92441776c9d1cd3386663b40" title="A reference to the $core-&amp;gt;$html, object of HTML class.">$html</a>;  
-<a name="l00014"></a>00014     
-<a name="l00015"></a>00015     
-<a name="l00021"></a><a class="code" href="class_funcs.html#a64585b415473be548941a9f4f12bb8ec">00021</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a64585b415473be548941a9f4f12bb8ec">__construct</a>($core) {
-<a name="l00022"></a>00022         $this-&gt;html = $core-&gt;html;
-<a name="l00023"></a>00023     }
-<a name="l00024"></a>00024 
-<a name="l00031"></a><a class="code" href="class_funcs.html#a223e5d960c78562ea427a575d74cdfb2">00031</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a223e5d960c78562ea427a575d74cdfb2">redirect</a>($page=<span class="stringliteral">&#39;../index.php?&#39;</span>, $byHeader = <span class="keyword">true</span>) {
-<a name="l00032"></a>00032         <span class="keywordflow">if</span> ($byHeader) {
-<a name="l00033"></a>00033             header(<span class="stringliteral">&quot;Location: $page&quot;</span>);
-<a name="l00034"></a>00034         }<span class="keywordflow">else</span>{
-<a name="l00035"></a>00035             echo <span class="stringliteral">&quot;&lt;script&gt;window.location = &#39;$page&#39;&lt;/script&gt;&quot;</span>;
-<a name="l00036"></a>00036         }
-<a name="l00037"></a>00037         exit();
-<a name="l00038"></a>00038     }
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040     
-<a name="l00052"></a><a class="code" href="class_funcs.html#a9a60e44d93712aa47dad8816453eeb45">00052</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a9a60e44d93712aa47dad8816453eeb45">messageExit</a>($message, $type=3, $pageURL=<span class="stringliteral">&#39;&#39;</span>) {
-<a name="l00053"></a>00053 <span class="comment">//            die(&quot;$message&quot;);</span>
-<a name="l00054"></a>00054         <span class="keywordflow">if</span> (empty($pageURL)) {
-<a name="l00055"></a>00055             $pageURL = (isset($_SERVER[<span class="stringliteral">&#39;HTTP_REFERER&#39;</span>])) ? ($_SERVER[<span class="stringliteral">&#39;HTTP_REFERER&#39;</span>]) : (<span class="stringliteral">&#39;&#39;</span>);
-<a name="l00056"></a>00056         }
-<a name="l00057"></a>00057         $this-&gt;<a class="code" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>, array($message, $type));
-<a name="l00058"></a>00058 <span class="comment">//            $this-&gt;redirect($pageURL . &quot;&amp;message=$message&amp;type=$type&quot;);</span>
-<a name="l00059"></a>00059         $this-&gt;<a class="code" href="class_funcs.html#a223e5d960c78562ea427a575d74cdfb2">redirect</a>($pageURL);
-<a name="l00060"></a>00060     }
-<a name="l00061"></a>00061     
-<a name="l00069"></a>00069 
-<a name="l00076"></a><a class="code" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">00076</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a>($id, $data) {
-<a name="l00077"></a>00077         $_SESSION[$id] = $data;
-<a name="l00078"></a>00078     }
-<a name="l00079"></a>00079     
-<a name="l00088"></a><a class="code" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">00088</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a>($id) {
-<a name="l00089"></a>00089         <span class="keywordflow">if</span> (isset($_SESSION[$id]))
-<a name="l00090"></a>00090             <span class="keywordflow">return</span> $_SESSION[$id];
-<a name="l00091"></a>00091         <span class="keywordflow">else</span>
-<a name="l00092"></a>00092             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00093"></a>00093     }
-<a name="l00094"></a>00094 
-<a name="l00100"></a><a class="code" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">00100</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a>($id) {
-<a name="l00101"></a>00101         <span class="keywordflow">if</span> (isset($_SESSION[$id]))
-<a name="l00102"></a>00102             unset($_SESSION[$id]);
-<a name="l00103"></a>00103     }
-<a name="l00104"></a>00104     
-<a name="l00106"></a>00106     
-<a name="l00107"></a>00107     
-<a name="l00113"></a>00113     
-<a name="l00114"></a>00114     <span class="keyword">public</span> function varDumpToString($var) {
-<a name="l00115"></a>00115         ob_start();
-<a name="l00116"></a>00116         var_dump($var);
-<a name="l00117"></a>00117         <span class="keywordflow">return</span> ob_get_clean();
-<a name="l00118"></a>00118     }
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120     
-<a name="l00121"></a>00121     
-<a name="l00122"></a>00122     <span class="keyword">public</span> function PR($obj, $pretext=<span class="stringliteral">&quot;&quot;</span>, $posttext=<span class="stringliteral">&quot;&quot;</span>) {
-<a name="l00123"></a>00123         echo <span class="stringliteral">&quot;&lt;pre&gt;$pretext:&quot;</span>;
-<a name="l00124"></a>00124         var_dump($obj);
-<a name="l00125"></a>00125         echo <span class="stringliteral">&quot;$posttext&lt;/pre&gt;&quot;</span>;
-<a name="l00126"></a>00126     }
-<a name="l00127"></a>00127     
-<a name="l00129"></a>00129     
-<a name="l00130"></a>00130     <span class="comment">// GUI related</span>
-<a name="l00131"></a>00131     
-<a name="l00139"></a><a class="code" href="class_funcs.html#a941f6786f3f6e5fbf1a266597f1fd9ae">00139</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a941f6786f3f6e5fbf1a266597f1fd9ae">setDisplayMsg</a>($msg,$status = MSGBOX_ERROR){
-<a name="l00140"></a>00140 <span class="comment">//        $this-&gt;displayMessage = array($msg, $status);</span>
-<a name="l00141"></a>00141         $this-&gt;<a class="code" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>, array($msg, $status));
-<a name="l00142"></a>00142     }
-<a name="l00143"></a>00143     
-<a name="l00154"></a><a class="code" href="class_funcs.html#ac0a376c164e56324f47e83968ba8359d">00154</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#ac0a376c164e56324f47e83968ba8359d">getDisplayMsg</a>() {
-<a name="l00155"></a>00155         <span class="comment">// Prints error/info/warning messages</span>
-<a name="l00156"></a>00156         <span class="keywordflow">if</span> ($dM = $this-&gt;<a class="code" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>)) {
-<a name="l00157"></a>00157             $str = <span class="stringliteral">&#39;&lt;div align=&quot;center&quot;&gt;&lt;div class=&quot;notification-wrapper&quot; id = &quot;displayM&quot;&gt;&#39;</span>;
-<a name="l00158"></a>00158 <span class="comment">//            $str = &#39;&lt;div align=&quot;center&quot;&gt;&lt;div title = &quot;Click to hide this notification&quot; onclick = &quot;$(this).fadeOut();&quot; class=&quot;notification-wrapper&quot; id = &quot;displayM&quot;&gt;&#39;; // With jQuery&#39;s onclick - hide support</span>
-<a name="l00159"></a>00159             $str .= $this-&gt;html-&gt;msgbox($dM[0], $dM[1]);
-<a name="l00160"></a>00160             $str .= <span class="stringliteral">&#39;&lt;/div&gt; &lt;br /&gt;&#39;</span>;
-<a name="l00161"></a>00161             $str .= <span class="stringliteral">&#39;&lt;script&gt;$(&quot;#displayM&quot;).fadeIn(&quot;slow&quot;);&lt;/script&gt; &lt;/div&gt;&#39;</span>;
-<a name="l00162"></a>00162             <span class="comment">// Finally, unset the session data</span>
-<a name="l00163"></a>00163             $this-&gt;<a class="code" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>);
-<a name="l00164"></a>00164         } <span class="keywordflow">else</span> {
-<a name="l00165"></a>00165             $str = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00166"></a>00166         }
-<a name="l00167"></a>00167         <span class="keywordflow">return</span> $str;
-<a name="l00168"></a>00168     }
-<a name="l00169"></a>00169 }
-<a name="l00170"></a>00170 
-<a name="l00171"></a>00171 ?&gt;
+<a name="l00010"></a><a class="code" href="class_funcs.html">00010</a> <span class="keyword">class </span><a class="code" href="class_funcs.html" title="Some general purpose functions.">Funcs</a> {
+<a name="l00011"></a>00011 
+<a name="l00012"></a><a class="code" href="class_funcs.html#aa432de3bacb7ced3632fa0ee0269ada3">00012</a>     <span class="keyword">private</span> <a class="code" href="class_funcs.html#aa432de3bacb7ced3632fa0ee0269ada3" title="A reference to the instance of Core class.">$core</a>;  
+<a name="l00013"></a>00013 
+<a name="l00019"></a><a class="code" href="class_funcs.html#a64585b415473be548941a9f4f12bb8ec">00019</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a64585b415473be548941a9f4f12bb8ec">__construct</a>(<a class="code" href="class_funcs.html#aa432de3bacb7ced3632fa0ee0269ada3" title="A reference to the instance of Core class.">$core</a>) {
+<a name="l00020"></a>00020         $this-&gt;core = <a class="code" href="class_funcs.html#aa432de3bacb7ced3632fa0ee0269ada3" title="A reference to the instance of Core class.">$core</a>;
+<a name="l00021"></a>00021     }
+<a name="l00022"></a>00022 
+<a name="l00033"></a><a class="code" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">00033</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">messageExit</a>($message, $type=MSGBOX_ERROR, $pageURL=<span class="stringliteral">&#39;&#39;</span>) {
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment">//            die(&quot;$message&quot;);</span>
+<a name="l00036"></a>00036         <span class="keywordflow">if</span> (empty($pageURL)) {
+<a name="l00037"></a>00037             $pageURL = (isset($_SERVER[<span class="stringliteral">&#39;HTTP_REFERER&#39;</span>])) ? ($_SERVER[<span class="stringliteral">&#39;HTTP_REFERER&#39;</span>]) : (<span class="stringliteral">&#39;&#39;</span>);
+<a name="l00038"></a>00038         }
+<a name="l00039"></a>00039         $this-&gt;<a class="code" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg</a>($message, $type);
+<a name="l00040"></a>00040 <span class="comment">//            redirect($pageURL . &quot;&amp;message=$message&amp;type=$type&quot;);</span>
+<a name="l00041"></a>00041         <a class="code" href="general_8php.html#aa6f88b65fac791b714f30778afe7ce55">redirect</a>($pageURL);
+<a name="l00042"></a>00042     }
+<a name="l00043"></a>00043 
+<a name="l00058"></a>00058 
+<a name="l00064"></a><a class="code" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">00064</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a>($id, $data) {
+<a name="l00065"></a>00065         $_SESSION[$id] = $data;
+<a name="l00066"></a>00066     }
+<a name="l00067"></a>00067 
+<a name="l00075"></a><a class="code" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">00075</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a>($id) {
+<a name="l00076"></a>00076         <span class="keywordflow">if</span> (isset($_SESSION[$id]))
+<a name="l00077"></a>00077             <span class="keywordflow">return</span> $_SESSION[$id];
+<a name="l00078"></a>00078         <span class="keywordflow">else</span>
+<a name="l00079"></a>00079             <span class="keywordflow">return</span> null;
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081 
+<a name="l00086"></a><a class="code" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">00086</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a>($id) {
+<a name="l00087"></a>00087         unset($_SESSION[$id]);
+<a name="l00088"></a>00088     }
+<a name="l00089"></a>00089 
+<a name="l00091"></a>00091     <span class="comment">// GUI related</span>
+<a name="l00092"></a>00092 
+<a name="l00102"></a><a class="code" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">00102</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg</a>($msg, $status = MSGBOX_ERROR) {
+<a name="l00103"></a>00103         <span class="comment">// Safely start session fist</span>
+<a name="l00104"></a>00104         <span class="keywordflow">if</span> (!session_id())
+<a name="l00105"></a>00105             session_start();
+<a name="l00106"></a>00106 <span class="comment">//        $this-&gt;displayMessage = array($msg, $status);</span>
+<a name="l00107"></a>00107         $dispMsg = $this-&gt;<a class="code" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>);
+<a name="l00108"></a>00108         <span class="keywordflow">if</span> (!$dispMsg) {
+<a name="l00109"></a>00109             <span class="comment">// Create New</span>
+<a name="l00110"></a>00110             $dispMsg = array();
+<a name="l00111"></a>00111         }
+<a name="l00112"></a>00112         $dispMsg[] = array($msg, $status);
+<a name="l00113"></a>00113         $this-&gt;<a class="code" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>, $dispMsg);
+<a name="l00114"></a>00114     }
+<a name="l00115"></a>00115 
+<a name="l00130"></a><a class="code" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">00130</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">getStatusMsg</a>() {
+<a name="l00131"></a>00131         <span class="comment">// Safely start session fist</span>
+<a name="l00132"></a>00132         <span class="keywordflow">if</span> (!session_id())
+<a name="l00133"></a>00133             session_start();
+<a name="l00134"></a>00134         <span class="keywordflow">if</span> ($dispMsg = $this-&gt;<a class="code" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>)) {
+<a name="l00135"></a>00135             
+<a name="l00136"></a>00136             $str = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00137"></a>00137             <span class="keywordflow">foreach</span> ($dispMsg as $i =&gt; $dM) {
+<a name="l00138"></a>00138 <span class="comment">//                echo &quot;HI$i&quot;;</span>
+<a name="l00139"></a>00139                 $str .= <span class="stringliteral">&#39;&lt;div align=&quot;center&quot;&gt;&lt;div class=&quot;dispMsg-wrapper&quot; id = &quot;displayMsg&#39;</span> . $i . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>;
+<a name="l00140"></a>00140 <span class="comment">//                $str = &#39;&lt;div align=&quot;center&quot;&gt;&lt;div title = &quot;Click to hide this notification&quot; onclick = &quot;$(this).fadeOut();&quot; class=&quot;notification-wrapper&quot; id = &quot;displayM&quot;&gt;&#39;; // With jQuery&#39;s onclick - hide support</span>
+<a name="l00141"></a>00141                 $str .= <a class="code" href="class_h_t_m_l.html#aa7dcef842ac03e9b4a91772067d80b20">HTML::msgbox</a>($dM[0], $dM[1]);
+<a name="l00142"></a>00142                 $str .= <span class="stringliteral">&#39;&lt;/div&gt; &lt;br /&gt;&#39;</span>;
+<a name="l00143"></a>00143                 $str .= <span class="stringliteral">&#39;&lt;script&gt;$(&quot;#displayM&quot;).fadeIn(&quot;slow&quot;);&lt;/script&gt; &lt;/div&gt;&#39;</span>;
+<a name="l00144"></a>00144             }
+<a name="l00145"></a>00145             <span class="comment">// Finally, unset the session data</span>
+<a name="l00146"></a>00146             $this-&gt;<a class="code" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a>(<span class="stringliteral">&#39;displayMessage&#39;</span>);
+<a name="l00147"></a>00147         } <span class="keywordflow">else</span> {
+<a name="l00148"></a>00148             $str = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00149"></a>00149         }
+<a name="l00150"></a>00150         <span class="keywordflow">return</span> $str;
+<a name="l00151"></a>00151     }
+<a name="l00152"></a>00152 
+<a name="l00157"></a><a class="code" href="class_funcs.html#a2872c585b25af93c5f01c8d31e1bfcd1">00157</a>     <span class="keyword">public</span> function <a class="code" href="class_funcs.html#a2872c585b25af93c5f01c8d31e1bfcd1">date</a>($unixTimestamp=null) {
+<a name="l00158"></a>00158         <span class="keywordflow">return</span> <a class="code" href="class_funcs.html#a2872c585b25af93c5f01c8d31e1bfcd1">date</a>(<span class="stringliteral">&quot;j F Y, g:i a&quot;</span>, $unixTimestamp);
+<a name="l00159"></a>00159     }
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161 }
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>Funcs.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

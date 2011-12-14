@@ -2,10 +2,13 @@
 
 class Controller extends CoreController{
     
-    function index($core){
-            // Call parent's constructor. 
-            parent::__construct($core);
-            echo $this->core->funcs->getDisplayMsg();
+    
+    public function __construct($core) {
+        parent::__construct($core);
+    }
+    
+    function index(){
+            echo $this->getMsg();
         ?>
         <ul>
             <li><a href="simple_validator/test">Invalid example (user did not submit desired value): page redirects to this page</a></li>
@@ -20,16 +23,16 @@ class Controller extends CoreController{
     
     function test(){
         
-        $id = $this->core->validate->userInput('id');
-        $noRedirect = $this->core->validate->userInput('noRedirect',"",false);    //  Not required, uses a default value 
+        $id = $this->validate->userInput('id');
+        $noRedirect = $this->validate->userInput('noRedirect',"",false);    //  Not required, uses a default value 
         
         if($noRedirect == "yes"){
             // Don't exit, process within this page
-            $errorMsg = $this->core->validate->exitIfInvalid(false);
+            $errorMsg = $this->validate->exitIfInvalid(false);
             if($errorMsg)
                 echo "Error occured. Details: $errorMsg";
         }else{
-            $this->core->validate->exitIfInvalid();   // Exit if not valid
+            $this->validate->exitIfInvalid();   // Exit if not valid
         }
         
         

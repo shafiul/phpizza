@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: CoreController Class Reference</title>
+<title>PHPizza: CoreController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -103,19 +103,475 @@ Inheritance diagram for CoreController:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="CoreController::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($core)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a64585b415473be548941a9f4f12bb8ec">__construct</a> ($core)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#ab25941a477cf4f0f98439627cefbca08">loadModel</a> ($model)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a5e3478d18666a38b792b0b14a2eb8382">loadView</a> ($view=&quot;&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#af9cba21ff909ef91bf2a4ebad4daf7ae">loadBlock</a> ($block)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a8da25279cb2f1b6c9b5aafb2bc831393">loadForm</a> ($formName)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a4b5eef38ddaeac8b0a208e29bf3d81d4">load3p</a> ($fileName)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a52ffc849ccd16b8298d527d9e3957c7e">loadCustomFunctions</a> ($funcFile)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#ad37a5193b147f6d1c1dd4e8f4e1a7c2b">autoload</a> ($className, $type='custom')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a80ead7297ebca630947637eae8a14911">data</a> ($id, $data)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a7e7cfee5d78abfa02a230dfca44d46c2">msg</a> ($msg, $status=&quot;&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a177bc4ecf4167a98368da00df884413b">getMsg</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a373975490ccec46fe505ccaf6ec45818">kill</a> ($msg='', $type=MSGBOX_ERROR, $redirectURL='')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a3a56d16c16a5bea2ad3076829e652078">debug</a> ($str)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">PHP Session Related \n</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>If you are using any of theese functions, make sure you started PHP Session first. Following code can safely start a PHP session: <br/>
+</p>
+<div class="fragment"><pre class="fragment"> <span class="keywordflow">if</span>(!session_id()){
+      session_start();
+ }
+</pre></div> </div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a> ($id, $data)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a> ($id)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a> ($id)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa432de3bacb7ced3632fa0ee0269ada3"></a><!-- doxytag: member="CoreController::$core" ref="aa432de3bacb7ced3632fa0ee0269ada3" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#aa432de3bacb7ced3632fa0ee0269ada3">$core</a></td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_controller.html#aa432de3bacb7ced3632fa0ee0269ada3">$core</a> = null</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to the $core variable. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae769c5994d729265f11b85920819dd7b"></a><!-- doxytag: member="CoreController::$funcs" ref="ae769c5994d729265f11b85920819dd7b" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>$funcs</b> = null</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a320b75b46e1832c327d9d47b4cea9e7d"></a><!-- doxytag: member="CoreController::$validate" ref="a320b75b46e1832c327d9d47b4cea9e7d" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>$validate</b> = null</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>All controller classes must extend this class. </p>
 
-<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00007">7</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00006">6</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="CoreController::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>core</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">type</td><td class="paramname">$core</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>, and <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>.</p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00017">17</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ad37a5193b147f6d1c1dd4e8f4e1a7c2b"></a><!-- doxytag: member="CoreController::autoload" ref="ad37a5193b147f6d1c1dd4e8f4e1a7c2b" args="($className, $type='custom')" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">autoload </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>className</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>type</em> = <code>'custom'</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get instance of an autoloaded class. This can be autoloaded Custom Class or <a class="el" href="class_model.html">Model</a> </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">type</td><td class="paramname">$className</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$type</td><td>- This can be any of 'custom' or 'model' or 'func' </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>object - instance of the autoloaded class if successful. FALSE otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00091">91</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a80ead7297ebca630947637eae8a14911"></a><!-- doxytag: member="CoreController::data" ref="a80ead7297ebca630947637eae8a14911" args="($id, $data)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">data </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Use this function within your controller to pass a variable to your <a class="el" href="class_view.html">View</a> class. <br/>
+ Within <a class="el" href="class_view.html">View</a>, you can get the data as a member variable, writing: </p>
+<div class="fragment"><pre class="fragment"> $this-&gt;<span class="keywordtype">id</span>
+</pre></div> <dl class="see"><dt><b>See also:</b></dt><dd>Also see this function to pass variable - <a class="el" href="class_core.html#a5f8cc6fff01d7d5b068edd4353e79f12">Core::setData()</a> </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$id</td><td>ID of the variable. You must use the same ID when you call getData() to retrie the variable </td></tr>
+    <tr><td class="paramtype">variable</td><td class="paramname">$data</td><td>The actual variable you want to pass. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>None </dd></dl>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00108">108</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a56d16c16a5bea2ad3076829e652078"></a><!-- doxytag: member="CoreController::debug" ref="a3a56d16c16a5bea2ad3076829e652078" args="($str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">debug </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Echoes the string provided as parameter $str if DEBUG_MODE is set true. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$str</td><td>the string to echo. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00186">186</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a177bc4ecf4167a98368da00df884413b"></a><!-- doxytag: member="CoreController::getMsg" ref="a177bc4ecf4167a98368da00df884413b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getMsg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Similar to <a class="el" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">Funcs::getStatusMsg()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00124">124</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b489a3966ab840caf10cc1ec6648679"></a><!-- doxytag: member="CoreController::getSessData" ref="a2b489a3966ab840caf10cc1ec6648679" args="($id)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getSessData </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Similar to <a class="el" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">Funcs::getSessData()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00163">163</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a373975490ccec46fe505ccaf6ec45818"></a><!-- doxytag: member="CoreController::kill" ref="a373975490ccec46fe505ccaf6ec45818" args="($msg='', $type=MSGBOX_ERROR, $redirectURL='')" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kill </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>msg</em> = <code>''</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>type</em> = <code>MSGBOX_ERROR</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>redirectURL</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Similar to <a class="el" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">Funcs::messageExit()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00133">133</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b5eef38ddaeac8b0a208e29bf3d81d4"></a><!-- doxytag: member="CoreController::load3p" ref="a4b5eef38ddaeac8b0a208e29bf3d81d4" args="($fileName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">load3p </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Call this from your controller to load a "Custom Functions" file </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$funcFile</td><td>name of the file. This file must reside in CUSTOM/funcs directory. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00071">71</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af9cba21ff909ef91bf2a4ebad4daf7ae"></a><!-- doxytag: member="CoreController::loadBlock" ref="af9cba21ff909ef91bf2a4ebad4daf7ae" args="($block)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">loadBlock </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>block</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Please see <a class="el" href="class_core.html#af9cba21ff909ef91bf2a4ebad4daf7ae">Core::loadBlock()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00043">43</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52ffc849ccd16b8298d527d9e3957c7e"></a><!-- doxytag: member="CoreController::loadCustomFunctions" ref="a52ffc849ccd16b8298d527d9e3957c7e" args="($funcFile)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">loadCustomFunctions </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>funcFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">type</td><td class="paramname">$funcFile</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>type </dd></dl>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00080">80</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8da25279cb2f1b6c9b5aafb2bc831393"></a><!-- doxytag: member="CoreController::loadForm" ref="a8da25279cb2f1b6c9b5aafb2bc831393" args="($formName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">loadForm </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>formName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Call this from your controller to load a Form</p>
+<p>WARNING: No directory hierarchy is supported under VIEW/forms directory. That means, all of your forms must reside in VIEW/forms directory, you can not create directory &amp; load forms from them!</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$formName</td><td>name of the class. This class must extend <a class="el" href="class_core_form.html" title="Create, submit &amp; validate web-forms.">CoreForm</a> &amp; reside in VIEW/forms directory. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>object of newly created class </dd></dl>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00056">56</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab25941a477cf4f0f98439627cefbca08"></a><!-- doxytag: member="CoreController::loadModel" ref="ab25941a477cf4f0f98439627cefbca08" args="($model)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">loadModel </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Please see <a class="el" href="class_core.html#ab25941a477cf4f0f98439627cefbca08">Core::loadModel()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00026">26</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5e3478d18666a38b792b0b14a2eb8382"></a><!-- doxytag: member="CoreController::loadView" ref="a5e3478d18666a38b792b0b14a2eb8382" args="($view=&quot;&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">loadView </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>view</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Please see <a class="el" href="class_core.html#a5e3478d18666a38b792b0b14a2eb8382">Core::loadView()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00034">34</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e7cfee5d78abfa02a230dfca44d46c2"></a><!-- doxytag: member="CoreController::msg" ref="a7e7cfee5d78abfa02a230dfca44d46c2" args="($msg, $status=&quot;&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">msg </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>status</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Similar to <a class="el" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">Funcs::setStatusMsg()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00115">115</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac5996fbd4894415433f7974c061b6ef0"></a><!-- doxytag: member="CoreController::setSessData" ref="ac5996fbd4894415433f7974c061b6ef0" args="($id, $data)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">setSessData </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Similar to <a class="el" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">Funcs::setSessData()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00155">155</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a790179e0d3a2188d8135ad6976453275"></a><!-- doxytag: member="CoreController::unsetSessData" ref="a790179e0d3a2188d8135ad6976453275" args="($id)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsetSessData </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>similar to <a class="el" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">Funcs::unsetSessData()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00174">174</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>core/class/<a class="el" href="_core_controller_8php_source.html">CoreController.php</a></li>
 </ul>
 </div>
@@ -123,7 +579,7 @@ Data Fields</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_controller.html">CoreController</a>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

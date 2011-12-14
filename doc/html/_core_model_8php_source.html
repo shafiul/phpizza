@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: core/class/CoreModel.php Source File</title>
+<title>PHPizza: core/class/CoreModel.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -86,20 +86,95 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00002"></a>00002 
 <a name="l00009"></a><a class="code" href="class_core_model.html">00009</a> <span class="keyword">class </span><a class="code" href="class_core_model.html" title="A fundamental model class. You extend this class in your MODELS.">CoreModel</a> {
 <a name="l00010"></a>00010     <span class="keyword">public</span> $core;
-<a name="l00011"></a><a class="code" href="class_core_model.html#a1fa3127fc82f96b1436d871ef02be319">00011</a>     <span class="keyword">private</span> <a class="code" href="class_core_model.html#a1fa3127fc82f96b1436d871ef02be319" title="object for database">$db</a>;        
+<a name="l00011"></a><a class="code" href="class_core_model.html#a1fa3127fc82f96b1436d871ef02be319">00011</a>     <span class="keyword">public</span> <a class="code" href="class_core_model.html#a1fa3127fc82f96b1436d871ef02be319" title="object for database">$db</a>;        
 <a name="l00012"></a>00012     
 <a name="l00022"></a><a class="code" href="class_core_model.html#a64585b415473be548941a9f4f12bb8ec">00022</a>     <span class="keyword">public</span> function <a class="code" href="class_core_model.html#a64585b415473be548941a9f4f12bb8ec">__construct</a>($core) {
 <a name="l00023"></a>00023         $this-&gt;core = $core;
-<a name="l00024"></a>00024     }
-<a name="l00025"></a>00025 }
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 ?&gt;
+<a name="l00024"></a>00024         <span class="comment">// Create Object</span>
+<a name="l00025"></a>00025         $driver = DB_DRIVER;
+<a name="l00026"></a>00026         $this-&gt;db = <span class="keyword">new</span> $driver();
+<a name="l00027"></a>00027 <span class="comment">//        switch(DB_DRIVER){</span>
+<a name="l00028"></a>00028 <span class="comment">//            case &#39;MySQL&#39;:</span>
+<a name="l00029"></a>00029 <span class="comment">//                $this-&gt;db = new MySQL();</span>
+<a name="l00030"></a>00030 <span class="comment">//                break;</span>
+<a name="l00031"></a>00031 <span class="comment">//        }</span>
+<a name="l00032"></a>00032     }
+<a name="l00033"></a>00033     
+<a name="l00038"></a>00038     <span class="comment">//{</span>
+<a name="l00039"></a>00039     
+<a name="l00049"></a><a class="code" href="class_core_model.html#ada3a2848b32e5e6879b4a39ae0eb5816">00049</a>     <span class="keyword">public</span> function <a class="code" href="class_core_model.html#ada3a2848b32e5e6879b4a39ae0eb5816">insertWithPassword</a>($data,$passwordColumn,$passwordValue){
+<a name="l00050"></a>00050         $this-&gt;db-&gt;data = $data;
+<a name="l00051"></a>00051         <span class="keywordflow">return</span> $this-&gt;db-&gt;insertArray($passwordColumn, $passwordValue);
+<a name="l00052"></a>00052     }
+<a name="l00053"></a>00053     
+<a name="l00060"></a><a class="code" href="class_core_model.html#a2e355627d2f4a96559f022c4ab82df3c">00060</a>     <span class="keyword">public</span> function <a class="code" href="class_core_model.html#a2e355627d2f4a96559f022c4ab82df3c">insert</a>($data){
+<a name="l00061"></a>00061         $this-&gt;db-&gt;data = $data;
+<a name="l00062"></a>00062         <span class="keywordflow">return</span> $this-&gt;db-&gt;insertArray();
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064     
+<a name="l00065"></a>00065     
+<a name="l00073"></a><a class="code" href="class_core_model.html#aa5172ba077cad609e9b35ef4ae2cee27">00073</a>     <span class="keyword">public</span> function <a class="code" href="class_core_model.html#aa5172ba077cad609e9b35ef4ae2cee27">update</a>($data,$identifier){
+<a name="l00074"></a>00074         $this-&gt;db-&gt;data = $data;
+<a name="l00075"></a>00075         $this-&gt;db-&gt;identifier = $identifier;
+<a name="l00076"></a>00076         <span class="keywordflow">return</span> $this-&gt;db-&gt;updateArray();
+<a name="l00077"></a>00077     }
+<a name="l00078"></a>00078     
+<a name="l00079"></a>00079     
+<a name="l00087"></a><a class="code" href="class_core_model.html#a2a1a9ddbc4a7878e7cffc5bd25e20813">00087</a>     <span class="keyword">public</span> function <a class="code" href="class_core_model.html#a2a1a9ddbc4a7878e7cffc5bd25e20813">ifExist</a>($identifierArr,$selectArr=null){
+<a name="l00088"></a>00088         <span class="keywordflow">if</span>(!isset ($selectArr))
+<a name="l00089"></a>00089             $selectArr = array_keys($identifierArr);
+<a name="l00090"></a>00090         $this-&gt;db-&gt;select = $selectArr;
+<a name="l00091"></a>00091         $this-&gt;db-&gt;identifier = $identifierArr;
+<a name="l00092"></a>00092         $this-&gt;db-&gt;returnPointer = <span class="keyword">false</span>;
+<a name="l00093"></a>00093         <span class="keywordflow">return</span> $this-&gt;db-&gt;selectArray();
+<a name="l00094"></a>00094     }
+<a name="l00095"></a>00095     
+<a name="l00096"></a>00096     
+<a name="l00101"></a><a class="code" href="class_core_model.html#a2da3860cc7158f00a8db322d7515dc4e">00101</a>     <span class="keyword">public</span> function <a class="code" href="class_core_model.html#a2da3860cc7158f00a8db322d7515dc4e">insertOnce</a>($data,$identifier){
+<a name="l00102"></a>00102         <span class="keywordflow">if</span>($this-&gt;<a class="code" href="class_core_model.html#a2a1a9ddbc4a7878e7cffc5bd25e20813">ifExist</a>($identifier,$identifier))
+<a name="l00103"></a>00103             <span class="keywordflow">return</span> -1;
+<a name="l00104"></a>00104         <span class="keywordflow">else</span>{
+<a name="l00105"></a>00105 <span class="comment">//            $this-&gt;db-&gt;clear();</span>
+<a name="l00106"></a>00106             <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_core_model.html#a2e355627d2f4a96559f022c4ab82df3c">insert</a>($data);
+<a name="l00107"></a>00107         }
+<a name="l00108"></a>00108     }
+<a name="l00109"></a>00109     
+<a name="l00117"></a><a class="code" href="class_core_model.html#acc4429d2eef713bbc944c3a7a449e8d7">00117</a>     <span class="keyword">public</span> function <a class="code" href="class_core_model.html#acc4429d2eef713bbc944c3a7a449e8d7">insertOrUpdate</a>($data, $identifier){
+<a name="l00118"></a>00118         <span class="keywordflow">if</span>($this-&gt;<a class="code" href="class_core_model.html#a2a1a9ddbc4a7878e7cffc5bd25e20813">ifExist</a>($identifierArr)){
+<a name="l00119"></a>00119             <span class="comment">// Update</span>
+<a name="l00120"></a>00120             <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_core_model.html#aa5172ba077cad609e9b35ef4ae2cee27">update</a>($data, $identifier);
+<a name="l00121"></a>00121         }<span class="keywordflow">else</span>{
+<a name="l00122"></a>00122             <span class="comment">// Create New</span>
+<a name="l00123"></a>00123             <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_core_model.html#a2e355627d2f4a96559f022c4ab82df3c">insert</a>($data);
+<a name="l00124"></a>00124         }
+<a name="l00125"></a>00125     }
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128     <span class="keyword">public</span> function selectAll($identifierArr = null, $selectArr = null){
+<a name="l00129"></a>00129 <span class="comment">//        $this-&gt;db-&gt;clear();</span>
+<a name="l00130"></a>00130         $this-&gt;db-&gt;identifier = $identifierArr;
+<a name="l00131"></a>00131         $this-&gt;db-&gt;select = $selectArr;
+<a name="l00132"></a>00132         <span class="keywordflow">return</span> $this-&gt;db-&gt;selectArray();
+<a name="l00133"></a>00133     }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136     <span class="keyword">public</span> function <span class="keyword">delete</span>($identifierArr){
+<a name="l00137"></a>00137         $this-&gt;db-&gt;identifier = $identifierArr;
+<a name="l00138"></a>00138         <span class="keywordflow">return</span> $this-&gt;db-&gt;delete();
+<a name="l00139"></a>00139     }
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143     <span class="comment">//}</span>
+<a name="l00144"></a>00144 }
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>CoreModel.php</b>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: GenericDB Class Reference</title>
+<title>PHPizza: GenericDB Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -120,6 +120,8 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81645b33dc2243ce91f82f12199ee9c9"></a><!-- doxytag: member="GenericDB::$identifier" ref="a81645b33dc2243ce91f82f12199ee9c9" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_d_b.html#a81645b33dc2243ce91f82f12199ee9c9">$identifier</a> = null</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value pair of identifier to be used after WHERE clause (i.e. $identifier["username"] =&gt; "giga" is for WHILE `username` = 'giga') <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af137c8d05cc3bbfd06b465598a557800"></a><!-- doxytag: member="GenericDB::$tableJoinIdentifier" ref="af137c8d05cc3bbfd06b465598a557800" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>$tableJoinIdentifier</b> = null</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f7e2fd4563fb22063ade7c3dffded70"></a><!-- doxytag: member="GenericDB::$encryptionFunction" ref="a7f7e2fd4563fb22063ade7c3dffded70" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_d_b.html#a7f7e2fd4563fb22063ade7c3dffded70">$encryptionFunction</a> = &quot;SHA&quot;</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the encryption function to apply on $valueToEncrypt in <a class="el" href="class_generic_d_b.html#a8fddda94e9dcdd15d83dd5fae01e8292">insertArray()</a> <br/></td></tr>
@@ -147,6 +149,9 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10b629019eddbd58a412df111d0d076e"></a><!-- doxytag: member="GenericDB::$connectionID" ref="a10b629019eddbd58a412df111d0d076e" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_d_b.html#a10b629019eddbd58a412df111d0d076e">$connectionID</a> = null</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Connection identifier after successful database connection. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfd588802fd7f5e1aed579142b621b4a"></a><!-- doxytag: member="GenericDB::$returnInsertID" ref="adfd588802fd7f5e1aed579142b621b4a" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_d_b.html#adfd588802fd7f5e1aed579142b621b4a">$returnInsertID</a> = true</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean, whether returns "Insert ID" for select command. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Abstract Database class. All Database driver classes must implement it.</p>
@@ -207,7 +212,7 @@ Data Fields</h2></td></tr>
 <div class="memdoc">
 <p>Function for debuggin. First finds if any occured by <a class="el" href="class_generic_d_b.html#a72b3035d4887e285a87b389f114c0563">setError()</a> then prints the error if DB_DEBUG_MODE_ON constant is set true. </p>
 
-<p>Definition at line <a class="el" href="_generic_d_b_8php_source.html#l00094">94</a> of file <a class="el" href="_generic_d_b_8php_source.html">GenericDB.php</a>.</p>
+<p>Definition at line <a class="el" href="_generic_d_b_8php_source.html#l00095">95</a> of file <a class="el" href="_generic_d_b_8php_source.html">GenericDB.php</a>.</p>
 
 </div>
 </div>
@@ -375,8 +380,6 @@ Data Fields</h2></td></tr>
 <p>Updates $this-&gt;data to database schema $this-&gt;table, WHERE $this-&gt;identifier are joined by $this-&gt;joiner followed by $this-&gt;rest </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true for success, false for failure </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_my_s_q_l.html#a07a7ce5df8176fc0a751e4c44273e7a2">MySQL</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -387,7 +390,7 @@ Data Fields</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_generic_d_b.html">GenericDB</a>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

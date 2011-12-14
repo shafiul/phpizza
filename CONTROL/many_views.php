@@ -1,8 +1,5 @@
 <?php
 
-// View the effects setting CONTROLLER_FUNC_CALL_ENABLED true. but you can also 
-// apply this knowledge when controller_func_call is false.
-
 
 class Controller extends CoreController{
     function __construct($core) {
@@ -20,17 +17,17 @@ class Controller extends CoreController{
         // Set data required for the view page
            // Get instance
         $title = "Title set via test1 function.";
-        $this->core->setData('title',$title);
+        $this->data('title',$title);
         // Load the view
-        $this->core->loadView("index");
+        $this->loadView("index");
     }
     
     function test2(){
         // Set data required for the view page
         
-        $this->core->setData("mainContent","<h1>This content was set from test2 function!</h1>");
+        $this->data("mainContent","<h1>This content was set from test2 function!</h1>");
         // Load the view
-        $this->core->loadView("sample/demo1");
+        $this->loadView("sample/demo1");
     }
 }
 

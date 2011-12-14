@@ -22,13 +22,13 @@ class View extends Template{
     function mainContent() {
         
         // Uncomment following to manually present the Form
-//        $errors = $this->core->getData("formError");
+//        $errors = $this->formError;
 //        if(!empty($errors)){
 //            echo "<font color='red'>$errors</font> <br /><br />";
 //        }
-//        echo $this->core->getData("loginForm");
+//        echo $this->loginForm;
         // Or, use following function to do all these!
-        echo $this->core->getForm("Login");
+        echo $this->form("Login");
     }
 }
 

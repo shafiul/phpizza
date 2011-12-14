@@ -1,8 +1,8 @@
 var NAVTREE =
 [
-  [ "gigamvc", "index.html", [
+  [ "PHPizza", "index.html", [
     [ "Data Structures", "annotated.html", [
-      [ "Authentication", "class_authentication.html", null ],
+      [ "Auth", "class_auth.html", null ],
       [ "Blocks", "class_blocks.html", null ],
       [ "Controller", "class_controller.html", null ],
       [ "Core", "class_core.html", null ],
@@ -18,25 +18,43 @@ var NAVTREE =
       [ "GenericDB", "class_generic_d_b.html", null ],
       [ "HTML", "class_h_t_m_l.html", null ],
       [ "Login", "class_login.html", null ],
+      [ "Model", "class_model.html", null ],
       [ "MySQL", "class_my_s_q_l.html", null ],
+      [ "PHPizza", "class_p_h_pizza.html", null ],
       [ "Registration", "class_registration.html", null ],
-      [ "RegistrationModel", "class_registration_model.html", null ],
       [ "Template", "class_template.html", null ],
-      [ "Validator", "class_validator.html", null ]
+      [ "UserModel", "class_user_model.html", null ],
+      [ "Validator", "class_validator.html", null ],
+      [ "View", "class_view.html", null ]
     ] ],
     [ "Data Structure Index", "classes.html", null ],
     [ "Class Hierarchy", "hierarchy.html", [
-      [ "Authentication", "class_authentication.html", null ],
+      [ "Auth", "class_auth.html", null ],
       [ "Core", "class_core.html", null ],
       [ "CoreController", "class_core_controller.html", [
         [ "Controller", "class_controller.html", null ],
         [ "Controller", "class_controller.html", null ]
       ] ],
+      [ "CoreForm", "class_core_form.html", [
+        [ "Login", "class_login.html", null ],
+        [ "Registration", "class_registration.html", null ]
+      ] ],
       [ "CoreModel", "class_core_model.html", [
-        [ "RegistrationModel", "class_registration_model.html", null ]
+        [ "Model", "class_model.html", null ],
+        [ "UserModel", "class_user_model.html", null ]
       ] ],
       [ "CoreValidator", "class_core_validator.html", [
         [ "Validator", "class_validator.html", null ]
+      ] ],
+      [ "CoreView", "class_core_view.html", [
+        [ "Template", "class_template.html", [
+          [ "View", "class_view.html", null ],
+          [ "View", "class_view.html", null ],
+          [ "View", "class_view.html", null ],
+          [ "View", "class_view.html", null ],
+          [ "View", "class_view.html", null ],
+          [ "View", "class_view.html", null ]
+        ] ]
       ] ],
       [ "Files", "class_files.html", null ],
       [ "FormLinks", "class_form_links.html", null ],
@@ -46,20 +64,15 @@ var NAVTREE =
         [ "MySQL", "class_my_s_q_l.html", null ]
       ] ],
       [ "HTML", "class_h_t_m_l.html", [
-        [ "Blocks", "class_blocks.html", null ],
-        [ "CoreForm", "class_core_form.html", [
-          [ "Login", "class_login.html", null ],
-          [ "Registration", "class_registration.html", null ]
-        ] ],
-        [ "CoreView", "class_core_view.html", [
-          [ "Template", "class_template.html", null ]
-        ] ]
-      ] ]
+        [ "Blocks", "class_blocks.html", null ]
+      ] ],
+      [ "PHPizza", "class_p_h_pizza.html", null ]
     ] ],
     [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
       [ "config.php", null, null ],
       [ "index.php", null, null ],
+      [ "userconfig.php", null, null ],
       [ "CONTROL/login.php", null, null ],
       [ "CONTROL/registration.php", null, null ],
       [ "core/class/Core.php", null, null ],
@@ -77,13 +90,20 @@ var NAVTREE =
       [ "custom/class/Blocks.php", null, null ],
       [ "custom/class/Files.php", null, null ],
       [ "custom/class/Validator.php", null, null ],
-      [ "MODEL/RegistrationModel.php", null, null ],
+      [ "MODEL/Model.php", null, null ],
+      [ "MODEL/UserModel.php", null, null ],
       [ "templates/WhiteLove/index.php", null, null ],
       [ "templates/WhiteLove/Template.php", null, null ],
       [ "VIEW/blocks/FormLinks.php", null, null ],
       [ "VIEW/blocks/GeneralLinks.php", null, null ],
       [ "VIEW/forms/Login.php", null, null ],
-      [ "VIEW/forms/Registration.php", null, null ]
+      [ "VIEW/forms/Registration.php", null, null ],
+      [ "VIEW/pages/demo1.php", null, null ],
+      [ "VIEW/pages/index.php", null, null ],
+      [ "VIEW/pages/login.php", null, null ],
+      [ "VIEW/pages/registration.php", null, null ],
+      [ "VIEW/pages/sample/demo1.php", null, null ],
+      [ "VIEW/pages/sample/demo2.php", null, null ]
     ] ],
     [ "Directories", "dirs.html", [
       [ "CONTROL", "dir_8c4cd513176188a414b8481a5f837ffa.html", null ],
@@ -102,7 +122,10 @@ var NAVTREE =
       ] ],
       [ "VIEW", "dir_28298104348cfebcb12a3dae8753a486.html", [
         [ "blocks", "dir_17c2826c27de9f3dffcb216e7a022fef.html", null ],
-        [ "forms", "dir_394a0967c552489e1570b58b628bc103.html", null ]
+        [ "forms", "dir_394a0967c552489e1570b58b628bc103.html", null ],
+        [ "pages", "dir_6decc1996b24287e32244d1f71b3647d.html", [
+          [ "sample", "dir_26e28f675afa9d4b663ab22dee3cd0db.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Globals", "globals.html", null ]

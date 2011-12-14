@@ -19,13 +19,13 @@ class Controller extends CoreController{
     function __construct($core) {
         // Call parent's constructor. 
         parent::__construct($core);
-        $this->form = $this->core->loadForm("Registration");
+        $this->form = $this->loadForm("Registration");
     }
     
     function index(){
         
         $this->form->sendToView();
-        $this->core->loadView();
+        $this->loadView();
     }
     
     function submit(){
@@ -33,7 +33,7 @@ class Controller extends CoreController{
         if($this->form->validate()){
             // form valid. Do some database work!
             // Load the model 
-            $model = $this->core->loadModel('UserModel');
+            $model = $this->loadModel('UserModel');
             
             $userSubmittedData = $this->form->getAll(); // Get user submissions
             // Construct the data array to insert in database
@@ -53,9 +53,9 @@ class Controller extends CoreController{
             );
             if($newUserId === false){
                 // Set an error message
-                $this->core->funcs->setDisplayMsg("This username already exists (id) please choose a different username", MSGBOX_WARNING);
+                $this->msg("This username already exists (id) please choose a different username", MSGBOX_WARNING);
             }else{
-                $this->core->funcs->setDisplayMsg('Congratulations, registration is successful! You are our user #' . $newUserId, MSGBOX_SUCCESS);
+                $this->msg('Congratulations, registration is successful! You are our user #' . $newUserId, MSGBOX_SUCCESS);
             }
         }
         

@@ -32,7 +32,7 @@ class FormLinks{
         // Construct the Block! First construct links...
         $linksArr = array(
             anchor("doc/html", "Class Documentation"),
-            $this->block->anchor("http://pizzamvc.com", "Project Homepage")
+            anchor("http://pizzamvc.com", "Project Homepage")
         );
         $this->block->items = $linksArr;
     }

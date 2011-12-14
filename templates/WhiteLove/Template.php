@@ -23,7 +23,7 @@ abstract class Template extends CoreView{
     // vars
     
     public $heading;    ///< A custom (template-specific) variable. For setting the Headline of the page
-    
+
     
     /**
      * Perorms some routine tasks:
@@ -34,6 +34,8 @@ abstract class Template extends CoreView{
     public function __construct($core) {
         // First call parent's Constructor
         parent::__construct($core);
+        
+        // Set some other parameters
         $this->defaultCssArray = array("style");
         $this->defaultJsArray = array("jquery/jquery_latest");
         // a dummy headline
@@ -88,17 +90,16 @@ abstract class Template extends CoreView{
      */
     
     public function sidebar($alignment) {
-        global $core;
         switch($alignment){
             case 'left':
                 // No left sidebar
                 break;
             case 'right':
                 // print general links
-                $i = $core->loadBlock("GeneralLinks");
+                $i = $this->core->loadBlock("GeneralLinks");
                 echo $i->get();
                 // print links to forms
-                $i = $core->loadBlock("FormLinks");
+                $i = $this->core->loadBlock("FormLinks");
                 echo $i->get();
                 break;
         }

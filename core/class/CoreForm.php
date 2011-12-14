@@ -87,10 +87,11 @@ abstract class CoreForm{
      * Creates & returns %HTML for this form. 
      * - You do not need to use this function at all if you use sendToView() function. Example: CONTROL/registration.php & VIEW/registration.php
      * - If you want to manually send the generated %HTML of the form to your view class, you may call this function within your controller. See example: CONTROL/login.php & VIEW/login.php
+     * 
      * @return none
      */
     
-    public function generateHTML() {
+    private function generateHTML() {
         // Creates the HTML form and returns the HTML
         // Output HTML 
         $fileUploadCode = ($this->fileUpload)?("enctype='multipart/form-data'"):("");
@@ -112,16 +113,20 @@ abstract class CoreForm{
     }
     
     /**
-     * \brief Important function to call within your controller
+     * \brief Important function to call within your Controller classes.
      * 
-     * Call this function within your controller to automatically send the generated html of the form to your view class.
+     * Call this function within your Controller classes to automatically send the generated %HTML of the form to your View class.
      * 
-     * Next, within your view class, you can call Core::getForm($id) to gain the generated html, where $id is the class name of the form
+     * Next, within your view class, you can call CoreView::form($id) to get the generated html, where $id is the class name of the form
+     * @param $returnOnly bool
+     *  - is false by default
+     *  - if true, returns the generated %HTML, also does not pass validation errors as \a status \a messages
      */
     
     public function sendToView($returnOnly = false){
-        if($this->error)
-            $this->core->funcs->setDisplayMsg($this->error);
+        if($this->error && !$returnOnly)
+            $this->core->funcs->setStatusMsg($this->error);
+        
         // Set display names
         if(!$this->validate){
             foreach ($this->validators as $elemName=>$temp){

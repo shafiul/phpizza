@@ -12,13 +12,13 @@ class Controller extends CoreController{
     function __construct($core) {
         // Call parent's constructor. 
         parent::__construct($core);
-        $this->core->setData("mainContent","<h1>This content was set from constructor function!</h1>");
+        $this->data("mainContent","<h1>This content was set from constructor function! Will be overrriden soon... :P</h1>");
     }
     
     function index(){
         
-        $this->core->setData("mainContent","<h1>This content was set from index function!</h1>");
-        $this->core->loadView();
+        $this->data("mainContent","<h1>This content was set from index function!</h1>");
+        $this->loadView();
     }
 }
 

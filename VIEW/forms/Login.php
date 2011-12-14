@@ -21,6 +21,15 @@ class Login extends CoreForm {
         $this->action = url("login/submit");
         $this->submitButtonText = "Log In!";
         $this->tableCellSpacing = "10px";
+        
+        // Set some validators
+        
+        $this->validators = array(
+            'email' => array('Email', 'email'),
+            'passwd' => array('Password', 'required|htmlspecialchars'),
+            'comment' => array('Comment (optional)', 'htmlspecialchars')
+        );
+        
     }
     
     function createElements(){
@@ -29,11 +38,9 @@ class Login extends CoreForm {
         // Generate form elements
         $elements = array();
         
-        $elements['email'] = array("Email","email","input");
-        $elements['passwd'] = array("Password","required|htmlspecialchars","input",array(
-            "password"
-        ));
-        $elements['comment'] = array('Comment (optional)', 'htmlspecialchars',"textarea");
+        $elements['email'] = array("input");
+        $elements['passwd'] = array("input",array("password"));
+        $elements['comment'] = array("textarea");
         
         $this->setElements($elements);
     }

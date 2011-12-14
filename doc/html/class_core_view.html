@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: CoreView Class Reference</title>
+<title>PHPizza: CoreView Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -87,8 +87,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>CoreView Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="CoreView" --><!-- doxytag: inherits="HTML" -->
-<p>Basic (core version) class for your VIEWs.  
+<!-- doxytag: class="CoreView" -->
+<p>All view classes should extend this <a class="el" href="class_core_view.html" title="All view classes should extend this CoreView class!">CoreView</a> class!  
 <a href="#_details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for CoreView:</div>
@@ -96,8 +96,13 @@ Inheritance diagram for CoreView:</div>
  <div class="center">
   <img src="class_core_view.png" usemap="#CoreView_map" alt=""/>
   <map id="CoreView_map" name="CoreView_map">
-<area href="class_h_t_m_l.html" alt="HTML" shape="rect" coords="0,0,68,24"/>
-<area href="class_template.html" alt="Template" shape="rect" coords="0,112,68,136"/>
+<area href="class_template.html" alt="Template" shape="rect" coords="195,56,263,80"/>
+<area href="class_view.html" alt="View" shape="rect" coords="0,112,68,136"/>
+<area href="class_view.html" alt="View" shape="rect" coords="78,112,146,136"/>
+<area href="class_view.html" alt="View" shape="rect" coords="156,112,224,136"/>
+<area href="class_view.html" alt="View" shape="rect" coords="234,112,302,136"/>
+<area href="class_view.html" alt="View" shape="rect" coords="312,112,380,136"/>
+<area href="class_view.html" alt="View" shape="rect" coords="390,112,458,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -105,7 +110,10 @@ Inheritance diagram for CoreView:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="CoreView::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
 &#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($core)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a4357dd4d57f755f989a27656d9321c21">toggleDiv</a> ($title, $content, $initiallyVisible=false, $divId=&quot;&quot;, $titleType=&quot;h4&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a958d75fe52959d8f2f900e2cf6182b3d">msg</a> ()</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a104d55caea420d7f942af0821f4ae45f">setStatic</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#ab885424c1d43ef4a1ad651e26aeb5930">form</a> ($formClassName)</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Templating Functions</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>You should ONLY call these functions in your template file. Never call these in your controller/view </p>
 </div></td></tr>
@@ -134,8 +142,8 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3e9534005fd516d941f6a5569896e01"></a><!-- doxytag: member="CoreView::$template" ref="aa3e9534005fd516d941f6a5569896e01" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aa3e9534005fd516d941f6a5569896e01">$template</a> = &quot;&quot;</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> to apply to "this page". <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb31e75efb937e41542b4a321856a94f"></a><!-- doxytag: member="CoreView::$staticLoadAllowed" ref="afb31e75efb937e41542b4a321856a94f" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#afb31e75efb937e41542b4a321856a94f">$staticLoadAllowed</a> = false</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a766ad0559dad19d2a8c66b2f27200488"></a><!-- doxytag: member="CoreView::$__staticLoadAllowed" ref="a766ad0559dad19d2a8c66b2f27200488" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a766ad0559dad19d2a8c66b2f27200488">$__staticLoadAllowed</a> = false</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If set false (which is default) the VIEW can not be loaded statically (without any controller) <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacaacb2a73313f2f7e2fbc800b65f84e"></a><!-- doxytag: member="CoreView::$defaultCssArray" ref="aacaacb2a73313f2f7e2fbc800b65f84e" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aacaacb2a73313f2f7e2fbc800b65f84e">$defaultCssArray</a> = null</td></tr>
@@ -154,17 +162,67 @@ Data Fields</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to $core. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Basic (core version) class for your VIEWs. </p>
+<div class="textblock"><p>All view classes should extend this <a class="el" href="class_core_view.html" title="All view classes should extend this CoreView class!">CoreView</a> class! </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam</dd></dl>
-<p>You can (in fact, you SHOULD) extend functionality to this class in the CustomView class.</p>
+<p>You can (in fact, you should :P) extend functionality to this class in the CustomView class.</p>
 <p>Convention while providin file names: (JavaScript &amp; Css files)</p>
 <ul>
 <li>path should be rooted on base directory for javascript/css files</li>
 <li>Do not provide extentions </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00023">23</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00016">16</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ab885424c1d43ef4a1ad651e26aeb5930"></a><!-- doxytag: member="CoreView::form" ref="ab885424c1d43ef4a1ad651e26aeb5930" args="($formClassName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">form </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>formClassName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Call this function within your <a class="el" href="class_view.html">View</a> classes to get generated HTML string of a form. <br/>
+</p>
+<ul>
+<li>You must load the form (using <a class="el" href="class_core_controller.html#a8da25279cb2f1b6c9b5aafb2bc831393">CoreController::loadForm()</a> ) &amp; call <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3" title="Important function to call within your Controller classes.">CoreForm::sendToView()</a> within your <a class="el" href="class_controller.html">Controller</a> class . See <a class="el" href="class_core_form.html" title="Create, submit &amp; validate web-forms.">CoreForm</a> documentation <dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$formClassName</td><td>- name of the form - this form must exist in VIEW/forms directory. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string HTML data of the form, or an error string if the form was not set within controller. </dd></dl>
+</li>
+</ul>
+
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00058">58</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a958d75fe52959d8f2f900e2cf6182b3d"></a><!-- doxytag: member="CoreView::msg" ref="a958d75fe52959d8f2f900e2cf6182b3d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">msg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Similar to <a class="el" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">Funcs::getStatusMsg()</a> </p>
+
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00069">69</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae70910f9dec8b0cc224f8b995ba26969"></a><!-- doxytag: member="CoreView::printCss" ref="ae70910f9dec8b0cc224f8b995ba26969" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -209,66 +267,26 @@ Data Fields</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00119">119</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00117">117</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4357dd4d57f755f989a27656d9321c21"></a><!-- doxytag: member="CoreView::toggleDiv" ref="a4357dd4d57f755f989a27656d9321c21" args="($title, $content, $initiallyVisible=false, $divId=&quot;&quot;, $titleType=&quot;h4&quot;)" -->
+<a class="anchor" id="a104d55caea420d7f942af0821f4ae45f"></a><!-- doxytag: member="CoreView::setStatic" ref="a104d55caea420d7f942af0821f4ae45f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">toggleDiv </td>
+          <td class="memname">setStatic </td>
           <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>title</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>content</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>initiallyVisible</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>divId</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>titleType</em> = <code>&quot;h4&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Call this function inside your code (controller or view) to create an HTML div element - which user can hide or show by clicking a title.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$title</td><td>heading of the div, also a link to click to toggle visibility </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$content</td><td>HTML content of the div </td></tr>
-    <tr><td class="paramtype">bool</td><td class="paramname">$initiallyVisible</td><td>if false, the HTML content is initially hidden. $title is always visible </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$divId</td><td>ID attribute for the div </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$titleType</td><td>HTML to wrap the $title </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>string Generated HTML string for the toggable div (with $title as heading) </dd></dl>
+<p>Functions to call from <a class="el" href="class_view.html">View</a> classes Used to treat the view as a Static page - i.e. No controller is needed to view this page. You must call this function to make the view static </p>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00062">62</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00048">48</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -280,7 +298,7 @@ Data Fields</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_view.html">CoreView</a>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

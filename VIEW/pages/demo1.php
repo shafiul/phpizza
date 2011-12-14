@@ -17,7 +17,7 @@ class View extends Template{
         // Must call parent's constructor
         parent::__construct($core);
         // Allow static load
-        $this->staticLoadAllowed = true;
+        $this->setStatic();
         // Set titles & other attributes here
         $this->title = "Demo 1";
     }

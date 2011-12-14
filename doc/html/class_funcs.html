@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>gigamvc: Funcs Class Reference</title>
+<title>PHPizza: Funcs Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">gigamvc&#160;<span id="projectnumber">1.0</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -94,33 +94,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a64585b415473be548941a9f4f12bb8ec">__construct</a> ($core)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a223e5d960c78562ea427a575d74cdfb2">redirect</a> ($page='../index.php?', $byHeader=true)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a9a60e44d93712aa47dad8816453eeb45">messageExit</a> ($message, $type=3, $pageURL='')</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a941f6786f3f6e5fbf1a266597f1fd9ae">setDisplayMsg</a> ($msg, $status=MSGBOX_ERROR)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#ac0a376c164e56324f47e83968ba8359d">getDisplayMsg</a> ()</td></tr>
-<tr><td colspan="2"><div class="groupHeader">SESSION related</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>setting, getting &amp; destroying variables in PHP SESSION (using PHP's built in $_SESSION variable) </p>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">messageExit</a> ($message, $type=MSGBOX_ERROR, $pageURL='')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg</a> ($msg, $status=MSGBOX_ERROR)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">getStatusMsg</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a2872c585b25af93c5f01c8d31e1bfcd1">date</a> ($unixTimestamp=null)</td></tr>
+<tr><td colspan="2"><div class="groupHeader">PHP SESSION Related</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>If you are using any of theese functions, make sure you started Session first. Following code can safely start a PHP session: <br/>
+</p>
+<div class="fragment"><pre class="fragment"> <span class="keywordflow">if</span>(!session_id()){
+      session_start();
+ }
+</pre></div><p>setting, getting &amp; destroying variables in PHP SESSION (using PHP's built in $_SESSION variable) </p>
 </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a> ($id, $data)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a> ($id)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a> ($id)</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Functions for debugging</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b8b7f3e93cbead10f4c41996b8537a1"></a><!-- doxytag: member="Funcs::varDumpToString" ref="a9b8b7f3e93cbead10f4c41996b8537a1" args="($var)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>varDumpToString</b> ($var)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a257232bf920cd97573a0af45405e758a"></a><!-- doxytag: member="Funcs::PR" ref="a257232bf920cd97573a0af45405e758a" args="($obj, $pretext=&quot;&quot;, $posttext=&quot;&quot;)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>PR</b> ($obj, $pretext=&quot;&quot;, $posttext=&quot;&quot;)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f96e7fc92441776c9d1cd3386663b40"></a><!-- doxytag: member="Funcs::$html" ref="a6f96e7fc92441776c9d1cd3386663b40" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a6f96e7fc92441776c9d1cd3386663b40">$html</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to the $core-&gt;$html, object of <a class="el" href="class_h_t_m_l.html" title="Generate HTML strings easily.">HTML</a> class. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa432de3bacb7ced3632fa0ee0269ada3"></a><!-- doxytag: member="Funcs::$core" ref="aa432de3bacb7ced3632fa0ee0269ada3" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#aa432de3bacb7ced3632fa0ee0269ada3">$core</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to the instance of <a class="el" href="class_core.html" title="The Most important class - makes the framework working!">Core</a> class. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Some general purpose functions. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam</dd></dl>
 <p>Contains some general purpose functions. $core has an object of this class, named $funcs </p>
 
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00011">11</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00010">10</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="Funcs::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
 <div class="memitem">
@@ -144,32 +144,34 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00021">21</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00019">19</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ac0a376c164e56324f47e83968ba8359d"></a><!-- doxytag: member="Funcs::getDisplayMsg" ref="ac0a376c164e56324f47e83968ba8359d" args="()" -->
+<a class="anchor" id="a2872c585b25af93c5f01c8d31e1bfcd1"></a><!-- doxytag: member="Funcs::date" ref="a2872c585b25af93c5f01c8d31e1bfcd1" args="($unixTimestamp=null)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">getDisplayMsg </td>
+          <td class="memname">date </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>unixTimestamp</em> = <code>null</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<ul>
-<li>This function is called automtically! Do not call this function in your VIEW</li>
-<li>Call this function in your template file. See <a class="el" href="templates_2_white_love_2index_8php_source.html">templates/WhiteLove/index.php</a> for example</li>
-</ul>
-<p>Get the HTML message set via <a class="el" href="class_funcs.html#a941f6786f3f6e5fbf1a266597f1fd9ae">setDisplayMsg()</a> - The function will do styling based on $status parameter of <a class="el" href="class_funcs.html#a941f6786f3f6e5fbf1a266597f1fd9ae">setDisplayMsg()</a> function </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>string Generated HTML if message exists, empty string otherwise. </dd></dl>
+<p>Returns date formatted in human readable way. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$unixTimestamp</td><td>| Leave empty to return current time </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00154">154</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00157">157</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
 
 </div>
 </div>
@@ -196,15 +198,41 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>mixed<ul>
 <li>stored variable, if it was found in SESSION</li>
-<li>bool false, if not found in SESSION </li>
+<li>null, if not found in SESSION </li>
 </ul>
 </dd></dl>
 
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00088">88</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00075">75</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9a60e44d93712aa47dad8816453eeb45"></a><!-- doxytag: member="Funcs::messageExit" ref="a9a60e44d93712aa47dad8816453eeb45" args="($message, $type=3, $pageURL='')" -->
+<a class="anchor" id="aa32f642f1fea989b2e846406c897ea2c"></a><!-- doxytag: member="Funcs::getStatusMsg" ref="aa32f642f1fea989b2e846406c897ea2c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getStatusMsg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>You should call this function withing your <a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> class.</p>
+<ul>
+<li>This function is called automtically! Do not call this function in your VIEW classes.</li>
+<li>Call this function in your template file. See <a class="el" href="templates_2_white_love_2index_8php_source.html">templates/WhiteLove/index.php</a> for example</li>
+</ul>
+<p>Get the HTML message set via <a class="el" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg()</a> - The function will do styling based on $status parameter of <a class="el" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg()</a> function</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>This function safely starts PHP Session - as status messages are passed using PHP Session.</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string Generated HTML if message exists, empty string otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00130">130</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae4cf9ee75a7250af8477980e1bcec25a"></a><!-- doxytag: member="Funcs::messageExit" ref="ae4cf9ee75a7250af8477980e1bcec25a" args="($message, $type=MSGBOX_ERROR, $pageURL='')" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -218,7 +246,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>type</em> = <code>3</code>, </td>
+          <td class="paramname"><em>type</em> = <code>MSGBOX_ERROR</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -251,81 +279,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00052">52</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a223e5d960c78562ea427a575d74cdfb2"></a><!-- doxytag: member="Funcs::redirect" ref="a223e5d960c78562ea427a575d74cdfb2" args="($page='../index.php?', $byHeader=true)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">redirect </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>page</em> = <code>'../index.php?'</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>byHeader</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Redirection Function </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$page</td><td>URL to which the page will be redirected </td></tr>
-    <tr><td class="paramtype">bool</td><td class="paramname">$byHeader</td><td>if true, redirection done by html header. else, by javascript </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00031">31</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a941f6786f3f6e5fbf1a266597f1fd9ae"></a><!-- doxytag: member="Funcs::setDisplayMsg" ref="a941f6786f3f6e5fbf1a266597f1fd9ae" args="($msg, $status=MSGBOX_ERROR)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">setDisplayMsg </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>msg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>status</em> = <code>MSGBOX_ERROR</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Call this within controller to set a HTML message which you want to get displayed automatically in your VIEW </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$msg</td><td>The HTML message you want to get displayed </td></tr>
-    <tr><td class="paramtype">int</td><td class="paramname">$status</td><td>see constants defined for parameter $type in <a class="el" href="class_funcs.html#a9a60e44d93712aa47dad8816453eeb45">messageExit()</a> function </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00139">139</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00033">33</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
 
 </div>
 </div>
@@ -362,7 +316,46 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00076">76</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00064">64</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0fbee3f78769c9fa36608ea7728d9714"></a><!-- doxytag: member="Funcs::setStatusMsg" ref="a0fbee3f78769c9fa36608ea7728d9714" args="($msg, $status=MSGBOX_ERROR)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">setStatusMsg </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>status</em> = <code>MSGBOX_ERROR</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Call this function within <a class="el" href="class_controller.html">Controller</a> classes to set a HTML message which you want to get displayed automatically in the generated HTML for the page. The messages are of various types, i.e <em>Success</em>, <em>Warning</em>, <em>Information</em> or  type. <br/>
+ Each type has it's own style, i.e. <em>Success</em> type messages are displayied withing Green background, where <em>Failure</em> type are displayed withing Red background/color styles. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>This function safely starts PHP Session - as status messages are passed using PHP Session. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$msg</td><td>The HTML message you want to get displayed </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$status</td><td>see constants defined for parameter $type in <a class="el" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">messageExit()</a> function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00102">102</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
 
 </div>
 </div>
@@ -388,7 +381,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00100">100</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="_funcs_8php_source.html#l00086">86</a> of file <a class="el" href="_funcs_8php_source.html">Funcs.php</a>.</p>
 
 </div>
 </div>
@@ -400,7 +393,7 @@ Private Attributes</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_funcs.html">Funcs</a>      </li>
-      <li class="footer">Generated on Mon Sep 12 2011 00:34:23 for gigamvc by&#160;
+      <li class="footer">Generated on Wed Dec 14 2011 19:33:27 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

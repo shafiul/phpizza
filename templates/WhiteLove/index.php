@@ -5,13 +5,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <?php
             // Get Instance of Core 
-            global $core;
+            $view = getView();
             // Print Title
-            echo "<title>" . $core->view->title . "</title>";
+            echo "<title>" . $view->title . "</title>";
             // Print CSS
-            echo $core->view->printCss();
+            echo $view->printCss();
             // Print Javascript
-            echo $core->view->printJs();
+            echo $view->printJs();
         ?>
     </head>
     <body>
@@ -19,7 +19,7 @@
         <div id="wrap">
 
             <div id="header">
-                <?php $core->view->header();  ?>
+                <?php $view->header();  ?>
             </div>
 
 
@@ -27,15 +27,15 @@
             <div id="content">
                 <div class="left"> 
                     <?php
-                        echo $core->funcs->getDisplayMsg();
+                        echo $view->msg();
                         echo "<br />";
-                        $core->view->mainContent();
+                        $view->mainContent();
                     ?>
                 </div>
 
                 <div class="right"> 
 
-                    <?php $core->view->sidebar("right"); ?>
+                    <?php $view->sidebar("right"); ?>
 
                 </div>
                 <div style="clear: both;"> </div>
