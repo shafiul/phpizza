@@ -11,10 +11,10 @@ class Controller extends CoreController{
             echo $this->getMsg();
         ?>
         <ul>
-            <li><a href="simple_validator/test">Invalid example (user did not submit desired value): page redirects to this page</a></li>
-            <li><a href="simple_validator/test?noRedirect=yes">Invalid example (user did not submit desired value): page does not redirect</a></li>
-            <li><a href="simple_validator/test?id=something">Valid Example. Value passed is: &quot;something&quot;</a></li>
-<!--            <li><a href="simple_validator.html"></a></li>-->
+            <li><a href="<?php echo url('simple_validator/test'); ?>">Invalid example (user did not submit desired value): page redirects to this page</a></li>
+            <li><a href="<?php echo url('simple_validator/test?noRedirect=yes'); ?>">Invalid example (user did not submit desired value): page does not redirect</a></li>
+            <li><a href="<?php echo url('simple_validator/test?id=something'); ?>">Valid Example. Value passed is: &quot;something&quot;</a></li>
+
             
         </ul>
         <?php
@@ -23,8 +23,8 @@ class Controller extends CoreController{
     
     function test(){
         
-        $id = $this->validate->userInput('id');
-        $noRedirect = $this->validate->userInput('noRedirect',"",false);    //  Not required, uses a default value 
+        $id = $this->validate->input('id');
+        $noRedirect = $this->validate->input('noRedirect',"",false);    //  Not required, uses a default value 
         
         if($noRedirect == "yes"){
             // Don't exit, process within this page
@@ -39,7 +39,7 @@ class Controller extends CoreController{
         
         echo "<br />ID is: &quot;$id&quot; | noRedirect Is: &quot;$noRedirect&quot;";
         
-        echo "<hr /><a href = '../simple_validator.html'>Back</a>";
+        echo '<hr />' . anchor('simple_validator', 'Back');
        
     }
     

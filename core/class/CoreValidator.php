@@ -66,7 +66,7 @@ class CoreValidator{
      * - validated string, passed through php's htmlspecialchars
      */
     
-    public function userInput($data, $length="", $required = true, $defaultValue = "") {
+    public function input($data, $length="", $required = true, $defaultValue = "") {
 //            Returns validated input, or store in error array.
         if ($required) {
             if (empty($_REQUEST["$data"])) {

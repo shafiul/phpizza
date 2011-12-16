@@ -23,8 +23,9 @@ abstract class Template extends CoreView{
     // vars
     
     public $heading;    ///< A custom (template-specific) variable. For setting the Headline of the page
+    private $core;      ///< Override parent's
 
-    
+
     /**
      * Perorms some routine tasks:
      *  - Sets default CSS & JavaScript files for all pages
@@ -34,6 +35,8 @@ abstract class Template extends CoreView{
     public function __construct($core) {
         // First call parent's Constructor
         parent::__construct($core);
+        
+        $this->core = $core;
         
         // Set some other parameters
         $this->defaultCssArray = array("style");

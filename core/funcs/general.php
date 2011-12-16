@@ -30,7 +30,16 @@
  * @return string working URL
  */
 function url($url) {
-    return BASE_URL . "/$url" . URL_EXTENTION;
+    $urlArr = explode("?", $url, 2); // Split based on the query string
+    if(NICE_URL_ENABLED){
+        $queryString = (isset($urlArr[1])) ? ( "?" . $urlArr[1]) : ("");
+        return BASE_URL . '/' . $urlArr[0] . URL_EXTENTION . $queryString;
+    }else{
+        $queryString = (isset($urlArr[1])) ? ( "&" . $urlArr[1]) : ("");
+        return BASE_URL . '/?p=' . $urlArr[0] . $queryString;
+    }
+    
+    
 }
 
 /**
@@ -40,7 +49,14 @@ function url($url) {
  * @return string working URL 
  */
 function url_static($url) {
-    return BASE_URL . "/static/$url" . URL_EXTENTION;
+    $urlArr = explode("?", $url, 2); // Split based on the query string
+    if(NICE_URL_ENABLED){
+        $queryString = (isset($urlArr[1])) ? ( "?" . $urlArr[1]) : ("");
+        return BASE_URL . '/static/' . $urlArr[0] . URL_EXTENTION . $queryString;
+    }else{
+        $queryString = (isset($urlArr[1])) ? ( "&" . $urlArr[1]) : ("");
+        return BASE_URL . '/?p=static/' . $urlArr[0] . $queryString;
+    }
 }
 
 /**
@@ -84,17 +100,16 @@ function redirect($page="", $byHeader = true) {
  * @return string | generated html 
  */
 function anchor($url, $text) {
-    $urlArr = explode("?", $url, 2); // Split based on the query string
-    $queryString = (isset($urlArr[1])) ? ( "?" . $urlArr[1]) : ("");
-    return "<a href = '" . BASE_URL . "/" . $urlArr[0] . URL_EXTENTION . $queryString . "'>$text</a>";
+    return "<a href = '" . url($url). "'>$text</a>";
 }
 
 /**
- *
- * @param type $url
- * @param type $text
- * @param type $confirmationMessage
- * @return type 
+ * Provides a link, when clicked, visitor will be provided wit a "Confirmation Box" showing 
+ * $confirmationMessage - if clicked yes, visitor will be redirected to $url
+ * @param string $url
+ * @param string $text
+ * @param string $confirmationMessage
+ * @return string %HTML link. 
  */
 function confirmAndGo($url, $text, $confirmationMessage) {
     $url = url($url);
@@ -102,9 +117,9 @@ function confirmAndGo($url, $text, $confirmationMessage) {
 }
 
 /**
- *
- * @param type $url
- * @param type $attrArr 
+ * %HTML <img> tag generator.
+ * @param string $url - path of the image
+ * @param mixed $attrArr - key value pair of Tag Attributes 
  */
 function img($url, $attrArr=null) {
     $attrText = '';
@@ -124,9 +139,7 @@ function img($url, $attrArr=null) {
  * @return string | generated html 
  */
 function anchor_static($url, $text) {
-    $urlArr = explode("?", $url, 2); // Split based on the query string
-    $queryString = (isset($urlArr[1])) ? ("?" . $urlArr[1]) : ("");
-    return "<a href = '" . BASE_URL . "/static/" . $urlArr[0] . URL_EXTENTION . $queryString . "'>$text</a>";
+    return "<a href = '" . url_static($url). "'>$text</a>";
 }
 
 

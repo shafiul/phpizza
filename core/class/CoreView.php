@@ -28,7 +28,7 @@ class CoreView {
     public $includeDefaultCss = true;   ///<    Should apply default CSS files to "this page"?
     public $includeDefaultJs = true;    ///<    Should apply default JavaScript files to "this page"?
     // Reference to Core
-    public $core;   ///< A reference to $core
+    private $core;   ///< A reference to $core
 
     // Public & Private Methods
 
