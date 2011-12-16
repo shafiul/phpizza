@@ -20,7 +20,6 @@ class Model extends CoreModel{
     
     public function __construct($core) {
         parent::__construct($core);
-        $this->db = new MySQL;
         $this->db->table = "";
     }
 }

@@ -16,8 +16,7 @@ class MaliciousClass{
      */
     
     function getDbInfo(){
-        echo 'DB username is: ' . DB_USERNAME . '<br />';
-        echo 'DB password is: ' . DB_PASSWORD . '<br />';
+        $config = Config::getInstance();
     }
 }
 

@@ -8,7 +8,9 @@ require dirname(__FILE__) . '/core/class/Core.php';
 // Start PHPizza
 $phpizza = new PHPizza();
 $__viewInstance = null; ///< A Global instance
+
 $page = $phpizza->validate->input('p', "", false, LANDING_PAGE);
+
 // Remove trailish slash
 $page = rtrim($page,"/");
 // Load model, view & controller

@@ -24,12 +24,16 @@ abstract class GenericDB{
     public $connectionID = null;    ///<    Connection identifier after successful database connection
     public $returnInsertID = true;  ///< Boolean, whether returns "Insert ID" for select command. 
     
+    
     // Functions to implement
     
     /**
+     * Establishes database connection. \n
      * First function before all other functions can be called, to establish the database connection.
+     * 
+     * @param mixed $dbConfig - key-value array containing DB credential
      */
-    abstract public function connect();
+    abstract public function connect($dbConfig);
     /**
      * Inserts $this->data to schema $this->table. You can encrypt some column's value by using the optional parameters
      * @param "string" $columnToEncrypt name of the column whose value will be encrypted

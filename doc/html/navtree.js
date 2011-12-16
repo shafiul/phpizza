@@ -4,6 +4,7 @@ var NAVTREE =
     [ "Data Structures", "annotated.html", [
       [ "Auth", "class_auth.html", null ],
       [ "Blocks", "class_blocks.html", null ],
+      [ "Config", "class_config.html", null ],
       [ "Controller", "class_controller.html", null ],
       [ "Core", "class_core.html", null ],
       [ "CoreController", "class_core_controller.html", null ],
@@ -18,9 +19,11 @@ var NAVTREE =
       [ "GenericDB", "class_generic_d_b.html", null ],
       [ "HTML", "class_h_t_m_l.html", null ],
       [ "Login", "class_login.html", null ],
+      [ "MaliciousClass", "class_malicious_class.html", null ],
       [ "Model", "class_model.html", null ],
       [ "MySQL", "class_my_s_q_l.html", null ],
       [ "PHPizza", "class_p_h_pizza.html", null ],
+      [ "ReCaptchaResponse", "class_re_captcha_response.html", null ],
       [ "Registration", "class_registration.html", null ],
       [ "Template", "class_template.html", null ],
       [ "UserModel", "class_user_model.html", null ],
@@ -30,8 +33,14 @@ var NAVTREE =
     [ "Data Structure Index", "classes.html", null ],
     [ "Class Hierarchy", "hierarchy.html", [
       [ "Auth", "class_auth.html", null ],
+      [ "Config", "class_config.html", null ],
       [ "Core", "class_core.html", null ],
       [ "CoreController", "class_core_controller.html", [
+        [ "Controller", "class_controller.html", null ],
+        [ "Controller", "class_controller.html", null ],
+        [ "Controller", "class_controller.html", null ],
+        [ "Controller", "class_controller.html", null ],
+        [ "Controller", "class_controller.html", null ],
         [ "Controller", "class_controller.html", null ],
         [ "Controller", "class_controller.html", null ]
       ] ],
@@ -66,69 +75,89 @@ var NAVTREE =
       [ "HTML", "class_h_t_m_l.html", [
         [ "Blocks", "class_blocks.html", null ]
       ] ],
-      [ "PHPizza", "class_p_h_pizza.html", null ]
+      [ "MaliciousClass", "class_malicious_class.html", null ],
+      [ "PHPizza", "class_p_h_pizza.html", null ],
+      [ "ReCaptchaResponse", "class_re_captcha_response.html", null ]
     ] ],
     [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
-      [ "config.php", null, null ],
-      [ "index.php", null, null ],
-      [ "post_script.php", "post__script_8php.html", null ],
-      [ "pre_script.php", "pre__script_8php.html", null ],
-      [ "userconfig.php", null, null ],
-      [ "CONTROL/login.php", null, null ],
-      [ "CONTROL/registration.php", null, null ],
-      [ "core/class/Core.php", null, null ],
-      [ "core/class/CoreController.php", null, null ],
-      [ "core/class/CoreForm.php", null, null ],
-      [ "core/class/CoreModel.php", null, null ],
-      [ "core/class/CoreValidator.php", null, null ],
-      [ "core/class/CoreView.php", null, null ],
-      [ "core/class/Funcs.php", null, null ],
-      [ "core/class/HTML.php", null, null ],
-      [ "core/class/db/GenericDB.php", null, null ],
-      [ "core/class/db/MySQL.php", null, null ],
-      [ "core/funcs/general.php", "general_8php.html", null ],
-      [ "custom/class/Authentication.php", null, null ],
-      [ "custom/class/Blocks.php", null, null ],
-      [ "custom/class/Files.php", null, null ],
-      [ "custom/class/Validator.php", null, null ],
-      [ "MODEL/Model.php", null, null ],
-      [ "MODEL/UserModel.php", null, null ],
-      [ "templates/WhiteLove/index.php", null, null ],
-      [ "templates/WhiteLove/Template.php", null, null ],
-      [ "VIEW/blocks/FormLinks.php", null, null ],
-      [ "VIEW/blocks/GeneralLinks.php", null, null ],
-      [ "VIEW/forms/Login.php", null, null ],
-      [ "VIEW/forms/Registration.php", null, null ],
-      [ "VIEW/pages/demo1.php", null, null ],
-      [ "VIEW/pages/index.php", null, null ],
-      [ "VIEW/pages/login.php", null, null ],
-      [ "VIEW/pages/registration.php", null, null ],
-      [ "VIEW/pages/sample/demo1.php", null, null ],
-      [ "VIEW/pages/sample/demo2.php", null, null ]
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/config.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/index.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/post_script.php", "post__script_8php.html", null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/pre_script.php", "pre__script_8php.html", null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/userconfig.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/3rdparty/recaptcha/config.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/3rdparty/recaptcha/example-captcha.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/3rdparty/recaptcha/example-mailhide.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/3rdparty/recaptcha/recaptchalib.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/CONTROL/index.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/CONTROL/login.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/CONTROL/malicious.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/CONTROL/many_views.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/CONTROL/registration.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/CONTROL/simple_validator.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/CONTROL/sample/demo1.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/Core.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/CoreController.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/CoreForm.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/CoreModel.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/CoreValidator.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/CoreView.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/Funcs.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/HTML.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/db/GenericDB.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/db/MySQL.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/core/funcs/general.php", "general_8php.html", null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/custom/class/Authentication.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/custom/class/Blocks.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/custom/class/Files.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/custom/class/MaliciousClass.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/custom/class/Validator.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/MODEL/Model.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/MODEL/UserModel.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/templates/WhiteLove/index.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/templates/WhiteLove/Template.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/blocks/FormLinks.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/blocks/GeneralLinks.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/forms/Login.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/forms/Registration.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/pages/demo1.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/pages/index.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/pages/login.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/pages/registration.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/pages/sample/demo1.php", null, null ],
+      [ "/media/sobkichu/xampp/htdocs/projects/gigamvc/VIEW/pages/sample/demo2.php", null, null ]
     ] ],
     [ "Directories", "dirs.html", [
-      [ "CONTROL", "dir_8c4cd513176188a414b8481a5f837ffa.html", null ],
-      [ "core", "dir_bdb8876d4333d8b8effce74f01eb1983.html", [
-        [ "class", "dir_590039bd06f99c55346eecd17f687228.html", [
-          [ "db", "dir_6325d47ce5ef426b2b284b65ef349aa1.html", null ]
+      [ "3rdparty", "dir_2e391c185383511117b84953c2a7203c.html", [
+        [ "recaptcha", "dir_b5c461c358c2700e82afd64ce9b35c2a.html", null ]
+      ] ],
+      [ "CONTROL", "dir_b4563a6f8d155c5de2a099c0e07d62ec.html", [
+        [ "sample", "dir_fd7c4beb658aa38cca3b93df241ed43d.html", null ]
+      ] ],
+      [ "core", "dir_02f37b95d2439b2c44f08303e6a7e8cf.html", [
+        [ "class", "dir_82a5de1d155736e48993b8ee5d9969f9.html", [
+          [ "db", "dir_b66b4a05af7304f2d68afeef71f98e66.html", null ]
         ] ],
-        [ "funcs", "dir_4174526eeb8bda38ab1bd0d84b1e7670.html", null ]
+        [ "funcs", "dir_fbb63112cc433853799f43c7bcce6320.html", null ]
       ] ],
-      [ "custom", "dir_b0de7321a72ccc6835f9cce9c1a752cd.html", [
-        [ "class", "dir_eab0f172a41e59d3845a384e69a0920e.html", null ]
+      [ "custom", "dir_13646f3d2c67827ee229b765a56f42e8.html", [
+        [ "class", "dir_8f3146db818a0ce66ed2dc7f324b8d7c.html", null ]
       ] ],
-      [ "MODEL", "dir_d262c4628aa891d226d3ddd36161dfc6.html", null ],
-      [ "templates", "dir_ceb26316752805a44a6c48db16589bb0.html", [
-        [ "WhiteLove", "dir_933c55b782dbf5bfb3a3262ba3e68688.html", null ]
+      [ "MODEL", "dir_b169a67c002d9cf78fcee02bbd4053d7.html", null ],
+      [ "templates", "dir_461d0804d9a4372db9e9198d2c7b9fac.html", [
+        [ "WhiteLove", "dir_83f4eb01e4717278543cecdbc96b7ec2.html", null ]
       ] ],
-      [ "VIEW", "dir_28298104348cfebcb12a3dae8753a486.html", [
-        [ "blocks", "dir_17c2826c27de9f3dffcb216e7a022fef.html", null ],
-        [ "forms", "dir_394a0967c552489e1570b58b628bc103.html", null ],
-        [ "pages", "dir_6decc1996b24287e32244d1f71b3647d.html", [
-          [ "sample", "dir_26e28f675afa9d4b663ab22dee3cd0db.html", null ]
+      [ "VIEW", "dir_8f84f860c168832476d872e04fcd100f.html", [
+        [ "blocks", "dir_efce5db8b2ee476dbbfe8492aa5f7184.html", null ],
+        [ "forms", "dir_d15a0795511bc27361f2d0c4125db3f6.html", null ],
+        [ "pages", "dir_e7e356626e57c467ae356bd2570e0ae0.html", [
+          [ "sample", "dir_37054a61c54af8f4b30d5bba0165b269.html", null ]
         ] ]
       ] ]
+    ] ],
+    [ "Examples", "examples.html", [
+      [ "com", "com-example.html", null ]
     ] ],
     [ "Globals", "globals.html", null ]
   ] ]

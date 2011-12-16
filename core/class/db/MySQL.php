@@ -15,13 +15,14 @@
 
 class MySQL extends GenericDB{
     
+    
     /**
-     * Calls connect()
+     * Constructor, just calls connect()
      */
     
-    public function __construct() {
+    public function __construct($dbConfig) {
         // connect!
-        $this->connect();
+        $this->connect($dbConfig);
     }
     
     public function setError() {
@@ -29,8 +30,8 @@ class MySQL extends GenericDB{
         $this->errorMsg = mysql_error($this->connectionID);
     }
     
-    public function connect() {
-        $this->connectionID = mysql_connect(DB_HOST, DB_USERNAME, DB_PASSWORD);
+    public function connect($dbConfig) {
+        $this->connectionID = mysql_connect($dbConfig['host'], $dbConfig['username'], $dbConfig['password']);
         if(!$this->connectionID){
             $this->errorNo = 0;
             $this->errorMsg = "Connection Failed!";
@@ -38,7 +39,7 @@ class MySQL extends GenericDB{
             echo "Database Error! For more information, set DEBUG on";
             exit();
         }
-        if(DB_DATABASE && !mysql_select_db(DB_DATABASE, $this->connectionID)){
+        if($dbConfig['database'] && !mysql_select_db($dbConfig['database'], $this->connectionID)){
             $this->setError();
 //            $this->debug();
             echo "Database Error! For more information, set DEBUG on";

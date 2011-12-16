@@ -21,14 +21,7 @@ class CoreModel {
     
     public function __construct($core) {
         $this->core = $core;
-        // Create Object
-        $driver = DB_DRIVER;
-        $this->db = new $driver();
-//        switch(DB_DRIVER){
-//            case 'MySQL':
-//                $this->db = new MySQL();
-//                break;
-//        }
+        $this->db = $core->getDb();
     }
     
     /**

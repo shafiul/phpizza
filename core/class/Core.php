@@ -85,12 +85,15 @@ class Core {
     public $isStatic; ///< true if the page is static: no controller to load, view automatically called.
     // Load sttus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
-    public $viewLoaded = false;         ///<    Boolean, true if view class loaded.        
+    public $viewLoaded = false;         ///<    Boolean, true if view class loaded.   
+    private $config = null;
     // vars for internal use. Don't use/depend on any of these in your code
 
     public $coreDir;
     public $autoloadedData;
     private $__version;                 ///< Core Version
+    private $__dbconfig;                ///< Database Credentials
+    private $__alconfig;                ///< Auto-load configuartion
     // Internal
 
     private $oneModelLoaded = false;    ///< Whether CoreModel & DB driver already loaded
@@ -106,7 +109,9 @@ class Core {
      */
     public function __construct() {
         $this->__version = "1.1.0";
-//        $this->html = new HTML();
+        // Acquire info from global configuration
+        $this->loadConfig();
+        // Create other members
         $this->funcs = new Funcs($this);
         $this->validate = new Validator($this);
         // Set some default characteristics
@@ -114,10 +119,31 @@ class Core {
         // init some member vars
         $this->formData = array();
         // Set site template
-        $this->template = SITE_THEME;  //  Can load from DB too.
+        $this->template = $this->config->site_theme;  //  Can load from DB too.
         $this->templateFileName = "index.php";
         // Set up internal vars
         $this->coreDir = PROJECT_DIR . "/core";
+
+    }
+    
+    /**
+     * Load configurations/settings from global config.php
+     */
+    
+    private function loadConfig(){
+        // Load DB configuration
+        $config = Config::getInstance();
+        $this->__dbconfig = $config->db;
+        $config->db = null;
+        // Assign to self
+        $this->config = $config;
+        // Generate some constants
+        define('BASE_URL', $this->config->base_url);
+        define('SITE_THEME', $this->config->site_theme);
+        define('DEBUG_MODE', $this->config->debug_mode);
+        define('NICE_URL_ENABLED', $this->config->nice_url_enabled);
+        define('URL_EXTENTION', $this->config->url_extention);
+        define('LANDING_PAGE', $this->config->landing_page);
     }
 
     /**
@@ -185,8 +211,7 @@ class Core {
             // Also, generate the controller object & call "functionToCall"
             $this->generateControllerObject();  // Controller Called!
         } else {
-            echo "Error 404: Page Not Found";
-            exit();
+            $this->fatal('Error 404: Page Not Found');
         }
     }
 
@@ -234,7 +259,7 @@ class Core {
      * @param string $driver name of the database driver, i.e MySQL
      */
     public function loadDatabaseDriver() {
-        $driver = DB_DRIVER;
+        $driver = $this->__dbconfig['driver'];
         require_once $this->coreDir . "/class/db/GenericDB.php";   //  Generic database loaded
         // Load implemented driver
         require_once $this->coreDir . "/class/db/$driver.php";
@@ -398,9 +423,7 @@ class Core {
             // Check if controller loaded
             if (!$this->controllerLoaded) {
                 // Invalid request. report 404
-                header("HTTP/1.0 404 Not Found");
-                echo "Error 404 Page not found!";
-                exit(0);
+                $this->fatal('Error 404 Page not found!');
             }
 //            $this->debug("View Not Loaded");
         }
@@ -437,7 +460,7 @@ class Core {
 
         if ($numSegments == 1 && $pageArr[0] != "static") {
             $this->page = $URL;
-            $this->functionToCall = DEFAULT_FUNCTION2CALL;
+            $this->functionToCall = $this->config->default_function_to_call;
         } else {
             // Handle static pages first.
             if ($pageArr[0] == "static") {
@@ -451,7 +474,7 @@ class Core {
                 $controllerPath = PROJECT_DIR . "/" . CONTROL_DIR . "/$URL.php";
                 if (file_exists($controllerPath)) {
                     $this->page = $URL;
-                    $this->functionToCall = DEFAULT_FUNCTION2CALL;
+                    $this->functionToCall = $this->config->default_function_to_call;
                 } else {
                     // Check later.
                     $this->functionToCall = $pageArr[$numSegments - 1];
@@ -465,35 +488,33 @@ class Core {
 
     /**
      *
-     * @global array $pizza_autoload 
+     * @global array $PHPizza_autoload 
      */
     private function autoloadFromConfig() {
-        global $pizza_autoload;
-        $al = $pizza_autoload;
 
         // Custom Function
-        if (isset($al['func'])) {
-            foreach ($al['func'] as $className) {
+        if (isset($this->config->autoloads['func'])) {
+            foreach ($this->config->autoloads['func'] as $className) {
                 require PROJECT_DIR . '/' . CUSTOM_DIR . '/funcs/' . $className . '.php';
             }
         }
 
         // Custom classes
-        if (isset($al['custom'])) {
-            foreach ($al['custom'] as $className) {
+        if (isset($this->config->autoloads['custom'])) {
+            foreach ($this->config->autoloads['custom'] as $className) {
                 require PROJECT_DIR . "/" . CUSTOM_DIR . "/class/$className.php";
                 $this->autoloadedData['custom'][$className] = new $className($this);
             }
         }
         // MODELS
-        if (isset($al['model'])) {
+        if (isset($this->config->autoloads['model'])) {
             // First include once core model class
             require_once $this->coreDir . "/class/CoreModel.php";
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
             // Include all models
-            foreach ($al['model'] as $className) {
+            foreach ($this->config->autoloads['model'] as $className) {
                 require PROJECT_DIR . '/' . MODEL_DIR . '/' . $className . '.php';
                 $this->autoloadedData['model'][$className] = new $className($this);
             }
@@ -507,12 +528,25 @@ class Core {
     //@}
 
     /**
-     * Generate FATAL Errors - should end executing.
+     * Generate FATAL Errors - terminates execution immediately printing the error message.
      * @param type $msg 
      */
     public function fatal($msg) {
-        echo $msg;
+        echo '<html><head><title>Fatal Framework Error</title></head><body>';
+        echo html::msgbox($msg,MSGBOX_ERROR);
+        echo '</body></html>';
         exit();
+    }
+    
+    /**
+     * Returns an instance of Database driver object
+     * @return object - implementation of GenericDB i.e. MySQL
+     */
+    
+    public function getDb(){
+        $driver = $this->__dbconfig['driver'];
+        $db = new $driver($this->__dbconfig);
+        return $db;
     }
 
 }
