@@ -117,9 +117,30 @@ class CoreModel {
         }
     }
 
+    /**
+     * Returns a pointer to array. You should use mysql_fetch_array() 
+     * @param type $identifierArr
+     * @param type $selectArr
+     * @return type 
+     */
 
-    public function selectAll($identifierArr = null, $selectArr = null){
+    public function getAll($identifierArr = null, $selectArr = null){
 //        $this->db->clear();
+        $this->db->identifier = $identifierArr;
+        $this->db->select = $selectArr;
+        return $this->db->selectArray();
+    }
+    
+    /**
+     * Only the first row. Returns key-value pair array of data.
+     * @param type $identifierArr
+     * @param type $selectArr
+     * @return type 
+     */
+    
+    public function get($identifierArr = null, $selectArr = null){
+//        $this->db->clear();
+        $this->db->returnPointer = false;
         $this->db->identifier = $identifierArr;
         $this->db->select = $selectArr;
         return $this->db->selectArray();

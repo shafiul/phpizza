@@ -17,36 +17,34 @@
  * 
  * You should define these functions abstract & implement in your VIEW classes.
  */
+abstract class Template extends CoreView {
 
-abstract class Template extends CoreView{
-    
     // vars
-    
+
     public $heading;    ///< A custom (template-specific) variable. For setting the Headline of the page
     private $core;      ///< Override parent's
-
 
     /**
      * Perorms some routine tasks:
      *  - Sets default CSS & JavaScript files for all pages
      *  - Loads the custom "Blocks" class for your convenience.
      */
-    
+
     public function __construct($core) {
         // First call parent's Constructor
         parent::__construct($core);
-        
+
         $this->core = $core;
-        
+
         // Set some other parameters
-        $this->defaultCssArray = array("style");
-        $this->defaultJsArray = array("jquery/jquery_latest");
+        $this->defaultCssArray = array('style', 'msg_styles');
+        $this->defaultJsArray = array('jquery/jquery_latest');
         // a dummy headline
         $this->heading = "A dummy headline";
     }
-    
+
     // Functions to implement in your views
-    
+
     /**
      * @name Recommended Functions for the Template class
      * 
@@ -60,21 +58,18 @@ abstract class Template extends CoreView{
      * functions as abstract. Otherwise, if you think functionality is common for all VIEWs, you may define the body of the function(s) here. 
      * Note that, developers can easily override the functions in specific VIEW class, so the technique is flexible.
      */
-    
     //@{
-    
+
     /**
      * Called inside template file to print the headings body of the %HTML document 
      * Can leave as a abstract function, or you can implement the body of the function here, if suitable.
      */
-    
-    public function header(){
+    public function header() {
         echo '
-            <h1><a href="' . url('index') .'"><i>PHPizza</i></a></h1>
+            <h1><a href="' . url('index') . '"><i>PHPizza</i></a></h1>
                 <h2>' . $this->heading . '</h2>
             ';
     }
-
 
     /**
      * Function for the "main entry" of the page. Since this is totally page-dependant, 
@@ -82,18 +77,16 @@ abstract class Template extends CoreView{
      * 
      * Called inside template file to print the "main" body of the %HTML document
      */
-    
     abstract public function mainContent(); // Page's main entry
-    
+
     /**
      * General purpose function for printing sidebars. In the following function, you can 
      * implement the "default" sidebars applicable to all views. However, if you need custom sidebar 
      * in any view, you can easily override this function.
      * @param string $alignment - possible values: "left","right"
      */
-    
     public function sidebar($alignment) {
-        switch($alignment){
+        switch ($alignment) {
             case 'left':
                 // No left sidebar
                 break;
@@ -107,17 +100,19 @@ abstract class Template extends CoreView{
                 break;
         }
     }
-    
+
     /**
      * Footer of the template. Footers does not normally change in Views. So, you can staticly determine the page 
      * footer here. 
      */
-    
-    public function footer(){
-        
+    public function footer() {
+        ?>
+        <div id="footer">
+            <a href="http://www.templatesold.com/" target="_blank">Website Templates</a> by <a href="http://www.free-css-templates.com/" target="_blank">Free CSS Templates</a>
+        </div>
+        <?php
     }
-    
+
     //@}
 }
-
 ?>

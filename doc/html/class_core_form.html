@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0 beta</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -93,22 +92,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- doxytag: class="CoreForm" -->
 <p>Create, submit &amp; validate web-forms.  
  <a href="class_core_form.html#details">More...</a></p>
-<div class="dynheader">
-Inheritance diagram for CoreForm:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="class_core_form.png" usemap="#CoreForm_map" alt=""/>
-  <map id="CoreForm_map" name="CoreForm_map">
-<area href="class_login.html" alt="Login" shape="rect" coords="0,56,78,80"/>
-<area href="class_registration.html" alt="Registration" shape="rect" coords="88,56,166,80"/>
-</map>
- </div></div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a2dbc5baa6b594a250153c161b2ed0177">__construct</a> ($ob, $core)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3">sendToView</a> ($returnOnly=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function to call within your <a class="el" href="class_controller.html">Controller</a> classes.  <a href="#aeda64fd46926abe5fdf70d6bbc8900c3"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important function to call within your Controller classes.  <a href="#aeda64fd46926abe5fdf70d6bbc8900c3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#a184909dab34698899937d810a9f5d393">validate</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Important Function - After a user has submitted the form, call it within your controller to start form validation.  <a href="#a184909dab34698899937d810a9f5d393"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_form.html#af5ea6a083ddb07beb8a30dd32e309ceb">get</a> ($name)</td></tr>
@@ -252,7 +241,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Generally, you extend <a class="el" href="class_core_form.html" title="Create, submit &amp; validate web-forms.">CoreForm</a> class when you're creating a form class (See example child class: <a class="el" href="class_registration.html">Registration</a> form in VIEW/forms directory) In your Form class's constructor, you should call this function. (see the example classed mentioned) </p>
+<p>Generally, you extend <a class="el" href="class_core_form.html" title="Create, submit &amp; validate web-forms.">CoreForm</a> class when you're creating a form class (See example child class: Registration form in VIEW/forms directory) In your Form class's constructor, you should call this function. (see the example classed mentioned) </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">object</td><td class="paramname">$ob</td><td>should be always "$this" - reference to the child class. </td></tr>
@@ -280,9 +269,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Within this function: build an array for your form-elements. Then set the elements using <a class="el" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">setElements()</a> function.</p>
-<p>For example, see <a class="el" href="class_registration.html">Registration</a> class </p>
-
-<p>Reimplemented in <a class="el" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">Login</a>, and <a class="el" href="class_registration.html#ab9cc7a749f39fa604e5e065f486a7ee6">Registration</a>.</p>
+<p>For example, see Registration class </p>
 
 </div>
 </div>
@@ -341,8 +328,8 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Creates &amp; returns HTML for this form.</p>
 <ul>
-<li>You do not need to use this function at all if you use <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3" title="Important function to call within your Controller classes.">sendToView()</a> function. Example: <a class="el" href="_c_o_n_t_r_o_l_2registration_8php_source.html">CONTROL/registration.php</a> &amp; VIEW/registration.php</li>
-<li>If you want to manually send the generated HTML of the form to your view class, you may call this function within your controller. See example: <a class="el" href="_c_o_n_t_r_o_l_2login_8php_source.html">CONTROL/login.php</a> &amp; VIEW/login.php</li>
+<li>You do not need to use this function at all if you use <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3" title="Important function to call within your Controller classes.">sendToView()</a> function. Example: CONTROL/registration.php &amp; VIEW/registration.php</li>
+<li>If you want to manually send the generated HTML of the form to your view class, you may call this function within your controller. See example: CONTROL/login.php &amp; VIEW/login.php</li>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>none </dd></dl>
 
@@ -460,8 +447,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Important function to call within your <a class="el" href="class_controller.html">Controller</a> classes. </p>
-<p>Call this function within your <a class="el" href="class_controller.html">Controller</a> classes to automatically send the generated HTML of the form to your <a class="el" href="class_view.html">View</a> class.</p>
+<p>Important function to call within your Controller classes. </p>
+<p>Call this function within your Controller classes to automatically send the generated HTML of the form to your View class.</p>
 <p>Next, within your view class, you can call <a class="el" href="class_core_view.html#ab885424c1d43ef4a1ad651e26aeb5930">CoreView::form</a>($id) to get the generated html, where $id is the class name of the form </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -521,7 +508,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <p>Validation functions are located in <a class="el" href="class_core_validator.html" title="Validates user-submitted inputs.">CoreValidator</a> (in core/class directory) &amp; <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> (in custom/class directory) classes. You can define your own validation functions in <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> class.</p>
-<p>You can get complete examples in <a class="el" href="class_login.html">Login</a> &amp; <a class="el" href="class_registration.html">Registration</a> class (see source code: <a class="el" href="class_login.html#ab9cc7a749f39fa604e5e065f486a7ee6">Login::createElements()</a> <a class="el" href="class_registration.html#ab9cc7a749f39fa604e5e065f486a7ee6">Registration::createElements()</a> ). Also, see tutorials. </p>
+<p>You can get complete examples in Login &amp; Registration class (see source code: Login::createElements() Registration::createElements() ). Also, see tutorials. </p>
 
 <p>Definition at line <a class="el" href="_core_form_8php_source.html#l00232">232</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
 
@@ -556,14 +543,14 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/<a class="el" href="_core_form_8php_source.html">CoreForm.php</a></li>
+<li>core/class/<a class="el" href="_core_form_8php_source.html">CoreForm.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_form.html">CoreForm</a>      </li>
-      <li class="footer">Generated on Fri Dec 16 2011 15:51:46 for PHPizza by&#160;
+      <li class="footer">Generated on Tue Dec 27 2011 08:24:57 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

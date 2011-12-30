@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0 beta</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -91,21 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- doxytag: class="CoreController" -->
 <p>All controller classes must extend this class.  
  <a href="class_core_controller.html#details">More...</a></p>
-<div class="dynheader">
-Inheritance diagram for CoreController:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="class_core_controller.png" usemap="#CoreController_map" alt=""/>
-  <map id="CoreController_map" name="CoreController_map">
-<area href="class_controller.html" alt="Controller" shape="rect" coords="0,56,96,80"/>
-<area href="class_controller.html" alt="Controller" shape="rect" coords="106,56,202,80"/>
-<area href="class_controller.html" alt="Controller" shape="rect" coords="212,56,308,80"/>
-<area href="class_controller.html" alt="Controller" shape="rect" coords="318,56,414,80"/>
-<area href="class_controller.html" alt="Controller" shape="rect" coords="424,56,520,80"/>
-<area href="class_controller.html" alt="Controller" shape="rect" coords="530,56,626,80"/>
-<area href="class_controller.html" alt="Controller" shape="rect" coords="636,56,732,80"/>
-</map>
- </div></div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -169,8 +153,6 @@ Data Fields</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>, <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>, <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>, <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>, <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>, <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>, and <a class="el" href="class_controller.html#a64585b415473be548941a9f4f12bb8ec">Controller</a>.</p>
-
 <p>Definition at line <a class="el" href="_core_controller_8php_source.html#l00017">17</a> of file <a class="el" href="_core_controller_8php_source.html">CoreController.php</a>.</p>
 
 </div>
@@ -200,7 +182,7 @@ Data Fields</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Get instance of an autoloaded class. This can be autoloaded Custom Class or <a class="el" href="class_model.html">Model</a> </p>
+<p>Get instance of an autoloaded class. This can be autoloaded Custom Class or Model or Custom Function file. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">type</td><td class="paramname">$className</td><td></td></tr>
@@ -238,8 +220,8 @@ Data Fields</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Use this function within your controller to pass a variable to your <a class="el" href="class_view.html">View</a> class. <br/>
- Within <a class="el" href="class_view.html">View</a>, you can get the data as a member variable, writing: </p>
+<p>Use this function within your controller to pass a variable to your View class. <br/>
+ Within View, you can get the data as a member variable, writing: </p>
 <div class="fragment"><pre class="fragment"> $this-&gt;<span class="keywordtype">id</span>
 </pre></div> <dl class="see"><dt><b>See also:</b></dt><dd>Also see this function to pass variable - <a class="el" href="class_core.html#a5f8cc6fff01d7d5b068edd4353e79f12">Core::setData()</a> </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
@@ -578,14 +560,14 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/<a class="el" href="_core_controller_8php_source.html">CoreController.php</a></li>
+<li>core/class/<a class="el" href="_core_controller_8php_source.html">CoreController.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_controller.html">CoreController</a>      </li>
-      <li class="footer">Generated on Fri Dec 16 2011 15:51:46 for PHPizza by&#160;
+      <li class="footer">Generated on Tue Dec 27 2011 08:24:57 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

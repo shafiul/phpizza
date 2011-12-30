@@ -4,14 +4,14 @@
         <meta http-equiv="Content-Language" content="English" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <?php
-            // Get Instance of Core 
-            $view = getView();
-            // Print Title
-            echo "<title>" . $view->title . "</title>";
-            // Print CSS
-            echo $view->printCss();
-            // Print Javascript
-            echo $view->printJs();
+        // Get Instance of Core 
+        $view = getView();
+        // Print Title
+        echo "<title>" . $view->title . "</title>";
+        // Print CSS
+        echo $view->printCss();
+        // Print Javascript
+        echo $view->printJs();
         ?>
     </head>
     <body>
@@ -19,7 +19,7 @@
         <div id="wrap">
 
             <div id="header">
-                <?php $view->header();  ?>
+                <?php $view->header(); ?>
             </div>
 
 
@@ -27,9 +27,9 @@
             <div id="content">
                 <div class="left"> 
                     <?php
-                        echo $view->msg();
-                        echo "<br />";
-                        $view->mainContent();
+                    echo $view->msg();
+                    echo "<br />";
+                    $view->mainContent();
                     ?>
                 </div>
 
@@ -41,9 +41,8 @@
                 <div style="clear: both;"> </div>
             </div>
 
-            <div id="footer">
-                <a href="http://www.templatesold.com/" target="_blank">Website Templates</a> by <a href="http://www.free-css-templates.com/" target="_blank">Free CSS Templates</a>
-            </div>
+            <?php $view->footer(); ?>
+
         </div>
 
     </body>

@@ -33,6 +33,10 @@ class UserModel extends CoreModel{
         $this->db->table = "user";
     }
     
+    function dummy(){
+        // I do nothing
+    }
+    
     
     
     /**

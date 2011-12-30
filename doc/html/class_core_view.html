@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0 beta</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -98,13 +97,7 @@ Inheritance diagram for CoreView:</div>
  <div class="center">
   <img src="class_core_view.png" usemap="#CoreView_map" alt=""/>
   <map id="CoreView_map" name="CoreView_map">
-<area href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class..." alt="Template" shape="rect" coords="195,56,263,80"/>
-<area href="class_view.html" alt="View" shape="rect" coords="0,112,68,136"/>
-<area href="class_view.html" alt="View" shape="rect" coords="78,112,146,136"/>
-<area href="class_view.html" alt="View" shape="rect" coords="156,112,224,136"/>
-<area href="class_view.html" alt="View" shape="rect" coords="234,112,302,136"/>
-<area href="class_view.html" alt="View" shape="rect" coords="312,112,380,136"/>
-<area href="class_view.html" alt="View" shape="rect" coords="390,112,458,136"/>
+<area href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class..." alt="Template" shape="rect" coords="0,56,68,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -125,40 +118,43 @@ Public Member Functions</h2></td></tr>
 Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada57e7bb7c152edad18fe2f166188691"></a><!-- doxytag: member="CoreView::$title" ref="ada57e7bb7c152edad18fe2f166188691" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#ada57e7bb7c152edad18fe2f166188691">$title</a> = null</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Title element of HTML Document for "this page". <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Title element of HTML output. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac13ca58494b5ebc7e5f1ded33256c9e9"></a><!-- doxytag: member="CoreView::$icon" ref="ac13ca58494b5ebc7e5f1ded33256c9e9" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#ac13ca58494b5ebc7e5f1ded33256c9e9">$icon</a> = null</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon element of HTML Document for "this page". <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon element of HTML output. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31059b9e4d0c5af34df20da32232ea9a"></a><!-- doxytag: member="CoreView::$desc" ref="a31059b9e4d0c5af34df20da32232ea9a" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a31059b9e4d0c5af34df20da32232ea9a">$desc</a> = &quot;site description&quot;</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">content attribute of meta with "description" name attribute for "this page" <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">"Description" meta-tag of HTML output. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af20635b6c08e03bfee9e3fc036fa80f3"></a><!-- doxytag: member="CoreView::$keys" ref="af20635b6c08e03bfee9e3fc036fa80f3" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#af20635b6c08e03bfee9e3fc036fa80f3">$keys</a> = &quot;keywords&quot;</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">content attribute of meta with "keyword" name attribute for "this page" <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">"Keywords" meta-tag of HTML output. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b5695b172f2e0de9e1025d3df06df2d"></a><!-- doxytag: member="CoreView::$cssArray" ref="a6b5695b172f2e0de9e1025d3df06df2d" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a6b5695b172f2e0de9e1025d3df06df2d">$cssArray</a> = null</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array for storing custom CSS files to be applied to "this page". <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array. Array elements are css filenames - must be available under your theme's "css" directory. Do not provide ".css" after filenames. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4db023d9acebe55397c788e9ce6a2f3c"></a><!-- doxytag: member="CoreView::$externalCssArray" ref="a4db023d9acebe55397c788e9ce6a2f3c" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a4db023d9acebe55397c788e9ce6a2f3c">$externalCssArray</a> = null</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array to include CSS files outside your theme's "css" directory. These files will be included as-is, keeping the path intact. Do not provide ".css" after filenames. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e7c220e330a1bb5ef965c0f01e851be"></a><!-- doxytag: member="CoreView::$jsArray" ref="a8e7c220e330a1bb5ef965c0f01e851be" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a8e7c220e330a1bb5ef965c0f01e851be">$jsArray</a> = null</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array for storing JavaScript file names to be applied to "this page". <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array. Array elements are JavaScript file names to be included to the HTML output. These files should reside under "client/js" directory. Do not provide ".js" after filenames. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3e9534005fd516d941f6a5569896e01"></a><!-- doxytag: member="CoreView::$template" ref="aa3e9534005fd516d941f6a5569896e01" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aa3e9534005fd516d941f6a5569896e01">$template</a> = &quot;&quot;</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> to apply to "this page". <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the template. Do not modify if you're going to use the default theme specified in your <a class="el" href="config_8php_source.html">config.php</a> file. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a766ad0559dad19d2a8c66b2f27200488"></a><!-- doxytag: member="CoreView::$__staticLoadAllowed" ref="a766ad0559dad19d2a8c66b2f27200488" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a766ad0559dad19d2a8c66b2f27200488">$__staticLoadAllowed</a> = false</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If set false (which is default) the VIEW can not be loaded statically (without any controller) <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If set to false (which is default) this VIEW can not be loaded statically (without loading any controller) <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacaacb2a73313f2f7e2fbc800b65f84e"></a><!-- doxytag: member="CoreView::$defaultCssArray" ref="aacaacb2a73313f2f7e2fbc800b65f84e" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aacaacb2a73313f2f7e2fbc800b65f84e">$defaultCssArray</a> = null</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array for storing CSS files to be applied to all pages by default. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array. Array elements are css filenames. These CSS files should be included to ALL HTML pages of your project. These files should be put under your theme's "css" directory. Do not provide ".css" after filenames. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab0271b7083e9b84871a1adcec98887d"></a><!-- doxytag: member="CoreView::$defaultJsArray" ref="aab0271b7083e9b84871a1adcec98887d" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aab0271b7083e9b84871a1adcec98887d">$defaultJsArray</a> = null</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array for storing JavaScript files to be applied to all pages by default. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array. Array Elements are JavaScript filenames to be included to all the HTML pages of your project. These files should reside under "client/js" directory. Do not provide ".js" after filenames. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa48d46858ba4160660d87b8669697b4f"></a><!-- doxytag: member="CoreView::$includeDefaultCss" ref="aa48d46858ba4160660d87b8669697b4f" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aa48d46858ba4160660d87b8669697b4f">$includeDefaultCss</a> = true</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Should apply default CSS files to "this page"? <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If set true, filenames specified by $defaultCssArray are included to HTML output of current page. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65043fbf000fbd4ec0a5feb3909ecd25"></a><!-- doxytag: member="CoreView::$includeDefaultJs" ref="a65043fbf000fbd4ec0a5feb3909ecd25" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a65043fbf000fbd4ec0a5feb3909ecd25">$includeDefaultJs</a> = true</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Should apply default JavaScript files to "this page"? <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If set true, filenames specified by $defaultJsArray are included to HTML output of current page. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa432de3bacb7ced3632fa0ee0269ada3"></a><!-- doxytag: member="CoreView::$core" ref="aa432de3bacb7ced3632fa0ee0269ada3" args="" -->
@@ -167,15 +163,9 @@ Private Attributes</h2></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>All view classes should extend this <a class="el" href="class_core_view.html" title="All view classes should extend this CoreView class!">CoreView</a> class! </p>
-<dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam</dd></dl>
-<p>You can (in fact, you should :P) extend functionality to this class in the CustomView class.</p>
-<p>Convention while providin file names: (JavaScript &amp; Css files)</p>
-<ul>
-<li>path should be rooted on base directory for javascript/css files</li>
-<li>Do not provide extentions </li>
-</ul>
+<dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00016">16</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00010">10</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ab885424c1d43ef4a1ad651e26aeb5930"></a><!-- doxytag: member="CoreView::form" ref="ab885424c1d43ef4a1ad651e26aeb5930" args="($formClassName)" -->
 <div class="memitem">
@@ -191,10 +181,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Call this function within your <a class="el" href="class_view.html">View</a> classes to get generated HTML string of a form. <br/>
+<p>Call this function within your View classes to get generated HTML string of a form. <br/>
 </p>
 <ul>
-<li>You must load the form (using <a class="el" href="class_core_controller.html#a8da25279cb2f1b6c9b5aafb2bc831393">CoreController::loadForm()</a> ) &amp; call <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3" title="Important function to call within your Controller classes.">CoreForm::sendToView()</a> within your <a class="el" href="class_controller.html">Controller</a> class . See <a class="el" href="class_core_form.html" title="Create, submit &amp; validate web-forms.">CoreForm</a> documentation <dl><dt><b>Parameters:</b></dt><dd>
+<li>You must load the form (using <a class="el" href="class_core_controller.html#a8da25279cb2f1b6c9b5aafb2bc831393">CoreController::loadForm()</a> ) &amp; call <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3" title="Important function to call within your Controller classes.">CoreForm::sendToView()</a> within your Controller class . See <a class="el" href="class_core_form.html" title="Create, submit &amp; validate web-forms.">CoreForm</a> documentation <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$formClassName</td><td>- name of the form - this form must exist in VIEW/forms directory. </td></tr>
   </table>
@@ -204,7 +194,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00058">58</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00053">53</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -223,7 +213,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Similar to <a class="el" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">Funcs::getStatusMsg()</a> </p>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00069">69</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00062">62</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -247,7 +237,7 @@ Private Attributes</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00090">90</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00082">82</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -271,7 +261,7 @@ Private Attributes</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00117">117</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00115">115</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
@@ -288,21 +278,21 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Functions to call from <a class="el" href="class_view.html">View</a> classes Used to treat the view as a Static page - i.e. No controller is needed to view this page. You must call this function to make the view static </p>
+<p>Functions to call from View classes Used to treat the view as a Static page - i.e. No controller is needed to view this page. You must call this function to make the view static </p>
 
-<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00048">48</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_view_8php_source.html#l00043">43</a> of file <a class="el" href="_core_view_8php_source.html">CoreView.php</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/media/sobkichu/xampp/htdocs/projects/gigamvc/core/class/<a class="el" href="_core_view_8php_source.html">CoreView.php</a></li>
+<li>core/class/<a class="el" href="_core_view_8php_source.html">CoreView.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_view.html">CoreView</a>      </li>
-      <li class="footer">Generated on Fri Dec 16 2011 15:51:46 for PHPizza by&#160;
+      <li class="footer">Generated on Tue Dec 27 2011 08:24:57 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

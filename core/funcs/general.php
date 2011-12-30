@@ -66,7 +66,7 @@ function url_static($url) {
  */
 function filePath($filePath) {
     // Returns absolute path for a file.
-    return BASE_URL . "/$filePath";
+    return BASE_URL . "/files/$filePath";
 }
 
 /**
@@ -128,7 +128,7 @@ function img($url, $attrArr=null) {
             $attrText .= "$k = '$v' ";
     }
     $str = '<img ' . $attrText;
-    $str .= ' src ="' . BASE_URL . "/" . $url . '" />';
+    $str .= ' src ="' . filePath($url) . '" />';
     return $str;
 }
 
@@ -150,6 +150,17 @@ function anchor_static($url, $text) {
 function getView(){
     global $__viewInstance;
     return $__viewInstance;
+}
+
+/**
+ * Safely returns an element from an array, empty string if not set.
+ */
+
+function arrVal($arr, $index){
+    if(isset($arr[$index]))
+        return $arr[$index];
+    else
+        return '';
 }
 
 //@}

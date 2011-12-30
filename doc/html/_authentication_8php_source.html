@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PHPizza: /media/sobkichu/xampp/htdocs/projects/gigamvc/custom/class/Authentication.php Source File</title>
+<title>PHPizza: custom/class/Authentication.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0 beta</span></div>
    <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -96,65 +95,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00011"></a>00011 <span class="comment"> *</span>
 <a name="l00012"></a>00012 <span class="comment"> * ****** ****** ****** ****** ****** ***** */</span>
 <a name="l00013"></a>00013 
-<a name="l00021"></a><a class="code" href="class_auth.html">00021</a> <span class="keyword">class </span><a class="code" href="class_auth.html" title="Custom Class: Under construction.">Auth</a>{
-<a name="l00022"></a>00022     <span class="keyword">public</span> $core;
-<a name="l00023"></a>00023     <span class="keyword">public</span> $urls;
-<a name="l00024"></a>00024     <span class="keyword">public</span> $data = <span class="keyword">false</span>;
-<a name="l00025"></a>00025     <span class="keyword">public</span> $isLoggedIn = <span class="keyword">false</span>;
-<a name="l00026"></a>00026     <span class="keyword">public</span> $redirectURL;
-<a name="l00027"></a>00027     
-<a name="l00028"></a>00028     <span class="keyword">private</span> $sessionVarName = <span class="stringliteral">&quot;hti_auth&quot;</span>;
-<a name="l00029"></a>00029     
-<a name="l00030"></a>00030     <span class="keyword">public</span> function __construct($core) {
-<a name="l00031"></a>00031         $this-&gt;core = $core;
-<a name="l00032"></a>00032         <span class="comment">// Set patterns &amp; other configurations</span>
-<a name="l00033"></a>00033         $this-&gt;redirectURL = <span class="stringliteral">&quot;&quot;</span>;    <span class="comment">//  redirect to referer</span>
-<a name="l00034"></a>00034         $this-&gt;urls = array(<span class="stringliteral">&quot;admin/&quot;</span>); 
-<a name="l00035"></a>00035         <span class="comment">// Call function to start validation</span>
-<a name="l00036"></a>00036         $this-&gt;globalValidation();
-<a name="l00037"></a>00037     }
+<a name="l00030"></a><a class="code" href="class_authentication.html">00030</a> <span class="keyword">class </span><a class="code" href="class_authentication.html" title="Custom class for easing Authentication!">Authentication</a>{
+<a name="l00031"></a>00031     <span class="keyword">public</span> $core;
+<a name="l00032"></a>00032     <span class="keyword">public</span> $urls;
+<a name="l00033"></a>00033     <span class="keyword">public</span> $data = <span class="keyword">false</span>;
+<a name="l00034"></a>00034     <span class="keyword">public</span> $isLoggedIn = <span class="keyword">false</span>;
+<a name="l00035"></a>00035     <span class="keyword">public</span> $redirectURL;
+<a name="l00036"></a>00036     
+<a name="l00037"></a><a class="code" href="class_authentication.html#ad8362e216d476982793f997c159f250c">00037</a>     <span class="keyword">private</span> <a class="code" href="class_authentication.html#ad8362e216d476982793f997c159f250c" title="Name of the variable. We will search data in $_SESSION[$sessionVarName] to validate authentication!...">$sessionVarName</a> = <span class="stringliteral">&quot;&quot;</span>; 
 <a name="l00038"></a>00038     
-<a name="l00039"></a>00039     <span class="keyword">private</span> function globalValidation(){
-<a name="l00040"></a>00040         $this-&gt;hasAccess(HTI_NONREGISTERED);
-<a name="l00041"></a>00041         <span class="comment">// restrict access totally in following pages:</span>
-<a name="l00042"></a>00042         <span class="keywordflow">if</span>($this-&gt;data[<span class="stringliteral">&#39;type&#39;</span>] &lt; HTI_ADMIN){
-<a name="l00043"></a>00043             <span class="keywordflow">foreach</span> ($this-&gt;urls as $url){
-<a name="l00044"></a>00044                 $page = $this-&gt;core-&gt;getPage();
-<a name="l00045"></a>00045                 <span class="keywordflow">if</span>(strpos($page, $url) === 0){
-<a name="l00046"></a>00046                     $this-&gt;core-&gt;funcs-&gt;messageExit(<span class="stringliteral">&quot;Sorry, but you are not authenticated to view these resources!&quot;</span>);
-<a name="l00047"></a>00047                 }
-<a name="l00048"></a>00048             }
-<a name="l00049"></a>00049         }
-<a name="l00050"></a>00050         
-<a name="l00051"></a>00051     }
-<a name="l00052"></a>00052     
-<a name="l00053"></a>00053     <span class="keyword">public</span> function hasAccess($requiredMemberType=HTI_STUDENT){
-<a name="l00054"></a>00054         $this-&gt;data = $this-&gt;core-&gt;funcs-&gt;getSessData($this-&gt;sessionVarName);
-<a name="l00055"></a>00055 <span class="comment">//        echo var_dump($_SESSION);</span>
-<a name="l00056"></a>00056         <span class="keywordflow">if</span>($this-&gt;data){
-<a name="l00057"></a>00057 <span class="comment">//            echo &quot;Auth&quot;;</span>
-<a name="l00058"></a>00058             $this-&gt;isLoggedIn = <span class="keyword">true</span>;
-<a name="l00059"></a>00059             <span class="keywordflow">return</span> ($this-&gt;data[<span class="stringliteral">&#39;type&#39;</span>] &lt; $requiredMemberType)?(<span class="keyword">false</span>):(<span class="keyword">true</span>);
-<a name="l00060"></a>00060         }<span class="keywordflow">else</span>{
-<a name="l00061"></a>00061 <span class="comment">//            echo &quot;Not auth&quot;;</span>
-<a name="l00062"></a>00062             $this-&gt;isLoggedIn = <span class="keyword">false</span>;
-<a name="l00063"></a>00063         }
-<a name="l00064"></a>00064         <span class="keywordflow">return</span> $this-&gt;isLoggedIn;
-<a name="l00065"></a>00065     }
-<a name="l00066"></a>00066     
-<a name="l00067"></a>00067     <span class="keyword">public</span> function redirectIfNotAuthenticated($requiredMemberType){
-<a name="l00068"></a>00068         <span class="keywordflow">if</span>($this-&gt;data[<span class="stringliteral">&#39;type&#39;</span>] &lt; $requiredMemberType)
-<a name="l00069"></a>00069             $this-&gt;core-&gt;funcs-&gt;messageExit(<span class="stringliteral">&quot;Sorry, but you are not authenticated to view these resources!&quot;</span>);
-<a name="l00070"></a>00070     }
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 ?&gt;
+<a name="l00039"></a><a class="code" href="class_authentication.html#a64585b415473be548941a9f4f12bb8ec">00039</a>     <span class="keyword">public</span> function <a class="code" href="class_authentication.html#a64585b415473be548941a9f4f12bb8ec">__construct</a>($core) {
+<a name="l00040"></a>00040         $this-&gt;core = $core;
+<a name="l00041"></a>00041         <span class="comment">// Set patterns &amp; other configurations</span>
+<a name="l00042"></a>00042         $this-&gt;redirectURL = <span class="stringliteral">&quot;&quot;</span>;    <span class="comment">//  redirect to referer</span>
+<a name="l00043"></a>00043         $this-&gt;urls = array(<span class="stringliteral">&quot;admin/&quot;</span>); 
+<a name="l00044"></a>00044         <span class="comment">// Call function to start validation</span>
+<a name="l00045"></a>00045         $this-&gt;<a class="code" href="class_authentication.html#a64c110585cdbd98fb52699f0f5e5de3f">globalValidation</a>();
+<a name="l00046"></a>00046     }
+<a name="l00047"></a>00047     
+<a name="l00053"></a><a class="code" href="class_authentication.html#a64c110585cdbd98fb52699f0f5e5de3f">00053</a>     <span class="keyword">private</span> function <a class="code" href="class_authentication.html#a64c110585cdbd98fb52699f0f5e5de3f">globalValidation</a>(){
+<a name="l00054"></a>00054         <span class="comment">// Remove comment to work:</span>
+<a name="l00055"></a>00055 <span class="comment">//        $this-&gt;hasAccess();</span>
+<a name="l00056"></a>00056         <span class="comment">// restrict access totally in following pages:</span>
+<a name="l00057"></a>00057         
+<a name="l00058"></a>00058 <span class="comment">//        if($this-&gt;data[&#39;type&#39;] &lt; ADMIN){</span>
+<a name="l00059"></a>00059 <span class="comment">//            foreach ($this-&gt;urls as $url){</span>
+<a name="l00060"></a>00060 <span class="comment">//                $page = $this-&gt;core-&gt;getPage();</span>
+<a name="l00061"></a>00061 <span class="comment">//                if(strpos($page, $url) === 0){</span>
+<a name="l00062"></a>00062 <span class="comment">//                    $this-&gt;core-&gt;funcs-&gt;messageExit(&quot;Sorry, but you are not authenticated to view these resources!&quot;);</span>
+<a name="l00063"></a>00063 <span class="comment">//                }</span>
+<a name="l00064"></a>00064 <span class="comment">//            }</span>
+<a name="l00065"></a>00065 <span class="comment">//        }</span>
+<a name="l00066"></a>00066         
+<a name="l00067"></a>00067     }
+<a name="l00068"></a>00068     
+<a name="l00069"></a>00069     
+<a name="l00080"></a>00080 <span class="comment">//    public function hasAccess($requiredMemberType=GENERAL_USER){</span>
+<a name="l00081"></a>00081 <span class="comment">//        $this-&gt;data = $this-&gt;core-&gt;funcs-&gt;getSessData($this-&gt;sessionVarName);</span>
+<a name="l00082"></a>00082 <span class="comment">//        if($this-&gt;data){</span>
+<a name="l00083"></a>00083 <span class="comment">//            $this-&gt;isLoggedIn = true;</span>
+<a name="l00084"></a>00084 <span class="comment">//            return ($this-&gt;data[&#39;type&#39;] &lt; $requiredMemberType)?(false):(true);</span>
+<a name="l00085"></a>00085 <span class="comment">//        }else{</span>
+<a name="l00086"></a>00086 <span class="comment">//            $this-&gt;isLoggedIn = false;</span>
+<a name="l00087"></a>00087 <span class="comment">//        }</span>
+<a name="l00088"></a>00088 <span class="comment">//        return $this-&gt;isLoggedIn;</span>
+<a name="l00089"></a>00089 <span class="comment">//    }</span>
+<a name="l00090"></a>00090     
+<a name="l00091"></a><a class="code" href="class_authentication.html#af259b198e57d38aed227638a4cd1d42e">00091</a>     <span class="keyword">public</span> function <a class="code" href="class_authentication.html#af259b198e57d38aed227638a4cd1d42e">redirectIfNotAuthenticated</a>($requiredMemberType){
+<a name="l00092"></a>00092         <span class="keywordflow">if</span>($this-&gt;data[<span class="stringliteral">&#39;type&#39;</span>] &lt; $requiredMemberType)
+<a name="l00093"></a>00093             $this-&gt;core-&gt;funcs-&gt;messageExit(<span class="stringliteral">&quot;Sorry, but you are not authenticated to view these resources!&quot;</span>);
+<a name="l00094"></a>00094     }
+<a name="l00095"></a>00095 }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>Authentication.php</b>      </li>
-      <li class="footer">Generated on Fri Dec 16 2011 15:51:46 for PHPizza by&#160;
+      <li class="footer">Generated on Tue Dec 27 2011 08:24:57 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

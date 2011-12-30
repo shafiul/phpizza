@@ -138,7 +138,7 @@ class Funcs {
 //                echo "HI$i";
                 $str .= '<div align="center"><div class="dispMsg-wrapper" id = "displayMsg' . $i . '">';
 //                $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">'; // With jQuery's onclick - hide support
-                $str .= HTML::msgbox($dM[0], $dM[1]);
+                $str .= Html::msgbox($dM[0], $dM[1]);
                 $str .= '</div> <br />';
                 $str .= '<script>$("#displayM").fadeIn("slow");</script> </div>';
             }

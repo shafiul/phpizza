@@ -83,7 +83,7 @@ class CoreController {
     }
 
     /**
-     * Get instance of an autoloaded class. This can be autoloaded Custom Class or Model
+     * Get instance of an autoloaded class. This can be autoloaded Custom Class or Model or Custom Function file.
      * @param type $className
      * @param string $type - This can be any of 'custom' or 'model' or 'func'
      * @return object - instance of the autoloaded class if successful. FALSE otherwise 

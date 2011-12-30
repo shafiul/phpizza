@@ -18,7 +18,7 @@
  * This class can generate %HTML: A heading, list of clickable items, and arbritary %HTML
  */
 
-class Blocks extends HTML {
+class Blocks extends Html {
 
     public $title = "";     ///< Title for the block
     public $items = array();    ///< 1-dimension array for list items.  

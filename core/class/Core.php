@@ -6,7 +6,7 @@ $pizza__CorePath = PROJECT_DIR . "/core";
 $pizza__CustomPath = PROJECT_DIR . "/" . CUSTOM_DIR;
 
 // Include required Classes
-require "$pizza__CorePath/class/HTML.php";
+require "$pizza__CorePath/class/Html.php";
 require "$pizza__CorePath/class/Funcs.php";
 
 require "$pizza__CorePath/class/CoreValidator.php";
@@ -27,37 +27,32 @@ function __autoload($className) {
     require PROJECT_DIR . "/custom/class/$className.php";
 }
 
-
 /**
  * Initiates Pizza!
  */
+final class PHPizza {
 
-final class PHPizza{
     private $core;
     public $view;
     public $validate;
-    
+
     /**
      * Fire up PHPizza Core!
      */
-    
     function __construct() {
         $this->core = new Core();
         $this->view = $this->core->view;
         $this->validate = $this->core->validate;
     }
-    
-    
+
     /**
      * Just calls Core::loadMVC($page)
      */
-    
-    public function loadMVC($page){
+    public function loadMVC($page) {
         $this->core->loadMVC($page);
     }
-    
-}
 
+}
 
 /** \brief The Most important class - makes the framework working! 
  * 
@@ -95,7 +90,6 @@ class Core {
     private $__dbconfig;                ///< Database Credentials
     private $__alconfig;                ///< Auto-load configuartion
     // Internal
-
     private $oneModelLoaded = false;    ///< Whether CoreModel & DB driver already loaded
 
     // constructor
@@ -123,14 +117,12 @@ class Core {
         $this->templateFileName = "index.php";
         // Set up internal vars
         $this->coreDir = PROJECT_DIR . "/core";
-
     }
-    
+
     /**
      * Load configurations/settings from global config.php
      */
-    
-    private function loadConfig(){
+    private function loadConfig() {
         // Load DB configuration
         $config = Config::getInstance();
         $this->__dbconfig = $config->db;
@@ -216,10 +208,11 @@ class Core {
     }
 
     /**
-     * Use this function to Load a View class. You should load ONLY ONE view class for a "page".
+     * Use this function to Load a View class. You should load ONLY ONE view class. Loading more than one View class will result in error!
+     * 
      * Call this function within your constructor EXPLICITLY. If you forget to call this function, No VIEW will be loaded!
      *  - However, this function is automatically called by the Core if user is requesting some "static" page (page with no controller).
-     * @param string $view name of the View class. This class must extend CustomView & reside under VIEW/pages/ directory.
+     * @param string $view name of the View class. This class must extend Template class & reside under VIEW/pages/ directory.
      *  - if you don't pass the parameter, default view for the page gets loaded.
      */
     public function loadView($view="") {
@@ -233,6 +226,7 @@ class Core {
         // Load the specific VIEW class.
         $filename = PROJECT_DIR . "/" . VIEW_DIR . "/pages/$view.php";
         $this->viewLoaded = true;
+//        die('requiring' . $filename);
         $requireResult = $this->safeRequire($filename);
         if ($this->isStatic && !$requireResult) {
 //            $this->viewLoaded = false;
@@ -533,20 +527,29 @@ class Core {
      */
     public function fatal($msg) {
         echo '<html><head><title>Fatal Framework Error</title></head><body>';
-        echo html::msgbox($msg,MSGBOX_ERROR);
+        echo Html::msgbox($msg, MSGBOX_ERROR);
         echo '</body></html>';
         exit();
     }
-    
+
     /**
      * Returns an instance of Database driver object
      * @return object - implementation of GenericDB i.e. MySQL
      */
-    
-    public function getDb(){
+    public function getDb() {
         $driver = $this->__dbconfig['driver'];
         $db = new $driver($this->__dbconfig);
         return $db;
+    }
+
+    /**
+     * Get instance of an autoloaded class. This can be autoloaded Custom Class or Model
+     * @param type $className
+     * @param string $type - This can be any of 'custom' or 'model' or 'func'
+     * @return object - instance of the autoloaded class if successful. FALSE otherwise 
+     */
+    public function autoload($className, $type='custom') {
+        return (isset($this->autoloadedData[$type][$className])) ? ($this->autoloadedData[$type][$className]) : (false);
     }
 
 }

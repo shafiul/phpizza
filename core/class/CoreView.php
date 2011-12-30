@@ -1,32 +1,27 @@
 <?php
 
-
 /**
  * \brief All view classes should extend this CoreView class!
  * 
  * @author Shafiul Azam
  * 
- * You can (in fact, you should :P) extend functionality to this class in the CustomView class.
- * 
- * Convention while providin file names: (JavaScript & Css files)
- * - path should be rooted on base directory for javascript/css files
- * - Do not provide extentions
  * 
  */
 class CoreView {
 
-    public $title = null;   ///<    Title element of %HTML Document for "this page"
-    public $icon = null;       ///<    Icon element of %HTML Document for "this page"
-    public $desc = "site description";   ///<    content attribute of meta with "description" name attribute for "this page"
-    public $keys = "keywords";     ///<    content attribute of meta with "keyword" name attribute for "this page"
-    public $cssArray = null;    ///<    Array for storing custom CSS files to be applied to "this page"
-    public $jsArray = null; ///<    Array for storing JavaScript file names to be applied to "this page"
-    public $template = ""; ///<    Template to apply to "this page"  
-    public $__staticLoadAllowed = false;  ///<    If set false (which is default) the VIEW can not be loaded statically (without any controller)
-    public $defaultCssArray = null;  ///<    Array for storing CSS files to be applied to all pages by default
-    public $defaultJsArray = null;    ///<    Array for storing JavaScript files to be applied to all pages by default
-    public $includeDefaultCss = true;   ///<    Should apply default CSS files to "this page"?
-    public $includeDefaultJs = true;    ///<    Should apply default JavaScript files to "this page"?
+    public $title = null;   ///<    Title element of %HTML output.
+    public $icon = null;       ///<    Icon element of %HTML output.
+    public $desc = "site description";   ///<    "Description" meta-tag of %HTML output.
+    public $keys = "keywords";     ///<    "Keywords" meta-tag of %HTML output.
+    public $cssArray = null;    ///<    Array. Array elements are css filenames - must be available under your theme's "css" directory. Do not provide ".css" after filenames.
+    public $externalCssArray = null;    ///< Array to include CSS files outside your theme's "css" directory. These files will be included as-is, keeping the path intact. Do not provide ".css" after filenames.
+    public $jsArray = null; ///<    Array. Array elements are JavaScript file names to be included to the %HTML output. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
+    public $template = ""; ///<    Name of the template. Do not modify if you're going to use the default theme specified in your config.php file.  
+    public $__staticLoadAllowed = false;  ///<    If set to false (which is default) this VIEW can not be loaded statically (without loading any controller)
+    public $defaultCssArray = null;  ///<    Array. Array elements are css filenames. These CSS files should be included to ALL %HTML pages of your project. These files should be put under your theme's "css" directory. Do not provide ".css" after filenames.
+    public $defaultJsArray = null;    ///<    Array. Array Elements are JavaScript filenames to be included to all the %HTML pages of your project. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
+    public $includeDefaultCss = true;   ///<    If set true, filenames specified by $defaultCssArray are included to %HTML output of current page.
+    public $includeDefaultJs = true;    ///<    If set true, filenames specified by $defaultJsArray are included to %HTML output of current page.
     // Reference to Core
     private $core;   ///< A reference to $core
 
@@ -58,18 +53,15 @@ class CoreView {
     public function form($formClassName) {
         return (isset($this->core->formData[$formClassName])) ? ($this->core->formData[$formClassName]) : ("Error: $formClassName form not found!");
     }
-    
 
     //@}
-    
+
     /**
      * Similar to Funcs::getStatusMsg()
      */
-    
-    public function msg(){
+    public function msg() {
         return $this->core->funcs->getStatusMsg();
     }
-
 
     /**
      * @name Templating Functions
@@ -100,6 +92,12 @@ class CoreView {
         if (isset($this->cssArray)) {
             foreach ($this->cssArray as $css_i) {
                 $html .= '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+            }
+        }
+        // Print external CSS files
+        if (isset($this->externalCssArray)) {
+            foreach ($this->externalCssArray as $css_i) {
+                $html .= '<LINK href="' . $css_i . '.css' . '" rel="stylesheet" type="text/css">';
             }
         }
         return $html;

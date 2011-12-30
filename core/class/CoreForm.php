@@ -105,7 +105,7 @@ abstract class CoreForm{
             $argArr = $this->elements[$elemName][PIZZA_FORM_HTML_FUNC_ARGS];
             $argArr[2] = $this->submittedData[$elemName];
             $elemHTML = call_user_func_array(array("HTML",$content[PIZZA_FORM_HTML_FUNCNAME]), $argArr);
-            $this->formHtml .= HTML::tr(array($content[PIZZA_FORM_DISPLAYNAME],$elemHTML)) . "\n";
+            $this->formHtml .= Html::tr(array($content[PIZZA_FORM_DISPLAYNAME],$elemHTML)) . "\n";
         }
         $this->formHtml .= '</tbody></table><br />' . $this->arbritaryHTML . '<br />';
         $this->formHtml .= '<input id="'. $this->submitButtonId .'" class=html-form-submit type = "submit" value = "' . $this->submitButtonText . '" />';
