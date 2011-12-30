@@ -26,8 +26,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0 beta</span></div>
-   <div id="projectbrief">MVC framework for Professional PHP Programmers</div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0.2 Beta</span></div>
+   <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
  </tbody>
@@ -99,7 +99,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#afa8e7a3a646144eab50188b7a805a389">getVersion</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ab25941a477cf4f0f98439627cefbca08">loadModel</a> ($model)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#af9cba21ff909ef91bf2a4ebad4daf7ae">loadBlock</a> ($block)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a5e3478d18666a38b792b0b14a2eb8382">loadView</a> ($view=&quot;&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a0eb0e1e63fe9b1c603a5c5fda3192696">loadView</a> ($view='')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a99fc050124b53e484d924fafc832b683">loadCustomClass</a> ($className)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a9197c45411d4447bac52fd4b0542e31f">loadDatabaseDriver</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a5f8cc6fff01d7d5b068edd4353e79f12">setData</a> ($id, $data)</td></tr>
@@ -138,7 +138,7 @@ Data Fields</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the template. This must be name of the template's folder under "templates" directory. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82e254cd91a389bc75b3f182601fa168"></a><!-- doxytag: member="Core::$templateFileName" ref="a82e254cd91a389bc75b3f182601fa168" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a82e254cd91a389bc75b3f182601fa168">$templateFileName</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the file to load under this template's directory. Default value is "index.php". You can change it before calling <a class="el" href="class_core.html#a5e3478d18666a38b792b0b14a2eb8382">loadView()</a> <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the file to load under this template's directory. Default value is "index.php". You can change it before calling <a class="el" href="class_core.html#a0eb0e1e63fe9b1c603a5c5fda3192696">loadView()</a> <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6efc15b5a2314dd4b5aaa556a375c6d6"></a><!-- doxytag: member="Core::$data" ref="a6efc15b5a2314dd4b5aaa556a375c6d6" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value array for containing variables. <br/></td></tr>
@@ -162,7 +162,6 @@ Data Fields</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#abdaa11e402952f664e126c7097204733">loadConfig</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a5a5a4ee9b37745db873c776b38b2ddd5">loadController</a> ($controller)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a6380e3bacd1b658f7a68b94eeb33370d">loadLang</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49c7011be9c979d9174c52a8b83e5d8e"></a><!-- doxytag: member="Core::$config" ref="a49c7011be9c979d9174c52a8b83e5d8e" args="" -->
@@ -181,7 +180,7 @@ Private Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether <a class="el" href="class_core_model.html" title="A fundamental model class. You extend this class in your MODELS.">CoreModel</a> &amp; DB driver already loaded. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="member-group"></a>
 Functions for Internal Use</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp1bd4451af8ca81162495dde6f592fbc6"></a> These functions are used internally by the framework.</p>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp1bd4451af8ca81162495dde6f592fbc6"></a> Locale - Multiple language support - Not Implemented yet :-( These functions are used internally by the framework.</p>
 <ul>
 <li>You should NEVER call these functions! As they are automatically called by the framework. </li>
 </ul>
@@ -200,7 +199,7 @@ Functions for Internal Use</h2></td></tr>
 <div class="textblock"><p>The Most important class - makes the framework working! </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam This class contains everything you need. An object of this class, $core (global variable) is created for you. Within controllers, views &amp; templates, you can get access to this class by this code: global $core; In fact, this $core variable is the only thing you need. See it's member variables </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00065">65</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00061">61</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a095c5d389db211932136b53f25f39685"></a><!-- doxytag: member="Core::__construct" ref="a095c5d389db211932136b53f25f39685" args="()" -->
 <div class="memitem">
@@ -228,7 +227,7 @@ Functions for Internal Use</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00104">104</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00100">100</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -267,7 +266,7 @@ Functions for Internal Use</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object - instance of the autoloaded class if successful. FALSE otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00551">551</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00560">560</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -312,7 +311,7 @@ Functions for Internal Use</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00344">344</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00346">346</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -338,7 +337,7 @@ Functions for Internal Use</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00528">528</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00537">537</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -390,7 +389,7 @@ Functions for Internal Use</h2></td></tr>
 <li>You should NEVER call this function! As this function is automatically called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00432">432</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00434">434</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -412,7 +411,7 @@ Functions for Internal Use</h2></td></tr>
 <li>You should NEVER call this function! As this function is automatically called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00398">398</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00400">400</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -441,7 +440,7 @@ Functions for Internal Use</h2></td></tr>
 <dd>
 bool false - if you provide invalid ID </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00294">294</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00296">296</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -461,7 +460,7 @@ bool false - if you provide invalid ID </dd></dl>
 <p>Returns an instance of Database driver object </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object - implementation of <a class="el" href="class_generic_d_b.html">GenericDB</a> i.e. <a class="el" href="class_my_s_q_l.html" title="database functionality class for MySQL">MySQL</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00539">539</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00548">548</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -481,7 +480,7 @@ bool false - if you provide invalid ID </dd></dl>
 <p>Returns current <a class="el" href="class_p_h_pizza.html">PHPizza</a> Version </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00145">145</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00148">148</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -508,7 +507,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object of newly created block. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00180">180</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00183">183</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -527,7 +526,7 @@ bool false - if you provide invalid ID </dd></dl>
 <div class="memdoc">
 <p>Load configurations/settings from global <a class="el" href="config_8php_source.html">config.php</a> </p>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00125">125</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00121">121</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -556,7 +555,7 @@ bool false - if you provide invalid ID </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00195">195</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00198">198</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -583,7 +582,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00244">244</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00247">247</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -609,26 +608,7 @@ bool false - if you provide invalid ID </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00255">255</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6380e3bacd1b658f7a68b94eeb33370d"></a><!-- doxytag: member="Core::loadLang" ref="a6380e3bacd1b658f7a68b94eeb33370d" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">loadLang </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Locale - still testing. </p>
-
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00329">329</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00258">258</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -656,7 +636,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object of newly loaded model. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00158">158</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00161">161</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -688,7 +668,7 @@ bool false - if you provide invalid ID </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00361">361</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00363">363</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -710,11 +690,11 @@ bool false - if you provide invalid ID </dd></dl>
 <li>You should NEVER call this function! As this function is internally called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00386">386</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00388">388</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5e3478d18666a38b792b0b14a2eb8382"></a><!-- doxytag: member="Core::loadView" ref="a5e3478d18666a38b792b0b14a2eb8382" args="($view=&quot;&quot;)" -->
+<a class="anchor" id="a0eb0e1e63fe9b1c603a5c5fda3192696"></a><!-- doxytag: member="Core::loadView" ref="a0eb0e1e63fe9b1c603a5c5fda3192696" args="($view='')" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -722,7 +702,7 @@ bool false - if you provide invalid ID </dd></dl>
           <td class="memname">loadView </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>view</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td class="paramname"><em>view</em> = <code>''</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -741,7 +721,7 @@ bool false - if you provide invalid ID </dd></dl>
 <li>if you don't pass the parameter, default view for the page gets loaded. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00218">218</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00221">221</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -768,7 +748,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true if file found, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00306">306</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00308">308</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -816,7 +796,7 @@ bool false - if you provide invalid ID </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_8php_source.html#l00284">284</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
+<p>Definition at line <a class="el" href="_core_8php_source.html#l00286">286</a> of file <a class="el" href="_core_8php_source.html">Core.php</a>.</p>
 
 </div>
 </div>
@@ -828,7 +808,7 @@ bool false - if you provide invalid ID </dd></dl>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core.html">Core</a>      </li>
-      <li class="footer">Generated on Tue Dec 27 2011 08:24:57 for PHPizza by&#160;
+      <li class="footer">Generated on Fri Dec 30 2011 16:04:35 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

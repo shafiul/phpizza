@@ -24,12 +24,13 @@ class Config {
      * Base URL: Location where your site exists. Must begin with http or https
      * 
      * This is important to show images or javascript/css files properly.
-     * \warning DO NOT GIVE ANY TRAILING SLASHES!
+     * \warning Please provide a slash (/) at the ending!
      * \note Available by constant: BASE_URL
      * 
      * @var string
      */
-    public $base_url = 'http://localhost/htdocs/projects/gigamvc';
+    public $base_url = 'http://localhost/phpizza/';
+//    public $base_url = 'http://localhost/htdocs/projects/gigamvc/';
 
     /**
      * Templating/Theming
@@ -64,9 +65,10 @@ class Config {
      * @var mixed
      */
     public $autoloads = array(
-        'custom' => array(), ///< Custom Classes
-        'model' => array(), ///< MODELS
-        'func' => array()   ///< Functions
+        AUTOLOAD_CUSTOM_CLASS => array(), ///< Custom Classes
+        AUTOLOAD_MODEL => array(), ///< MODEL Classes
+        AUTOLOAD_CUSTOM_FUNCS => array(),   ///< Custom Functions
+        AUTOLOAD_GENERAL_FUNCS => array('form') ///< General Functions
     );
 
     /**
@@ -102,6 +104,7 @@ class Config {
      * @var string
      */
     public $url_extention = '';
+    
 
     /**
      * Default FunctionToCall
@@ -157,24 +160,29 @@ class Config {
 
 
 /**
+ * System configuration : Never change following settings!
+ */
+define('PROJECT_DIR', dirname(__FILE__) . '/');
+
+/**
  * Internal Paths
  * 
  * Do not change them. Modify only if you do understand what you are doing!
  */
-define('IMAGE_DIR', 'images');
-define('JS_DIR', 'client/js');
-define('TEMPLATE_DIR', 'templates');
-define('VIEW_DIR', 'VIEW');
-define('CONTROL_DIR', 'CONTROL');
-define('MODEL_DIR', 'MODEL');
-define('CUSTOM_DIR', 'custom');
-define('FORMS_DIR', VIEW_DIR . "/forms");   //  Directory where your HTML forms reside
+
+define('CORE_DIR', PROJECT_DIR . 'core/');
+// Or, you can mention full-path to core directory like:
+//define('CORE_DIR', '/var/www/htdocs/projects/gigamvc/core/');
+
+define('CUSTOM_DIR', PROJECT_DIR . 'custom/');
 
 
-/**
- * System configuration : Never change following settings!
- */
-define('PROJECT_DIR', dirname(__FILE__));
+
+define('VIEW_DIR', PROJECT_DIR . 'VIEW/');
+define('CONTROL_DIR', PROJECT_DIR .  'CONTROL/');
+define('MODEL_DIR', PROJECT_DIR . 'MODEL/');
+define('FORMS_DIR', VIEW_DIR . "forms/");   //  Directory where your HTML forms reside
+define('THIRDPARTY_DIR', PROJECT_DIR . '3rdparty/');
 
 //@}
 ?>

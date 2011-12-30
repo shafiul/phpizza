@@ -1,4 +1,12 @@
 <?php
+
+// define some constants
+
+define('AUTOLOAD_MODEL','model');
+define('AUTOLOAD_GENERAL_FUNCS', 'generalfuncs');
+define('AUTOLOAD_CUSTOM_FUNCS', 'customfuncs');
+define('AUTOLOAD_CUSTOM_CLASS', 'custom');
+
 require dirname(__FILE__) . '/pre_script.php';
 // Load Configuaration
 require dirname(__FILE__) . '/config.php';

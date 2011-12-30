@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PHPizza: Data Fields</title>
+<title>PHPizza: core/funcs/form.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -36,8 +36,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,41 +59,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
-    </ul>
-  </div>
-  <div id="navrow3" class="tabs2">
-    <ul class="tablist">
-      <li class="current"><a href="functions.html"><span>All</span></a></li>
-      <li><a href="functions_func.html"><span>Functions</span></a></li>
-      <li><a href="functions_vars.html"><span>Variables</span></a></li>
-    </ul>
-  </div>
-  <div id="navrow4" class="tabs3">
-    <ul class="tablist">
-      <li><a href="functions.html#index_0x24"><span>$</span></a></li>
-      <li><a href="functions_0x5f.html#index__"><span>_</span></a></li>
-      <li><a href="functions_0x61.html#index_a"><span>a</span></a></li>
-      <li><a href="functions_0x63.html#index_c"><span>c</span></a></li>
-      <li><a href="functions_0x64.html#index_d"><span>d</span></a></li>
-      <li><a href="functions_0x65.html#index_e"><span>e</span></a></li>
-      <li class="current"><a href="functions_0x66.html#index_f"><span>f</span></a></li>
-      <li><a href="functions_0x67.html#index_g"><span>g</span></a></li>
-      <li><a href="functions_0x68.html#index_h"><span>h</span></a></li>
-      <li><a href="functions_0x69.html#index_i"><span>i</span></a></li>
-      <li><a href="functions_0x6b.html#index_k"><span>k</span></a></li>
-      <li><a href="functions_0x6c.html#index_l"><span>l</span></a></li>
-      <li><a href="functions_0x6d.html#index_m"><span>m</span></a></li>
-      <li><a href="functions_0x6e.html#index_n"><span>n</span></a></li>
-      <li><a href="functions_0x70.html#index_p"><span>p</span></a></li>
-      <li><a href="functions_0x72.html#index_r"><span>r</span></a></li>
-      <li><a href="functions_0x73.html#index_s"><span>s</span></a></li>
-      <li><a href="functions_0x74.html#index_t"><span>t</span></a></li>
-      <li><a href="functions_0x75.html#index_u"><span>u</span></a></li>
-      <li><a href="functions_0x76.html#index_v"><span>v</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -107,30 +74,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-  initNavTree('functions.html','');
+  initNavTree('form_8php.html','');
 </script>
 <div id="doc-content">
-<div class="contents">
-<div class="textblock">Here is a list of all documented struct and union fields with links to the struct/union documentation for each field:</div>
-
-<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
-<li>fatal()
-: <a class="el" href="class_core.html#a1d9cccc0c0e5a06c4c1559a4df2215fa">Core</a>
-</li>
-<li>findPage()
-: <a class="el" href="class_core.html#ae8187871ea55e2646ddc7f76f3483cc2">Core</a>
-</li>
-<li>footer()
-: <a class="el" href="class_template.html#ae5058e5b790e8cea2dd33c1c9bbcbbd4">Template</a>
-</li>
-<li>form()
-: <a class="el" href="class_core_view.html#ab885424c1d43ef4a1ad651e26aeb5930">CoreView</a>
-</li>
-</ul>
+<div class="header">
+  <div class="headertitle">
+<div class="title">form.php</div>  </div>
 </div>
+<div class="contents">
+<a href="form_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 <span class="comment">/* * ***** ****** ****** ****** ****** ******</span>
+<a name="l00004"></a>00004 <span class="comment"></span>
+<a name="l00005"></a>00005 <span class="comment"> * Page         :</span>
+<a name="l00006"></a>00006 <span class="comment"> * Description  :   Helper functions for creating %HTML Forms</span>
+<a name="l00007"></a>00007 <span class="comment"> * Last Updated :</span>
+<a name="l00008"></a>00008 <span class="comment"> *</span>
+<a name="l00009"></a>00009 <span class="comment"> * ****** ****** ****** ****** ****** ***** */</span>
+<a name="l00010"></a>00010 
+<a name="l00032"></a><a class="code" href="form_8php.html#aa7397c56f39f03a2fcf436811290650a">00032</a> function <a class="code" href="form_8php.html#aa7397c56f39f03a2fcf436811290650a">form_input</a>($value=<span class="stringliteral">&#39;&#39;</span>, $attributes=null) {
+<a name="l00033"></a>00033     <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;input&#39;</span>, array(
+<a name="l00034"></a>00034         <span class="stringliteral">&#39;text&#39;</span>, $value, $attributes
+<a name="l00035"></a>00035     ));
+<a name="l00036"></a>00036 }
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 
+<a name="l00045"></a><a class="code" href="form_8php.html#a2939c22e4ca2060ee2d044f60737e536">00045</a> function <a class="code" href="form_8php.html#a2939c22e4ca2060ee2d044f60737e536">form_password</a>($value=<span class="stringliteral">&#39;&#39;</span>, $attributes=null) {
+<a name="l00046"></a>00046     <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;input&#39;</span>, array(
+<a name="l00047"></a>00047         <span class="stringliteral">&#39;password&#39;</span>, $value, $attributes
+<a name="l00048"></a>00048     ));
+<a name="l00049"></a>00049 }
+<a name="l00050"></a>00050 
+<a name="l00057"></a><a class="code" href="form_8php.html#ad7a0f6dfe28aa9ef5782c4c52c81fcec">00057</a> function <a class="code" href="form_8php.html#ad7a0f6dfe28aa9ef5782c4c52c81fcec">form_textarea</a>($value=<span class="stringliteral">&#39;&#39;</span>, $attributes=null) {
+<a name="l00058"></a>00058     <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;textarea&#39;</span>, array(
+<a name="l00059"></a>00059         $attributes, $value
+<a name="l00060"></a>00060     ));
+<a name="l00061"></a>00061 }
+<a name="l00062"></a>00062 
+<a name="l00081"></a><a class="code" href="form_8php.html#a3b39c5283cc4318c5e4fccc4d6abb28f">00081</a> function <a class="code" href="form_8php.html#a3b39c5283cc4318c5e4fccc4d6abb28f">form_dropdown</a>($options,$value=null, $attributes=null) {
+<a name="l00082"></a>00082     <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;select&#39;</span>, array(
+<a name="l00083"></a>00083         $options, $value, $attributes
+<a name="l00084"></a>00084     ));
+<a name="l00085"></a>00085 }
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 ?&gt;
+</pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
+      <li class="navelem"><a class="el" href="form_8php.html">form.php</a>      </li>
       <li class="footer">Generated on Fri Dec 30 2011 16:04:34 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>

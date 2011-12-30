@@ -63,6 +63,7 @@ var NAVTREE =
       [ "core/class/Html.php", null, null ],
       [ "core/class/db/GenericDB.php", null, null ],
       [ "core/class/db/MySQL.php", null, null ],
+      [ "core/funcs/form.php", "form_8php.html", null ],
       [ "core/funcs/general.php", "general_8php.html", null ],
       [ "custom/class/Authentication.php", null, null ],
       [ "custom/class/Blocks.php", null, null ],

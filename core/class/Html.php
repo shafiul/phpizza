@@ -116,17 +116,19 @@ class Html {
                 $attrText .= "$k = '$v' ";
         }
         $str = "<select ";
-        $str.= "$attrText name = '$name'>";
+        $str.= "$attrText name = '$name'";
 //        var_dump($options);
 //        print_r($selectedValue);
 //        exit();
         if (is_array($selectedValue)) {
-            foreach ($options as $displayText => $value) {
+            $str .= ' multiple="multiple" >';
+            foreach ($options as $value => $displayText) {
                 $selected = (in_array($value, $selectedValue)) ? ("selected = 'selected'") : ("");
                 $str .= "<option $selected name = '$value' value = '$value'>$displayText</option>";
             }
         } else {
-            foreach ($options as $displayText => $value) {
+            $str .= '>';
+            foreach ($options as $value => $displayText) {
                 $selected = ($value == $selectedValue) ? ("selected = 'selected'") : ("");
                 $str .= "<option $selected name = '$value' value = '$value'>$displayText</option>";
             }

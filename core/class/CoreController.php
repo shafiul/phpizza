@@ -31,7 +31,7 @@ class CoreController {
      * Please see Core::loadView()
      */
     
-    public function loadView($view="") {
+    public function loadView($view='') {
         return $this->core->loadView($view);
     }
 
@@ -55,9 +55,9 @@ class CoreController {
      */
     public function loadForm($formName) {
         // First include core form
-        require_once $this->core->coreDir . "/class/CoreForm.php";
+        require_once CORE_DIR . 'class/CoreForm.php';
         // Now include particular form
-        $classPath = PROJECT_DIR . "/" . FORMS_DIR . "/$formName.php";
+        $classPath = FORMS_DIR . $formName. '.php';
         require $classPath;
         $var = new $formName($this->core);
         return $var;
@@ -69,7 +69,7 @@ class CoreController {
      * @return bool true in success, false otherwise 
      */
     public function load3p($fileName) {
-        require_once PROJECT_DIR . '/' . THIRDPARTY_DIR . '/' . $fileName . '.php';
+        require_once PROJECT_DIR . '/' . THIRDPARTY_DIR . $fileName . '.php';
     }
 
     /**
@@ -78,7 +78,7 @@ class CoreController {
      * @return type 
      */
     public function loadCustomFunctions($funcFile) {
-        $classPath = PROJECT_DIR . "/" . CUSTOM_DIR . "/funcs/$funcFile.php";
+        $classPath = CUSTOM_DIR . 'funcs/' . $funcFile. '.php';
         return $this->safeRequireOnce($classPath);
     }
 
@@ -88,7 +88,7 @@ class CoreController {
      * @param string $type - This can be any of 'custom' or 'model' or 'func'
      * @return object - instance of the autoloaded class if successful. FALSE otherwise 
      */
-    public function autoload($className, $type='custom') {
+    public function autoload($className, $type=AUTOLOAD_CUSTOM_CLASS) {
         return (isset($this->core->autoloadedData[$type][$className])) ? ($this->core->autoloadedData[$type][$className]) : (false);
     }
 
@@ -112,7 +112,7 @@ class CoreController {
     /**
      * Similar to Funcs::setStatusMsg()
      */
-    public function msg($msg, $status="") {
+    public function msg($msg, $status='') {
         $this->funcs->setStatusMsg($msg, $status);
     }
     
@@ -185,7 +185,7 @@ class CoreController {
      */
     public function debug($str) {
         if (DEBUG_MODE)
-            echo "<pre>$str</pre>";
+            echo '<pre>' . $str . '</pre>';
     }
 
 }

@@ -11,12 +11,12 @@ class CoreView {
 
     public $title = null;   ///<    Title element of %HTML output.
     public $icon = null;       ///<    Icon element of %HTML output.
-    public $desc = "site description";   ///<    "Description" meta-tag of %HTML output.
-    public $keys = "keywords";     ///<    "Keywords" meta-tag of %HTML output.
+    public $desc = 'Powered by PHPizza MVC Framework';   ///<    "Description" meta-tag of %HTML output.
+    public $keys = 'phpizza';     ///<    "Keywords" meta-tag of %HTML output.
     public $cssArray = null;    ///<    Array. Array elements are css filenames - must be available under your theme's "css" directory. Do not provide ".css" after filenames.
     public $externalCssArray = null;    ///< Array to include CSS files outside your theme's "css" directory. These files will be included as-is, keeping the path intact. Do not provide ".css" after filenames.
     public $jsArray = null; ///<    Array. Array elements are JavaScript file names to be included to the %HTML output. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
-    public $template = ""; ///<    Name of the template. Do not modify if you're going to use the default theme specified in your config.php file.  
+    public $template = ''; ///<    Name of the template. Do not modify if you're going to use the default theme specified in your config.php file.  
     public $__staticLoadAllowed = false;  ///<    If set to false (which is default) this VIEW can not be loaded statically (without loading any controller)
     public $defaultCssArray = null;  ///<    Array. Array elements are css filenames. These CSS files should be included to ALL %HTML pages of your project. These files should be put under your theme's "css" directory. Do not provide ".css" after filenames.
     public $defaultJsArray = null;    ///<    Array. Array Elements are JavaScript filenames to be included to all the %HTML pages of your project. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
@@ -51,7 +51,7 @@ class CoreView {
      * @return string %HTML data of the form, or an error string if the form was not set within controller.
      */
     public function form($formClassName) {
-        return (isset($this->core->formData[$formClassName])) ? ($this->core->formData[$formClassName]) : ("Error: $formClassName form not found!");
+        return (isset($this->core->formData[$formClassName])) ? ($this->core->formData[$formClassName]) : ('Error: ' . $formClassName . ' form not found!');
     }
 
     //@}
@@ -80,18 +80,18 @@ class CoreView {
      *  @return string | generated %HTML 
      */
     public function printCss() {
-        $html = "<!-- CSS -->";
+        $html = '<!-- CSS -->';
         // Print Default
         if ($this->includeDefaultCss && isset($this->defaultCssArray)) {
             foreach ($this->defaultCssArray as $css_i) {
                 $siteTheme = $this->template;
-                $html .= '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+                $html .= '<LINK href="'  . TEMPLATE_URL . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }
         // Print others
         if (isset($this->cssArray)) {
             foreach ($this->cssArray as $css_i) {
-                $html .= '<LINK href="' . BASE_URL . "/" . TEMPLATE_DIR . "/" . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+                $html .= '<LINK href="' . TEMPLATE_URL . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }
         // Print external CSS files
@@ -117,13 +117,13 @@ class CoreView {
         // Print Default
         if ($this->includeDefaultJs && isset($this->defaultJsArray)) {
             foreach ($this->defaultJsArray as $js_i) {
-                $html .= "<script src = '" . BASE_URL . "/" . JS_DIR . "/$js_i.js'></script>";
+                $html .= "<script src = '" . JS_URL . "$js_i.js'></script>";
             }
         }
         // Print others
         if (isset($this->jsArray)) {
             foreach ($this->jsArray as $js_i) {
-                $html .= "<script src = '" . BASE_URL . "/" . JS_DIR . "/$js_i.js'></script>";
+                $html .= "<script src = '" . JS_URL . "$js_i.js'></script>";
             }
         }
         return $html;

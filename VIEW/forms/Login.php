@@ -38,9 +38,9 @@ class Login extends CoreForm {
         // Generate form elements
         $elements = array();
         
-        $elements['email'] = array("input");
-        $elements['passwd'] = array("input",array("password"));
-        $elements['comment'] = array("textarea");
+        $elements['email'] = form_input();
+        $elements['passwd'] = form_password();
+        $elements['comment'] = form_textarea('Dummy Text', array('rows' => 5));
         
         $this->setElements($elements);
     }

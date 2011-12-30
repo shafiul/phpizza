@@ -351,6 +351,18 @@ abstract class CoreForm{
         // To be implemented in forms
     }
     //@}
+    
+    
+    /**
+     * Functions for creating %HTML Forms
+     */
+    
+    //@{
+    
+    
+    
+    
+    //@}
 }
 
 

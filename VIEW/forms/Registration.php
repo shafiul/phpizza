@@ -36,17 +36,17 @@ class Registration extends CoreForm {
         
         $elements = array();
         
-        $elements['username'] = array("input");
-        $elements['passwd'] = array("input", array("password"));
-        $elements['passwd2'] = array("input", array("password"));
-        $elements['email'] = array("input");
+        $elements['username'] = form_input();
+        $elements['passwd'] = form_password();
+        $elements['passwd2'] = form_password();
+        $elements['email'] = form_input();
         
         $options = array(
-            "Male" => "male",
-            "Female" => "female"
+            "male" => "Male",
+            "female" => "Female"
         );
         
-        $elements['sex'] = array("select", array($options, "female"));
+        $elements['sex'] = form_dropdown($options, 'female');
         
         $this->setElements($elements);
     }

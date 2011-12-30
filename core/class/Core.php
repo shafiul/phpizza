@@ -1,21 +1,17 @@
 <?php
 
 // define some paths
-
-$pizza__CorePath = PROJECT_DIR . "/core";
-$pizza__CustomPath = PROJECT_DIR . "/" . CUSTOM_DIR;
-
 // Include required Classes
-require "$pizza__CorePath/class/Html.php";
-require "$pizza__CorePath/class/Funcs.php";
+require CORE_DIR . 'class/Html.php';
+require CORE_DIR . 'class/Funcs.php';
 
-require "$pizza__CorePath/class/CoreValidator.php";
+require CORE_DIR . 'class/CoreValidator.php';
 
 // Helper Functions
-require "$pizza__CorePath/funcs/general.php";
+require CORE_DIR . 'funcs/general.php';
 
 // Required Custom Classes
-require "$pizza__CustomPath/class/Validator.php";
+require CUSTOM_DIR . 'class/Validator.php';
 
 // Autoloader
 
@@ -24,7 +20,7 @@ require "$pizza__CustomPath/class/Validator.php";
  * @param type $className 
  */
 function __autoload($className) {
-    require PROJECT_DIR . "/custom/class/$className.php";
+    require CUSTOM_DIR . "class/$className.php";
 }
 
 /**
@@ -102,7 +98,7 @@ class Core {
      * @return None
      */
     public function __construct() {
-        $this->__version = "1.1.0";
+        $this->__version = "1.1.0.2 beta";
         // Acquire info from global configuration
         $this->loadConfig();
         // Create other members
@@ -116,7 +112,7 @@ class Core {
         $this->template = $this->config->site_theme;  //  Can load from DB too.
         $this->templateFileName = "index.php";
         // Set up internal vars
-        $this->coreDir = PROJECT_DIR . "/core";
+        $this->coreDir = CORE_DIR;
     }
 
     /**
@@ -131,6 +127,13 @@ class Core {
         $this->config = $config;
         // Generate some constants
         define('BASE_URL', $this->config->base_url);
+        
+        define('TEMPLATE_DIR', PROJECT_DIR . 'templates/');
+        define('TEMPLATE_URL', BASE_URL . 'templates/');    // Used for generateing CSS, JS, Images etc. locations
+        define('JS_URL', BASE_URL . 'client/js/');
+        define('FILES_DIR', PROJECT_DIR . 'files/');
+        define('FILES_URL', BASE_URL . 'files/');
+        
         define('SITE_THEME', $this->config->site_theme);
         define('DEBUG_MODE', $this->config->debug_mode);
         define('NICE_URL_ENABLED', $this->config->nice_url_enabled);
@@ -158,15 +161,15 @@ class Core {
     public function loadModel($model) {
         if (!$this->oneModelLoaded) {
             // First include once core model class
-            require_once $this->coreDir . "/class/CoreModel.php";
+            require_once CORE_DIR . "class/CoreModel.php";
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
         }
 
-        $filename = PROJECT_DIR . "/" . MODEL_DIR . "/$model.php";
+        $filename = MODEL_DIR . $model . '.php';
         require_once $filename;
-        $className = end(explode("/", $model));
+        $className = end(explode('/', $model));
         $var = new $className($this);
         return $var;
     }
@@ -179,9 +182,9 @@ class Core {
      */
     public function loadBlock($block) {
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
-        $filename = PROJECT_DIR . "/" . VIEW_DIR . "/blocks/$block.php";
+        $filename = VIEW_DIR . 'blocks/' . $block . '.php';
         require $filename;
-        $className = end(explode("/", $block));
+        $className = end(explode('/', $block));
         $var = new $className($this);
         return $var;
     }
@@ -194,9 +197,9 @@ class Core {
      */
     private function loadController($controller) {
         // Load Core Controller
-        require $this->coreDir . "/class/CoreController.php";
+        require CORE_DIR . 'class/CoreController.php';
         // Load this specific controller
-        $filename = PROJECT_DIR . "/" . CONTROL_DIR . "/$controller.php";
+        $filename = CONTROL_DIR . $controller . '.php';
         $this->controllerLoaded = true;
         if (file_exists($filename)) {
             require $filename;
@@ -215,16 +218,16 @@ class Core {
      * @param string $view name of the View class. This class must extend Template class & reside under VIEW/pages/ directory.
      *  - if you don't pass the parameter, default view for the page gets loaded.
      */
-    public function loadView($view="") {
+    public function loadView($view='') {
         if (empty($view))
             $view = $this->page;
         // First, load the CoreView Class
-        require $this->coreDir . "/class/CoreView.php";
+        require CORE_DIR . 'class/CoreView.php';
         // Next, load template class from template folder
         $template = $this->template;
-        require PROJECT_DIR . "/" . TEMPLATE_DIR . "/$template/Template.php";
+        require TEMPLATE_DIR . $template . '/Template.php';
         // Load the specific VIEW class.
-        $filename = PROJECT_DIR . "/" . VIEW_DIR . "/pages/$view.php";
+        $filename = VIEW_DIR . 'pages/' . $view . '.php';
         $this->viewLoaded = true;
 //        die('requiring' . $filename);
         $requireResult = $this->safeRequire($filename);
@@ -242,7 +245,7 @@ class Core {
      * @return bool true in success, false otherwise 
      */
     public function loadCustomClass($className) {
-        $classPath = PROJECT_DIR . "/" . CUSTOM_DIR . "/class/$className.php";
+        $classPath = CUSTOM_DIR . 'class/' . $className . '.php';
         return $this->safeRequireOnce($classPath);
     }
 
@@ -253,10 +256,9 @@ class Core {
      * @param string $driver name of the database driver, i.e MySQL
      */
     public function loadDatabaseDriver() {
-        $driver = $this->__dbconfig['driver'];
-        require_once $this->coreDir . "/class/db/GenericDB.php";   //  Generic database loaded
+        require_once CORE_DIR . 'class/db/GenericDB.php';   //  Generic database loaded
         // Load implemented driver
-        require_once $this->coreDir . "/class/db/$driver.php";
+        require_once CORE_DIR . 'class/db/' . $this->__dbconfig['driver'] . '.php';
     }
 
     /* Template Related */
@@ -324,12 +326,12 @@ class Core {
     }
 
     /**
-     * Locale - still testing.
+     * Locale - Multiple language support -  Not Implemented yet :-(
      */
-    private function loadLang() {
-        if (defined('DEFAULT_LANG'))
-            require_once PROJECT_DIR . '/' . 'lang/' . DEFAULT_LANG . '.php';
-    }
+//    private function loadLang() {
+//        if (defined('DEFAULT_LANG'))
+//            require_once PROJECT_DIR . 'lang/' . DEFAULT_LANG . '.php';
+//    }
 
     /** @name Functions for Internal Use
      * These functions are used internally by the framework.
@@ -343,7 +345,7 @@ class Core {
      */
     public function debug($str) {
         if (DEBUG_MODE)
-            echo "<pre>$str</pre>";
+            echo '<pre>' . $str . '</pre>';
     }
 
     /* Useful functions for index page */
@@ -362,7 +364,7 @@ class Core {
         // Automatic Model, View loading no longer supported!
         $this->findPage($page);
         // Autoload Lang
-        $this->loadLang();
+//        $this->loadLang();
         // Autoloading
         $this->autoloadFromConfig();
         // Load Controllers/Views
@@ -386,7 +388,7 @@ class Core {
     private function loadTemplate() {
         if ($this->viewLoaded) {
             $template = $this->template;
-            $templateIndex = PROJECT_DIR . "/" . TEMPLATE_DIR . "/$template/" . $this->templateFileName;
+            $templateIndex = TEMPLATE_DIR . $template . '/' . $this->templateFileName;
             require $templateIndex;
         }
     }
@@ -434,9 +436,7 @@ class Core {
         if (method_exists($this->controller, $this->functionToCall))
             call_user_func(array($this->controller, $this->functionToCall));
         else {
-            header("HTTP/1.0 404 Not Found");
-            echo "Error 404: Requested controller-method not found!";
-            exit();
+            $this->fatal('Error 404: Requested controller-method not found!');
         }
     }
 
@@ -449,23 +449,23 @@ class Core {
      * @return None 
      */
     private function findPage($URL) {
-        $pageArr = explode("/", $URL);
+        $pageArr = explode('/', $URL);
         $numSegments = count($pageArr);
 
-        if ($numSegments == 1 && $pageArr[0] != "static") {
+        if ($numSegments == 1 && $pageArr[0] != 'static') {
             $this->page = $URL;
             $this->functionToCall = $this->config->default_function_to_call;
         } else {
             // Handle static pages first.
-            if ($pageArr[0] == "static") {
+            if ($pageArr[0] == 'static') {
                 // STATIC: No controller here.
                 $this->isStatic = true;
                 unset($pageArr[0]);
-                $this->page = implode("/", $pageArr);
+                $this->page = implode('/', $pageArr);
             } else {
                 // DYNAMIC
                 // Check if full path exists
-                $controllerPath = PROJECT_DIR . "/" . CONTROL_DIR . "/$URL.php";
+                $controllerPath = CONTROL_DIR . $URL . '.php';
                 if (file_exists($controllerPath)) {
                     $this->page = $URL;
                     $this->functionToCall = $this->config->default_function_to_call;
@@ -473,7 +473,7 @@ class Core {
                     // Check later.
                     $this->functionToCall = $pageArr[$numSegments - 1];
                     unset($pageArr[$numSegments - 1]);
-                    $this->page = implode("/", $pageArr);
+                    $this->page = implode('/', $pageArr);
                 }
             }
         }
@@ -486,30 +486,39 @@ class Core {
      */
     private function autoloadFromConfig() {
 
+        // General Funcions
+
+        if (isset($this->config->autoloads[AUTOLOAD_GENERAL_FUNCS])) {
+            foreach ($this->config->autoloads[AUTOLOAD_GENERAL_FUNCS] as $className) {
+                require CORE_DIR . 'funcs/' . $className . '.php';
+            }
+        }
+
+
         // Custom Function
-        if (isset($this->config->autoloads['func'])) {
-            foreach ($this->config->autoloads['func'] as $className) {
-                require PROJECT_DIR . '/' . CUSTOM_DIR . '/funcs/' . $className . '.php';
+        if (isset($this->config->autoloads[AUTOLOAD_CUSTOM_FUNCS])) {
+            foreach ($this->config->autoloads[AUTOLOAD_CUSTOM_FUNCS] as $className) {
+                require CUSTOM_DIR . 'funcs/' . $className . '.php';
             }
         }
 
         // Custom classes
-        if (isset($this->config->autoloads['custom'])) {
-            foreach ($this->config->autoloads['custom'] as $className) {
-                require PROJECT_DIR . "/" . CUSTOM_DIR . "/class/$className.php";
+        if (isset($this->config->autoloads[AUTOLOAD_CUSTOM_CLASS])) {
+            foreach ($this->config->autoloads[AUTOLOAD_CUSTOM_CLASS] as $className) {
+                require CUSTOM_DIR . 'class/' . $className . '.php';
                 $this->autoloadedData['custom'][$className] = new $className($this);
             }
         }
         // MODELS
-        if (isset($this->config->autoloads['model'])) {
+        if (isset($this->config->autoloads[AUTOLOAD_MODEL])) {
             // First include once core model class
-            require_once $this->coreDir . "/class/CoreModel.php";
+            require_once CORE_DIR . 'class/CoreModel.php';
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
             // Include all models
-            foreach ($this->config->autoloads['model'] as $className) {
-                require PROJECT_DIR . '/' . MODEL_DIR . '/' . $className . '.php';
+            foreach ($this->config->autoloads[AUTOLOAD_MODEL] as $className) {
+                require MODEL_DIR . $className . '.php';
                 $this->autoloadedData['model'][$className] = new $className($this);
             }
         }

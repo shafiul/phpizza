@@ -33,10 +33,10 @@ function url($url) {
     $urlArr = explode("?", $url, 2); // Split based on the query string
     if(NICE_URL_ENABLED){
         $queryString = (isset($urlArr[1])) ? ( "?" . $urlArr[1]) : ("");
-        return BASE_URL . '/' . $urlArr[0] . URL_EXTENTION . $queryString;
+        return BASE_URL . $urlArr[0] . URL_EXTENTION . $queryString;
     }else{
         $queryString = (isset($urlArr[1])) ? ( "&" . $urlArr[1]) : ("");
-        return BASE_URL . '/?p=' . $urlArr[0] . $queryString;
+        return BASE_URL . '?p=' . $urlArr[0] . $queryString;
     }
     
     
@@ -52,10 +52,10 @@ function url_static($url) {
     $urlArr = explode("?", $url, 2); // Split based on the query string
     if(NICE_URL_ENABLED){
         $queryString = (isset($urlArr[1])) ? ( "?" . $urlArr[1]) : ("");
-        return BASE_URL . '/static/' . $urlArr[0] . URL_EXTENTION . $queryString;
+        return BASE_URL . 'static/' . $urlArr[0] . URL_EXTENTION . $queryString;
     }else{
         $queryString = (isset($urlArr[1])) ? ( "&" . $urlArr[1]) : ("");
-        return BASE_URL . '/?p=static/' . $urlArr[0] . $queryString;
+        return BASE_URL . '?p=static/' . $urlArr[0] . $queryString;
     }
 }
 
@@ -66,7 +66,7 @@ function url_static($url) {
  */
 function filePath($filePath) {
     // Returns absolute path for a file.
-    return BASE_URL . "/files/$filePath";
+    return FILES_URL . $filePath;
 }
 
 /**
@@ -74,14 +74,14 @@ function filePath($filePath) {
  * @param string $page  URL to which the page will be redirected
  * @param bool $byHeader    if true, redirection done by html header. else, by javascript 
  */
-function redirect($page="", $byHeader = true) {
+function redirect($page='', $byHeader = true) {
     if (empty($page))
         $page = url(LANDING_PAGE);
     
     if ($byHeader) {
-        header("Location: $page");
+        header('Location: ' . $page);
     } else {
-        echo "<script>window.location = '$page';</script>";
+        echo '<script>window.location = "$page";</script>';
     }
     exit();
 }
@@ -100,7 +100,7 @@ function redirect($page="", $byHeader = true) {
  * @return string | generated html 
  */
 function anchor($url, $text) {
-    return "<a href = '" . url($url). "'>$text</a>";
+    return '<a href = "' . url($url). '">' . $text . '</a>';
 }
 
 /**
@@ -153,7 +153,13 @@ function getView(){
 }
 
 /**
- * Safely returns an element from an array, empty string if not set.
+ * Safely returns value of a key from a key-value pair array. If the $index or key is not available, returns
+ *  boolean false.
+ * @param array $arr - key-value pair array.
+ * @param mixed $index - inedx/key of an array element.
+ * @return mixed
+ *  - value if $index is set
+ *  - boolean false if $index is unset 
  */
 
 function arrVal($arr, $index){
